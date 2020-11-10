@@ -1,2 +1,2 @@
 # Decast
-A Sketch Plugin for managing and analyzing symbols.
+A tool for for analyzing Sketch symbols.
