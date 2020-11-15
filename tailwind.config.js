@@ -14,7 +14,10 @@ module.exports = {
         strawberry: "#cc0b3d",
         hay: "#ff9766",
         meadow: "#8cb224",
-        ciel: "#006cff",
+        ciel: {
+          200: "#006cff",
+          100: "#3389FF",
+        },
         night: {
           100: "#515458",
           200: "#33373D",
