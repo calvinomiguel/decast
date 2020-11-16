@@ -1,49 +1,42 @@
 <template>
-  <nav id="nav-bar" class="bg-night-300">
-    <div class="nav-wrapper flex justify-between items-center">
-      <a href="">
-        <img src="@/assets/img/decast-logo.png" alt="" />
-      </a>
-      <ul class="nav-links text-cloud">
-        <li>
-          <a
-            class="font-mono hover:text-night-100 duration-360 ease-in-out"
-            href=""
-            >Dashboard</a
-          >
-        </li>
-        <li>
-          <a
-            class="font-mono hover:text-night-100 duration-360 ease-in-out"
-            href=""
-            >Files</a
-          >
-        </li>
-        <li>
-          <a
-            class="font-mono hover:text-night-100 duration-360 ease-in-out"
-            href=""
-            >Components</a
-          >
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <main id="layout">
-    <h1 id="page-title" class="font-mono text-4xl text-cloud">Dashboard</h1>
-  </main>
-</template>
+  <div id="action-table" class="bg-night-200 rounded pt-6 pr-6 pl-6 pb-18">
+    <h3 class="table-title font-mono text-cloud font-bold text-2xl mb-4">
+      Dead Components
+    </h3>
+    <div class="divider"></div>
+    <div class="table-content">
+      <div class="graph-container"></div>
+      <div class="rows-container">
+        <div
+          class="row text-cloud font-body pt-5 pb-1 flex justify-between items-center"
+        >
+          <div class="row-text-content">
+            <span class="row-title">Total components</span>
+            <span class="row-value">9630</span>
+          </div>
 
+          <div class="value-indicator bg-cloud"></div>
+        </div>
+        <div class="divider"></div>
+        <div
+          class="row text-cloud font-body pt-5 pb-1 flex justify-between items-center"
+        >
+          <div class="row-text-content">
+            <span class="row-title">Total components</span>
+            <span class="row-value">963</span>
+          </div>
+
+          <div class="value-indicator bg-ciel"></div>
+        </div>
+        <div class="divider"></div>
+      </div>
+    </div>
+  </div>
+</template>
 <script>
+
 export default {
   name: "App",
-  data() {
-    return {
-      symbols: 100,
-      instances: 100,
-      artboards: 100,
-    };
-  },
 };
 </script>
 <style src="@/assets/css/app.css"></style> 
@@ -61,26 +54,21 @@ export default {
   transform: translateX(-50%);
 }
 
-#layout{
-  max-width: 1224px;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-}
-#nav-bar {
-  height: 72px;
-}
-
-.nav-wrapper {
-  max-width: 1224px;
+#action-table {
+  max-width: 608px;
   position: relative;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  height: 444px;
 }
 
-.nav-links li {
-  display: inline-block;
-  padding-left: 32px;
+.row {
+  cursor: pointer;
+}
+
+.divider {
+  width: 100%;
+  border-bottom: 1px solid theme("colors.cloud");
 }
 </style>

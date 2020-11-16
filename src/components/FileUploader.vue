@@ -31,15 +31,23 @@
         <input type="file" class="hidden" />
       </label>
     </div>
-    <button
-      class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded text-white bg-ciel-200 hover:bg-ciel-100 focus:outline-none transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10"
-    >
-      Upload
-    </button>
+    <ButtonPrimary btn-text="Upload"/>
   </form>
 </template>
+<script>
+import ButtonPrimary from "@/components/ButtonPrimary";
 
-<style>
+export default {
+  name: "FileUploader",
+  data() {
+    return {
+      files: [],
+    };
+  },
+  components: { ButtonPrimary },
+};
+</script>
+<style scoped>
 #fileuploader {
   max-width: 608px;
   width: 100%;
