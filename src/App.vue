@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="bg-night-400">
+  <div id="app">
     <nav-bar></nav-bar>
   </div>
 </template>
@@ -14,4 +14,8 @@ export default {
 };
 </script>
 <style>
+#app {
+  height: 100vh;
+  width: 100vw;
+}
 </style>
