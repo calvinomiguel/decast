@@ -21,6 +21,9 @@ export default {
 };
 </script>
 <style scoped>
+#nav-bar{
+  padding: 0 24px;
+}
 .nav-wrapper {
   max-width: 1224px;
   position: relative;
