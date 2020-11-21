@@ -1,18 +1,27 @@
 <template>
   <div id="app">
     <nav-bar></nav-bar>
-    <file-uploader></file-uploader>
+    <search></search>
+    <TableHead />
+    <component-list-item></component-list-item>
+    <button-primary text="Hi"></button-primary>
   </div>
 </template>
 <script>
 import NavBar from "@/components/NavBar";
-import FileUploader from "@/components/FileUploader";
+import Search from "@/components/Search";
+import ComponentListItem from "@/components/ComponentListItem";
+import TableHead from "@/components/TableHead";
+import ButtonPrimary from "@/components/ButtonPrimary";
 
 export default {
   name: "App",
   components: {
     NavBar,
-    FileUploader,
+    Search,
+    ComponentListItem,
+    TableHead,
+    ButtonPrimary,
   },
 };
 </script>

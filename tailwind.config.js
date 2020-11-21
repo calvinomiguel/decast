@@ -5,7 +5,10 @@ module.exports = {
         },
         extend: {
             colors: {
-                strawberry: '#cc0b3d',
+                strawberry: {
+                    200: '#cc0b3d',
+                    100: '#FF3469',
+                },
                 meadow: '#8cb224',
                 hay: '#ff9766',
                 cloud: '#ffffff',
