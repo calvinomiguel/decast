@@ -6,13 +6,22 @@
     <h2 class="font-mono text-night-300 font-bold text-2xl mb-4">
       Sanitary suggestions
     </h2>
-    <Divider class="mb-8"/>
+    <Divider class="mb-4" />
     <div class="main-content">
       <div class="graph"></div>
       <div class="stats flex flex-wrap">
-        <div v-for="(suggestion, index) in suggestions" :key="index"  v-show="suggestion.status" class="row w-full">
-          <a href="" class="row-text py-4 flex w-full">
+        <div
+          v-for="(suggestion, index) in suggestions"
+          :key="index"
+          v-show="suggestion.status"
+          class="row w-full"
+        >
+          <a href="" class="row-text py-4 flex items-center justify-between w-full">
             <p class="font-mono text-night-300">{{ suggestion.suggestion }}</p>
+            <font-awesome-icon
+              class="text-night-300"
+              :icon="['fas', 'chevron-right']"
+            />
           </a>
           <Divider />
         </div>
