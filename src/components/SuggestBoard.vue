@@ -8,7 +8,6 @@
     </h2>
     <Divider class="mb-4" />
     <div class="main-content">
-      <div class="graph"></div>
       <div class="stats flex flex-wrap">
         <div
           v-for="(suggestion, index) in suggestions"
@@ -35,8 +34,6 @@ export default {
   name: "DeadBoard",
   data() {
     return {
-      totalComponents: 1440,
-      deadComponents: 999,
       suggestions: [
         {
           suggestion: "Remove dead components",
@@ -64,7 +61,7 @@ export default {
   computed: {
     deadComponentsRatio: function () {
       return (
-        Math.round((this.deadComponents / this.totalComponents) * 10000) / 100
+        Math.round((this.deadComponents / this.allComponents) * 10000) / 100
       );
     },
   },

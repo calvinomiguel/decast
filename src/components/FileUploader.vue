@@ -4,13 +4,13 @@
       <h2 class="font-mono font-bold text-2xl text-night-300">
         Upload your sketch files
       </h2>
-      <p class="text-base font-mono text-base text-night-300">
+      <p class="font-mono text-base text-night-300">
         Only sketch files allowed
       </p>
     </div>
     <div class="upload-field flex w-full mt-10 mb-10">
       <label
-        class="w-full  items-center justify-center text-night-300 flex flex-col items-center px-4 py-6 bg-cloud text-blue rounded tracking-wide uppercase border border-dashed cursor-pointer hover:bg-smokey"
+        class="w-full items-center justify-center text-night-300 flex flex-col px-4 py-6 bg-cloud text-blue rounded tracking-wide uppercase border border-dashed cursor-pointer hover:bg-smokey"
       >
         <svg
           class="w-8 h-8"

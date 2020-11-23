@@ -4,9 +4,16 @@
       Dead Components
     </h2>
     <Divider />
-    <div class="main-content">
-      <div class="graph"></div>
-      <div class="stats flex flex-wrap mb-6 mt-8">
+    <div class="main-content flex justify-between py-8">
+      <pie-chart
+        id="pie-chart"
+        width="240px"
+        height="240px"
+        :data="chartData"
+        :colors="colors"
+        :legend="false"
+      ></pie-chart>
+      <div class="stats w-6/12 flex flex-wrap mb-6 mt-8">
         <div class="row w-full flex justify-between mb-4">
           <div class="row-text">
             <p class="font-mono text-night-300">Total Components</p>
@@ -20,7 +27,9 @@
         <div class="row w-full flex justify-between my-4">
           <div class="row-text">
             <p class="font-mono text-night-300">Total Components</p>
-            <p class="font-bold font-mono text-night-300 mt-2">{{ deadComponents }}</p>
+            <p class="font-bold font-mono text-night-300 mt-2">
+              {{ deadComponents }}
+            </p>
           </div>
           <div class="tag bg-lila-100"></div>
         </div>
@@ -29,10 +38,8 @@
           <h3 class="font-mono text-xl text-right text-night-300">
             Dead components ratio
           </h3>
-          <p class="font-mono text-night-300 text-right font-bold">
-            {{
-              deadComponentsRatio
-            }}%
+          <p class="font-mono text-night-300 text-xl text-right font-bold">
+            {{ deadComponentsRatio }}%
           </p>
         </div>
       </div>
@@ -49,6 +56,11 @@ export default {
     return {
       totalComponents: 1440,
       deadComponents: 999,
+      colors: ["#856de7", "#23272a"],
+      chartData: {
+        "Dead Components": 999,
+        "All Components": 1440,
+      },
     };
   },
   computed: {
@@ -69,5 +81,9 @@ export default {
   height: 12px;
   width: 12px;
   border-radius: 100%;
+}
+
+#pie-chart {
+  max-width: 50%;
 }
 </style>
