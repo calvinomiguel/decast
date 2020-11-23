@@ -1,7 +1,7 @@
 module.exports = {
     theme: {
         fontFamily: {
-            mono: ['PT Mono', 'monospace']
+            mono: ['Inter', 'sans-serif']
         },
         extend: {
             colors: {
@@ -12,15 +12,16 @@ module.exports = {
                 meadow: '#8cb224',
                 hay: '#ff9766',
                 cloud: '#ffffff',
-                ciel: {
-                    100: '#3389FF',
-                    200: '#006cff'
+                smokey: '#f6f6f6',
+                lila: {
+                    200: '#6452ad',
+                    100: '#856de7'
                 },
                 night: {
-                    400: '#131319',
-                    300: '#26292e',
-                    200: '#33373d',
-                    100: '#515458'
+                    400: '#000000',
+                    300: '#23272a',
+                    200: '#2c2f33',
+                    100: '#99aab5'
                 }
             }
         }

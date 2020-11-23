@@ -1,16 +1,16 @@
 <template>
-  <nav id="nav-bar" class="bg-night-400">
+  <nav id="nav-bar" class="bg-cloud">
     <div class="nav-wrapper">
       <a class="logo" href="">
         <img
-          src="https://raw.githubusercontent.com/webpack/media/master/logo/icon-square-big.png"
+          src="../assets/logo.svg"
           alt="decast logo"
         />
       </a>
       <ul class="nav-items">
-        <li><a class="font-mono text-cloud" href="">Dashboard</a></li>
-        <li><a class="font-mono text-cloud" href="">Files</a></li>
-        <li><a class="font-mono text-cloud" href="">Components</a></li>
+        <li><a class="font-mono text-night-300 hover:underline" href="">Dashboard</a></li>
+        <li><a class="font-mono text-night-300 hover:underline" href="">Files</a></li>
+        <li><a class="font-mono text-night-300 hover:underline" href="">Components</a></li>
       </ul>
     </div>
   </nav>
