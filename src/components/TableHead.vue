@@ -1,7 +1,7 @@
 <template>
   <label
     id="table-head"
-    class="flex justify-between cursor-pointer items-center bg-night-200 shadow rounded h-20 px-6 flex items-center"
+    class="flex justify-between cursor-pointer items-center bg-night-200 shadow rounded h-20 px-6"
   >
     <div class="label-container flex items-center">
       <div
