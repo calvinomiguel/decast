@@ -18,7 +18,7 @@ export default {
   font-family: theme("fontFamily.mono");
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: theme("colors.lila.100");
+  background-color: theme("colors.smokey");
 }
 
 main {
