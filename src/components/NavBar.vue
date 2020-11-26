@@ -1,27 +1,33 @@
 <template>
   <nav id="nav-bar" class="bg-cloud">
     <div class="nav-wrapper">
-      <a class="logo" href="">
-        <img
-          src="../assets/logo.svg"
-          alt="decast logo"
-        />
+      <a class="logo" href="/">
+        <img src="../assets/logo.svg" alt="decast logo" />
       </a>
       <ul class="nav-items">
-        <li><a class="font-mono text-night-300 hover:underline" href="">Dashboard</a></li>
-        <li><a class="font-mono text-night-300 hover:underline" href="">Files</a></li>
-        <li><a class="font-mono text-night-300 hover:underline" href="">Components</a></li>
+        <li>
+          <NavLink link="/" link-text="Dashboard" />
+        <li>
+          <NavLink link="/files" link-text="Files" />
+        </li>
+        <li>
+          <NavLink link="/components" link-text="Components" />
+        </li>
       </ul>
     </div>
   </nav>
 </template>
 <script>
+import NavLink from "@/components/NavLink";
 export default {
   name: "NavBar",
+  components: {
+    NavLink,
+  },
 };
 </script>
 <style scoped>
-#nav-bar{
+#nav-bar {
   padding: 0 24px;
 }
 .nav-wrapper {

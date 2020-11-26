@@ -1,5 +1,5 @@
 <template>
-  <section
+  <div
     id="suggestionboard"
     class="bg-cloud px-6 rounded-xl py-12 shadow-md"
   >
@@ -26,7 +26,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
 </template>
 <script>
 import Divider from "@/components/Divider";

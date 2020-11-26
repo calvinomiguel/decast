@@ -7,6 +7,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import Chartkick from 'vue-chartkick'
 import ChartJS from 'chart.js'
+import router from './router'
 
 Vue.use(Chartkick.use(ChartJS))
 
@@ -16,5 +17,6 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false
 
 new Vue({
-  render: h => h(App),
+  router,
+  render: h => h(App)
 }).$mount('#app')

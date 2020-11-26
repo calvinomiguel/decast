@@ -1,5 +1,5 @@
 <template>
-  <section id="deadboard" class="bg-cloud px-6 rounded-xl py-12 shadow-md">
+  <div id="deadboard" class="bg-cloud px-6 rounded-xl py-12 shadow-md">
     <h2 class="font-mono text-night-300 font-bold text-2xl mb-4">
       Dead Components
     </h2>
@@ -45,7 +45,7 @@
       </div>
     </div>
     <ButtonPrimary text="See dead components" />
-  </section>
+  </div>
 </template>
 <script>
 import Divider from "@/components/Divider";
