@@ -19,6 +19,8 @@
       </svg>
     </div>
     <input
+      v-on:focus="focus"
+      v-on:focusout="focusOut"
       class="w-full bg-smokey h-8 pl-4 focus:outline-none font-mono placeholder-night-100"
       type="search"
       placeholder="Search..."
@@ -28,6 +30,20 @@
 <script>
 export default {
   name: "Search",
+  methods: {
+    focus: function () {
+      let container = document.querySelector(".search-container");
+      container.classList.remove("border-night-100");
+      container.classList.add("border-lila-100");
+      container.style.boxShadow = "0px 0px 1px 2px rgb(133 109 231 / 0.32)";
+    },
+    focusOut: function () {
+      let container = document.querySelector(".search-container");
+      container.classList.add("border-night-100");
+      container.classList.remove("border-lila-100");
+      container.style.boxShadow = "none";
+    },
+  },
 };
 </script>
 <style scoped>
