@@ -20,16 +20,4 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   background-color: theme("colors.smokey");
 }
-
-main {
-  min-height: 100vh;
-  padding: 0 24px 80px 24px;
-}
-
-.main-wrapper {
-  max-width: 1224px;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-}
 </style>

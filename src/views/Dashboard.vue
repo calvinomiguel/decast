@@ -1,7 +1,7 @@
 <template>
   <main>
     <div class="main-wrapper">
-      <section class="flex justify-between mt-12">
+      <section class="flex justify-between items-stretch mt-12">
         <DeadBoard />
         <SuggestBoard />
       </section>
@@ -20,18 +20,24 @@ export default {
 };
 </script>
 <style scoped>
-section > div {
+#deadboard,
+#suggestionboard {
   max-width: calc(50% - 1rem);
+  width: 100%;
 }
 
+main {
+  min-height: 100vh;
+  padding: 0 24px 80px 24px;
+}
 @media all and (max-width: 1172px) {
   section {
     flex-wrap: wrap;
   }
 
-  section > div {
+  #deadboard,
+  #suggestionboard {
     max-width: 100%;
-    width: 100%;
   }
 
   #suggestionboard {

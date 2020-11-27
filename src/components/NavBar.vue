@@ -1,5 +1,5 @@
 <template>
-  <nav id="nav-bar" class="bg-cloud">
+  <nav id="nav-bar" class="bg-night-300">
     <div class="nav-wrapper">
       <a class="logo" href="/">
         <img src="../assets/logo.svg" alt="decast logo" />
@@ -7,6 +7,8 @@
       <ul class="nav-items">
         <li>
           <NavLink link="/" link-text="Dashboard" />
+        </li>
+
         <li>
           <NavLink link="/files" link-text="Files" />
         </li>
@@ -31,20 +33,16 @@ export default {
   padding: 0 24px;
 }
 .nav-wrapper {
-  max-width: 1224px;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   justify-content: space-between;
-  height: 72px;
+  height: 60px;
   width: 100%;
   align-items: center;
 }
 
 .logo {
-  height: 52px;
-  width: 52px;
+  height: 44px;
+  width: 44px;
 }
 
 .nav-items li {
