@@ -1,61 +1,58 @@
 <template>
-  <label class="container flex align-center font-mono mr-8">
-    <input type="checkbox" />
+  <label class="label-container flex align-center font-mono">
+    <div class="checkbox-wrapper">
+      <input class="checkbox-input" type="checkbox" :checked="checkedValue" />
+      <span
+        class="rounded flex align-center items-center justify-center checkmark checkboxStyle"
+      ></span>
+    </div>
     <span
-      :class="[
-        'rounded',
-        'flex',
-        'align-center',
-        'items-center',
-        'justify-center',
-        'checkmark',
-        checkboxStyle,
-      ]"
-    ></span>
+      v-show="label == 'Label' ? null : label"
+      class="items-center flex ml-2 label"
+    >
+      {{ label }}
+    </span>
   </label>
 </template>
 <script>
 export default {
   name: "CheckBox",
   props: {
-    fontFamily: {
+    label: {
       type: String,
-      default: "font-mono",
+      default: "Label",
     },
-    checkboxStyle: {
-      type: String,
-      default: "head-checkbox",
+    checkedValue: {
+      type: Boolean,
+      default: false,
     },
-  },
-  data() {
-    return {
-      headLabel: "head-label",
-      bodyLabel: "body-label",
-      headCheckbox: "head-checkbox",
-      bodyCheckbox: "head-checkbox",
-    };
   },
 };
 </script>
 <style scoped>
-/* The container */
-.container {
+/* The label-container */
+.label-container {
   position: relative;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  max-width: 28px;
 }
 
 /* Hide the browser's default checkbox */
-.container input {
+.label-container input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
   height: 0;
   width: 0;
+}
+
+.checkbox-wrapper {
+  position: relative;
+  height: 28px;
+  width: 28px;
 }
 
 /* Create a custom checkbox */
@@ -67,41 +64,27 @@ export default {
   width: 28px;
 }
 
-.body-checkbox {
-  border: 2px solid theme("colors.night.100");
-}
-
-.head-checkbox {
-  border: 2px solid theme("colors.cloud");
-}
-/* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
-  background-color: theme("colors.night.300");
-  border-color: theme("colors.lila.100");
-}
-
-/* When the checkbox is checked, add a blue background */
-.container input:checked ~ .checkmark {
-  background-color: theme("colors.lila.100");
-  border-color: theme("colors.lila.100");
+.checkmark {
+  border: 1px solid theme("colors.night.100");
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
   content: "";
-  position: absolute;
   display: none;
 }
 
 /* Show the checkmark when checked */
-.container input:checked ~ .checkmark:after {
+.label-container input:checked ~ .checkmark:after {
   display: block;
 }
 
 /* Style the checkmark/indicator */
-.container .checkmark:after {
+.label-container .checkmark:after {
   content: "✓";
-  color: white;
+  font-weight: bold;
+  font-family: theme("fontFamily.mono");
+  color: theme("colors.lila.200");
   font-size: 20px;
 }
 </style>
