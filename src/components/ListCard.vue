@@ -2,11 +2,19 @@
   <div
     class="list-card flex items-center bg-cloud px-4 py-3 rounded border hover:shadow-lg transition-all ease-in-out duration-300 justify-between border-night-100"
   >
-    <Checkbox
-      v-model="checkboxValue"
-      class="mr-4"
-      :checkedValue="checkboxValue"
-    />
+    <label class="label-container flex align-center mr-4 font-mono">
+      <div class="checkbox-wrapper">
+        <input
+          v-on:click="focusItem"
+          class="checkbox-input"
+          type="checkbox"
+          :checked="checkedValue"
+        />
+        <span
+          class="rounded flex align-center items-center justify-center checkmark checkboxStyle"
+        ></span>
+      </div>
+    </label>
     <div class="card-text flex flex-wrap mr-auto">
       <span class="component-name w-full font-mono font-bold text-sm">
         {{ name }}
@@ -21,12 +29,11 @@
   </div>
 </template>
 <script>
-import Checkbox from "@/components/Checkbox";
 export default {
   name: "ListCard",
   data() {
     return {
-      checkboxValue: true,
+      checkedValue: false,
     };
   },
   props: {
@@ -38,16 +45,85 @@ export default {
       type: Number,
       default: 9630,
     },
-  },
-  watch: {
-    checkboxValue: function () {
-      console.log("Hi");
+    checkBoxValue: {
+      type: Boolean,
+      default: false,
     },
   },
-  components: {
-    Checkbox,
+  methods: {
+    focusItem() {
+      let listCard = document.querySelector(".list-card");
+      this.checkedValue = !this.checkedValue;
+      if (this.checkedValue == true) {
+        listCard.classList.remove(
+          "border",
+          "border-night-100",
+          "hover:shadow-lg"
+        );
+        listCard.classList.add("border-2", "border-lila-100");
+      } else {
+        listCard.classList.add("border", "border-night-100", "hover:shadow-lg");
+        listCard.classList.remove("border-2", "border-lila-100");
+      }
+    },
   },
 };
 </script>
 <style scoped>
+.label-container {
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.label-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkbox-wrapper {
+  position: relative;
+  height: 28px;
+  width: 28px;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 28px;
+  width: 28px;
+}
+
+.checkmark {
+  border: 1px solid theme("colors.night.100");
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.label-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.label-container .checkmark:after {
+  content: "✓";
+  font-weight: bold;
+  font-family: theme("fontFamily.mono");
+  color: theme("colors.lila.200");
+  font-size: 20px;
+}
 </style>

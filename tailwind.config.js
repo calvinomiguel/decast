@@ -1,7 +1,7 @@
 module.exports = {
     theme: {
         fontFamily: {
-            mono: ['Inter', 'sans-serif']
+            mono: ['Inter', 'sans-serif'],
         },
         extend: {
             colors: {
