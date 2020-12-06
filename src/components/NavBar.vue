@@ -10,7 +10,7 @@
         </li>
 
         <li>
-          <NavLink link="/files" link-text="Files" />
+          <NavLink link="/artboards" link-text="Artboards" />
         </li>
         <li>
           <NavLink link="/components" link-text="Components" />
