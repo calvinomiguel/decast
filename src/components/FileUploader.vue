@@ -79,12 +79,7 @@ export default {
     fileValidation() {
       let fileInput = document.getElementById("file-input");
       let files = fileInput.files;
-      const reader = new FileReader();
       console.log(files);
-      reader.onload = function () {
-        console.log(reader.result);
-      };
-      reader.readAsText(files[0]);
     },
   },
 };
