@@ -1,4 +1,6 @@
 <template>
+<div>
+<NavBar/>
   <main>
     <div class="main-wrapper">
       <section class="flex justify-between items-stretch mt-12">
@@ -7,15 +9,18 @@
       </section>
     </div>
   </main>
+</div>
 </template>
 <script>
 import DeadBoard from "@/components/DeadBoard";
 import SuggestBoard from "@/components/SuggestBoard";
+import NavBar from "@/components/NavBar";
 export default {
   name: "Dashboard",
   components: {
     DeadBoard,
     SuggestBoard,
+    NavBar,
   },
 };
 </script>
