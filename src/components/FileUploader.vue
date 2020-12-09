@@ -33,7 +33,7 @@
           multiple
           class="hidden"
           accept=".sketch"
-          v-on:change="fileValidation"
+          v-on:change="fileHandling"
         />
       </label>
     </div>
@@ -70,16 +70,67 @@
 
 <script>
 import ButtonPrimary from "@/components/ButtonPrimary";
+import unzip from "unzip-js";
 export default {
   name: "FileUploader",
   components: {
     ButtonPrimary,
   },
   methods: {
-    fileValidation() {
+    fileHandling() {
       let fileInput = document.getElementById("file-input");
       let files = fileInput.files;
-      console.log(files);
+      //debugger;
+      files.forEach((file) => {
+        unzip(file, function (err, zipFile) {
+          if (err) {
+            return console.error(err);
+          }
+          //debugger;
+          zipFile.readEntries(function (err, entries) {
+            if (err) {
+              return console.error(err);
+            }
+            console.log(entries);
+            entries.forEach(function (entry) {
+              if (
+                !entry.name.includes("previews/") &&
+                !entry.name.includes("pages/") &&
+                !entry.name.includes("images/") &&
+                !entry.name.includes("text-previews/")
+              ) {
+                zipFile.readEntryData(entry, false, function (err, readStream) {
+                  //debugger;
+                  if (err) {
+                    return console.error(err);
+                  }
+                  readStream.on("data", function (uint8Array) {
+                    console.log(
+                      JSON.parse(String.fromCharCode.apply(null, uint8Array))
+                    );
+                  });
+                  readStream.on("error", console.log);
+                  readStream.on("end", console.log);
+                });
+              } else {
+                zipFile.readEntryData(entry, false, function (err, readStream) {
+                  //debugger;
+                  if (err) {
+                    return console.error(err);
+                  }
+                  console.log("FOLDER");
+                  readStream.on("data", function (uint8Array) {
+                    console.log(uint8Array);
+                    //console.log(String.fromCharCode.apply(null, uint8Array));
+                  });
+                  readStream.on("error", console.log);
+                  readStream.on("end", console.log);
+                });
+              }
+            });
+          });
+        });
+      });
     },
   },
 };
