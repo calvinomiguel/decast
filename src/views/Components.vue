@@ -13,7 +13,7 @@
           />
           <ButtonOrganizer alt="Filter icon" btn-text="Filter" />
         </div>
-        <Checkbox label="Select all" class="ml-4 mt-8" />
+        <CheckBox label="Select all" class="ml-4 mt-8" />
         <div class="components-list mt-4">
           <ListCard />
         </div>
@@ -257,7 +257,7 @@
 import Search from "@/components/Search";
 import NavBar from '@/components/NavBar'
 import ButtonOrganizer from "@/components/ButtonOrganizer";
-import Checkbox from "@/components/Checkbox";
+import CheckBox from "@/components/CheckBox";
 import ListCard from "@/components/ListCard";
 import ButtonMenu from "@/components/ButtonMenu";
 import Divider from "@/components/Divider";
@@ -297,7 +297,7 @@ export default {
     Search,
     NavBar,
     ButtonOrganizer,
-    Checkbox,
+    CheckBox,
     ListCard,
     ButtonMenu,
     Divider,

@@ -4,7 +4,7 @@
       v-on:click="check"
       class="px-6 py-6 cursor-pointer flex table-head bg-cloud"
     >
-      <check-box :checkboxStyle="'body-checkbox'"></check-box>
+      <CheckBox :checkboxStyle="'body-checkbox'" />
       <div class="column-item">
         <span class="column-name font-mono text-lg text-night-300">
           {{ componentName }}
