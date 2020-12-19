@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const multer = require("multer");
-const upload = multer({ dest: `${__dirname}/uploads` });
+const upload = multer({ dest: "./uploads" });
 //const uploadsFolder = __dirname + "/uploads/";
 const port = 3060;
 //const fs = require("fs");
