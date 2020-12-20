@@ -1,5 +1,7 @@
 <template>
   <form
+    method="post"
+    enctype="multipart/form-data"
     id="file-uploader"
     class="bg-cloud px-6 rounded-xl pt-12 pb-6 shadow-md"
   >
@@ -33,7 +35,7 @@
           multiple
           class="hidden"
           accept=".sketch"
-          v-on:change="fileHandling"
+          v-on:change="fileHandling()"
         />
       </label>
     </div>
@@ -76,35 +78,38 @@ export default {
   components: {
     ButtonPrimary,
   },
+  data() {
+    return {};
+  },
   methods: {
-    fileHandling() {
+    fileHandling: function () {
       let fileInput = document.getElementById("file-input");
-      let files = fileInput.files;
+      let files = Array.from(fileInput.files);
       //debugger;
       files.forEach((file) => {
-        unzip(file, function (err, zipFile) {
+        unzip(file, (err, zipFile) => {
           if (err) {
             return console.error(err);
           }
           //debugger;
-          zipFile.readEntries(function (err, entries) {
+          zipFile.readEntries((err, entries) => {
             if (err) {
               return console.error(err);
             }
             console.log(entries);
-            entries.forEach(function (entry) {
+            entries.forEach((entry) => {
               if (
                 !entry.name.includes("previews/") &&
                 !entry.name.includes("pages/") &&
                 !entry.name.includes("images/") &&
                 !entry.name.includes("text-previews/")
               ) {
-                zipFile.readEntryData(entry, false, function (err, readStream) {
+                zipFile.readEntryData(entry, false, (err, readStream) => {
                   //debugger;
                   if (err) {
                     return console.error(err);
                   }
-                  readStream.on("data", function (uint8Array) {
+                  readStream.on("data", (uint8Array) => {
                     console.log(
                       JSON.parse(String.fromCharCode.apply(null, uint8Array))
                     );
@@ -113,13 +118,13 @@ export default {
                   readStream.on("end", console.log);
                 });
               } else {
-                zipFile.readEntryData(entry, false, function (err, readStream) {
+                zipFile.readEntryData(entry, false, (err, readStream) => {
                   //debugger;
                   if (err) {
                     return console.error(err);
                   }
                   console.log("FOLDER");
-                  readStream.on("data", function (uint8Array) {
+                  readStream.on("data", (uint8Array) => {
                     console.log(uint8Array);
                     //console.log(String.fromCharCode.apply(null, uint8Array));
                   });

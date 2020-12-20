@@ -14,10 +14,10 @@ module.exports = {
   ],
   plugins: ['prettier', 'vue'],
   parserOptions: {
-		parser: 'babel-eslint',
+    parser: 'babel-eslint',
     sourceType: 'module',
   },
- 	rules: {
+  rules: {
     'vue/max-attributes-per-line': [
       'error',
       {
