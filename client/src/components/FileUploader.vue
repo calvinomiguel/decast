@@ -1,6 +1,6 @@
 <template>
   <form
-    method="post"
+    v-on:submit.prevent="sendFiles()"
     enctype="multipart/form-data"
     id="file-uploader"
     class="bg-cloud px-6 rounded-xl pt-12 pb-6 shadow-md"
@@ -71,22 +71,27 @@
 </template>
 
 <script>
-import ButtonPrimary from "@/components/ButtonPrimary";
+import axios from "axios";
 import unzip from "unzip-js";
+import ButtonPrimary from "@/components/ButtonPrimary";
+
 export default {
   name: "FileUploader",
   components: {
     ButtonPrimary,
   },
   data() {
-    return {};
+    return {
+      files: "",
+    };
   },
   methods: {
     fileHandling: function () {
       let fileInput = document.getElementById("file-input");
       let files = Array.from(fileInput.files);
+      this.files = files;
       //debugger;
-      files.forEach((file) => {
+      this.files.forEach((file) => {
         unzip(file, (err, zipFile) => {
           if (err) {
             return console.error(err);
@@ -136,6 +141,29 @@ export default {
           });
         });
       });
+    },
+    async sendFiles() {
+      const form = document.getElementById("file-uploader");
+      const pkg = new FormData(form);
+      const port = process.env.PORT || 3060;
+      const protocol = "http";
+      const host = "localhost";
+
+      try {
+        await axios({
+          method: "POST",
+          baseURL: `${protocol}://${host}:${port}`,
+          headers: { "content-type": "multipart/form-data" },
+          url: "/uploads",
+          data: pkg,
+        });
+      } catch (err) {
+        console.log(err.response);
+      }
+
+      for (let pair of pkg.entries()) {
+        console.log(pair[1]);
+      }
     },
   },
 };
