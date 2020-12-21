@@ -22,19 +22,22 @@ const port = process.env.PORT || 3060;
 router.post("/uploads", upload.array("files"), (req, res) => {
     const names = [];
     const files = req.files;
+
+    //Store original and current file names in array
     files.forEach((file) => {
         names.push({
-            oName: file.originalname,
+            oName: file.originalname.replace(".sketch", ".zip"),
             tmpName: file.filename
         });
     })
 
+    //Function for changing the name of the uploaded file to original name
     function changeFileName() {
-        names.forEach(name => {
-            let tmpPath = `${__dirname}/uploads/${name.tmpName}`;
-            let oPath = `${__dirname}/uploads/${name.oName}`;
+        names.forEach(nameGroup => {
+            let tmpPath = `${__dirname}/uploads/${nameGroup.tmpName}`;
+            let oPath = `${__dirname}/uploads/${nameGroup.oName}`;
             fs.rename(tmpPath, oPath, () => {
-                console.log(`${name.tmpName} was rename to ${name.oName}`);
+                console.log(`${nameGroup.tmpName} was rename to ${nameGroup.oName}`);
             });
         });
         fs.readdirSync(`${__dirname}/uploads`).forEach(file => {
