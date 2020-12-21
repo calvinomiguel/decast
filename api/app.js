@@ -4,20 +4,39 @@ const multer = require("multer");
 const bodyParser = require('body-parser');
 const router = express.Router();
 const upload = multer({
-    dest: "./uploads"
+    dest: "./uploads/"
 });
 const cors = require('cors');
 app.use(cors());
 app.use(
     bodyParser.urlencoded({
-        extended: false
+        extended: true
     })
 );
 app.use(bodyParser.json());
-app.use(express.json());
-app.use(express.urlencoded());
-//const uploadsFolder = __dirname + "/uploads/";
+app.use(bodyParser.raw());
 const port = process.env.PORT || 3060;
+
+//Handle POST Request from Client Form
+router.post("/uploads", upload.array("files"), (req, res) => {
+    console.log(req.body.filelist);
+    console.log(req.body);
+    console.log(req.files);
+    res.sendStatus(200);
+});
+
+
+// add router in the Express app.
+app.use("/", router);
+
+app.listen(port, () => {
+    console.log(`Listening on port ${port}`);
+});
+
+app.get("/", (req, res) => {
+    res.send("<html><head><title>API Server</title></head><body><h1>Hello World!</h1></body></html>");
+});
+
 //const fs = require("fs");
 //const path = require("path");
 //const { res } = require("express");
@@ -38,21 +57,3 @@ app.post("/files", upload.array("sketch-files"), (req, res) => {
     });
 });
 */
-
-app.get("/", (req, res) => {
-    res.send("<html><head><title>API Server</title></head><body><h1>Hello World!</h1></body></html>");
-});
-
-//Handle POST Request from Client Form
-router.post("/uploads", (req, res) => {
-    console.log(req.body);
-});
-
-
-
-// add router in the Express app.
-app.use("/", router);
-
-app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
-});
