@@ -3,6 +3,7 @@ const app = express();
 const multer = require("multer");
 const bodyParser = require('body-parser');
 const router = express.Router();
+const fs = require('fs');
 const upload = multer({
     dest: "./uploads/"
 });
@@ -19,10 +20,30 @@ const port = process.env.PORT || 3060;
 
 //Handle POST Request from Client Form
 router.post("/uploads", upload.array("files"), (req, res) => {
-    console.log(req.body.filelist);
-    console.log(req.body);
+    const names = [];
+    const files = req.files;
+    files.forEach((file) => {
+        names.push({
+            oName: file.originalname,
+            tmpName: file.filename
+        });
+    })
+
+    function changeFileName() {
+        names.forEach(name => {
+            let tmpPath = `${__dirname}/uploads/${name.tmpName}`;
+            let oPath = `${__dirname}/uploads/${name.oName}`;
+            fs.rename(tmpPath, oPath, () => {
+                console.log(`${name.tmpName} was rename to ${name.oName}`);
+            });
+        });
+        fs.readdirSync(`${__dirname}/uploads`).forEach(file => {
+            console.log(file);
+        });
+    }
     console.log(req.files);
     res.sendStatus(200);
+    changeFileName();
 });
 
 
