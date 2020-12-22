@@ -6,10 +6,10 @@ const router = express.Router();
 const fs = require('fs');
 const decompress = require('decompress');
 const port = process.env.PORT || 3060;
+const cors = require('cors');
 const upload = multer({
     dest: "./uploads/"
 });
-const cors = require('cors');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -76,22 +76,33 @@ router.post("/uploads", upload.array("files"), (req, res) => {
 
             //Delete original ZIP file
             fs.unlinkSync(`${__dirname}/uploads/${file}`);
-
         });
     }
+
     console.log(req.files);
+
+    //Call functions
     changeFileName();
     unzipFiles();
     res.sendStatus(200);
 });
 
-// add router in the Express app.
+app.get("/uploads", (req, res) => {
+    fs.readFile('./uploads/decast/document.json', function read(err, data) {
+        if (err) {
+            throw err;
+        }
+        const content = data;
+        console.log(req)
+        // Invoke the next step here however you like
+        console.log(JSON.parse(content.toString('utf8'))); // Put all of the code here (not the best solution)
+        res.status(200);
+        res.send(content); // Send JSON Data
+    });
+});
+//Add router in the Express app.
 app.use("/", router);
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
-});
-
-app.get("/", (req, res) => {
-    res.send("<html><head><title>API Server</title></head><body><h1>Hello World!</h1></body></html>");
 });
