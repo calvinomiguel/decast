@@ -50,13 +50,33 @@ router.post("/uploads", upload.array("files"), (req, res) => {
     //Function for unzipping uploaded files
     function unzipFiles() {
         fs.readdirSync(`${__dirname}/uploads`).forEach(file => {
-            (async () => {
-                try {
-                    await decompress(`${__dirname}/uploads/${file}`, `${__dirname}/uploads/`);
-                } catch (err) {
-                    console.log(err);
+            let dirName = file.replace('.zip', '');
+
+            //Create directory to store unzipped filesize
+            fs.mkdir(`${__dirname}/uploads/${dirName}`, {
+                    recursive: true,
+                },
+                err => {
+                    if (err) {
+                        throw err;
+                    }
+                    console.log("Directory created!");
                 }
-            })();
+            );
+
+            //Unzip file and place content in new folder
+            if (file != '.DS_Store')
+                (async () => {
+                    try {
+                        await decompress(`${__dirname}/uploads/${file}`, `${__dirname}/uploads/${dirName}`);
+                    } catch (err) {
+                        console.log(err);
+                    }
+                })();
+
+            //Delete original ZIP file
+            fs.unlinkSync(`${__dirname}/uploads/${file}`);
+
         });
     }
     console.log(req.files);
