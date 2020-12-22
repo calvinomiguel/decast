@@ -33,25 +33,33 @@ router.post("/uploads", upload.array("files"), (req, res) => {
         });
     });
 
+    console.log("1.) File names stored in files array");
+
     //Function for changing the name of the uploaded file to original name
     function changeFileName() {
+        console.log("2.) File names are being renamed...");
         names.forEach(nameGroup => {
             let tmpPath = `${__dirname}/uploads/${nameGroup.tmpName}`;
             let oPath = `${__dirname}/uploads/${nameGroup.oName}`;
-            fs.rename(tmpPath, oPath, () => {
-                console.log(`${nameGroup.tmpName} was rename to ${nameGroup.oName}`);
-            });
-        });
-        fs.readdirSync(`${__dirname}/uploads`).forEach(file => {
-            console.log(file);
+            (async () => {
+                try {
+                    await fs.rename(tmpPath, oPath, () => {
+                        console.log(`${nameGroup.tmpName} was renamed to ${nameGroup.oName}`);
+                    });
+                } catch (err) {
+                    console.log(err);
+                }
+            })();
         });
     }
 
     //Function for unzipping uploaded files
     function unzipFiles() {
+        console.log("3.) Unzipping files");
         fs.readdirSync(`${__dirname}/uploads`).forEach(file => {
             let dirName = file.replace('.zip', '');
 
+            console.log("Creating a new directory for " + dirName + " content...");
             //Create directory to store unzipped filesize
             fs.mkdir(`${__dirname}/uploads/${dirName}`, {
                     recursive: true,
@@ -60,12 +68,13 @@ router.post("/uploads", upload.array("files"), (req, res) => {
                     if (err) {
                         throw err;
                     }
-                    console.log("Directory created!");
+                    console.log("Directory for " + dirName + " created!");
                 }
             );
 
             //Unzip file and place content in new folder
-            if (file != '.DS_Store')
+            if (file != '.DS_Store') {
+                console.log("Unzipping " + dirName + "...");
                 (async () => {
                     try {
                         await decompress(`${__dirname}/uploads/${file}`, `${__dirname}/uploads/${dirName}`);
@@ -73,13 +82,29 @@ router.post("/uploads", upload.array("files"), (req, res) => {
                         console.log(err);
                     }
                 })();
+                console.log(dirName + " was successfully unzipped!");
 
-            //Delete original ZIP file
-            fs.unlinkSync(`${__dirname}/uploads/${file}`);
+            }
         });
-    }
 
-    console.log(req.files);
+        console.log("4.) Check for original .zip files");
+
+        //Delete unzipped files
+        fs.readdirSync(`${__dirname}/uploads`).forEach(file => {
+            let dirName = `${__dirname}/uploads/${file}`;
+            if (file.includes('.zip')) {
+                console.log("Deleting " + file + "...");
+                (async () => {
+                    try {
+                        await fs.unlinkSync(dirName);
+                    } catch (err) {
+                        console.log(err);
+                    }
+                })();
+                console.log(file + " was deleted!")
+            }
+        })
+    }
 
     //Call functions
     changeFileName();
@@ -87,6 +112,7 @@ router.post("/uploads", upload.array("files"), (req, res) => {
     res.sendStatus(200);
 });
 
+//Send JSON files to client
 app.get("/uploads", (req, res) => {
     fs.readFile('./uploads/decast/document.json', function read(err, data) {
         if (err) {
@@ -100,6 +126,7 @@ app.get("/uploads", (req, res) => {
         res.send(content); // Send JSON Data
     });
 });
+
 //Add router in the Express app.
 app.use("/", router);
 
