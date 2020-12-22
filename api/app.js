@@ -47,6 +47,7 @@ router.post("/uploads", upload.array("files"), (req, res) => {
         });
     }
 
+    //Function for unzipping uploaded files
     function unzipFiles() {
         fs.readdirSync(`${__dirname}/uploads`).forEach(file => {
             (async () => {
