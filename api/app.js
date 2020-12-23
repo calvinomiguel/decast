@@ -88,7 +88,7 @@ router.post("/uploads", upload.array("files"), (req, res) => {
 
             console.log("Creating a new directory for " + dirName + " content...");
             //Create directory to store unzipped filesize
-            fs.mkdir(`${dir}/${dirName}`, {
+            fs.mkdir(`${dir}${dirName}`, {
                     recursive: true,
                 },
                 err => {
