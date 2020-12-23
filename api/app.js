@@ -7,6 +7,7 @@ const fs = require('fs');
 const decompress = require('decompress');
 const port = process.env.PORT || 3060;
 const cors = require('cors');
+const dir = `${__dirname}/uploads`;
 const upload = multer({
     dest: "./uploads/"
 });
@@ -39,8 +40,8 @@ router.post("/uploads", upload.array("files"), (req, res) => {
     function changeFileName() {
         console.log("2.) File names are being renamed...");
         names.forEach(nameGroup => {
-            let tmpPath = `${__dirname}/uploads/${nameGroup.tmpName}`;
-            let oPath = `${__dirname}/uploads/${nameGroup.oName}`;
+            let tmpPath = `${dir}/${nameGroup.tmpName}`;
+            let oPath = `${dir}/${nameGroup.oName}`;
             (async () => {
                 try {
                     await fs.rename(tmpPath, oPath, () => {
@@ -56,12 +57,12 @@ router.post("/uploads", upload.array("files"), (req, res) => {
     //Function for unzipping uploaded files
     function unzipFiles() {
         console.log("3.) Unzipping files");
-        fs.readdirSync(`${__dirname}/uploads`).forEach(file => {
+        fs.readdirSync(dir).forEach(file => {
             let dirName = file.replace('.zip', '');
 
             console.log("Creating a new directory for " + dirName + " content...");
             //Create directory to store unzipped filesize
-            fs.mkdir(`${__dirname}/uploads/${dirName}`, {
+            fs.mkdir(`${dir}/${dirName}`, {
                     recursive: true,
                 },
                 err => {
@@ -77,7 +78,7 @@ router.post("/uploads", upload.array("files"), (req, res) => {
                 console.log("Unzipping " + dirName + "...");
                 (async () => {
                     try {
-                        await decompress(`${__dirname}/uploads/${file}`, `${__dirname}/uploads/${dirName}`);
+                        await decompress(`${dir}/${file}`, `${dir}/${dirName}`);
                     } catch (err) {
                         console.log(err);
                     }
@@ -90,8 +91,8 @@ router.post("/uploads", upload.array("files"), (req, res) => {
         console.log("4.) Check for original .zip files");
 
         //Delete unzipped files
-        fs.readdirSync(`${__dirname}/uploads`).forEach(file => {
-            let dirName = `${__dirname}/uploads/${file}`;
+        fs.readdirSync(dir).forEach(file => {
+            let dirName = `${dir}/${file}`;
             if (file.includes('.zip')) {
                 console.log("Deleting " + file + "...");
                 (async () => {
@@ -113,18 +114,45 @@ router.post("/uploads", upload.array("files"), (req, res) => {
 });
 
 //Send JSON files to client
-app.get("/uploads", (req, res) => {
-    fs.readFile('./uploads/decast/document.json', function read(err, data) {
-        if (err) {
-            throw err;
-        }
-        const content = data;
-        console.log(req)
-        // Invoke the next step here however you like
-        console.log(JSON.parse(content.toString('utf8'))); // Put all of the code here (not the best solution)
-        res.status(200);
-        res.send(content); // Send JSON Data
+router.get("/uploads", (req, res) => {
+    const sketchFiles = [];
+    const mainFolders = [];
+    const subFolders = [];
+    let sketchFile = new Object();
+
+    //Check main folder
+    fs.readdirSync(dir).forEach(DIR__L1 => {
+        let properties = new Object();
+        properties.name = DIR__L1;
+        sketchFile.file = properties;
+        sketchFiles.push(sketchFile);
+        mainFolders.push(DIR__L1);
     });
+
+    //Check subfolders
+    console.log("Log subfolders");
+    mainFolders.forEach(folder => {
+        fs.readdirSync(dir + "/" + folder).forEach(DIR__L2 => {
+            let dir__2 = dir + '/' + folder + '/' + DIR__L2;
+            let content = new Object();
+            if (DIR__L2 === "document.json") {
+
+            }
+
+            //Check subfolders of subfolders
+            if (!DIR__L2.includes(".json")) {
+                fs.readdirSync(dir + "/" + folder + "/" + DIR__L2).forEach(DIR__L3 => {
+                    //  console.log(DIR__L3);
+                });
+            }
+        });
+    })
+    //Check subfolders
+
+    console.log(mainFolders);
+    res.status(200);
+    res.send(sketchFiles);
+
 });
 
 //Add router in the Express app.

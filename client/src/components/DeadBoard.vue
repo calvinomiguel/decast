@@ -50,6 +50,7 @@
 <script>
 import Divider from "@/components/Divider";
 import ButtonPrimary from "@/components/ButtonPrimary";
+import axios from "axios";
 export default {
   name: "DeadBoard",
   data() {
@@ -62,6 +63,16 @@ export default {
         "All Components": 1440,
       },
     };
+  },
+  created() {
+    axios
+      .get("http://localhost:3060/uploads")
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
   computed: {
     deadComponentsRatio: function () {
