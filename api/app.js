@@ -7,7 +7,7 @@ const fs = require('fs');
 const decompress = require('decompress');
 const port = process.env.PORT || 3060;
 const cors = require('cors');
-const dir = `${__dirname}/uploads`;
+const dir = `${__dirname}/uploads/`;
 const upload = multer({
     dest: "./uploads/"
 });
@@ -23,40 +23,66 @@ app.use(
 
 //Handle POST Request from Client Form
 router.post("/uploads", upload.array("files"), (req, res) => {
-    const names = [];
+    let names = [];
     const files = req.files;
-
+    let dirNames = [];
     //Store original and current file names in array
-    files.forEach((file) => {
-        names.push({
-            oName: file.originalname.replace(".sketch", ".zip"),
-            tmpName: file.filename
+    function storeFileNames() {
+        files.forEach((file) => {
+            names.push({
+                oName: file.originalname.replace(".sketch", ".zip"),
+                tmpName: file.filename
+            });
         });
-    });
-
-    console.log("1.) File names stored in files array");
+    }
 
     //Function for changing the name of the uploaded file to original name
     function changeFileName() {
-        console.log("2.) File names are being renamed...");
         names.forEach(nameGroup => {
-            let tmpPath = `${dir}/${nameGroup.tmpName}`;
-            let oPath = `${dir}/${nameGroup.oName}`;
-            (async () => {
-                try {
-                    await fs.rename(tmpPath, oPath, () => {
-                        console.log(`${nameGroup.tmpName} was renamed to ${nameGroup.oName}`);
-                    });
-                } catch (err) {
-                    console.log(err);
-                }
-            })();
+            let tmpPath = `${dir}${nameGroup.tmpName}`;
+            let oPath = `${dir}${nameGroup.oName}`;
+
+            fs.renameSync(tmpPath, oPath, () => {
+                console.log(`${nameGroup.tmpName} was renamed to ${nameGroup.oName}!`);
+            });
+        });
+    }
+
+    //Function for creating names for directories for files to be unzipped
+    function createDirNames() {
+        fs.readdirSync(dir, (err, files) => {
+            if (err) {
+                throw err;
+            }
+            console.log(files);
+        });
+
+    }
+
+    //Create directories
+    function createDirs() {
+        fs.readdirSync(dir, (err, files) => {
+            if (err) {
+                throw err;
+            }
+            files.forEach(file => {
+                let fileName = file.replace(".zip", "");
+                fs.mkdir(`${dir}${fileName}`, {
+                        recursive: true,
+                    },
+                    (err) => {
+                        if (err) {
+                            throw err;
+                        }
+                    }
+                );
+                console.log("Directory for " + fileName + " created!");
+            });
         });
     }
 
     //Function for unzipping uploaded files
     function unzipFiles() {
-        console.log("3.) Unzipping files");
         fs.readdirSync(dir).forEach(file => {
             let dirName = file.replace('.zip', '');
 
@@ -108,7 +134,17 @@ router.post("/uploads", upload.array("files"), (req, res) => {
     }
 
     //Call functions
+    console.log("1.) File names are being stored...");
+    storeFileNames();
+    console.log("File names succesfully stored!");
+    console.log("2.) Files are being renamed...");
     changeFileName();
+    console.log("All files successfully renamed!");
+    console.log("3.) Create directories names...");
+    createDirNames();
+    console.log("Directories names were successfully created");
+    console.log("4.) Creating directories...");
+    createDirs();
     unzipFiles();
     res.sendStatus(200);
 });
