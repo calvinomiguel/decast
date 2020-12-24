@@ -197,13 +197,22 @@ router.get("/uploads", (req, res) => {
         }
     });
 
+    //META, DOC & USER JSON FILES
     PATH__L1.forEach(folder => {
-        let path = folder.path;
         let jsonFiles = folder.json;
 
         jsonFiles.forEach(file => {
-            let filePath = folder.path + "/" + file.name;
-            let data = fs.readFileSync(filePath, "utf8")
+            let data = fs.readFileSync(file.path, "utf8")
+            file.content = JSON.parse(data);
+        });
+    });
+
+    //PAGE FILES
+    PATH__L1.forEach(folder => {
+        let pageFiles = folder.dir.pages.files;
+
+        pageFiles.forEach(file => {
+            let data = fs.readFileSync(file.path, "utf8")
             file.content = JSON.parse(data);
         });
     });
