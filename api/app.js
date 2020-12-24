@@ -127,11 +127,7 @@ router.get("/uploads", (req, res) => {
     });
 
     PATH__L1.forEach(folder => {
-        folder.json = {
-            document: "",
-            meta: "",
-            user: ""
-        };
+        folder.json = [];
         folder.dir = {
             pages: {
                 files: "",
@@ -157,14 +153,12 @@ router.get("/uploads", (req, res) => {
             if (file.includes("text-previews")) {
                 folder.dir.textPreviews.path = dir + "/" + folder.name + "/" + file;
             }
-            if (file.includes("document")) {
-                folder.json.document = file;
-            }
-            if (file.includes("meta")) {
-                folder.json.meta = file;
-            }
-            if (file.includes("user")) {
-                folder.json.user = file;
+            if (file.includes("document") || file.includes("meta") || file.includes("user")) {
+                folder.json.push({
+                    name: file,
+                    path: folder.path + "/" + file,
+                    content: ""
+                });
             }
         });
     });
@@ -201,6 +195,17 @@ router.get("/uploads", (req, res) => {
                 });
             });
         }
+    });
+
+    PATH__L1.forEach(folder => {
+        let path = folder.path;
+        let jsonFiles = folder.json;
+
+        jsonFiles.forEach(file => {
+            let filePath = folder.path + "/" + file.name;
+            let data = fs.readFileSync(filePath, "utf8")
+            file.content = JSON.parse(data);
+        });
     });
 
     res.send(PATH__L1);
