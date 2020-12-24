@@ -50,11 +50,6 @@ router.post("/uploads", upload.array("files"), (req, res) => {
 
     //Function for creating names for directories for files to be unzipped
     function createDirNames() {
-        fs.readdirSync(dir, (err, files) => {
-            if (err) {
-                throw err;
-            }
-        });
         console.log('THESE ARE THE DIRECTORIES NAMES');
         files.forEach(file => {
             dirNames.push(file.originalname.replace(".sketch", ""));
@@ -117,6 +112,99 @@ router.post("/uploads", upload.array("files"), (req, res) => {
     res.sendStatus(200);
 });
 
+//Handle GET Request from Client Form
+router.get("/uploads", (req, res) => {
+    let PATH__L1 = [];
+    let sketchFiles = [];
+
+    //Get all folders inside of uploads folder
+    fs.readdirSync(dir).forEach(file => {
+        //Save folder names into array
+        PATH__L1.push({
+            name: file,
+            path: dir + "/" + file
+        });
+    });
+
+    PATH__L1.forEach(folder => {
+        folder.json = {
+            document: "",
+            meta: "",
+            user: ""
+        };
+        folder.dir = {
+            pages: {
+                files: "",
+                path: ""
+            },
+            previews: {
+                files: "",
+                path: ""
+            },
+            textPreviews: {
+                files: "",
+                path: false
+            },
+        };
+
+        fs.readdirSync(folder.path).forEach(file => {
+            if (file.includes("pages")) {
+                folder.dir.pages.path = dir + "/" + folder.name + "/" + file;
+            }
+            if (file.includes("previews")) {
+                folder.dir.previews.path = dir + "/" + folder.name + "/" + file;
+            }
+            if (file.includes("text-previews")) {
+                folder.dir.textPreviews.path = dir + "/" + folder.name + "/" + file;
+            }
+            if (file.includes("document")) {
+                folder.json.document = file;
+            }
+            if (file.includes("meta")) {
+                folder.json.meta = file;
+            }
+            if (file.includes("user")) {
+                folder.json.user = file;
+            }
+        });
+    });
+
+    PATH__L1.forEach(folder => {
+        let pages = folder.dir.pages;
+        let previews = folder.dir.previews;
+        let textPreviews = folder.dir.textPreviews;
+        pages.files = [];
+        previews.files = [];
+        textPreviews.files = [];
+        fs.readdirSync(pages.path).forEach(file => {
+            pages.files.push({
+                name: file,
+                path: pages.path + "/" + file,
+                content: ""
+            });
+        });
+
+        fs.readdirSync(previews.path).forEach(file => {
+            previews.files.push({
+                name: file,
+                path: previews.path + "/" + file,
+                content: ""
+            });
+        });
+
+        if (textPreviews.path != false) {
+            fs.readdirSync(textPreviews.path).forEach(file => {
+                textPreviews.files.push({
+                    name: file,
+                    path: previews.path + "/" + file,
+                    content: ""
+                });
+            });
+        }
+    });
+
+    res.send(PATH__L1);
+});
 
 //Add router in the Express app.
 app.use("/", router);
