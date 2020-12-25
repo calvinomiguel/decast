@@ -217,6 +217,30 @@ router.get("/uploads", (req, res) => {
         });
     });
 
+    //Previews FILES
+    PATH__L1.forEach(folder => {
+        let previewFiles = folder.dir.previews.files;
+
+        previewFiles.forEach(file => {
+            let data = fs.readFileSync(file.path, "base64")
+            file.content = data;
+        });
+    });
+
+    //Text Previews FILES
+    PATH__L1.forEach(folder => {
+        let textPreviewFiles = folder.dir.textPreviews.files;
+
+        textPreviewFiles.forEach(file => {
+            if (folder.dir.textPreviews.path != false) {
+                let encoding = file.name.includes('.pdf') ? "base64" : "utf8";
+                let data = fs.readFileSync(file.path, "utf8")
+                file.content = file.name.includes('.pdf') ? data : JSON.parse(data);
+            }
+        });
+    });
+
+
     res.send(PATH__L1);
 });
 
