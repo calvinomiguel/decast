@@ -65,11 +65,11 @@ export default {
   },
   created() {
     axios
-      .get("http://localhost:3060/uploads")
+      .get("http://localhost:3060/dashboard")
       .then((res) => {
         this.totalComponents = res.data.count;
         this.deadComponents = res.data.count;
-        console.log(res.data.count);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);

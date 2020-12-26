@@ -88,7 +88,6 @@ function createObjSchema() {
         previews.files = [];
         textPreviews.files = [];
         images.files = [];
-        console.log(pages);
         fs.readdirSync(pages.path).forEach(file => {
             pages.files.push({
                 name: file,
@@ -182,6 +181,54 @@ function createObjSchema() {
     return PATH__L1;
 }
 
+function getPages() {
+    let pages = [];
+    createObjSchema().forEach(obj => {
+        pages.push(obj.dir.pages);
+    })
+    return pages;
+}
+
+function getPageFiles() {
+    let filesGroups = [];
+    let files = [];
+    let deliverable = [];
+    getPages().forEach(obj => {
+        filesGroups.push(obj);
+    });
+    filesGroups.forEach(group => {
+        files.push(group.files);
+    });
+    files.forEach(fileArr => {
+        fileArr.forEach(file => {
+            deliverable.push(file);
+        })
+    });
+
+    return deliverable;
+}
+
+function getSymbolInstances() {
+    let symbolInstances = [];
+
+    getPageFiles().forEach(file => {
+        let fileLayers = file.content.layers;
+
+        fileLayers.forEach(fileLayer => {
+            if (fileLayer._class == "artboard") {
+                let subLayers = fileLayer.layers;
+                subLayers.forEach(layer => {
+                    if (layer._class == "symbolInstance") {
+                        symbolInstances.push(layer);
+                    }
+                });
+            }
+        });
+    });
+
+    return symbolInstances;
+}
+
 function getMasterSymbols(objSchema) {
     let masterSymbols = [];
     let symbolsCount = 0;
@@ -195,27 +242,37 @@ function getMasterSymbols(objSchema) {
             layers.forEach(layer => {
                 if (layer._class == "symbolMaster") {
                     masterSymbols.push({
-                        name: layer._class,
+                        type: layer._class,
+                        name: layer.name,
                         symbolID: layer.symbolID,
                         page: file.content.name,
-                        pagePath: pages.path
+                        pagePath: file.path,
+                        used: false
                     });
                 }
-            })
-
+            });
         });
     });
 
-    //Count amount of symbols
+    //Get count of unique IDs
+    symbolsCount = [...new Set([...masterSymbols.map(symbol => symbol.symbolID)])].length;
+
+    //Check if if symbol is used
     masterSymbols.forEach(symbol => {
-        symbolsCount++;
+        getSymbolInstances().forEach(layer => {
+            if (layer._class == "symbolInstance" && layer.symbolID == symbol.symbolID) {
+                symbol.used = true;
+            }
+        });
     });
+
+    console.log(masterSymbols);
 
     deliverable.count = symbolsCount;
     deliverable.symbols = masterSymbols;
-
     return deliverable;
 }
+
 //Handle POST Request from Client Form
 router.post("/uploads", upload.array("files"), (req, res) => {
     let names = [];
@@ -306,8 +363,8 @@ router.post("/uploads", upload.array("files"), (req, res) => {
 });
 
 //Handle GET Request from Client Form
-router.get("/uploads", (req, res) => {
-    res.status(200).send(getMasterSymbols(createObjSchema()), 200);
+router.get("/dashboard", (req, res) => {
+    res.status(200).send(getMasterSymbols(createObjSchema()));
 });
 
 //Add router in the Express app.
