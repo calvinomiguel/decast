@@ -9,14 +9,17 @@
         id="pie-chart"
         width="240px"
         height="240px"
-        :data="chartData"
+        :data="[
+          ['All components', this.totalComponents],
+          ['Dead components', this.deadComponents],
+        ]"
         :colors="colors"
         :legend="false"
       ></pie-chart>
       <div class="stats w-6/12 flex flex-wrap mb-6 mt-8">
         <div class="row w-full flex justify-between mb-4">
           <div class="row-text">
-            <p class="font-mono text-night-300">Total Components</p>
+            <p class="font-mono text-night-300">Total components</p>
             <p class="font-bold text-night-300 mt-2 font-mono">
               {{ totalComponents }}
             </p>
@@ -26,7 +29,7 @@
         <Divider />
         <div class="row w-full flex justify-between my-4">
           <div class="row-text">
-            <p class="font-mono text-night-300">Total Components</p>
+            <p class="font-mono text-night-300">Total dead components</p>
             <p class="font-bold font-mono text-night-300 mt-2">
               {{ deadComponents }}
             </p>
@@ -55,20 +58,18 @@ export default {
   name: "DeadBoard",
   data() {
     return {
-      totalComponents: 1440,
-      deadComponents: 999,
+      totalComponents: null,
+      deadComponents: null,
       colors: ["#856de7", "#23272a"],
-      chartData: {
-        "Dead Components": 999,
-        "All Components": 1440,
-      },
     };
   },
   created() {
     axios
       .get("http://localhost:3060/uploads")
       .then((res) => {
-        console.log(res.data);
+        this.totalComponents = res.data.count;
+        this.deadComponents = res.data.count;
+        console.log(res.data.count);
       })
       .catch((err) => {
         console.log(err);
