@@ -82,13 +82,25 @@ function createDirs(dirNames) {
 //Function for unzipping uploaded files
 function unzipFiles() {
     console.log("Start unzipping files...");
+    let zipFiles = [];
     fs.readdirSync(dir).forEach(file => {
         let dirName = `${dir}/${file}`;
         let newDir = `${dir}/${file.replace(".zip", "")}`;
+        zipFiles.push(`${dir}/${file}`);
         if (file.includes('.zip')) {
             decompress(dirName, newDir).then(files => {
                 console.log(file + " successfully unzipped!");
             });
+        }
+    });
+    return zipFiles;
+}
+
+function deleteZipFiles(zipFiles) {
+    console.log('Files to unzip');
+    zipFiles.forEach(file => {
+        if (file.includes('.zip')) {
+            fs.unlinkSync(file);
         }
     });
 }
@@ -399,8 +411,8 @@ router.post("/uploads", upload.array("files"), (req, res) => {
     fileNames = changeFileNames(fileNames);
     let dirNames = createDirNames(data);
     createDirs(dirNames);
-    unzipFiles();
-    //await deleteZipFiles();
+    let zipFiles = unzipFiles();
+    deleteZipFiles(zipFiles);
 
     res.sendStatus(200);
 });
