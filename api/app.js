@@ -4,10 +4,14 @@ const multer = require("multer");
 const bodyParser = require('body-parser');
 const router = express.Router();
 const fs = require('fs');
+const fsPromises = require('fs').promises;
 const decompress = require('decompress');
 const port = process.env.PORT || 3060;
 const cors = require('cors');
-const dir = `${__dirname}/uploads`;
+const {
+    json
+} = require("body-parser");
+const dir = process.argv[2] || process.cwd() + "/uploads";
 const upload = multer({
     dest: "./uploads/"
 });
@@ -20,6 +24,74 @@ app.use(
         extended: true
     })
 );
+
+function getRequestData(request) {
+    let reqData = request.files;
+    return reqData;
+}
+
+//Store original and current file names in array
+function storeFileNames(reqData) {
+    let fileNames = [];
+    reqData.forEach(file => {
+        fileNames.push({
+            oName: file.originalname.replace(".sketch", ".zip"),
+            tmpName: file.filename
+        });
+    });
+    return fileNames;
+}
+
+//Function for changing the name of the uploaded file to original name
+function changeFileNames(fileNames) {
+    fileNames.forEach(nameGroup => {
+        console.log(nameGroup);
+        let tmpPath = `${dir}/${nameGroup.tmpName}`;
+        let oPath = `${dir}/${nameGroup.oName}`;
+
+        fs.renameSync(tmpPath, oPath, () => {
+            console.log(`${nameGroup.tmpName} was renamed to ${nameGroup.oName}!`);
+        });
+    });
+
+    console.log('Names successfully changed...')
+    return fileNames;
+}
+
+//Function for creating names for directories for files to be unzipped
+function createDirNames(reqData) {
+    dirNames = [];
+    reqData.forEach(file => {
+        dirNames.push(file.originalname.replace(".sketch", ""));
+    });
+    console.log("Currently here")
+    console.log(dirNames);
+    return dirNames;
+}
+
+//Create directories
+function createDirs(dirNames) {
+    dirNames.forEach(name => {
+        fs.mkdirSync(`${dir}/${name}`, {
+            recursive: true,
+        })
+        console.log("Directory for " + name + " created!");
+    });
+}
+
+//Function for unzipping uploaded files
+function unzipFiles() {
+    console.log("Start unzipping files...");
+    fs.readdirSync(dir).forEach(file => {
+        let dirName = `${dir}/${file}`;
+        let newDir = `${dir}/${file.replace(".zip", "")}`;
+        if (file.includes('.zip')) {
+            decompress(dirName, newDir).then(files => {
+                console.log(file + " successfully unzipped!");
+            });
+        }
+    });
+}
 
 function createObjSchema() {
     let PATH__L1 = [];
@@ -56,6 +128,8 @@ function createObjSchema() {
                 path: false
             }
         };
+        console.log("WHERE THE ERROR HAPPENS");
+        console.log(folder.path);
         fs.readdirSync(folder.path).forEach(file => {
             if (file.includes("pages")) {
                 folder.dir.pages.path = dir + "/" + folder.name + "/" + file;
@@ -189,6 +263,20 @@ function getPages() {
     return pages;
 }
 
+function getDocFiles() {
+    let schema = createObjSchema();
+    let docFiles = [];
+    schema.forEach(obj => {
+        let jsonList = obj.json;
+        jsonList.forEach(list => {
+            if (list.name.includes("document")) {
+                docFiles.push(list.content);
+            }
+        });
+    });
+    return docFiles;
+}
+
 function getPageFiles() {
     let filesGroups = [];
     let files = [];
@@ -210,7 +298,6 @@ function getPageFiles() {
 
 function getSymbolInstances() {
     let symbolInstances = [];
-
     getPageFiles().forEach(file => {
         let fileLayers = file.content.layers;
 
@@ -229,10 +316,43 @@ function getSymbolInstances() {
     return symbolInstances;
 }
 
-function getMasterSymbols(objSchema) {
+function getForeignSymbols() {
+    let docs = getDocFiles();
+    let foreignSymbols = [];
+    docs.forEach(doc => {
+        let symbolsList = doc.foreignSymbols;
+        if (symbolsList != undefined && symbolsList != null && symbolsList.length > 0) {
+            symbolsList.forEach(list => {
+                foreignSymbols.push({
+                    _class: list._class,
+                    library: {
+                        id: list.libraryID,
+                        name: list.sourceLibraryName
+                    },
+                    originalMaster: {
+                        id: list.originalMaster.symbolID,
+                        _class: list.originalMaster._class,
+                        name: list.originalMaster.name
+                    },
+                    symbolMaster: {
+                        id: list.symbolMaster.symbolID,
+                        _class: list.symbolMaster._class,
+                        name: list.symbolMaster.name,
+                    }
+                });
+            })
+        }
+    });
+
+    console.log(foreignSymbols);
+}
+
+
+function getMasterSymbols() {
     let masterSymbols = [];
     let symbolsCount = 0;
     let deliverable = {};
+    let objSchema = createObjSchema();
 
     //Get all Master Symbols
     objSchema.forEach(folder => {
@@ -266,105 +386,28 @@ function getMasterSymbols(objSchema) {
         });
     });
 
-    console.log(masterSymbols);
-
     deliverable.count = symbolsCount;
     deliverable.symbols = masterSymbols;
     return deliverable;
 }
 
+
 //Handle POST Request from Client Form
 router.post("/uploads", upload.array("files"), (req, res) => {
-    let names = [];
-    const files = req.files;
-    let dirNames = [];
-    //Store original and current file names in array
-    function storeFileNames() {
-        files.forEach((file) => {
-            names.push({
-                oName: file.originalname.replace(".sketch", ".zip"),
-                tmpName: file.filename
-            });
-        });
-    }
-
-    //Function for changing the name of the uploaded file to original name
-    function changeFileName() {
-        names.forEach(nameGroup => {
-            let tmpPath = `${dir}/${nameGroup.tmpName}`;
-            let oPath = `${dir}/${nameGroup.oName}`;
-
-            fs.renameSync(tmpPath, oPath, () => {
-                console.log(`${nameGroup.tmpName} was renamed to ${nameGroup.oName}!`);
-            });
-        });
-    }
-
-    //Function for creating names for directories for files to be unzipped
-    function createDirNames() {
-        console.log('THESE ARE THE DIRECTORIES NAMES');
-        files.forEach(file => {
-            dirNames.push(file.originalname.replace(".sketch", ""));
-        });
-        console.log(dirNames);
-    }
-
-    //Create directories
-    function createDirs() {
-        dirNames.forEach(name => {
-            fs.mkdir(`${dir}/${name}`, {
-                    recursive: true,
-                },
-                (err) => {
-                    if (err) {
-                        throw err;
-                    }
-                }
-            );
-            console.log("Directory for " + name + " created!");
-        });
-    }
-
-    //Function for deleting unzipped files
-    function deleteZipFiles() {
-        fs.readdirSync(dir).forEach(file => {
-            let dirName = `${dir}/${file}`;
-            if (file.includes('.zip')) {
-                console.log("Deleting " + file + "...");
-                fs.unlinkSync(dirName);
-                console.log(file + " was deleted!")
-            }
-        })
-    }
-
-    //Function for unzipping uploaded files
-    function unzipFiles() {
-        console.log("FILES TO BE UNZIPPED!!!!!");
-        fs.readdirSync(dir).forEach(file => {
-            let dirName = `${dir}/${file}`;
-            let newDir = `${dir}/${file.replace(".zip", "")}`;
-            if (file.includes('.zip')) {
-                decompress(dirName, newDir).then(files => {
-                    console.log(file + " successfully unzipped!");
-                    //Delete ZIP file after unzipping
-                    deleteZipFiles();
-                });
-            }
-        });
-    }
-
-    //Call functions
-    storeFileNames();
-    changeFileName();
-    createDirNames();
-    createDirs();
+    let data = getRequestData(req);
+    let fileNames = storeFileNames(data);
+    fileNames = changeFileNames(fileNames);
+    let dirNames = createDirNames(data);
+    createDirs(dirNames);
     unzipFiles();
+    //await deleteZipFiles();
+
     res.sendStatus(200);
 });
 
 //Handle GET Request from Client Form
 router.get("/dashboard", (req, res) => {
-    res.status(200).send(getMasterSymbols(createObjSchema()));
+    res.status(200).send(getMasterSymbols());
 });
 
 //Add router in the Express app.
