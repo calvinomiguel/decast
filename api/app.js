@@ -4,8 +4,8 @@ const multer = require("multer");
 const bodyParser = require('body-parser');
 const router = express.Router();
 const fs = require('fs');
-const fsPromises = require('fs').promises;
-const decompress = require('decompress');
+const unzipper = require('unzipper');
+//const decompress = require('decompress');
 const port = process.env.PORT || 3060;
 const cors = require('cors');
 const {
@@ -26,82 +26,201 @@ app.use(
 );
 
 function getRequestData(request) {
-    let reqData = request.files;
-    return reqData;
+    return new Promise((resolve, reject) => {
+        let reqData = request.files;
+        if (reqData == request.files) {
+            resolve(reqData);
+        } else {
+            reject('Couldn\'t process request.');
+        }
+    });
 }
 
 //Store original and current file names in array
 function storeFileNames(reqData) {
-    let fileNames = [];
-    reqData.forEach(file => {
-        fileNames.push({
-            oName: file.originalname.replace(".sketch", ".zip"),
-            tmpName: file.filename
+    return new Promise((resolve, reject) => {
+        let fileNames = [];
+        reqData.forEach(file => {
+            fileNames.push({
+                oName: file.originalname.replace(".sketch", ".zip"),
+                tmpName: file.filename
+            });
         });
+        if (fileNames.length > 0) {
+            resolve(fileNames);
+        } else {
+            reject('Failed storing original and current file names in an array.');
+        }
     });
-    return fileNames;
+
 }
 
 //Function for changing the name of the uploaded file to original name
 function changeFileNames(fileNames) {
-    fileNames.forEach(nameGroup => {
-        console.log(nameGroup);
-        let tmpPath = `${dir}/${nameGroup.tmpName}`;
-        let oPath = `${dir}/${nameGroup.oName}`;
+    return new Promise((resolve, reject) => {
+        fileNames.forEach(nameGroup => {
+            console.log(nameGroup);
+            let tmpPath = `${dir}/${nameGroup.tmpName}`;
+            let oPath = `${dir}/${nameGroup.oName}`;
 
-        fs.renameSync(tmpPath, oPath, () => {
-            console.log(`${nameGroup.tmpName} was renamed to ${nameGroup.oName}!`);
+            fs.renameSync(tmpPath, oPath, () => {
+                console.log(`${nameGroup.tmpName} was renamed to ${nameGroup.oName}!`);
+            });
         });
+        if (fileNames) {
+            resolve(fileNames);
+        } else {
+            reject("Failed in changing tmp file names to original file names.");
+        }
+        console.log('Names successfully changed...');
     });
-
-    console.log('Names successfully changed...')
-    return fileNames;
 }
 
 //Function for creating names for directories for files to be unzipped
 function createDirNames(reqData) {
-    dirNames = [];
-    reqData.forEach(file => {
-        dirNames.push(file.originalname.replace(".sketch", ""));
+    return new Promise(function (resolve, reject) {
+        dirNames = [];
+        reqData.forEach(file => {
+            dirNames.push(file.originalname.replace(".sketch", ""));
+        });
+        console.log(dirNames);
+        if (dirNames.length > 0) {
+            resolve(dirNames);
+        } else {
+            reject("Failed in creating dir names for files to be unzipped.");
+        }
     });
-    console.log("Currently here")
-    console.log(dirNames);
-    return dirNames;
 }
 
 //Create directories
 function createDirs(dirNames) {
-    dirNames.forEach(name => {
-        fs.mkdirSync(`${dir}/${name}`, {
-            recursive: true,
-        })
-        console.log("Directory for " + name + " created!");
+    return new Promise((resolve, reject) => {
+        checkSuccess = [];
+        dirNames.forEach(name => {
+            fs.mkdirSync(`${dir}/${name}`, {
+                recursive: true,
+            })
+            checkSuccess.push(true);
+            console.log("Directory for " + name + " created!");
+        });
+        if (checkSuccess.length == dirNames.length) {
+            resolve('All directories successfully created!');
+        } else {
+            reject('Something went wrong while creating the directories.');
+        }
+    });
+}
+
+//Function for getting files to be Unzipped from the directory
+function getDirsToUnzip() {
+    return new Promise((resolve, reject) => {
+        console.log("Get files to unzip...");
+        let dirFiles = fs.readdirSync(dir);
+        if (dirFiles.length > 0) {
+            resolve(dirFiles);
+        } else {
+            reject('Something went wrong while getting files to unzip.');
+        }
     });
 }
 
 //Function for unzipping uploaded files
-function unzipFiles() {
-    console.log("Start unzipping files...");
-    let zipFiles = [];
-    fs.readdirSync(dir).forEach(file => {
-        let dirName = `${dir}/${file}`;
-        let newDir = `${dir}/${file.replace(".zip", "")}`;
-        zipFiles.push(`${dir}/${file}`);
-        if (file.includes('.zip')) {
-            decompress(dirName, newDir).then(files => {
-                console.log(file + " successfully unzipped!");
-            });
+function unzipFiles(directories) {
+    return new Promise((resolve, reject) => {
+        console.log("Start unzipping files...");
+
+        let zipFiles = [];
+        for (let file of directories) {
+            let dirName = `${dir}/${file}`;
+            let newDir = `${dir}/${file.replace(".zip", "")}`;
+            zipFiles.push(dirName);
+            if (file.includes('.zip')) {
+                fs.createReadStream(dirName)
+                    .pipe(unzipper.Extract({
+                        path: newDir
+                    }));
+            }
+        };
+        if (zipFiles.length == directories.length) {
+            resolve(zipFiles);
+        } else {
+            reject('Something went wrong while unzipping files.');
         }
     });
-    return zipFiles;
 }
 
 function deleteZipFiles(zipFiles) {
-    console.log('Files to unzip');
-    zipFiles.forEach(file => {
-        if (file.includes('.zip')) {
-            fs.unlinkSync(file);
+    return new Promise((resolve, reject) => {
+        console.log('Files to unzip');
+        zipFiles.forEach(file => {
+            if (file.includes('.zip')) {
+                fs.unlinkSync(file);
+            }
+        });
+        if (zipFiles.length > 0) {
+            resolve("Successfully deleted all files");
+        } else {
+            reject('Something went wrong while deleting files.');
         }
+    });
+}
+
+async function processPostRequest(request) {
+    let data = await getRequestData(request);
+    let fileNames = await storeFileNames(data);
+    fileNames = await changeFileNames(fileNames);
+    let dirNames = await createDirNames(data);
+    await createDirs(dirNames);
+    let unzipDirs = await getDirsToUnzip();
+    let zipFiles = await unzipFiles(unzipDirs);
+    //await deleteZipFiles(zipFiles);
+}
+
+//CREATING OBJ SCHEMA
+function getFolders() {
+    return new Promise((resolve, reject) => {
+        let folders = [];
+        //Get all folders inside of uploads folder
+        fs.readdirSync(dir).forEach(file => {
+            //Save folder names and paths into folders array
+            if (!file.includes('.DS_Store') && !file.includes('.zip')) {
+                folders.push({
+                    name: file,
+                    path: dir + "/" + file
+                });
+            }
+        });
+        if (folders.length > 0) {
+            resolve(folders);
+        } else {
+            reject("Something went wrong while getting the folders names and paths.");
+        }
+    });
+}
+
+function setObjStructure(folders) {
+    return new Promise((resolve, reject) => {
+        folders.forEach(folder => {
+            folder.json = [];
+            folder.dir = {
+                pages: {
+                    files: "",
+                    path: ""
+                },
+                images: {
+                    files: "",
+                    path: false
+                },
+                previews: {
+                    files: "",
+                    path: ""
+                },
+                textPreviews: {
+                    files: "",
+                    path: false
+                }
+            };
+        });
     });
 }
 
@@ -112,7 +231,7 @@ function createObjSchema() {
     //Get all folders inside of uploads folder
     fs.readdirSync(dir).forEach(file => {
         //Save folder names into array
-        if (!file.includes('.DS_Store')) {
+        if (!file.includes('.DS_Store') && !file.includes(".zip")) {
             PATH__L1.push({
                 name: file,
                 path: dir + "/" + file
@@ -141,6 +260,8 @@ function createObjSchema() {
             }
         };
         console.log("WHERE THE ERROR HAPPENS");
+
+
         console.log(folder.path);
         fs.readdirSync(folder.path).forEach(file => {
             if (file.includes("pages")) {
@@ -163,6 +284,7 @@ function createObjSchema() {
                 });
             }
         });
+
     });
 
     PATH__L1.forEach(folder => {
@@ -174,41 +296,47 @@ function createObjSchema() {
         previews.files = [];
         textPreviews.files = [];
         images.files = [];
-        fs.readdirSync(pages.path).forEach(file => {
-            pages.files.push({
-                name: file,
-                path: pages.path + "/" + file,
-                content: ""
-            });
-        });
 
-        fs.readdirSync(previews.path).forEach(file => {
-            previews.files.push({
-                name: file,
-                path: previews.path + "/" + file,
-                content: ""
+        console.log("Next error here!!!");
+        console.log(pages.path)
+        if (!pages.path.includes('.zip')) {
+            fs.readdirSync(pages.path).forEach(file => {
+                pages.files.push({
+                    name: file,
+                    path: pages.path + "/" + file,
+                    content: ""
+                });
             });
-        });
 
-        if (textPreviews.path != false) {
-            fs.readdirSync(textPreviews.path).forEach(file => {
-                textPreviews.files.push({
+            fs.readdirSync(previews.path).forEach(file => {
+                previews.files.push({
                     name: file,
                     path: previews.path + "/" + file,
                     content: ""
                 });
             });
+
+            if (textPreviews.path != false) {
+                fs.readdirSync(textPreviews.path).forEach(file => {
+                    textPreviews.files.push({
+                        name: file,
+                        path: previews.path + "/" + file,
+                        content: ""
+                    });
+                });
+            }
+
+            if (images.path != false) {
+                fs.readdirSync(images.path).forEach(file => {
+                    images.files.push({
+                        name: file,
+                        path: previews.path + "/" + file,
+                        content: ""
+                    });
+                });
+            }
         }
 
-        if (images.path != false) {
-            fs.readdirSync(images.path).forEach(file => {
-                images.files.push({
-                    name: file,
-                    path: previews.path + "/" + file,
-                    content: ""
-                });
-            });
-        }
     });
 
     //META, DOC & USER JSON FILES
@@ -403,17 +531,9 @@ function getMasterSymbols() {
     return deliverable;
 }
 
-
 //Handle POST Request from Client Form
 router.post("/uploads", upload.array("files"), (req, res) => {
-    let data = getRequestData(req);
-    let fileNames = storeFileNames(data);
-    fileNames = changeFileNames(fileNames);
-    let dirNames = createDirNames(data);
-    createDirs(dirNames);
-    let zipFiles = unzipFiles();
-    deleteZipFiles(zipFiles);
-
+    processPostRequest(req);
     res.sendStatus(200);
 });
 
