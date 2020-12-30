@@ -415,7 +415,21 @@ async function getDocFiles() {
     });
     return docFiles;
 }
-
+async function getDocsAndPages() {
+    let schema = await createObjSchema();
+    let docFiles = [];
+    let pages = []
+    schema.forEach(obj => {
+        let jsonList = obj.json;
+        let pagesFiles = obj.pages;
+        jsonList.forEach(list => {
+            if (list.name.includes("document")) {
+                docFiles.push(list.content);
+            }
+        });
+    });
+    return docFiles;
+}
 async function getPageFiles() {
     let filesGroups = [];
     let files = [];
@@ -479,15 +493,15 @@ async function getForeignSymbols() {
                         id: list.symbolMaster.symbolID,
                         _class: list.symbolMaster._class,
                         name: list.symbolMaster.name,
-                    }
+                    },
+                    used: false
                 });
             })
         }
     });
 
-    console.log(foreignSymbols);
+    return foreignSymbols;
 }
-
 
 async function getMasterSymbols() {
     let masterSymbols = [];
@@ -495,6 +509,8 @@ async function getMasterSymbols() {
     let deliverable = {};
     let objSchema = await createObjSchema();
     let symbolInstances = await getSymbolInstances();
+    let foreignSymbols = await getForeignSymbols();
+    let allMasterSymbols = [];
     //Get all Master Symbols
     objSchema.forEach(folder => {
         let pages = folder.dir.pages.files;
@@ -502,12 +518,15 @@ async function getMasterSymbols() {
             let layers = file.content.layers;
             layers.forEach(layer => {
                 if (layer._class == "symbolMaster") {
+
                     masterSymbols.push({
                         type: layer._class,
                         name: layer.name,
                         symbolID: layer.symbolID,
                         page: file.content.name,
                         pagePath: file.path,
+                        masterFolder: folder.name,
+                        masterFolderPath: folder.path,
                         used: false
                     });
                 }
@@ -515,13 +534,70 @@ async function getMasterSymbols() {
         });
     });
 
-    //Get count of unique IDs
-    symbolsCount = [...new Set([...masterSymbols.map(symbol => symbol.symbolID)])].length;
-
-    //Check if if symbol is used
+    //Push IDS of all symbol masters in page.json files
     masterSymbols.forEach(symbol => {
+        allMasterSymbols.push(symbol.symbolID);
+    });
+
+    //Push IDS of all symbol masters in document.json files
+    foreignSymbols.forEach(symbol => {
+        allMasterSymbols.push(symbol.originalMaster.id);
+    });
+
+    //Get count of unique IDs
+    symbolsCount = [...new Set([...allMasterSymbols.map(symbol => symbol)])].length;
+
+    allMasterSymbols = [];
+
+    //Put Foreign and master symbols in one array
+    foreignSymbols.forEach(symbol => {
+        allMasterSymbols.push({
+            _class: symbol._class,
+            library: {
+                id: symbol.library.id,
+                name: symbol.library.name
+            },
+            originalMaster: {
+                id: symbol.originalMaster.id,
+                _class: symbol.originalMaster._class,
+                name: symbol.originalMaster.name
+            },
+            symbolMaster: {
+                id: symbol.symbolMaster.id,
+                _class: symbol.symbolMaster._class,
+                name: symbol.symbolMaster.name,
+            },
+            used: false
+        });
+    });
+
+    masterSymbols.forEach(symbol => {
+        allMasterSymbols.push({
+            _class: symbol.type,
+            library: {
+                id: false,
+                name: symbol.name
+            },
+            originalMaster: {
+                id: symbol.symbolID,
+                _class: symbol.type,
+                name: symbol.name
+            },
+            symbolMaster: {
+                id: false,
+                _class: false,
+                name: false,
+            },
+            used: false
+        })
+    });
+
+    console.log(allMasterSymbols);
+    //Check if if symbol is used
+    allMasterSymbols.forEach(symbol => {
+        let id = symbol.symbolMaster.id || symbol.originalMaster.id;
         symbolInstances.forEach(layer => {
-            if (layer._class == "symbolInstance" && layer.symbolID == symbol.symbolID) {
+            if (layer._class == "symbolInstance" && layer.symbolID == id) {
                 symbol.used = true;
             }
         });
@@ -529,7 +605,8 @@ async function getMasterSymbols() {
 
     deliverable.count = symbolsCount;
     deliverable.symbols = masterSymbols;
-    getForeignSymbols(getDocFiles());
+
+    //console.log(await getForeignSymbols());
     return deliverable;
 }
 
