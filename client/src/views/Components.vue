@@ -15,7 +15,12 @@
         </div>
         <CheckBox label="Select all" class="ml-4 mt-8" />
         <div class="components-list mt-4">
-          <ListCard />
+          <ListCard
+            v-for="(component, key) in components"
+            :key="key"
+            :name="component.name"
+            class="mb-2"
+          />
         </div>
       </aside>
       <main class="main bg-cloud w-full">
@@ -255,16 +260,19 @@
 </template>
 <script>
 import Search from "@/components/Search";
-import NavBar from '@/components/NavBar'
+import NavBar from "@/components/NavBar";
 import ButtonOrganizer from "@/components/ButtonOrganizer";
 import CheckBox from "@/components/CheckBox";
 import ListCard from "@/components/ListCard";
 import ButtonMenu from "@/components/ButtonMenu";
 import Divider from "@/components/Divider";
+import axios from "axios";
+
 export default {
   name: "Components",
   data() {
     return {
+      components: undefined,
       totalArtboards: 1440,
       artboardsUsingComponent: 999,
       colors: ["#856de7", "#23272a"],
@@ -283,6 +291,17 @@ export default {
       type: String,
       default: "Component",
     },
+  },
+  created() {
+    axios
+      .get("http://localhost:3060/components")
+      .then((res) => {
+        this.components = res.data.symbols;
+        console.log(res.data.symbols);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
   computed: {
     degreeOfUse: function () {

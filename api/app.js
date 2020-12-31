@@ -518,38 +518,36 @@ async function getMasterSymbols() {
             let layers = file.content.layers;
             layers.forEach(layer => {
                 if (layer._class == "symbolMaster") {
-
                     masterSymbols.push({
-                        type: layer._class,
-                        name: layer.name,
-                        symbolID: layer.symbolID,
-                        page: file.content.name,
-                        pagePath: file.path,
-                        masterFolder: folder.name,
-                        masterFolderPath: folder.path,
-                        used: false
+                        _class: layer._class,
+                        library: {
+                            id: false,
+                            name: layer.name
+                        },
+                        originalMaster: {
+                            id: layer.symbolID,
+                            _class: layer._class,
+                            name: layer.name
+                        },
+                        symbolMaster: {
+                            id: false,
+                            _class: false,
+                            name: false,
+                        },
+                        used: false,
+                        usage: 0
                     });
                 }
             });
         });
     });
 
-    //Push IDS of all symbol masters in page.json files
-    masterSymbols.forEach(symbol => {
-        allMasterSymbols.push(symbol.symbolID);
-    });
-
-    //Push IDS of all symbol masters in document.json files
-    foreignSymbols.forEach(symbol => {
-        allMasterSymbols.push(symbol.originalMaster.id);
-    });
-
-    //Get count of unique IDs
-    symbolsCount = [...new Set([...allMasterSymbols.map(symbol => symbol)])].length;
-
-    allMasterSymbols = [];
-
     //Put Foreign and master symbols in one array
+    masterSymbols.forEach(symbol => {
+        allMasterSymbols.push(symbol);
+    });
+
+    //Push all symbol masters of document.json files in all symbols array
     foreignSymbols.forEach(symbol => {
         allMasterSymbols.push({
             _class: symbol._class,
@@ -567,46 +565,29 @@ async function getMasterSymbols() {
                 _class: symbol.symbolMaster._class,
                 name: symbol.symbolMaster.name,
             },
-            used: false
+            used: false,
+            usage: 0
         });
     });
 
-    masterSymbols.forEach(symbol => {
-        allMasterSymbols.push({
-            _class: symbol.type,
-            library: {
-                id: false,
-                name: symbol.name
-            },
-            originalMaster: {
-                id: symbol.symbolID,
-                _class: symbol.type,
-                name: symbol.name
-            },
-            symbolMaster: {
-                id: false,
-                _class: false,
-                name: false,
-            },
-            used: false
-        })
-    });
+    //Get count of unique IDs
+    symbolsCount = [...new Set([...allMasterSymbols.map(symbol => symbol.originalMaster.id)])].length;
 
-    console.log(allMasterSymbols);
-    //Check if if symbol is used
+    //Check if symbol is used
     allMasterSymbols.forEach(symbol => {
         let id = symbol.symbolMaster.id || symbol.originalMaster.id;
         symbolInstances.forEach(layer => {
             if (layer._class == "symbolInstance" && layer.symbolID == id) {
                 symbol.used = true;
+                symbol.usage = symbol.usage + 1;
             }
         });
     });
 
-    deliverable.count = symbolsCount;
-    deliverable.symbols = masterSymbols;
+    //Add total amount of symbols and list of symbols in object
+    deliverable.totalSymbols = symbolsCount;
+    deliverable.symbols = allMasterSymbols;
 
-    //console.log(await getForeignSymbols());
     return deliverable;
 }
 
@@ -618,6 +599,11 @@ router.post("/uploads", upload.array("files"), (req, res) => {
 
 //Handle GET Request from Client Form
 router.get("/dashboard", async (req, res) => {
+    res.status(200).send(await getMasterSymbols());
+});
+
+//Handle GET Request from Client Form
+router.get("/components", async (req, res) => {
     res.status(200).send(await getMasterSymbols());
 });
 
