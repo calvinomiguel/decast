@@ -124,7 +124,7 @@ async function getForeignSymbols(files) {
     return foreignSymbols;
 }
 
-function getAllSymbols(arr_1, arr_2) {
+function getOriginalSymbols(arr_1, arr_2) {
     return new Promise((resolve, reject) => {
         let arr = [];
         arr = arr.concat(...arr_1);
@@ -137,13 +137,69 @@ function getAllSymbols(arr_1, arr_2) {
     });
 }
 
+function getAllSymbols(foreignSymbols, symbols) {
+    return new Promise((resolve, reject) => {
+        let foreignArray = [];
+        let localArray = [];
+        foreignSymbols.forEach(symbol => {
+            foreignArray.push({
+                _class: symbol._class,
+                library: {
+                    id: symbol.libraryID,
+                    name: symbol.sourceLibraryName
+                },
+                originalMaster: {
+                    id: symbol.originalMaster.symbolID,
+                    _class: symbol.originalMaster._class,
+                    name: symbol.originalMaster.name
+                },
+                symbolMaster: {
+                    id: symbol.symbolMaster.symbolID,
+                    _class: symbol.symbolMaster._class,
+                    name: symbol.symbolMaster.name,
+                },
+                used: false,
+                usage: 0
+            });
+        });
+        symbols.forEach(symbol => {
+            localArray.push({
+                _class: symbol._class,
+                library: {
+                    id: false,
+                    name: false,
+                },
+                originalMaster: {
+                    id: symbol.symbolID,
+                    _class: symbol._class,
+                    name: symbol.name
+                },
+                symbolMaster: {
+                    id: false,
+                    _class: false,
+                    name: false
+                },
+                used: false,
+                usage: 0
+            });
+        });
+
+        let allSymbols = foreignArray.concat(...localArray);
+
+        if (allSymbols.length > 0) {
+            resolve(allSymbols);
+        } else {
+            reject("Couldn't unite all symbols.");
+        }
+    });
+}
+
 function getSymbolCount(symbols, foreignSymbols) {
     return new Promise((resolve, reject) => {
         let count_1 = [...new Set([...symbols.map(symbol => symbol.symbolID)])];
         let count_2 = [...new Set([...foreignSymbols.map(symbol => symbol.originalMaster.symbolID)])];
         let count = count_1.concat(...count_2);
         count = [...new Set([...count.map(id => id)])].length;
-        console.log(count)
         if (count) {
             resolve(count);
         } else {
@@ -152,14 +208,176 @@ function getSymbolCount(symbols, foreignSymbols) {
     });
 }
 
-function sendInfos(count, allSymbols) {
+async function getPages(files) {
+    let pages = [];
+    for (let file of files) {
+        const sketch = await ns.read(dir + '/' + file);
+        pages = pages.concat(...sketch.pages);
+    };
+    return pages;
+}
+
+function getLayers(pages) {
+    return new Promise((resolve, reject) => {
+        let layers = [];
+        pages.forEach(page => {
+            layers = layers.concat(...page.layers);
+        });
+
+        if (layers.length > 0) {
+            resolve(layers);
+        } else {
+            reject("Couldn't create layers.");
+        }
+    });
+}
+
+function getArtboards(layers) {
+    return new Promise((resolve, reject) => {
+        let artboards = [];
+        layers.forEach(layer => {
+            if (layer._class == "artboard")
+                artboards.push(layer);
+        });
+
+        if (artboards.length > 0) {
+            resolve(artboards);
+        } else {
+            reject("Couldn't create artboards.");
+        }
+    });
+}
+
+function getArtboardLayers(artboards) {
+    return new Promise((resolve, reject) => {
+        let artboardLayers = [];
+        artboards.forEach(artboard => {
+            artboardLayers = artboardLayers.concat(...artboard.layers);
+        });
+        if (artboardLayers.length > 0) {
+            resolve(artboardLayers);
+        } else {
+            reject('Couldn\'t get artboards layers.');
+        }
+    });
+}
+
+function getSymbolInstances(artboardLayers) {
+    return new Promise((resolve, reject) => {
+        let symbolInstances = [];
+        artboardLayers.forEach(layer => {
+            if (layer._class == "symbolInstance") {
+                symbolInstances.push(layer);
+            }
+        });
+        if (symbolInstances.length > 0) {
+            resolve(symbolInstances);
+        } else {
+            reject("Wasn't able to get symbol instances.");
+        }
+    });
+}
+
+function getSymbolsUsage(allSymbols, symbolInstances) {
+    return new Promise((resolve, reject) => {
+        allSymbols.forEach(symbol => {
+            symbolInstances.forEach(instance => {
+                if (symbol.originalMaster.id == instance.symbolID || symbol.symbolMaster.id == instance.symbolID) {
+                    symbol.usage = symbol.usage + 1;
+                    if (symbol.used == false) {
+                        symbol.used = true;
+                    }
+                }
+            });
+        });
+        if (allSymbols.length > 0) {
+            resolve(allSymbols);
+        } else {
+            reject("Couldn't get the symbols usage details.");
+        }
+    });
+}
+
+function getUniqueSymbols(allSymbols) {
+    return new Promise((resolve, reject) => {
+        let unique = allSymbols.reduce((acc, v, index, arr) => {
+            if (acc[v.originalMaster.id]) {
+                return acc
+            }
+            acc[v.originalMaster.id] = v
+            return acc
+        }, {});
+
+        //PUT ALL OBJECTS IN AN ARRAY
+        let uniqueArray = [];
+        for (let symbol in unique) {
+            console.log(symbol);
+            uniqueArray.push(unique[symbol]);
+        }
+        if (uniqueArray) {
+            resolve(uniqueArray);
+        } else {
+            reject('False');
+        }
+
+    });
+}
+
+function getUniqueSymbolsUsage(uniqueSymbols, allSymbols) {
+    return new Promise((resolve, reject) => {
+        let uniques = [...uniqueSymbols];
+
+
+        //Fetch usage count from All Symbols array
+        uniques.forEach(unique => {
+            let symbolUsage = 0;
+            let uniqueID = unique.originalMaster.id;
+            allSymbols.forEach(symbol => {
+                let symbolID = symbol.originalMaster.id;
+
+                if (symbolID == uniqueID) {
+                    symbolUsage = symbolUsage + symbol.usage;
+                }
+            });
+            unique.usage = symbolUsage;
+            symbolUsage != 0 ? unique.used = true : false;
+        });
+
+        if (uniques) {
+            resolve(uniques);
+        } else {
+            reject('Couldn\'t get');
+        }
+    });
+
+}
+
+function getDeadComponentsCount(uniqueSymbols) {
+    return new Promise((resolve, reject) => {
+        let count = 0;
+        uniqueSymbols.forEach(symbol => {
+            if (symbol.used == false) {
+                count += 1;
+            }
+        });
+        if (uniqueSymbols.length > 0) {
+            resolve(count);
+        } else {
+            reject("Something went wrong while retrieving deadsymbols count");
+        }
+    });
+}
+
+function sendInfos(count, uniqueSymbols, deadSymbolsCount) {
     return new Promise((resolve, reject) => {
 
         let obj = {
-            symbols: allSymbols,
-            count: count
+            symbols: uniqueSymbols,
+            count: count,
+            deadCount: deadSymbolsCount
         };
 
+        //Check if object has properties
         if (Object.keys(obj).length > 0) {
             resolve(obj);
         } else {
@@ -167,6 +385,7 @@ function sendInfos(count, allSymbols) {
         }
     });
 }
+
 //Handle GET Request from Client Form
 router.get("/dashboard", async (req, res) => {
     let files = await getFiles();
@@ -174,7 +393,16 @@ router.get("/dashboard", async (req, res) => {
     let symbols = await getSymbols(files);
     let allSymbols = await getAllSymbols(foreignSymbols, symbols);
     let count = await getSymbolCount(symbols, foreignSymbols);
-    let infos = await sendInfos(count, allSymbols);
+    let pages = await getPages(files);
+    let layers = await getLayers(pages);
+    let artboards = await getArtboards(layers);
+    let artboardLayers = await getArtboardLayers(artboards);
+    let symbolInstances = await getSymbolInstances(artboardLayers);
+    allSymbols = await getSymbolsUsage(allSymbols, symbolInstances);
+    let uniqueSymbols = await getUniqueSymbols(allSymbols);
+    uniqueSymbols = await getUniqueSymbolsUsage(uniqueSymbols, allSymbols);
+    let deadCount = await getDeadComponentsCount(uniqueSymbols);
+    let infos = await sendInfos(count, uniqueSymbols, deadCount);
     res.status(200).send(infos);
 });
 

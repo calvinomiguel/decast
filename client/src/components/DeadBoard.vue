@@ -67,8 +67,8 @@ export default {
     axios
       .get("http://localhost:3060/dashboard")
       .then((res) => {
-        this.totalComponents = res.data.totalSymbols;
-        this.deadComponents = res.data.totalSymbols;
+        this.totalComponents = res.data.count;
+        this.deadComponents = res.data.deadCount;
         console.log(res.data);
       })
       .catch((err) => {
