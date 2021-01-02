@@ -6,9 +6,8 @@
       </a>
       <ul class="nav-items">
         <li>
-          <NavLink link="/" link-text="Dashboard" />
+          <NavLink link="/dashboard" link-text="Dashboard" />
         </li>
-
         <li>
           <NavLink link="/artboards" link-text="Artboards" />
         </li>

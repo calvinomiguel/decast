@@ -11,9 +11,7 @@ const {
     json
 } = require("body-parser");
 const Sketch = require("node-sketch/src/Sketch");
-const e = require("cors");
 const dir = process.argv[2] || process.cwd() + "/uploads";
-
 const upload = multer({
     dest: "./uploads/"
 });
@@ -407,7 +405,7 @@ router.get("/dashboard", async (req, res) => {
 });
 
 //Handle GET Request from Client Form
-router.get("/components", async (req, res) => {
+router.get("/components", (req, res) => {
     res.status(200).send('hi');
 });
 

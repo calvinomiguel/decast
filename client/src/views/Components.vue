@@ -297,7 +297,7 @@ export default {
       .get("http://localhost:3060/components")
       .then((res) => {
         this.components = res.data.symbols;
-        console.log(res.data.symbols);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);

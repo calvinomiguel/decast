@@ -10,8 +10,8 @@
         width="240px"
         height="240px"
         :data="[
-          ['All components', this.totalComponents],
-          ['Dead components', this.deadComponents],
+          ['All components', totalComponents],
+          ['Dead components', deadComponents / deadRatioCalc],
         ]"
         :colors="colors"
         :legend="false"
@@ -42,7 +42,7 @@
             Dead components ratio
           </h3>
           <p class="font-mono text-night-300 text-xl text-right font-bold">
-            {{ deadComponentsRatio }}%
+            {{ deadRatioNumber + "%" }}
           </p>
         </div>
       </div>
@@ -53,33 +53,25 @@
 <script>
 import Divider from "@/components/Divider";
 import ButtonPrimary from "@/components/ButtonPrimary";
-import axios from "axios";
 export default {
   name: "DeadBoard",
   data() {
     return {
-      totalComponents: null,
-      deadComponents: null,
       colors: ["#856de7", "#23272a"],
     };
   },
-  created() {
-    axios
-      .get("http://localhost:3060/dashboard")
-      .then((res) => {
-        this.totalComponents = res.data.count;
-        this.deadComponents = res.data.deadCount;
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  },
-  computed: {
-    deadComponentsRatio: function () {
-      return (
-        Math.round((this.deadComponents / this.totalComponents) * 10000) / 100
-      );
+  props: {
+    deadRatioNumber: {
+      type: Number,
+    },
+    deadRatioCalc: {
+      type: Number,
+    },
+    deadComponents: {
+      type: Number,
+    },
+    totalComponents: {
+      type: Number,
     },
   },
   components: {
