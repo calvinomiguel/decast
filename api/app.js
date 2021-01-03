@@ -25,17 +25,6 @@ app.use(
     })
 );
 
-//Return Request Data
-function getRequesData() {
-    return new Promise((resolve, reject) => {
-        let reqData = request.files;
-        if (reqData == request.files) {
-            resolve(reqData);
-        } else {
-            reject('Couldn\'t process request.');
-        }
-    });
-}
 //Store original and current file names in array
 function storeFileNames(requestData) {
     return new Promise((resolve, reject) => {
@@ -70,19 +59,8 @@ function changeFileNames(fileNames) {
         } else {
             reject("Failed in changing tmp file names to original file names.");
         }
-        console.log('Names successfully changed...');
     });
 }
-
-
-//Handle POST Request from Client Form to upload files
-router.post("/uploads", upload.array("files"), async (req, res) => {
-    let reqData = req.files;
-    let fileNames = await storeFileNames(reqData);
-    fileNames = await changeFileNames(fileNames);
-
-    res.status(200).send();
-});
 
 //Get all files in upload directory
 function getFiles() {
@@ -309,7 +287,6 @@ function getUniqueSymbols(allSymbols) {
         //PUT ALL OBJECTS IN AN ARRAY
         let uniqueArray = [];
         for (let symbol in unique) {
-            console.log(symbol);
             uniqueArray.push(unique[symbol]);
         }
         if (uniqueArray) {
@@ -384,8 +361,11 @@ function sendInfos(count, uniqueSymbols, deadSymbolsCount) {
     });
 }
 
-//Handle GET Request from Client Form
-router.get("/dashboard", async (req, res) => {
+//Handle POST Request from Client Form to upload files
+app.post("/uploads", upload.array("files"), async (req, res) => {
+    let reqData = req.files;
+    let fileNames = await storeFileNames(reqData);
+    fileNames = await changeFileNames(fileNames);
     let files = await getFiles();
     let foreignSymbols = await getForeignSymbols(files);
     let symbols = await getSymbols(files);
@@ -404,6 +384,15 @@ router.get("/dashboard", async (req, res) => {
     res.status(200).send(infos);
 });
 
+//Handle GET Request from Client Form
+router.get("/dashboard", async (req, res) => {
+
+    res.status(200).send('Hi');
+});
+
+router.post("/submit", (req, res) => {
+    res.status(200).send('hi');
+});
 //Handle GET Request from Client Form
 router.get("/components", (req, res) => {
     res.status(200).send('hi');

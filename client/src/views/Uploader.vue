@@ -5,7 +5,6 @@
 </template>
 <script>
 import FileUploader from "@/components/FileUploader";
-
 export default {
   name: "Uploader",
   components: {

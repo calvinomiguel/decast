@@ -35,7 +35,6 @@
           multiple
           class="hidden"
           accept=".sketch"
-          v-on:change="fileHandling()"
         />
       </label>
     </div>
@@ -72,7 +71,6 @@
 
 <script>
 import axios from "axios";
-import unzip from "unzip-js";
 import ButtonPrimary from "@/components/ButtonPrimary";
 
 export default {
@@ -86,62 +84,6 @@ export default {
     };
   },
   methods: {
-    fileHandling: function () {
-      let fileInput = document.getElementById("file-input");
-      let files = Array.from(fileInput.files);
-      this.files = files;
-      //debugger;
-      this.files.forEach((file) => {
-        unzip(file, (err, zipFile) => {
-          if (err) {
-            return console.error(err);
-          }
-          //debugger;
-          zipFile.readEntries((err, entries) => {
-            if (err) {
-              return console.error(err);
-            }
-            console.log(entries);
-            entries.forEach((entry) => {
-              if (
-                !entry.name.includes("previews/") &&
-                !entry.name.includes("pages/") &&
-                !entry.name.includes("images/") &&
-                !entry.name.includes("text-previews/")
-              ) {
-                zipFile.readEntryData(entry, false, (err, readStream) => {
-                  //debugger;
-                  if (err) {
-                    return console.error(err);
-                  }
-                  readStream.on("data", (uint8Array) => {
-                    console.log(
-                      JSON.parse(String.fromCharCode.apply(null, uint8Array))
-                    );
-                  });
-                  readStream.on("error", console.log);
-                  readStream.on("end", console.log);
-                });
-              } else {
-                zipFile.readEntryData(entry, false, (err, readStream) => {
-                  //debugger;
-                  if (err) {
-                    return console.error(err);
-                  }
-                  console.log("FOLDER");
-                  readStream.on("data", (uint8Array) => {
-                    console.log(uint8Array);
-                    //console.log(String.fromCharCode.apply(null, uint8Array));
-                  });
-                  readStream.on("error", console.log);
-                  readStream.on("end", console.log);
-                });
-              }
-            });
-          });
-        });
-      });
-    },
     async sendFiles() {
       const form = document.getElementById("file-uploader");
       const pkg = new FormData(form);
@@ -149,20 +91,23 @@ export default {
       const protocol = "http";
       const host = "localhost";
 
-      try {
-        await axios({
-          method: "POST",
-          baseURL: `${protocol}://${host}:${port}`,
-          headers: { "content-type": "multipart/form-data" },
-          url: "/uploads",
-          data: pkg,
-        });
-      } catch (err) {
-        console.log(err.response);
-      }
+      const res = await axios({
+        method: "POST",
+        baseURL: `${protocol}://${host}:${port}`,
+        headers: { "content-type": "multipart/form-data" },
+        url: "/uploads",
+        data: pkg,
+      });
+
+      localStorage.setItem("data", JSON.stringify(res.data));
 
       for (let pair of pkg.entries()) {
         console.log(pair[1]);
+      }
+
+      console.log(res.data);
+      if (res.status == "200") {
+        this.$router.push("/dashboard");
       }
     },
   },

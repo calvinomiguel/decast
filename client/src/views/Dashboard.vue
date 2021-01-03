@@ -8,9 +8,9 @@
             :total-components="totalComponents"
             :dead-ratio-number="deadComponentsRatio"
             :dead-components="deadComponents"
-            :dead-ratio-calc="ratio"
+            :used-components="totalComponents - deadComponents"
           />
-          <SuggestBoard />
+          <SuggestBoard :suggestions="suggestions" />
         </section>
       </div>
     </main>
@@ -20,7 +20,6 @@
 import DeadBoard from "@/components/DeadBoard";
 import SuggestBoard from "@/components/SuggestBoard";
 import NavBar from "@/components/NavBar";
-import axios from "axios";
 export default {
   name: "Dashboard",
   components: {
@@ -33,21 +32,40 @@ export default {
       totalComponents: null,
       deadComponents: null,
       ratio: null,
+      data: null,
+      suggestions: [
+        {
+          suggestion: "Remove dead and less used components",
+          status: true,
+          link: "/components",
+        },
+        {
+          suggestion: "Remove less used components",
+          status: true,
+        },
+        {
+          suggestion: "Remove duplicate components",
+          status: true,
+        },
+        {
+          suggestion: "Split sketch file",
+          status: true,
+        },
+        {
+          suggestion: "Reduce number of layers",
+          status: true,
+        },
+      ],
     };
   },
-  created() {
-    axios
-      .get("http://localhost:3060/dashboard")
-      .then((res) => {
-        this.totalComponents = res.data.count;
-        this.deadComponents = res.data.deadCount;
-        this.ratio = this.deadComponents / this.totalComponents;
-        let data = localStorage.setItem("data", res.data);
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  mounted() {
+    if (localStorage.data) {
+      this.data = localStorage.data;
+      this.data = JSON.parse(this.data);
+      this.deadComponents = this.data.deadCount;
+      this.totalComponents = this.data.count;
+      this.ratio = this.deadComponents / this.totalComponents;
+    }
   },
   computed: {
     deadComponentsRatio: function () {
