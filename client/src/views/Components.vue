@@ -3,24 +3,27 @@
     <NavBar />
     <div class="main-container flex">
       <aside class="aside bg-smokey">
-        <Search />
-        <div class="organizer-wrapper flex justify-between mt-3">
-          <ButtonOrganizer
-            class=""
-            alt="Sort icon"
-            fileName="sort-icon.png"
-            btn-text="Sort"
-          />
-          <ButtonOrganizer alt="Filter icon" btn-text="Filter" />
-        </div>
-        <CheckBox label="Select all" class="ml-4 mt-8" />
-        <div class="components-list mt-4">
-          <ListCard
-            v-for="(component, key) in components"
-            :key="key"
-            :name="component.name"
-            class="mb-2"
-          />
+        <div class="aside-wrapper">
+          <Search />
+          <div class="organizer-wrapper flex justify-between mt-3">
+            <ButtonOrganizer
+              class=""
+              alt="Sort icon"
+              fileName="sort-icon.png"
+              btn-text="Sort"
+            />
+            <ButtonOrganizer alt="Filter icon" btn-text="Filter" />
+          </div>
+          <CheckBox label="Select all" class="ml-4 mt-8" />
+          <div class="components-list mt-4">
+            <ListCard
+              v-for="(symbol, index) in symbols"
+              :key="index"
+              :name="symbol.originalMaster.name"
+              :count="symbol.usage"
+              class="mb-2"
+            />
+          </div>
         </div>
       </aside>
       <main class="main bg-cloud w-full">
@@ -266,8 +269,7 @@ import CheckBox from "@/components/CheckBox";
 import ListCard from "@/components/ListCard";
 import ButtonMenu from "@/components/ButtonMenu";
 import Divider from "@/components/Divider";
-import axios from "axios";
-
+let data = localStorage.data;
 export default {
   name: "Components",
   data() {
@@ -280,6 +282,8 @@ export default {
         "Total artboards": 999,
         "Artboards using component": 1440,
       },
+      data: null,
+      symbols: [],
     };
   },
   props: {
@@ -292,16 +296,14 @@ export default {
       default: "Component",
     },
   },
-  created() {
-    axios
-      .get("http://localhost:3060/components")
-      .then((res) => {
-        this.components = res.data.symbols;
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
+  mounted() {
+    if (data) {
+      this.data = JSON.parse(data);
+      this.data.symbols.forEach((symbol) => {
+        this.symbols.push(symbol);
       });
+      console.log(this.symbols);
+    }
   },
   computed: {
     degreeOfUse: function () {
@@ -330,7 +332,13 @@ aside {
   display: block;
   max-height: 100vh;
   height: 100vh;
+  overflow: hidden;
+}
+.aside-wrapper {
+  overflow: scroll;
+  height: 100%;
   padding: 1.5rem;
+  width: 100%;
 }
 .aside,
 .main {

@@ -20,6 +20,7 @@
 import DeadBoard from "@/components/DeadBoard";
 import SuggestBoard from "@/components/SuggestBoard";
 import NavBar from "@/components/NavBar";
+let data = localStorage.data;
 export default {
   name: "Dashboard",
   components: {
@@ -31,6 +32,7 @@ export default {
     return {
       totalComponents: null,
       deadComponents: null,
+      symbols: null,
       ratio: null,
       data: null,
       suggestions: [
@@ -59,13 +61,16 @@ export default {
     };
   },
   mounted() {
-    if (localStorage.data) {
-      this.data = localStorage.data;
+    if (data) {
+      this.data = data;
+      console.log(JSON.parse(this.data));
       this.data = JSON.parse(this.data);
       this.deadComponents = this.data.deadCount;
       this.totalComponents = this.data.count;
       this.ratio = this.deadComponents / this.totalComponents;
+      this.symbols = this.data.symbols;
     }
+    this.deadComponents > 0 ? (this.suggestions[0].status = true) : false;
   },
   computed: {
     deadComponentsRatio: function () {
