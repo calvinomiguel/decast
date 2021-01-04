@@ -1,0 +1,66 @@
+/* Class = "NSMenuItem"; title = "Screen"; ObjectID = "3iI-aZ-bDU"; */
+"3iI-aZ-bDU.title" = "滤色";
+
+/* Class = "NSMenuItem"; title = "Luminosity"; ObjectID = "7uz-OT-gs6"; */
+"7uz-OT-gs6.title" = "明度";
+
+/* Class = "NSTextFieldCell"; title = "_FillType_"; ObjectID = "AXM-Oy-2jQ"; */
+"AXM-Oy-2jQ.title" = "_填充类型_";
+
+/* Class = "NSMenuItem"; title = "Overlay"; ObjectID = "Brb-yi-Th5"; */
+"Brb-yi-Th5.title" = "叠加";
+
+/* Class = "NSTextFieldCell"; title = "Opacity"; ObjectID = "CQF-gf-yws"; */
+"CQF-gf-yws.title" = "不透明度";
+
+/* Class = "NSMenuItem"; title = "Plus Lighter"; ObjectID = "Dka-q1-wKB"; */
+"Dka-q1-wKB.title" = "提亮";
+
+/* Class = "NSMenuItem"; title = "Hard Light"; ObjectID = "e35-kH-DjQ"; */
+"e35-kH-DjQ.title" = "强光";
+
+/* Class = "NSMenuItem"; title = "Saturation"; ObjectID = "eN8-BY-Gra"; */
+"eN8-BY-Gra.title" = "饱和度";
+
+/* Class = "NSMenuItem"; title = "Darken"; ObjectID = "f8D-n4-98X"; */
+"f8D-n4-98X.title" = "变暗";
+
+/* Class = "NSMenuItem"; title = "Multiply"; ObjectID = "GKJ-R2-zO1"; */
+"GKJ-R2-zO1.title" = "正片叠底";
+
+/* Class = "NSMenuItem"; title = "Difference"; ObjectID = "GZf-rz-EcX"; */
+"GZf-rz-EcX.title" = "差值";
+
+/* Class = "NSMenuItem"; title = "Plus Darker"; ObjectID = "ILj-8m-NEZ"; */
+"ILj-8m-NEZ.title" = "加暗";
+
+/* Class = "NSMenuItem"; title = "Normal"; ObjectID = "lXg-6J-Pfe"; */
+"lXg-6J-Pfe.title" = "正常";
+
+/* Class = "NSTextFieldCell"; title = "__Context__"; ObjectID = "m2Y-41-2fm"; */
+"m2Y-41-2fm.title" = "__上下文__";
+
+/* Class = "NSMenuItem"; title = "Color Dodge"; ObjectID = "Nxw-LE-LDY"; */
+"Nxw-LE-LDY.title" = "颜色减淡";
+
+/* Class = "NSMenuItem"; title = "Exclusion"; ObjectID = "qBq-Bb-rEa"; */
+"qBq-Bb-rEa.title" = "排除";
+
+/* Class = "NSMenuItem"; title = "Color"; ObjectID = "tbI-He-1DJ"; */
+"tbI-He-1DJ.title" = "颜色";
+
+/* Class = "NSMenuItem"; title = "Lighten"; ObjectID = "VAD-ND-k63"; */
+"VAD-ND-k63.title" = "变亮";
+
+/* Class = "NSMenuItem"; title = "Hue"; ObjectID = "VFL-Rd-cbB"; */
+"VFL-Rd-cbB.title" = "色相";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "VsW-Ki-WsB"; */
+"VsW-Ki-WsB.title" = "其他视图";
+
+/* Class = "NSMenuItem"; title = "Color Burn"; ObjectID = "w3A-Pm-kj0"; */
+"w3A-Pm-kj0.title" = "颜色加深";
+
+/* Class = "NSMenuItem"; title = "Soft Light"; ObjectID = "XIX-aZ-8LF"; */
+"XIX-aZ-8LF.title" = "柔光";
+

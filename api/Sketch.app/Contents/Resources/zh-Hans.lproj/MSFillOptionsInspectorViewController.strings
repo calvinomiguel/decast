@@ -1,0 +1,12 @@
+/* Class = "NSMenuItem"; title = "Even-Odd"; ObjectID = "9Tm-k1-pEt"; */
+"9Tm-k1-pEt.title" = "奇偶";
+
+/* Class = "NSMenuItem"; title = "Non-Zero"; ObjectID = "btC-ZC-SSL"; */
+"btC-ZC-SSL.title" = "非零";
+
+/* Class = "NSTextFieldCell"; title = "Determines how to fill shapes with overlapping paths.\n\nNon-Zero will fill the entire shape, whilst Even-Odd will preserve the holes in overlapping paths."; ObjectID = "NoJ-sM-bgq"; */
+"NoJ-sM-bgq.title" = "确定如何填充路径重叠的形状。\n\n非零规则会填充整个形状，而奇偶规则将保留重叠路径造成的缝隙。";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "rSY-WE-e4l"; */
+"rSY-WE-e4l.title" = "其他视图";
+

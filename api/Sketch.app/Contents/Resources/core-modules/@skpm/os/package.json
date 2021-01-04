@@ -1,0 +1,28 @@
+{
+  "name": "@skpm/os",
+  "version": "0.1.1",
+  "description": "Drop-in replacement for the os NodeJS package",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skpm/os.git"
+  },
+  "keywords": [
+    "sketch",
+    "module",
+    "os"
+  ],
+  "author": "Mathieu Dutour <mathieu@dutour.me> (http://mathieu.dutour.me/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/skpm/os/issues"
+  },
+  "homepage": "https://github.com/skpm/os#readme"
+
+,"_resolved": "https://registry.npmjs.org/@skpm/os/-/os-0.1.1.tgz"
+,"_integrity": "sha512-l8e5YedAyYXFwGHkdgh0m7v8u1GpKaVOhyKRIbIobTq2O1TFKnMK87xMzkzsCKD47PtZz33+ou4khxbLi3JCcw=="
+,"_from": "@skpm/os@0.1.1"
+}

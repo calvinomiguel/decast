@@ -1,0 +1,27 @@
+/* Class = "NSTextFieldCell"; title = "Library name"; ObjectID = "1a6-zP-7RK"; */
+"1a6-zP-7RK.title" = "组件库名称";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "GHN-f0-x6y"; */
+"GHN-f0-x6y.title" = "文本单元格";
+
+/* Class = "NSTextFieldCell"; title = "Check"; ObjectID = "H5i-eC-EaJ"; */
+"H5i-eC-EaJ.title" = "检查";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "HrL-BY-zHi"; */
+"HrL-BY-zHi.title" = "取消";
+
+/* Class = "NSButtonCell"; title = "Update Components"; ObjectID = "mzM-VL-Pnh"; */
+"mzM-VL-Pnh.title" = "更新组件";
+
+/* Class = "NSTextFieldCell"; title = "Modified date"; ObjectID = "nC1-6r-0ht"; */
+"nC1-6r-0ht.title" = "修改日期";
+
+/* Class = "NSWindow"; title = "Asset Sync Sheet"; ObjectID = "QvC-M9-y7g"; */
+"QvC-M9-y7g.title" = "资源同步列表";
+
+/* Class = "NSTextFieldCell"; title = "This document contains Components from Libraries that have been updated. Clicking “Update Components” will update all selected Components."; ObjectID = "Wax-gz-Ybg"; */
+"Wax-gz-Ybg.title" = "文档中包含的组件在其组件库中有更新。点击“更新组件”后将更新所有选中的组件。";
+
+/* Class = "NSTextFieldCell"; title = "Some Components in your document are outdated."; ObjectID = "WDo-ph-Rpa"; */
+"WDo-ph-Rpa.title" = "文档中的部分组件已过期。";
+

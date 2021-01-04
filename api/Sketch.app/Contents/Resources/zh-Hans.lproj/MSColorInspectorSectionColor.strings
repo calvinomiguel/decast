@@ -1,0 +1,21 @@
+/* Class = "NSButtonCell"; title = "Update"; ObjectID = "9PI-cx-imh"; */
+"9PI-cx-imh.title" = "更新";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "BtN-Dl-BAL"; */
+"BtN-Dl-BAL.title" = "取消";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "cVi-VV-bay"; */
+"cVi-VV-bay.title" = "取消";
+
+/* Class = "NSButtonCell"; title = "Detach Variable"; ObjectID = "Jcg-PR-gwg"; */
+"Jcg-PR-gwg.title" = "解绑颜色变量";
+
+/* Class = "NSButtonCell"; title = "Edit Variable"; ObjectID = "QDO-Cy-QWE"; */
+"QDO-Cy-QWE.title" = "编辑颜色变量";
+
+/* Class = "NSTextFieldCell"; title = "NAME"; ObjectID = "WX0-h0-rZJ"; */
+"WX0-h0-rZJ.title" = "命名";
+
+/* Class = "NSButtonCell"; title = "Create"; ObjectID = "yH9-qC-zf1"; */
+"yH9-qC-zf1.title" = "创建";
+

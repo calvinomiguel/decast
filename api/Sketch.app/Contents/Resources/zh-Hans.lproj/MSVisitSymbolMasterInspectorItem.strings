@@ -1,0 +1,6 @@
+/* Class = "NSButtonCell"; title = "Edit Symbol Source"; ObjectID = "9Gi-Jj-7Ww"; */
+"9Gi-Jj-7Ww.title" = "编辑控件资源";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Go to the Symbol Source on the Canvas for editing."; ObjectID = "oai-9A-7uA"; */
+"oai-9A-7uA.ibShadowedToolTip" = "转到画布上的控件资源去编辑。";
+

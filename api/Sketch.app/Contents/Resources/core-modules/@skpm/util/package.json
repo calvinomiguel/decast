@@ -1,0 +1,31 @@
+{
+  "name": "@skpm/util",
+  "version": "0.1.28",
+  "description": "A drop in replacement for the util NodeJS module",
+  "main": "index.js",
+  "scripts": {
+    "test": "skpm-test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skpm/util.git"
+  },
+  "keywords": [
+    "sketch",
+    "module",
+    "util"
+  ],
+  "author": "Mathieu Dutour <mathieu@dutour.me> (http://mathieu.dutour.me/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/skpm/util/issues"
+  },
+  "homepage": "https://github.com/skpm/util#readme",
+  "devDependencies": {
+    "@skpm/test-runner": "^0.3.13"
+  }
+
+,"_resolved": "https://registry.npmjs.org/@skpm/util/-/util-0.1.28.tgz"
+,"_integrity": "sha512-3sB/WfjX0kLdJmT7Z9h/vnnDORqjJ+W5LfLKpc7e3NhVJyTz3VgJ30GkX5H2QZwD6pCai1su2VppvxKkFnIJ6w=="
+,"_from": "@skpm/util@0.1.28"
+}

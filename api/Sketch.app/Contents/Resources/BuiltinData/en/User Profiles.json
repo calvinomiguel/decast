@@ -1,0 +1,72 @@
+[
+  {
+   "name": "Abbie Wilson",
+   "avatar": "/Faces/109.jpg",
+   "location": "Bangkok",
+   "handle": "@abbiew93",
+   "bio": "Dog lover 🐕, mahjong champion 🀄️,and traveller 🗺 currently in Bangkok.",
+  },
+  {
+   "name": "Anje Keizer",
+   "avatar": "/Faces/171.jpg",
+   "location": "Dallas",
+   "handle": "@akeizer01",
+   "bio": "Loving life and living in Dallas, go Mavs!",
+  },
+  {
+   "name": "Sang Young-Il",
+   "avatar": "/Faces/184.jpg",
+   "location": "Dubai",
+   "handle": "@yisang_dubai",
+   "bio": "Entrepreneur in Dubai, often found dune buggy racing.",
+  },
+  {
+   "name": "Leo Knight",
+   "avatar": "/Faces/119.jpg",
+   "location": "Geneva",
+   "handle": "@knighty19",
+   "bio": "Sci-fi fan, jazz pianist and snooker enthusiast living in Geneva.",
+  },
+  {
+   "name": "Lucas Pacheco 🧲",
+   "avatar": "/Faces/143.jpg",
+   "location": "Indianapolis",
+   "handle": "@colts_fan_12",
+   "bio": "Colts superfan 🐎 loves all things football 🏈 and fast food 🍔🍟🌮",
+  },
+  {
+   "name": "Obasey Chidy",
+   "avatar": "/Faces/131.jpg",
+   "location": "Springfield",
+   "handle": "@chidy789",
+   "bio": "Living in Springfield, MO but definitely not a Simpson.",
+  },
+  {
+   "name": "Stina Gunnarsdottir",
+   "avatar": "/Faces/168.jpg",
+   "location": "Sacramento",
+   "handle": "@stinagsac",
+   "bio": "Sacramento based ultimate frisbee player heading for the finals.",
+  },
+  {
+   "name": "Alexa Richardson",
+   "avatar": "/Faces/038.jpg",
+   "location": "Shanghai",
+   "handle": "@heyalexa",
+   "bio": "Broker in Shanghai. Enjoying immersing myself in culture and food.",
+  },
+  {
+   "name": "Ogasawara Katsumi",
+   "avatar": "/Faces/049.jpg",
+   "location": "Tokyo",
+   "handle": "@okatsumi_",
+   "bio": "Tokyo’s number one foosball fan, will beat you at any game 🗼⚽️🕴",
+  },
+  {
+    "name": "Wulf Kindler",
+    "avatar": "/Faces/062.jpg",
+    "location": "Trondheim",
+    "handle": "@wulfkindler1",
+    "bio": "Doctor in Trondheim, enjoys ice skating and ice cream, not at the same time.",
+  }
+]

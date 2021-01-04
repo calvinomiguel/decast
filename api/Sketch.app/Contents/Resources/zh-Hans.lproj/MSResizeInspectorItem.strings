@@ -1,0 +1,30 @@
+/* Class = "NSButton"; ibShadowedToolTip = "Maintain width when parent is resized."; ObjectID = "0EZ-k8-oni"; */
+"0EZ-k8-oni.ibShadowedToolTip" = "调整父级尺寸时保持宽度不变。";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Pin object to Left edge on resize."; ObjectID = "6Jt-Ai-Rue"; */
+"6Jt-Ai-Rue.ibShadowedToolTip" = "调整尺寸时将对象靠左边固定。";
+
+/* Class = "NSTextFieldCell"; title = "Preview"; ObjectID = "ao8-SI-ixs"; */
+"ao8-SI-ixs.title" = "预览";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Pin object to Right edge on resize."; ObjectID = "cAN-8F-M4p"; */
+"cAN-8F-M4p.ibShadowedToolTip" = "调整尺寸时将对象靠右边固定。";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Pin object to all edges on resize."; ObjectID = "GRk-wI-w2R"; */
+"GRk-wI-w2R.ibShadowedToolTip" = "调整尺寸时将对象靠所有边缘固定。";
+
+/* Class = "NSTextFieldCell"; title = "Fix Size"; ObjectID = "Isf-VV-E2N"; */
+"Isf-VV-E2N.title" = "固定尺寸";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Pin object to Bottom edge on resize."; ObjectID = "oZf-QA-7hz"; */
+"oZf-QA-7hz.ibShadowedToolTip" = "调整尺寸时将对象靠底端固定。";
+
+/* Class = "NSTextFieldCell"; title = "Pin to Edge"; ObjectID = "WfT-zT-aL7"; */
+"WfT-zT-aL7.title" = "靠边固定";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Pin object to Top edge on resize."; ObjectID = "Xl8-MF-obK"; */
+"Xl8-MF-obK.ibShadowedToolTip" = "调整尺寸时将对象靠顶端固定。";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Maintain height when parent is resized."; ObjectID = "XsG-g4-kF7"; */
+"XsG-g4-kF7.ibShadowedToolTip" = "调整父级尺寸时保持高度不变。";
+

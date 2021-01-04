@@ -1,0 +1,9 @@
+/* Class = "NSButton"; ibShadowedToolTip = "Set the origin of the blur in the Canvas."; ObjectID = "5nu-dk-c5b"; */
+"5nu-dk-c5b.ibShadowedToolTip" = "在画布上设置模糊原点。";
+
+/* Class = "NSButtonCell"; alternateTitle = "Finish Editing"; ObjectID = "Xo9-v4-tfX"; */
+"Xo9-v4-tfX.alternateTitle" = "结束编辑";
+
+/* Class = "NSButtonCell"; title = "Edit Origin"; ObjectID = "Xo9-v4-tfX"; */
+"Xo9-v4-tfX.title" = "编辑原点";
+

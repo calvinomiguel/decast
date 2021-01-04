@@ -1,0 +1,45 @@
+/* Class = "NSTextFieldCell"; title = "Assign will apply the current RGB values to the selected profile. This will subtly change the appearance of some colors."; ObjectID = "0Ta-LH-8q7"; */
+"0Ta-LH-8q7.title" = "分配后，当前 RGB 值将应用于所选配置文件。部分颜色将发生微妙的改变。";
+
+/* Class = "NSButtonCell"; title = "Convert"; ObjectID = "9pS-UM-EHZ"; */
+"9pS-UM-EHZ.title" = "转化";
+
+/* Class = "NSTextFieldCell"; title = "Color Profile:"; ObjectID = "96h-06-EMa"; */
+"96h-06-EMa.title" = "颜色配置：";
+
+/* Class = "NSTextFieldCell"; title = "Edit Color Profile"; ObjectID = "ACc-Ww-0aU"; */
+"ACc-Ww-0aU.title" = "编辑颜色配置";
+
+/* Class = "NSButtonCell"; title = "Assign"; ObjectID = "eBI-i6-1We"; */
+"eBI-i6-1We.title" = "分配";
+
+/* Class = "NSWindow"; title = "Window"; ObjectID = "F0z-JX-Cv5"; */
+"F0z-JX-Cv5.title" = "窗口";
+
+/* Class = "NSTextFieldCell"; title = "Convert will change the RGB values for the selected profile, but colors will try to appear mostly the same. Green and Red hues will be the most affected."; ObjectID = "hcn-K7-pxn"; */
+"hcn-K7-pxn.title" = "转化后，所选的配置文件的 RGB 值将会改变，但颜色会尽可能保持不变。可能受到影响的是绿色与红色色相。";
+
+/* Class = "NSMenuItem"; title = "sRGB IEC61966-2.1"; ObjectID = "mW4-Bm-DsT"; */
+"mW4-Bm-DsT.title" = "sRGB IEC61966-2.1";
+
+/* Class = "NSTextFieldCell"; title = "Change:"; ObjectID = "pK1-OQ-xHw"; */
+"pK1-OQ-xHw.title" = "更改";
+
+/* Class = "NSTextFieldCell"; title = "This determines how colors are displayed on screen and exports."; ObjectID = "TEG-0j-uUV"; */
+"TEG-0j-uUV.title" = "这决定了屏幕和导出项上的颜色将如何显示。";
+
+/* Class = "NSMenuItem"; title = "Unmanaged"; ObjectID = "TG5-d6-MVd"; */
+"TG5-d6-MVd.title" = "非托管";
+
+/* Class = "NSTextFieldCell"; title = "sRGB is the standard for web design, and the best choice if you are targeting a wide array of devices. Display P3 supports more vibrant colors."; ObjectID = "Vbs-xn-Atw"; */
+"Vbs-xn-Atw.title" = "sRGB 是网页设计的标准，如果您的设计需要覆盖大部分设备，这将是最佳选择。Display P3 支持显示更加鲜艳的色彩。";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "vk9-vS-btZ"; */
+"vk9-vS-btZ.title" = "取消";
+
+/* Class = "NSMenuItem"; title = "Display P3"; ObjectID = "X0E-EL-mYO"; */
+"X0E-EL-mYO.title" = "Display P3";
+
+/* Class = "NSButtonCell"; title = "Change Profile"; ObjectID = "Z3a-b2-GW1"; */
+"Z3a-b2-GW1.title" = "更改配置";
+

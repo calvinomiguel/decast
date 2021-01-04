@@ -1,0 +1,15 @@
+/* Class = "NSTextFieldCell"; title = "X"; ObjectID = "4M3-Ev-b0W"; */
+"4M3-Ev-b0W.title" = "X";
+
+/* Class = "NSTextFieldCell"; title = "Color"; ObjectID = "d1G-BR-hcA"; */
+"d1G-BR-hcA.title" = "颜色";
+
+/* Class = "NSTextFieldCell"; title = "Spread"; ObjectID = "jef-iB-BHn"; */
+"jef-iB-BHn.title" = "扩展";
+
+/* Class = "NSTextFieldCell"; title = "Blur"; ObjectID = "jhm-Ci-lfF"; */
+"jhm-Ci-lfF.title" = "模糊";
+
+/* Class = "NSTextFieldCell"; title = "Y"; ObjectID = "kzw-mp-Vdh"; */
+"kzw-mp-Vdh.title" = "Y";
+

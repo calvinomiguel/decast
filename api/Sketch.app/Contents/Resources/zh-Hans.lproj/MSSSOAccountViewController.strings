@@ -1,0 +1,24 @@
+/* Class = "NSTextFieldCell"; title = "email@sketch.com"; ObjectID = "4RF-s8-Fke"; */
+"4RF-s8-Fke.title" = "email@sketch.com";
+
+/* Class = "NSTableColumn"; headerCell.title = "Team"; ObjectID = "7yr-p8-PBh"; */
+"7yr-p8-PBh.headerCell.title" = "团队";
+
+/* Class = "NSButtonCell"; title = "Sign In…"; ObjectID = "GWS-xi-fRe"; */
+"GWS-xi-fRe.title" = "登录…";
+
+/* Class = "NSButtonCell"; title = "Account Settings…"; ObjectID = "KIf-4t-ktD"; */
+"KIf-4t-ktD.title" = "账户设置…";
+
+/* Class = "NSTextFieldCell"; title = "Staging"; ObjectID = "l5L-ZD-oJs"; */
+"l5L-ZD-oJs.title" = "过渡环境";
+
+/* Class = "NSTextFieldCell"; title = "Full Name"; ObjectID = "oto-YR-W6x"; */
+"oto-YR-W6x.title" = "全称";
+
+/* Class = "NSTextFieldCell"; title = "Workspaces"; ObjectID = "P3E-gf-j6x"; */
+"P3E-gf-j6x.title" = "办公空间";
+
+/* Class = "NSTextFieldCell"; title = "Team"; ObjectID = "rNu-Cb-T4o"; */
+"rNu-Cb-T4o.title" = "团队";
+

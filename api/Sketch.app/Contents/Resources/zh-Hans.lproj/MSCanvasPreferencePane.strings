@@ -1,0 +1,57 @@
+/* Class = "NSTextFieldCell"; title = "Guides"; ObjectID = "AK4-EW-L0w"; */
+"AK4-EW-L0w.title" = "参考线";
+
+/* Class = "NSTextFieldCell"; title = "px using Arrow keys"; ObjectID = "CmS-0I-qQI"; */
+"CmS-0I-qQI.title" = "px 通过方向键调整";
+
+/* Class = "NSTextFieldCell"; title = "Move objects"; ObjectID = "cMX-Ov-iQL"; */
+"cMX-Ov-iQL.title" = "移动对象";
+
+/* Class = "NSButtonCell"; title = "Animate zoom"; ObjectID = "dKU-ML-Vg3"; */
+"dKU-ML-Vg3.title" = "动画放大";
+
+/* Class = "NSButtonCell"; title = "Zoom back to previous Canvas position"; ObjectID = "FoT-EO-ilJ"; */
+"FoT-EO-ilJ.title" = "回到之前的画布视图方位";
+
+/* Class = "NSButtonCell"; title = "Zoom in on selection"; ObjectID = "hKq-gD-c3v"; */
+"hKq-gD-c3v.title" = "放大选区";
+
+/* Class = "NSMenuItem"; title = "Display P3"; ObjectID = "HUV-bv-Nno"; */
+"HUV-bv-Nno.title" = "Display P3";
+
+/* Class = "NSTextFieldCell"; title = "When zooming back to Actual Size, by default Sketch zooms out from the center. Instead it can also zoom back to be like how it was before you zoomed in."; ObjectID = "hWe-bN-Mo6"; */
+"hWe-bN-Mo6.title" = "当缩放至实际尺寸时，Sketch 默认围绕中心点进行缩小，以确保放大时可以回到原先相同的视图。";
+
+/* Class = "NSTextFieldCell"; title = "The color profile new documents will use. No color conversion occurs with an Unmanaged profile. You’ll see better performance but, when exporting files, colors may look different than they do in Sketch."; ObjectID = "iuz-rC-JsC"; */
+"iuz-rC-JsC.title" = "新文档使用的颜色配置。非托管的配置不会发生颜色转换。性能可以得到提升，但导出文件时颜色看起来可能会有所不同。";
+
+/* Class = "NSTextFieldCell"; title = "Color Profile:"; ObjectID = "Mko-pP-FH2"; */
+"Mko-pP-FH2.title" = "颜色配置：";
+
+/* Class = "NSTextFieldCell"; title = "Measuring"; ObjectID = "NUJ-Bm-yZO"; */
+"NUJ-Bm-yZO.title" = "测距";
+
+/* Class = "NSTextFieldCell"; title = "Nudging:"; ObjectID = "oj9-1T-BFl"; */
+"oj9-1T-BFl.title" = "微调：";
+
+/* Class = "NSTextFieldCell"; title = "Colors:"; ObjectID = "rHR-oy-MR8"; */
+"rHR-oy-MR8.title" = "颜色：";
+
+/* Class = "NSMenuItem"; title = "Unmanaged"; ObjectID = "sb8-zt-hqz"; */
+"sb8-zt-hqz.title" = "非托管";
+
+/* Class = "NSTextFieldCell"; title = "Zoom:"; ObjectID = "ty5-SM-OvR"; */
+"ty5-SM-OvR.title" = "缩放：";
+
+/* Class = "NSMenuItem"; title = "sRGB IEC61966-2.1"; ObjectID = "uLC-na-mYx"; */
+"uLC-na-mYx.title" = "sRGB IEC61966-2.1";
+
+/* Class = "NSTextFieldCell"; title = "px using Shift-Arrow keys"; ObjectID = "vhB-2k-Dc8"; */
+"vhB-2k-Dc8.title" = "px通过shift+方向键调整";
+
+/* Class = "NSTextFieldCell"; title = "Prototyping"; ObjectID = "xyn-4D-MJB"; */
+"xyn-4D-MJB.title" = "原型";
+
+/* Class = "NSTextFieldCell"; title = "Move objects"; ObjectID = "yq5-e9-wiX"; */
+"yq5-e9-wiX.title" = "移动对象";
+

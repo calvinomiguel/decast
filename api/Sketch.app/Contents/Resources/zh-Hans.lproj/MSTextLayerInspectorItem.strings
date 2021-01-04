@@ -1,0 +1,45 @@
+/* Class = "NSButtonCell"; title = "Typeface.."; ObjectID = "1Pr-dZ-gup"; */
+"1Pr-dZ-gup.title" = "字体..";
+
+/* Class = "NSTextFieldCell"; title = "Character"; ObjectID = "2UN-U9-uMh"; */
+"2UN-U9-uMh.title" = "字距";
+
+/* Class = "NSTextFieldCell"; title = "Alignment"; ObjectID = "atf-Fc-AXc"; */
+"atf-Fc-AXc.title" = "对齐方式";
+
+/* Class = "NSTextFieldCell"; placeholderString = "auto"; ObjectID = "fVn-Pv-MCC"; */
+"fVn-Pv-MCC.placeholderString" = "自动";
+
+/* Class = "NSSegmentedControl"; ibShadowedToolTip = "Set the vertical alignment of a Fixed text layer."; ObjectID = "Gs0-aX-a8X"; */
+"Gs0-aX-a8X.ibShadowedToolTip" = "设置固定字符层的垂直对齐方式";
+
+/* Class = "NSTextFieldCell"; title = "__Sizing__"; ObjectID = "gUI-qL-Vid"; */
+"gUI-qL-Vid.title" = "__字号__";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "gYn-Tw-MKk"; */
+"gYn-Tw-MKk.title" = "其他视图";
+
+/* Class = "NSTextFieldCell"; title = "Paragraph"; ObjectID = "kVb-H6-bXI"; */
+"kVb-H6-bXI.title" = "段落";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Adjust variable font options."; ObjectID = "o4s-2a-F5y"; */
+"o4s-2a-F5y.ibShadowedToolTip" = "调整可变字体选项。";
+
+/* Class = "NSTextFieldCell"; title = "Line"; ObjectID = "pev-li-sqr"; */
+"pev-li-sqr.title" = "行高";
+
+/* Class = "NSMenuItem"; title = "Regular"; ObjectID = "QTP-2x-Zzu"; */
+"QTP-2x-Zzu.title" = "正常";
+
+/* Class = "NSSegmentedControl"; ibShadowedToolTip = "Set the horizontal alignment of the text layer."; ObjectID = "wny-jP-vKP"; */
+"wny-jP-vKP.ibShadowedToolTip" = "设置字符层的水平对齐方式";
+
+/* Class = "NSSegmentedCell"; XiT-tF-JZg.ibShadowedToolTips[0] = "Resize the text layer horizontally to fit text."; ObjectID = "XiT-tF-JZg"; */
+"XiT-tF-JZg.ibShadowedToolTips[0]" = "水平调整字符层以适配文本。";
+
+/* Class = "NSSegmentedCell"; XiT-tF-JZg.ibShadowedToolTips[1] = "Resize the text layer vertically to fit text."; ObjectID = "XiT-tF-JZg"; */
+"XiT-tF-JZg.ibShadowedToolTips[1]" = "垂直调整字符层以适配文本。";
+
+/* Class = "NSSegmentedCell"; XiT-tF-JZg.ibShadowedToolTips[2] = "Wrap text to width and height of the text layer."; ObjectID = "XiT-tF-JZg"; */
+"XiT-tF-JZg.ibShadowedToolTips[2]" = "文本换行以适应字符层的宽度与高度。";
+

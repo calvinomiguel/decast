@@ -1,0 +1,9 @@
+/* Class = "NSTextFieldCell"; title = "Typeface"; ObjectID = "iS9-GO-wTD"; */
+"iS9-GO-wTD.title" = "字体";
+
+/* Class = "NSTextFieldCell"; title = "The selected text layers use fonts which can’t be found on your system. Editing their contents will revert them to the default typeface."; ObjectID = "TPj-8C-cfx"; */
+"TPj-8C-cfx.title" = "这些字符层所用的字体在您的系统中找不到，编辑内容时字体将还原为系统默认。";
+
+/* Class = "NSButtonCell"; title = "Typeface.."; ObjectID = "z3t-d5-BJw"; */
+"z3t-d5-BJw.title" = "字体..";
+

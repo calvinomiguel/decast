@@ -1,0 +1,9 @@
+/* Class = "NSTextFieldCell"; title = "PROTOTYPING"; ObjectID = "0Ka-Ss-LEm"; */
+"0Ka-Ss-LEm.title" = "原型";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Remove link from layer."; ObjectID = "jtj-Al-7aQ"; */
+"jtj-Al-7aQ.ibShadowedToolTip" = "从图层上移除链接。";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Create separate Hotspot layer."; ObjectID = "UYg-Cv-Ko4"; */
+"UYg-Cv-Ko4.ibShadowedToolTip" = "创建单独的热区。";
+

@@ -1,0 +1,6 @@
+/* Class = "NSButtonCell"; title = "Insert"; ObjectID = "uci-lD-D59"; */
+"uci-lD-D59.title" = "置入";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Insert a copy of the Component into the Canvas"; ObjectID = "XDN-vJ-CaY"; */
+"XDN-vJ-CaY.ibShadowedToolTip" = "在画布上置入该组件的备份";
+

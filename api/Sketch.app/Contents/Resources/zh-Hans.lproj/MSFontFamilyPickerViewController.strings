@@ -1,0 +1,9 @@
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "5Gr-NE-9N2"; */
+"5Gr-NE-9N2.title" = "文本单元格";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "8jV-qC-1nY"; */
+"8jV-qC-1nY.title" = "表视图单元格";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Search Typefaces"; ObjectID = "Qfz-FU-uHp"; */
+"Qfz-FU-uHp.placeholderString" = "搜索字体";
+

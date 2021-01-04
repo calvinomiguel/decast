@@ -1,0 +1,72 @@
+/* Class = "NSButtonCell"; title = "Replace Missing Font…"; ObjectID = "7eX-bV-7iK"; */
+"7eX-bV-7iK.title" = "替换缺失字体…";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "23d-fW-5Ee"; */
+"23d-fW-5Ee.title" = "文本单元格";
+
+/* Class = "NSButtonCell"; title = "I agree to the terms and policies"; ObjectID = "CjB-lt-Dpa"; */
+"CjB-lt-Dpa.title" = "我同意该条款与条例";
+
+/* Class = "NSTextFieldCell"; title = "Details"; ObjectID = "DB8-Zs-aI5"; */
+"DB8-Zs-aI5.title" = "细节";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "dlv-Ua-mHY"; */
+"dlv-Ua-mHY.title" = "取消";
+
+/* Class = "NSTextFieldCell"; title = "Missing fonts and non-system fonts for embedding will appear here."; ObjectID = "fEr-Gd-Oat"; */
+"fEr-Gd-Oat.title" = "需要嵌入的缺失字体和非系统字体都将出现在这里";
+
+/* Class = "NSTextFieldCell"; title = "This document uses fonts which can’t be found on your system. Replacing the missing fonts will update text layers in your document."; ObjectID = "GQM-lu-oKK"; */
+"GQM-lu-oKK.title" = "在您的系统中找不到该文档使用的字体。若替换确认的字体，相应的字符层将被更新。";
+
+/* Class = "NSMenuItem"; title = "Not Embedded"; ObjectID = "Ha7-rv-U8n"; */
+"Ha7-rv-U8n.title" = "未嵌入";
+
+/* Class = "NSTextFieldCell"; title = "Font Weight:"; ObjectID = "HAQ-re-UNp"; */
+"HAQ-re-UNp.title" = "字重：";
+
+/* Class = "NSButtonCell"; title = "Replace"; ObjectID = "hth-1J-Lmf"; */
+"hth-1J-Lmf.title" = "替换";
+
+/* Class = "NSTextFieldCell"; title = "Missing Font Name"; ObjectID = "HV3-pW-iUP"; */
+"HV3-pW-iUP.title" = "缺失字体名称";
+
+/* Class = "NSMenuItem"; title = "Regular"; ObjectID = "jfH-Sl-OHi"; */
+"jfH-Sl-OHi.title" = "常规体";
+
+/* Class = "NSButtonCell"; title = "Proceed"; ObjectID = "JJc-Og-IBQ"; */
+"JJc-Og-IBQ.title" = "继续";
+
+/* Class = "NSTextFieldCell"; title = "Embeddable Font Name"; ObjectID = "JOY-tp-RHd"; */
+"JOY-tp-RHd.title" = "嵌入字体名称";
+
+/* Class = "NSTextFieldCell"; title = "Font Family:"; ObjectID = "kCK-kt-GuO"; */
+"kCK-kt-GuO.title" = "字体家族：";
+
+/* Class = "NSTextFieldCell"; title = "Details"; ObjectID = "lip-tN-jQa"; */
+"lip-tN-jQa.title" = "细节";
+
+/* Class = "NSTextFieldCell"; title = "Some fonts used by this document are missing"; ObjectID = "mil-bR-fah"; */
+"mil-bR-fah.title" = "该文档缺失了个别字体";
+
+/* Class = "NSMenuItem"; title = "Embed In Document"; ObjectID = "oci-un-g4n"; */
+"oci-un-g4n.title" = "嵌入文档";
+
+/* Class = "NSButtonCell"; title = "Done"; ObjectID = "rOJ-bz-Ioz"; */
+"rOJ-bz-Ioz.title" = "完成";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "U12-Dz-wO6"; */
+"U12-Dz-wO6.title" = "取消";
+
+/* Class = "NSTextFieldCell"; title = "No missing or embeddable fonts"; ObjectID = "wcW-xR-OYZ"; */
+"wcW-xR-OYZ.title" = "没有缺失或可嵌入的字体";
+
+/* Class = "NSTextFieldCell"; title = "Replace \"SomeMissingFont-Regular\" with:"; ObjectID = "Wue-cT-Bgw"; */
+"Wue-cT-Bgw.title" = "将“部分缺失字体-常规体”替换为：";
+
+/* Class = "NSWindow"; title = "Replace Missing Fonts"; ObjectID = "XUM-cV-6wu"; */
+"XUM-cV-6wu.title" = "替换缺失字体";
+
+/* Class = "NSButtonCell"; title = "SF Pro Text"; ObjectID = "xzo-Ph-Hw3"; */
+"xzo-Ph-Hw3.title" = "SF Pro Text";
+

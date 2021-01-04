@@ -1,0 +1,33 @@
+/* Class = "NSTextFieldCell"; title = "Format"; ObjectID = "8Iy-Ox-3ae"; */
+"8Iy-Ox-3ae.title" = "格式";
+
+/* Class = "NSTextFieldCell"; title = "Press the “+”  button to create a new slice preset."; ObjectID = "9Zp-TX-KG0"; */
+"9Zp-TX-KG0.title" = "点击 “+” 键新建切片预设。";
+
+/* Class = "NSViewController"; title = "Export format view controller"; ObjectID = "AOD-yU-q8I"; */
+"AOD-yU-q8I.title" = "导出格式视图控制面板";
+
+/* Class = "NSTextFieldCell"; title = "No Presets"; ObjectID = "CDK-Lr-sVJ"; */
+"CDK-Lr-sVJ.title" = "无预设";
+
+/* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "DZB-uj-fRs"; */
+"DZB-uj-fRs.title" = "恢复默认";
+
+/* Class = "NSTextFieldCell"; title = "Prefix/Suffix"; ObjectID = "EkU-e8-bv7"; */
+"EkU-e8-bv7.title" = "前缀/后缀";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Preset name"; ObjectID = "Fvw-1d-gJL"; */
+"Fvw-1d-gJL.placeholderString" = "预设名称";
+
+/* Class = "NSTextFieldCell"; title = "Size"; ObjectID = "Ina-P2-Nr0"; */
+"Ina-P2-Nr0.title" = "尺寸";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "MPJ-lz-yZd"; */
+"MPJ-lz-yZd.title" = "文本单元格";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Preset name"; ObjectID = "N64-El-Ed1"; */
+"N64-El-Ed1.placeholderString" = "预设名称";
+
+/* Class = "NSTextFieldCell"; title = "Presets can be applied to slices, Artboards, and exportable layers."; ObjectID = "nLH-0c-jMS"; */
+"nLH-0c-jMS.title" = "预设可以被应用于切片，画板以及导出图层。";
+

@@ -1,0 +1,39 @@
+/* Class = "NSButton"; ibShadowedToolTip = "Select Multiple Points"; ObjectID = "42"; */
+"42.ibShadowedToolTip" = "选个多个锚点";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "47"; */
+"47.title" = "其他视图";
+
+/* Class = "NSMenuItem"; title = "Pixel Rounding:"; ObjectID = "48"; */
+"48.title" = "对齐像素：";
+
+/* Class = "NSMenuItem"; title = "Don’t round to nearest pixels"; ObjectID = "49"; */
+"49.title" = "不要与最近的像素对齐";
+
+/* Class = "NSMenuItem"; title = "Round to half pixels"; ObjectID = "50"; */
+"50.title" = "对齐半像素";
+
+/* Class = "NSMenuItem"; title = "Round to full pixels edges"; ObjectID = "51"; */
+"51.title" = "对齐全像素边缘";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Asymmetric"; ObjectID = "cEa-3e-Qss"; */
+"cEa-3e-Qss.ibShadowedToolTip" = "不对称";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Mirrored"; ObjectID = "DlT-VD-G3o"; */
+"DlT-VD-G3o.ibShadowedToolTip" = "已投射";
+
+/* Class = "NSTextFieldCell"; title = "10"; ObjectID = "DRe-bf-g6l"; */
+"DRe-bf-g6l.title" = "10";
+
+/* Class = "NSTextFieldCell"; title = "Radius"; ObjectID = "en4-hm-bJ3"; */
+"en4-hm-bJ3.title" = "半径";
+
+/* Class = "NSTextFieldCell"; title = "POINT TYPE"; ObjectID = "NKo-5p-wMw"; */
+"NKo-5p-wMw.title" = "锚点类型";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Disconnected"; ObjectID = "s3X-bi-IRt"; */
+"s3X-bi-IRt.ibShadowedToolTip" = "断开连接";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Straight"; ObjectID = "xXb-ht-CQQ"; */
+"xXb-ht-CQQ.ibShadowedToolTip" = "笔直";
+

@@ -1,0 +1,21 @@
+/* Class = "NSTextFieldCell"; title = "Direction"; ObjectID = "xJO-bw-fgc"; */
+"xJO-bw-fgc.title" = "方向";
+
+/* Class = "NSSegmentedCell"; Y8V-hh-dFG.ibShadowedLabels[0] = "None"; ObjectID = "Y8V-hh-dFG"; */
+"Y8V-hh-dFG.ibShadowedLabels[0]" = "无";
+
+/* Class = "NSSegmentedCell"; Y8V-hh-dFG.ibShadowedLabels[1] = "Horizontal"; ObjectID = "Y8V-hh-dFG"; */
+"Y8V-hh-dFG.ibShadowedLabels[1]" = "水平";
+
+/* Class = "NSSegmentedCell"; Y8V-hh-dFG.ibShadowedLabels[2] = "Vertical"; ObjectID = "Y8V-hh-dFG"; */
+"Y8V-hh-dFG.ibShadowedLabels[2]" = "垂直";
+
+/* Class = "NSSegmentedCell"; Y8V-hh-dFG.ibShadowedToolTips[0] = "Don’t resize the Symbol when editing overrides."; ObjectID = "Y8V-hh-dFG"; */
+"Y8V-hh-dFG.ibShadowedToolTips[0]" = "编辑覆盖层时不要调整控件尺寸。";
+
+/* Class = "NSSegmentedCell"; Y8V-hh-dFG.ibShadowedToolTips[1] = "Resize the Symbol horizontally when editing overrides."; ObjectID = "Y8V-hh-dFG"; */
+"Y8V-hh-dFG.ibShadowedToolTips[1]" = "编辑覆盖层时水平调整控件尺寸。";
+
+/* Class = "NSSegmentedCell"; Y8V-hh-dFG.ibShadowedToolTips[2] = "Resize the Symbol vertically when editing overrides."; ObjectID = "Y8V-hh-dFG"; */
+"Y8V-hh-dFG.ibShadowedToolTips[2]" = "编辑覆盖层时垂直调整控件尺寸。";
+

@@ -1,0 +1,48 @@
+/* Class = "NSTextFieldCell"; title = "Save As:"; ObjectID = "4uc-SE-2Gi"; Note = "Document save dialog: Save as name textfield label"; */
+"4uc-SE-2Gi.title" = "保存为：";
+
+/* Class = "NSTextFieldCell"; title = "Save Document"; ObjectID = "7Bt-4Y-FgZ"; */
+"7Bt-4Y-FgZ.title" = "保存文档";
+
+/* Class = "NSTextFieldCell"; title = "Collaborate with Sketch Cloud"; ObjectID = "9L3-lF-UxO"; */
+"9L3-lF-UxO.title" = "用 Sketch Cloud 协作";
+
+/* Class = "NSTextFieldCell"; title = "Location:"; ObjectID = "038-Jv-hbe"; Note = "Document save dialog: project selection input label"; */
+"038-Jv-hbe.title" = "位置：";
+
+/* Class = "NSButtonCell"; title = "Save"; ObjectID = "B1e-jo-2HG"; */
+"B1e-jo-2HG.title" = "保存";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "bBN-Z9-Hkd"; */
+"bBN-Z9-Hkd.title" = "取消";
+
+/* Class = "NSButtonCell"; title = "Sign in to Sketch Cloud"; ObjectID = "FBj-Z7-Qtl"; */
+"FBj-Z7-Qtl.title" = "登录 Sketch Cloud";
+
+/* Class = "NSButtonCell"; title = "Learn More…"; ObjectID = "fvL-9S-d6u"; */
+"fvL-9S-d6u.title" = "了解更多…";
+
+/* Class = "NSTextFieldCell"; title = "Sign in with your Sketch Account to share your designs and prototypes with clients, colleagues and developers."; ObjectID = "la1-Ex-gig"; */
+"la1-Ex-gig.title" = "登录您的 Sketch 账户，把设计和原型分享给客户、同事和开发人员。";
+
+/* Class = "NSTextFieldCell"; title = "Project:"; ObjectID = "nHS-40-2mO"; Note = "Document save dialog: project selection input label"; */
+"nHS-40-2mO.title" = "项目：";
+
+/* Class = "NSButtonCell"; title = "Delete"; ObjectID = "oB0-xF-Wdr"; */
+"oB0-xF-Wdr.title" = "删除";
+
+/* Class = "NSTextFieldCell"; title = "You can choose to save this document locally on your Mac or to your Personal or Team workspace on Sketch Cloud."; ObjectID = "ucB-Ve-dxd"; */
+"ucB-Ve-dxd.title" = "您可以选择将文档本地保存至 Mac，也可以选择保存至您的个人或团队在 Sketch Cloud 上的工作空间。";
+
+/* Class = "NSWindow"; title = "Window"; ObjectID = "UJv-D2-e4U"; */
+"UJv-D2-e4U.title" = "窗口";
+
+/* Class = "NSSegmentedCell"; Y0G-Wh-sF8.ibShadowedLabels[0] = "On Your Mac"; ObjectID = "Y0G-Wh-sF8"; */
+"Y0G-Wh-sF8.ibShadowedLabels[0]" = "于您的 Mac";
+
+/* Class = "NSSegmentedCell"; Y0G-Wh-sF8.ibShadowedLabels[1] = "Sketch Cloud"; ObjectID = "Y0G-Wh-sF8"; */
+"Y0G-Wh-sF8.ibShadowedLabels[1]" = "Sketch Cloud";
+
+/* Class = "NSTextFieldCell"; title = "Workspace:"; ObjectID = "y6R-G4-liy"; Note = "Document save dialog: team selection input label"; */
+"y6R-G4-liy.title" = "团队：";
+

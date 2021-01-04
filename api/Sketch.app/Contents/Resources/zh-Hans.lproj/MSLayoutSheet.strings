@@ -1,0 +1,75 @@
+/* Class = "NSButtonCell"; title = "Stroke Outline"; ObjectID = "0bG-lu-y8w"; */
+"0bG-lu-y8w.title" = "外侧描边";
+
+/* Class = "NSTextFieldCell"; title = "Number of Columns:"; ObjectID = "4"; */
+"4.title" = "列数：";
+
+/* Class = "NSTextFieldCell"; title = "Gutter Width:"; ObjectID = "8"; */
+"8.title" = "间距宽度：";
+
+/* Class = "NSTextFieldCell"; title = "Column Width:"; ObjectID = "20"; */
+"20.title" = "列宽：";
+
+/* Class = "NSTextFieldCell"; title = "Total Width:"; ObjectID = "42"; */
+"42.title" = "总宽：";
+
+/* Class = "NSButtonCell"; title = "Columns:"; ObjectID = "49"; */
+"49.title" = "列：";
+
+/* Class = "NSButtonCell"; title = "Rows:"; ObjectID = "52"; */
+"52.title" = "行：";
+
+/* Class = "NSTextFieldCell"; title = "Light"; ObjectID = "62N-HQ-K3c"; */
+"62N-HQ-K3c.title" = "亮";
+
+/* Class = "NSTextFieldCell"; title = "Row Height:"; ObjectID = "75"; */
+"75.title" = "行高：";
+
+/* Class = "NSTextFieldCell"; title = "Gutter Height:"; ObjectID = "76"; */
+"76.title" = "间距高度：";
+
+/* Class = "NSTextFieldCell"; title = "× Gutter Height"; ObjectID = "79"; */
+"79.title" = "× 间距高度";
+
+/* Class = "NSButtonCell"; title = "Draw all horizontal lines"; ObjectID = "81"; */
+"81.title" = "绘制所有水平线";
+
+/* Class = "NSButtonCell"; title = "Confirm"; ObjectID = "83"; */
+"83.title" = "确认";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "85"; */
+"85.title" = "取消";
+
+/* Class = "NSButtonCell"; title = "Gutter on outside"; ObjectID = "87"; */
+"87.title" = "外围间距";
+
+/* Class = "NSTextFieldCell"; title = "Layout Settings"; ObjectID = "112"; */
+"112.title" = "布局设置";
+
+/* Class = "NSTextFieldCell"; title = "These settings apply to selected Pages or Artboards only."; ObjectID = "113"; */
+"113.title" = "这些设置仅适用于选中的页面或画板。";
+
+/* Class = "NSButtonCell"; title = "Center"; ObjectID = "272"; */
+"272.title" = "居中";
+
+/* Class = "NSTextFieldCell"; title = "Offset:"; ObjectID = "DAj-cd-nGp"; */
+"DAj-cd-nGp.title" = "偏置：";
+
+/* Class = "NSTextFieldCell"; title = "Colors:"; ObjectID = "ge5-sg-U4d"; */
+"ge5-sg-U4d.title" = "颜色：";
+
+/* Class = "NSButtonCell"; title = "Radio"; ObjectID = "OV6-yT-1Cn"; */
+"OV6-yT-1Cn.title" = "单选框";
+
+/* Class = "NSButtonCell"; title = "Fill Grid"; ObjectID = "OxO-8Q-Ygt"; */
+"OxO-8Q-Ygt.title" = "填充网格";
+
+/* Class = "NSTextFieldCell"; title = "Visuals:"; ObjectID = "uLM-0M-p2M"; */
+"uLM-0M-p2M.title" = "视觉：";
+
+/* Class = "NSTextFieldCell"; title = "Dark"; ObjectID = "Vb9-Bk-DcS"; */
+"Vb9-Bk-DcS.title" = "暗";
+
+/* Class = "NSButtonCell"; title = "Make Default Settings"; ObjectID = "YJp-Fu-Mdb"; */
+"YJp-Fu-Mdb.title" = "默认设置";
+

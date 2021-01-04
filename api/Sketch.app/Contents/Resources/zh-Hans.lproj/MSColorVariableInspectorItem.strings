@@ -1,0 +1,33 @@
+/* Class = "NSTextFieldCell"; title = "Detach"; ObjectID = "3MA-Da-8c1"; */
+"3MA-Da-8c1.title" = "解绑";
+
+/* Class = "NSTextFieldCell"; title = "Edit in Library"; ObjectID = "7Tu-SS-4Ca"; */
+"7Tu-SS-4Ca.title" = "在组件库中编辑";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Edit Symbol in Library."; ObjectID = "AFb-Vz-YA6"; */
+"AFb-Vz-YA6.ibShadowedToolTip" = "在组件库中编辑控件。";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Create Color Variable"; ObjectID = "Dz5-Zy-rTE"; */
+"Dz5-Zy-rTE.ibShadowedToolTip" = "创建颜色变量";
+
+/* Class = "NSTextFieldCell"; title = "Make Local"; ObjectID = "EaV-jX-1Ol"; */
+"EaV-jX-1Ol.title" = "本地化";
+
+/* Class = "NSMenuItem"; title = "Rename Variable"; ObjectID = "iSm-Cb-JfV"; */
+"iSm-Cb-JfV.title" = "重命名变量";
+
+/* Class = "NSTextFieldCell"; title = "More"; ObjectID = "LXD-x1-q7I"; */
+"LXD-x1-q7I.title" = "更多";
+
+/* Class = "NSMenuItem"; title = "Delete Variable"; ObjectID = "nTl-Gg-TLm"; */
+"nTl-Gg-TLm.title" = "删除变量";
+
+/* Class = "NSTextFieldCell"; title = "Create"; ObjectID = "u1A-af-8nK"; */
+"u1A-af-8nK.title" = "创建";
+
+/* Class = "NSTextFieldCell"; title = "Edit"; ObjectID = "YAj-Ki-zSG"; */
+"YAj-Ki-zSG.title" = "编辑";
+
+/* Class = "NSMenuItem"; title = "Create Variable"; ObjectID = "YRE-Mf-JKb"; */
+"YRE-Mf-JKb.title" = "创建变量";
+

@@ -1,0 +1,33 @@
+/* Class = "NSTextFieldCell"; title = "File name"; ObjectID = "4zJ-w2-mfU"; */
+"4zJ-w2-mfU.title" = "文件名";
+
+/* Class = "NSButtonCell"; title = "Add Data…"; ObjectID = "apJ-PX-odL"; */
+"apJ-PX-odL.title" = "添加素材…";
+
+/* Class = "NSTextFieldCell"; title = "No Custom Data Installed"; ObjectID = "c4M-vw-KgW"; */
+"c4M-vw-KgW.title" = "未安装自定义素材库";
+
+/* Class = "NSSearchFieldCell"; placeholderString = "Filter"; ObjectID = "hJe-kQ-8JJ"; */
+"hJe-kQ-8JJ.placeholderString" = "筛选";
+
+/* Class = "NSTextFieldCell"; title = "Drag a folder with images or a text file here to create your own data set. Additionally, plugins can also support data sources."; ObjectID = "K2A-gC-gdM"; */
+"K2A-gC-gdM.title" = "将包含图像或字符文件的文件夹拖动到这里，以创建您自己的素材集。此外，插件也可与素材兼容。";
+
+/* Class = "NSMenuItem"; title = "Remove Data"; ObjectID = "OOr-qZ-FE2"; */
+"OOr-qZ-FE2.title" = "移除素材";
+
+/* Class = "NSTextFieldCell"; title = "Data lets you use your own text and image set on layers and overrides."; ObjectID = "oRv-IH-iZm"; */
+"oRv-IH-iZm.title" = "您可以素材图层或覆盖层上自定义文字和图像。";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "RWC-Rr-7B0"; */
+"RWC-Rr-7B0.title" = "文本单元格";
+
+/* Class = "NSTextFieldCell"; title = "Modified Date"; ObjectID = "tnQ-9n-C5y"; */
+"tnQ-9n-C5y.title" = "修改日期";
+
+/* Class = "NSMenuItem"; title = "Show Plugin"; ObjectID = "Yae-bB-Gzz"; */
+"Yae-bB-Gzz.title" = "显示插件";
+
+/* Class = "NSMenuItem"; title = "Show in Finder"; ObjectID = "ys5-w5-2Ja"; */
+"ys5-w5-2Ja.title" = "在访达中显示";
+

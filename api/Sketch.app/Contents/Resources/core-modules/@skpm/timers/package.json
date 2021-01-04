@@ -1,0 +1,34 @@
+{
+  "name": "@skpm/timers",
+  "version": "0.2.0",
+  "description": "A drop-in replacement for the timers nodejs module",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "skpm-test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skpm/timers.git"
+  },
+  "keywords": [
+    "sketch",
+    "module",
+    "timers",
+    "setTimeout",
+    "setInterval",
+    "setImmediate"
+  ],
+  "author": "Mathieu Dutour <mathieu@dutour.me> (http://mathieu.dutour.me/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/skpm/timers/issues"
+  },
+  "homepage": "https://github.com/skpm/timers#readme",
+  "devDependencies": {
+    "@skpm/test-runner": "^0.3.0"
+  }
+
+,"_resolved": "https://registry.npmjs.org/@skpm/timers/-/timers-0.2.0.tgz"
+,"_integrity": "sha512-xlCKvGNqWBPDUX4fE+dUEvBre1490eFsaSxOJiiKsbzNDNxRe/APloMIFkI2qaaRMqqYCPOjTIvnUb20h4YyLA=="
+,"_from": "@skpm/timers@0.2.0"
+}

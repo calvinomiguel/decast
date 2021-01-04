@@ -1,0 +1,1065 @@
+/* Class = "NSMenu"; title = "Canvas"; ObjectID = "0vX-OV-qZj"; */
+"0vX-OV-qZj.title" = "画布";
+
+/* Class = "NSMenuItem"; title = "Rename Layer"; ObjectID = "1xm-PF-mt3"; */
+"1xm-PF-mt3.title" = "为图层重命名";
+
+/* Class = "NSMenuItem"; title = "Fix Height"; ObjectID = "2AY-pg-6To"; */
+"2AY-pg-6To.title" = "固定高度";
+
+/* Class = "NSMenuItem"; title = "Detach Shared Style"; ObjectID = "2dw-nx-ev0"; */
+"2dw-nx-ev0.title" = "解绑共享样式";
+
+/* Class = "NSMenuItem"; title = "Change Typeface…"; ObjectID = "2uR-aG-kb2"; */
+"2uR-aG-kb2.title" = "改变字型…";
+
+/* Class = "NSMenuItem"; title = "Add Link to Artboard"; ObjectID = "3ca-Vm-AUV"; */
+"3ca-Vm-AUV.title" = "添加链接到画板";
+
+/* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "5"; */
+"5.title" = "前置全部窗口";
+
+/* Class = "NSMenuItem"; title = "Manage Share Settings…"; ObjectID = "5lh-qK-p4D"; */
+"5lh-qK-p4D.title" = "管理共享设置…";
+
+/* Class = "NSMenuItem"; title = "Pick Color"; ObjectID = "5vF-tP-PFI"; */
+"5vF-tP-PFI.title" = "选择颜色";
+
+/* Class = "NSMenuItem"; title = "Top"; ObjectID = "6az-Lx-WEg"; */
+"6az-Lx-WEg.title" = "顶层";
+
+/* Class = "NSMenuItem"; title = "Selection"; ObjectID = "6Cd-pu-8ft"; */
+"6Cd-pu-8ft.title" = "选中项";
+
+/* Class = "NSMenu"; title = "Transformation"; ObjectID = "6R2-T6-3Rn"; */
+"6R2-T6-3Rn.title" = "变换";
+
+/* Class = "NSMenuItem"; title = "Zoom To"; ObjectID = "6R9-Hm-euA"; */
+"6R9-Hm-euA.title" = "缩放至";
+
+/* Class = "NSMenu"; title = "Artboard"; ObjectID = "6yo-Tp-dbY"; */
+"6yo-Tp-dbY.title" = "画板";
+
+/* Class = "NSMenuItem"; title = "Export Artboards to PDF…"; ObjectID = "7qs-dw-1Vp"; */
+"7qs-dw-1Vp.title" = "导出画板为PDF…";
+
+/* Class = "NSMenuItem"; title = "Sync Shared Style"; ObjectID = "8Fb-tT-uLI"; */
+"8Fb-tT-uLI.title" = "同步共享样式";
+
+/* Class = "NSMenu"; title = "Mask"; ObjectID = "8Ne-Yw-4o9"; */
+"8Ne-Yw-4o9.title" = "蒙版";
+
+/* Class = "NSMenuItem"; title = "Paste as Rich Text"; ObjectID = "8ss-cg-qqY"; */
+"8ss-cg-qqY.title" = "粘贴为富文本格式";
+
+/* Class = "NSMenuItem"; title = "Detach from Symbol"; ObjectID = "8ZK-94-0a2"; */
+"8ZK-94-0a2.title" = "与控件解绑";
+
+/* Class = "NSMenuItem"; title = "Lowercase"; ObjectID = "8zu-hO-r2k"; */
+"8zu-hO-r2k.title" = "小写";
+
+/* Class = "NSMenuItem"; title = "Middle"; ObjectID = "9KI-Pf-w8s"; */
+"9KI-Pf-w8s.title" = "居中";
+
+/* Class = "NSMenuItem"; title = "Make Exportable"; ObjectID = "9Z0-EK-16M"; */
+"9Z0-EK-16M.title" = "制作导出项";
+
+/* Class = "NSMenuItem"; title = "Add Fill"; ObjectID = "9ZF-Y8-iOH"; */
+"9ZF-Y8-iOH.title" = "添加填充";
+
+/* Class = "NSMenuItem"; title = "Window"; ObjectID = "19"; */
+"19.title" = "窗口";
+
+/* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "23"; */
+"23.title" = "最小化";
+
+/* Class = "NSMenu"; title = "Window"; ObjectID = "24"; */
+"24.title" = "窗口";
+
+/* Class = "NSMenu"; title = "MainMenu"; ObjectID = "29"; */
+"29.title" = "菜单";
+
+/* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "34y-h0-dvO"; */
+"34y-h0-dvO.title" = "最近打开的文件";
+
+/* Class = "NSMenuItem"; title = "Find and Replace Color…"; ObjectID = "51B-Va-h9n"; */
+"51B-Va-h9n.title" = "查找并替换颜色…";
+
+/* Class = "NSMenuItem"; title = "Send to “Symbols” Page"; ObjectID = "55e-7d-Iag"; */
+"55e-7d-Iag.title" = "发送至“控件”页面";
+
+/* Class = "NSMenuItem"; title = "Sketch"; ObjectID = "56"; */
+"56.title" = "Sketch";
+
+/* Class = "NSMenu"; title = "Sketch"; ObjectID = "57"; */
+"57.title" = "Sketch";
+
+/* Class = "NSMenuItem"; title = "About Sketch"; ObjectID = "58"; */
+"58.title" = "关于 Sketch";
+
+/* Class = "NSMenuItem"; title = "Open…"; ObjectID = "72"; */
+"72.title" = "打开…";
+
+/* Class = "NSMenuItem"; title = "Close"; ObjectID = "73"; */
+"73.title" = "关闭";
+
+/* Class = "NSMenuItem"; title = "Save"; ObjectID = "75"; */
+"75.title" = "保存";
+
+/* Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "77"; */
+"77.title" = "打印设置…";
+
+/* Class = "NSMenuItem"; title = "Save As…"; ObjectID = "80"; */
+"80.title" = "保存为…";
+
+/* Class = "NSMenu"; title = "File"; ObjectID = "81"; */
+"81.title" = "文件";
+
+/* Class = "NSMenuItem"; title = "New"; ObjectID = "82"; */
+"82.title" = "新建";
+
+/* Class = "NSMenuItem"; title = "File"; ObjectID = "83"; */
+"83.title" = "文件";
+
+/* Class = "NSMenuItem"; title = "Help"; ObjectID = "103"; */
+"103.title" = "帮助";
+
+/* Class = "NSMenu"; title = "Help"; ObjectID = "106"; */
+"106.title" = "帮助";
+
+/* Class = "NSMenuItem"; title = "Sketch Help"; ObjectID = "111"; */
+"111.title" = "Sketch 帮助中心";
+
+/* Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "112"; */
+"112.title" = "恢复到上次保存的文件";
+
+/* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "129"; */
+"129.title" = "首选项…";
+
+/* Class = "NSMenu"; title = "Services"; ObjectID = "130"; */
+"130.title" = "服务";
+
+/* Class = "NSMenuItem"; title = "Services"; ObjectID = "131"; */
+"131.title" = "服务";
+
+/* Class = "NSMenuItem"; title = "Hide Sketch"; ObjectID = "134"; */
+"134.title" = "隐藏 Sketch";
+
+/* Class = "NSMenuItem"; title = "Quit Sketch"; ObjectID = "136"; */
+"136.title" = "退出 Sketch";
+
+/* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "145"; */
+"145.title" = "隐藏其他";
+
+/* Class = "NSMenuItem"; title = "Show All"; ObjectID = "150"; */
+"150.title" = "显示全部";
+
+/* Class = "NSMenuItem"; title = "Undo"; ObjectID = "158"; */
+"158.title" = "撤回";
+
+/* Class = "NSMenuItem"; title = "Cut"; ObjectID = "160"; */
+"160.title" = "剪切";
+
+/* Class = "NSMenuItem"; title = "Edit"; ObjectID = "163"; */
+"163.title" = "编辑";
+
+/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "164"; */
+"164.title" = "删除";
+
+/* Class = "NSMenu"; title = "Edit"; ObjectID = "169"; */
+"169.title" = "编辑";
+
+/* Class = "NSMenuItem"; title = "Select All"; ObjectID = "172"; */
+"172.title" = "全选";
+
+/* Class = "NSMenuItem"; title = "Redo"; ObjectID = "173"; */
+"173.title" = "重做";
+
+/* Class = "NSMenuItem"; title = "Spelling"; ObjectID = "184"; */
+"184.title" = "拼写";
+
+/* Class = "NSMenu"; title = "Spelling"; ObjectID = "185"; */
+"185.title" = "拼写";
+
+/* Class = "NSMenuItem"; title = "Spelling…"; ObjectID = "187"; */
+"187.title" = "拼写…";
+
+/* Class = "NSMenuItem"; title = "Check Spelling"; ObjectID = "189"; */
+"189.title" = "检查拼写";
+
+/* Class = "NSMenuItem"; title = "Check Spelling as You Type"; ObjectID = "191"; */
+"191.title" = "输入时检查拼写";
+
+/* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "203"; */
+"203.title" = "最大化";
+
+/* Class = "NSMenuItem"; title = "Text"; ObjectID = "217"; */
+"217.title" = "字符";
+
+/* Class = "NSMenu"; title = "Text"; ObjectID = "218"; */
+"218.title" = "字符";
+
+/* Class = "NSMenuItem"; title = "Insert"; ObjectID = "291"; */
+"291.title" = "置入";
+
+/* Class = "NSMenu"; title = "Insert"; ObjectID = "292"; */
+"292.title" = "置入";
+
+/* Class = "NSMenuItem"; title = "Duplicate"; ObjectID = "328"; */
+"328.title" = "复制";
+
+/* Class = "NSMenuItem"; title = "Arrange"; ObjectID = "362"; */
+"362.title" = "排列";
+
+/* Class = "NSMenu"; title = "Arrange"; ObjectID = "363"; */
+"363.title" = "排列";
+
+/* Class = "NSMenuItem"; title = "Send Backward"; ObjectID = "364"; */
+"364.title" = "后置一层";
+
+/* Class = "NSMenuItem"; title = "Send to Back"; ObjectID = "365"; */
+"365.title" = "移至最后";
+
+/* Class = "NSMenuItem"; title = "Bring to Front"; ObjectID = "366"; */
+"366.title" = "移至最前";
+
+/* Class = "NSMenuItem"; title = "Bring Forward"; ObjectID = "370"; */
+"370.title" = "前置一层";
+
+/* Class = "NSMenuItem"; title = "Group"; ObjectID = "372"; */
+"372.title" = "编组";
+
+/* Class = "NSMenuItem"; title = "Ungroup"; ObjectID = "373"; */
+"373.title" = "解除编组";
+
+/* Class = "NSMenuItem"; title = "View"; ObjectID = "396"; */
+"396.title" = "视图";
+
+/* Class = "NSMenu"; title = "View"; ObjectID = "397"; */
+"397.title" = "视图";
+
+/* Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "494"; */
+"494.title" = "自定义工具栏…";
+
+/* Class = "NSMenuItem"; title = "Hide Layer"; ObjectID = "530"; */
+"530.title" = "隐藏图层";
+
+/* Class = "NSMenuItem"; title = "Distribute"; ObjectID = "537"; */
+"537.title" = "分布";
+
+/* Class = "NSMenu"; title = "Distribute"; ObjectID = "538"; */
+"538.title" = "分布";
+
+/* Class = "NSMenuItem"; title = "Horizontally"; ObjectID = "539"; */
+"539.title" = "水平";
+
+/* Class = "NSMenuItem"; title = "Vertically"; ObjectID = "540"; */
+"540.title" = "垂直";
+
+/* Class = "NSMenuItem"; title = "Check for Updates…"; ObjectID = "554"; */
+"554.title" = "检查更新…";
+
+/* Class = "NSMenuItem"; title = "Show Toolbar"; ObjectID = "562"; */
+"562.title" = "显示工具栏";
+
+/* Class = "NSMenuItem"; title = "Show Smart Guides"; ObjectID = "735"; */
+"735.title" = "显示智能参考线";
+
+/* Class = "NSMenuItem"; title = "Show Selection Handles"; ObjectID = "736"; */
+"736.title" = "显示选择手柄";
+
+/* Class = "NSMenuItem"; title = "Lock Layer"; ObjectID = "811"; */
+"811.title" = "锁定图层";
+
+/* Class = "NSMenuItem"; title = "Enter Full Screen"; ObjectID = "1005"; */
+"1005.title" = "进入全屏";
+
+/* Class = "NSMenuItem"; title = "Center Selection"; ObjectID = "1031"; */
+"1031.title" = "中心选择";
+
+/* Class = "NSMenuItem"; title = "Align"; ObjectID = "1038"; */
+"1038.title" = "对齐";
+
+/* Class = "NSMenu"; title = "Align"; ObjectID = "1039"; */
+"1039.title" = "对齐";
+
+/* Class = "NSMenuItem"; title = "Left"; ObjectID = "1040"; */
+"1040.title" = "左对齐";
+
+/* Class = "NSMenuItem"; title = "Horizontally"; ObjectID = "1041"; */
+"1041.title" = "水平居中";
+
+/* Class = "NSMenuItem"; title = "Right"; ObjectID = "1042"; */
+"1042.title" = "右对齐";
+
+/* Class = "NSMenuItem"; title = "Top"; ObjectID = "1044"; */
+"1044.title" = "顶端对齐";
+
+/* Class = "NSMenuItem"; title = "Vertically"; ObjectID = "1045"; */
+"1045.title" = "垂直居中";
+
+/* Class = "NSMenuItem"; title = "Bottom"; ObjectID = "1046"; */
+"1046.title" = "底端对齐";
+
+/* Class = "NSMenuItem"; title = "Show Rulers"; ObjectID = "1090"; */
+"1090.title" = "显示标尺";
+
+/* Class = "NSMenuItem"; title = "Transform"; ObjectID = "1250"; */
+"1250.title" = "变换";
+
+/* Class = "NSMenuItem"; title = "Reverse Order"; ObjectID = "1255"; */
+"1255.title" = "倒序";
+
+/* Class = "NSMenuItem"; title = "Flip Horizontally"; ObjectID = "1338"; */
+"1338.title" = "水平翻转";
+
+/* Class = "NSMenuItem"; title = "Flip Vertically"; ObjectID = "1339"; */
+"1339.title" = "垂直翻转";
+
+/* Class = "NSMenuItem"; title = "Combine"; ObjectID = "1397"; */
+"1397.title" = "结合";
+
+/* Class = "NSMenu"; title = "Combine"; ObjectID = "1398"; */
+"1398.title" = "结合";
+
+/* Class = "NSMenuItem"; title = "Union"; ObjectID = "1400"; */
+"1400.title" = "联集";
+
+/* Class = "NSMenuItem"; title = "Subtract"; ObjectID = "1401"; */
+"1401.title" = "减去顶层";
+
+/* Class = "NSMenuItem"; title = "Intersect"; ObjectID = "1402"; */
+"1402.title" = "交集";
+
+/* Class = "NSMenuItem"; title = "Difference"; ObjectID = "1403"; */
+"1403.title" = "差集";
+
+/* Class = "NSMenuItem"; title = "Join"; ObjectID = "1438"; */
+"1438.title" = "接合";
+
+/* Class = "NSMenuItem"; title = "Create Symbol"; ObjectID = "1464"; */
+"1464.title" = "创建控件";
+
+/* Class = "NSMenuItem"; title = "Close Path"; ObjectID = "1554"; */
+"1554.title" = "闭合路径";
+
+/* Class = "NSMenuItem"; title = "Rotate"; ObjectID = "1601"; */
+"1601.title" = "旋转";
+
+/* Class = "NSMenuItem"; title = "Scissors"; ObjectID = "1603"; */
+"1603.title" = "剪刀";
+
+/* Class = "NSMenuItem"; title = "Contact Customer Support"; ObjectID = "1606"; */
+"1606.title" = "联系客服支持";
+
+/* Class = "NSMenuItem"; title = "Grid Settings…"; ObjectID = "1667"; */
+"1667.title" = "网格设置…";
+
+/* Class = "NSMenuItem"; title = "Show Grid"; ObjectID = "1668"; */
+"1668.title" = "显示网格";
+
+/* Class = "NSMenuItem"; title = "Bold"; ObjectID = "1703"; */
+"1703.title" = "粗体";
+
+/* Class = "NSMenuItem"; title = "Italic"; ObjectID = "1704"; */
+"1704.title" = "斜体";
+
+/* Class = "NSMenuItem"; title = "Underline"; ObjectID = "1705"; */
+"1705.title" = "下划线";
+
+/* Class = "NSMenuItem"; title = "Bigger"; ObjectID = "1707"; */
+"1707.title" = "放大";
+
+/* Class = "NSMenuItem"; title = "Smaller"; ObjectID = "1708"; */
+"1708.title" = "缩小";
+
+/* Class = "NSMenuItem"; title = "Kern"; ObjectID = "1710"; */
+"1710.title" = "字距";
+
+/* Class = "NSMenuItem"; title = "Ligature"; ObjectID = "1711"; */
+"1711.title" = "连字";
+
+/* Class = "NSMenuItem"; title = "Baseline"; ObjectID = "1712"; */
+"1712.title" = "基线";
+
+/* Class = "NSMenu"; title = "Baseline"; ObjectID = "1718"; */
+"1718.title" = "基线";
+
+/* Class = "NSMenuItem"; title = "Subscript"; ObjectID = "1719"; */
+"1719.title" = "下标";
+
+/* Class = "NSMenuItem"; title = "Superscript"; ObjectID = "1720"; */
+"1720.title" = "上标";
+
+/* Class = "NSMenuItem"; title = "Use Default"; ObjectID = "1721"; */
+"1721.title" = "使用默认值";
+
+/* Class = "NSMenuItem"; title = "Lower"; ObjectID = "1722"; */
+"1722.title" = "降低";
+
+/* Class = "NSMenuItem"; title = "Raise"; ObjectID = "1723"; */
+"1723.title" = "提高";
+
+/* Class = "NSMenu"; title = "Ligature"; ObjectID = "1724"; */
+"1724.title" = "连字";
+
+/* Class = "NSMenuItem"; title = "Use All"; ObjectID = "1725"; */
+"1725.title" = "使用全部";
+
+/* Class = "NSMenuItem"; title = "Use None"; ObjectID = "1726"; */
+"1726.title" = "不使用";
+
+/* Class = "NSMenuItem"; title = "Use Default"; ObjectID = "1727"; */
+"1727.title" = "使用默认值";
+
+/* Class = "NSMenu"; title = "Kern"; ObjectID = "1728"; */
+"1728.title" = "字距";
+
+/* Class = "NSMenuItem"; title = "Loosen"; ObjectID = "1729"; */
+"1729.title" = "放宽";
+
+/* Class = "NSMenuItem"; title = "Tighten"; ObjectID = "1730"; */
+"1730.title" = "收紧";
+
+/* Class = "NSMenuItem"; title = "Use None"; ObjectID = "1731"; */
+"1731.title" = "不使用";
+
+/* Class = "NSMenuItem"; title = "Use Default"; ObjectID = "1732"; */
+"1732.title" = "使用默认值";
+
+/* Class = "NSMenuItem"; title = "Left"; ObjectID = "1754"; */
+"1754.title" = "左对齐";
+
+/* Class = "NSMenuItem"; title = "Center"; ObjectID = "1755"; */
+"1755.title" = "居中对齐";
+
+/* Class = "NSMenuItem"; title = "Justify"; ObjectID = "1756"; */
+"1756.title" = "两端对齐";
+
+/* Class = "NSMenuItem"; title = "Right"; ObjectID = "1757"; */
+"1757.title" = "右对齐";
+
+/* Class = "NSMenuItem"; title = "Zoom In"; ObjectID = "1773"; */
+"1773.title" = "放大";
+
+/* Class = "NSMenuItem"; title = "Zoom Out"; ObjectID = "1774"; */
+"1774.title" = "缩小";
+
+/* Class = "NSMenuItem"; title = "Show Pixels on Zoom"; ObjectID = "1813"; */
+"1813.title" = "缩放时显示像素";
+
+/* Class = "NSMenuItem"; title = "Transform"; ObjectID = "2145"; */
+"2145.title" = "变换";
+
+/* Class = "NSMenu"; title = "Transform"; ObjectID = "2146"; */
+"2146.title" = "变换";
+
+/* Class = "NSMenuItem"; title = "Path"; ObjectID = "2150"; */
+"2150.title" = "路径";
+
+/* Class = "NSMenu"; title = "Path"; ObjectID = "2151"; */
+"2151.title" = "路径";
+
+/* Class = "NSMenuItem"; title = "Show Pixel Grid on Zoom"; ObjectID = "2186"; */
+"2186.title" = "缩放时显示网格";
+
+/* Class = "NSMenuItem"; title = "Save as Template…"; ObjectID = "2195"; */
+"2195.title" = "保存为模板…";
+
+/* Class = "NSMenuItem"; title = "New from Template"; ObjectID = "2198"; */
+"2198.title" = "从模板新建";
+
+/* Class = "NSMenu"; title = "New from Template"; ObjectID = "2199"; */
+"2199.title" = "从模板新建";
+
+/* Class = "NSMenuItem"; title = "Rotate Copies"; ObjectID = "2222"; */
+"2222.title" = "旋转副本";
+
+/* Class = "NSMenuItem"; title = "Plugins"; ObjectID = "2234"; */
+"2234.title" = "插件";
+
+/* Class = "NSMenu"; title = "Plugins"; ObjectID = "2235"; */
+"2235.title" = "插件";
+
+/* Class = "NSMenuItem"; title = "Show Sidebar"; ObjectID = "2267"; */
+"2267.title" = "显示侧边栏";
+
+/* Class = "NSMenuItem"; title = "Show Inspector"; ObjectID = "2274"; */
+"2274.title" = "显示面板";
+
+/* Class = "NSMenuItem"; title = "Show Colors"; ObjectID = "2302"; */
+"2302.title" = "显示颜色";
+
+/* Class = "NSMenuItem"; title = "Text on Path"; ObjectID = "2332"; */
+"2332.title" = "路径文字";
+
+/* Class = "NSMenuItem"; title = "Make Grid…"; ObjectID = "2340"; */
+"2340.title" = "创建网格…";
+
+/* Class = "NSMenuItem"; title = "Show Layer Highlight"; ObjectID = "2342"; */
+"2342.title" = "显示图层高度";
+
+/* Class = "NSMenuItem"; title = "Show Fonts"; ObjectID = "2361"; */
+"2361.title" = "显示字体";
+
+/* Class = "NSMenuItem"; title = "Print"; ObjectID = "2368"; */
+"2368.title" = "打印";
+
+/* Class = "NSMenu"; title = "Print"; ObjectID = "2369"; */
+"2369.title" = "打印";
+
+/* Class = "NSMenuItem"; title = "No Slices Defined…"; ObjectID = "2370"; */
+"2370.title" = "无切片…";
+
+/* Class = "NSMenuItem"; title = "Components (Beta)"; ObjectID = "a7Z-O3-ZLM"; */
+"a7Z-O3-ZLM.title" = "组件（Beta）";
+
+/* Class = "NSMenuItem"; title = "Transformation"; ObjectID = "A61-I8-izn"; */
+"A61-I8-izn.title" = "变换";
+
+/* Class = "NSMenuItem"; title = "Preview Prototype…"; ObjectID = "ae6-OU-16A"; */
+"ae6-OU-16A.title" = "预览原型…";
+
+/* Class = "NSMenuItem"; title = "Move Up"; ObjectID = "aHk-nf-2pa"; */
+"aHk-nf-2pa.title" = "上移";
+
+/* Class = "NSMenuItem"; title = "Animate"; ObjectID = "AHx-3V-6aa"; */
+"AHx-3V-6aa.title" = "动画";
+
+/* Class = "NSMenuItem"; title = "Horizontally in Artboard"; ObjectID = "aou-SE-NAs"; */
+"aou-SE-NAs.title" = "与画板水平";
+
+/* Class = "NSMenuItem"; title = "Flatten"; ObjectID = "ApS-SZ-ZfA"; */
+"ApS-SZ-ZfA.title" = "拼合";
+
+/* Class = "NSMenuItem"; title = "Paste"; ObjectID = "BCg-li-2hq"; */
+"BCg-li-2hq.title" = "粘贴";
+
+/* Class = "NSMenuItem"; title = "Find"; ObjectID = "Bn2-ct-Opb"; */
+"Bn2-ct-Opb.title" = "查找";
+
+/* Class = "NSMenuItem"; title = "Set Symbol to Original Size"; ObjectID = "BQw-TA-AKd"; */
+"BQw-TA-AKd.title" = "将控件设为原始尺寸";
+
+/* Class = "NSMenuItem"; title = "Style"; ObjectID = "bRo-1H-6bO"; */
+"bRo-1H-6bO.title" = "样式";
+
+/* Class = "NSMenuItem"; title = "Open Cloud Document…"; ObjectID = "c8T-U2-jbf"; */
+"c8T-U2-jbf.title" = "打开 Cloud 文档…";
+
+/* Class = "NSMenuItem"; title = "Create Shared Style"; ObjectID = "CfE-UY-EDW"; */
+"CfE-UY-EDW.title" = "创建共享样式";
+
+/* Class = "NSMenuItem"; title = "Copy Link"; ObjectID = "cFh-7e-HCt"; */
+"cFh-7e-HCt.title" = "拷贝链接";
+
+/* Class = "NSMenu"; title = "Zoom To"; ObjectID = "CrK-qt-tgc"; */
+"CrK-qt-tgc.title" = "缩放至";
+
+/* Class = "NSMenuItem"; title = "Show Slices"; ObjectID = "CWQ-em-Cgb"; */
+"CWQ-em-Cgb.title" = "显示切片";
+
+/* Class = "NSMenuItem"; title = "Top in Artboard"; ObjectID = "cxe-eJ-cmc"; */
+"cxe-eJ-cmc.title" = "画板顶部";
+
+/* Class = "NSMenu"; title = "Replace With"; ObjectID = "diR-Ng-CU0"; */
+"diR-Ng-CU0.title" = "替换为";
+
+/* Class = "NSMenuItem"; title = "Convert to Hotspot Layer"; ObjectID = "DLF-Zs-thw"; */
+"DLF-Zs-thw.title" = "转化为热区";
+
+/* Class = "NSMenuItem"; title = "Components"; ObjectID = "dp5-fJ-aVs"; */
+"dp5-fJ-aVs.title" = "组件";
+
+/* Class = "NSMenu"; title = "OpenType Features"; ObjectID = "EFE-e2-3Sz"; */
+"EFE-e2-3Sz.title" = "OpenType 字体特性";
+
+/* Class = "NSMenuItem"; title = "Reset Shared Style"; ObjectID = "EgJ-De-uKM"; */
+"EgJ-De-uKM.title" = "还原共享样式";
+
+/* Class = "NSMenuItem"; title = "Send Beta Feedback"; ObjectID = "Ei9-xF-EUH"; */
+"Ei9-xF-EUH.title" = "发送 Beta 反馈";
+
+/* Class = "NSMenuItem"; title = "Use as Mask"; ObjectID = "eiE-6g-32g"; */
+"eiE-6g-32g.title" = "设为蒙版";
+
+/* Class = "NSMenuItem"; title = "Layer"; ObjectID = "EKx-LW-QRD"; */
+"EKx-LW-QRD.title" = "图层";
+
+/* Class = "NSMenuItem"; title = "Add Shadow"; ObjectID = "eLy-Tp-aJE"; */
+"eLy-Tp-aJE.title" = "添加阴影";
+
+/* Class = "NSMenuItem"; title = "Vertically in Artboard"; ObjectID = "eQW-NL-x5Q"; */
+"eQW-NL-x5Q.title" = "垂直于画板";
+
+/* Class = "NSMenuItem"; title = "Set to Original Dimensions"; ObjectID = "ESe-8b-hhr"; */
+"ESe-8b-hhr.title" = "恢复初始比例";
+
+/* Class = "NSMenuItem"; title = "Layout"; ObjectID = "euS-Oi-c9C"; */
+"euS-Oi-c9C.title" = "布局";
+
+/* Class = "NSMenuItem"; title = "Image"; ObjectID = "EWI-5i-TBu"; */
+"EWI-5i-TBu.title" = "图像";
+
+/* Class = "NSMenuItem"; title = "Mask"; ObjectID = "EYT-Dq-aPy"; */
+"EYT-Dq-aPy.title" = "蒙版";
+
+/* Class = "NSMenuItem"; title = "Border Options…"; ObjectID = "fBc-t9-mvh"; */
+"fBc-t9-mvh.title" = "边框选项…";
+
+/* Class = "NSMenuItem"; title = "Set as Default Style"; ObjectID = "fgB-am-VU2"; */
+"fgB-am-VU2.title" = "设为默认样式";
+
+/* Class = "NSMenuItem"; title = "List Type"; ObjectID = "fHV-Yw-vXH"; */
+"fHV-Yw-vXH.title" = "列表类型";
+
+/* Class = "NSMenuItem"; title = "Fill Options…"; ObjectID = "Fms-ti-l7i"; */
+"Fms-ti-l7i.title" = "填充选项…";
+
+/* Class = "NSMenuItem"; title = "Artboard"; ObjectID = "fRd-hL-lPn"; */
+"fRd-hL-lPn.title" = "画板";
+
+/* Class = "NSMenuItem"; title = "Reset"; ObjectID = "FSh-uZ-V9k"; */
+"FSh-uZ-V9k.title" = "重设";
+
+/* Class = "NSMenuItem"; title = "Center"; ObjectID = "FSm-AQ-BIT"; */
+"FSm-AQ-BIT.title" = "居中对齐";
+
+/* Class = "NSMenuItem"; title = "Layer List"; ObjectID = "Ft7-E1-oyW"; */
+"Ft7-E1-oyW.title" = "图层列表";
+
+/* Class = "NSMenu"; title = "Animate"; ObjectID = "fz9-MQ-Pfd"; */
+"fz9-MQ-Pfd.title" = "动画";
+
+/* Class = "NSMenuItem"; title = "Round to Pixel"; ObjectID = "g1l-t1-2zC"; */
+"g1l-t1-2zC.title" = "对齐像素";
+
+/* Class = "NSMenuItem"; title = "Use Artboard as Start Point"; ObjectID = "G1m-5v-3fX"; */
+"G1m-5v-3fX.title" = "设画板为起点";
+
+/* Class = "NSMenuItem"; title = "Left in Artboard"; ObjectID = "g7E-av-uSM"; */
+"g7E-av-uSM.title" = "与画板左对齐";
+
+/* Class = "NSMenuItem"; title = "Reduce File Size…"; ObjectID = "g8C-2G-Nos"; */
+"g8C-2G-Nos.title" = "压缩文件大小…";
+
+/* Class = "NSMenuItem"; title = "Circular"; ObjectID = "gbG-2w-XHY"; */
+"gbG-2w-XHY.title" = "椭圆";
+
+/* Class = "NSMenuItem"; title = "Canvas"; ObjectID = "gcF-XI-S0A"; */
+"gcF-XI-S0A.title" = "画布";
+
+/* Class = "NSMenuItem"; title = "Top to Bottom"; ObjectID = "ghq-MO-dtE"; */
+"ghq-MO-dtE.title" = "从上往下";
+
+/* Class = "NSMenu"; title = "View Components"; ObjectID = "gpi-gT-urW"; */
+"gpi-gT-urW.title" = "查看组件";
+
+/* Class = "NSMenuItem"; title = "Check Document Automatically"; ObjectID = "gpW-mA-TKg"; */
+"gpW-mA-TKg.title" = "自动检测文档";
+
+/* Class = "NSMenu"; title = "Paste"; ObjectID = "Gwr-nn-NU9"; */
+"Gwr-nn-NU9.title" = "粘贴";
+
+/* Class = "NSMenuItem"; title = "Uppercase"; ObjectID = "H51-tv-wsL"; */
+"H51-tv-wsL.title" = "大写";
+
+/* Class = "NSMenu"; title = "Sidebar"; ObjectID = "HD8-eJ-bxy"; */
+"HD8-eJ-bxy.title" = "侧边栏";
+
+/* Class = "NSMenuItem"; title = "Right in Artboard"; ObjectID = "Hhj-UQ-be4"; */
+"Hhj-UQ-be4.title" = "与画板右对齐";
+
+/* Class = "NSMenu"; title = "Cloud"; ObjectID = "HHL-Tp-Adn"; */
+"HHL-Tp-Adn.title" = "Cloud";
+
+/* Class = "NSMenuItem"; title = "Automatically Expand Groups"; ObjectID = "hiH-rd-KQW"; */
+"hiH-rd-KQW.title" = "自动展开编组";
+
+/* Class = "NSMenuItem"; title = "Return to Instance"; ObjectID = "hKe-Za-m7i"; */
+"hKe-Za-m7i.title" = "返回实例";
+
+/* Class = "NSMenuItem"; title = "Plugin Development Documentation"; ObjectID = "HMs-Hq-w8H"; */
+"HMs-Hq-w8H.title" = "插件开发文档";
+
+/* Class = "NSMenu"; title = "Mask Mode"; ObjectID = "hRm-3Y-QqC"; */
+"hRm-3Y-QqC.title" = "蒙版模式";
+
+/* Class = "NSMenuItem"; title = "No Layout"; ObjectID = "huZ-nY-LJe"; */
+"huZ-nY-LJe.title" = "无布局";
+
+/* Class = "NSMenuItem"; title = "Text Styles"; ObjectID = "IEo-Lt-nWH"; */
+"IEo-Lt-nWH.title" = "字符样式";
+
+/* Class = "NSMenuItem"; title = "Debug"; ObjectID = "iiY-Fx-1pb"; */
+"iiY-Fx-1pb.title" = "调试";
+
+/* Class = "NSMenuItem"; title = "Imported Symbols…"; ObjectID = "Ij0-QL-Y19"; */
+"Ij0-QL-Y19.title" = "已导入的控件…";
+
+/* Class = "NSMenuItem"; title = "Sync Library Components…"; ObjectID = "IJQ-JC-6Q1"; */
+"IJQ-JC-6Q1.title" = "同步组件库中的组件…";
+
+/* Class = "NSMenuItem"; title = "Assistants"; ObjectID = "ilI-lP-eqn"; */
+"ilI-lP-eqn.title" = "助理";
+
+/* Class = "NSMenuItem"; title = "Gradient"; ObjectID = "IqM-Y4-QGU"; */
+"IqM-Y4-QGU.title" = "渐变";
+
+/* Class = "NSMenuItem"; title = "Copy SVG Code"; ObjectID = "IUQ-cZ-qwq"; */
+"IUQ-cZ-qwq.title" = "拷贝 SVG 代码";
+
+/* Class = "NSMenuItem"; title = "Clear Menu"; ObjectID = "j8O-M2-dlJ"; */
+"j8O-M2-dlJ.title" = "清除菜单";
+
+/* Class = "NSMenuItem"; title = "Actual Size"; ObjectID = "jhY-M7-92e"; */
+"jhY-M7-92e.title" = "实际尺寸";
+
+/* Class = "NSMenuItem"; title = "Artboard"; ObjectID = "Jn2-Qn-3Wm"; */
+"Jn2-Qn-3Wm.title" = "画板";
+
+/* Class = "NSMenuItem"; title = "Move to Top"; ObjectID = "JTR-NY-snO"; */
+"JTR-NY-snO.title" = "移到顶部";
+
+/* Class = "NSMenuItem"; title = "Replace Missing Fonts…"; ObjectID = "K7f-Cf-85p"; */
+"K7f-Cf-85p.title" = "替换缺失字体…";
+
+/* Class = "NSMenu"; title = "Style"; ObjectID = "KEO-3T-RFa"; */
+"KEO-3T-RFa.title" = "样式";
+
+/* Class = "NSMenuItem"; title = "Linaer"; ObjectID = "kkP-HG-1vl"; */
+"kkP-HG-1vl.title" = "线性";
+
+/* Class = "NSMenuItem"; title = "Numbered"; ObjectID = "kSc-fV-ORW"; */
+"kSc-fV-ORW.title" = "编号";
+
+/* Class = "NSMenuItem"; title = "Remove All Links"; ObjectID = "kSW-Xt-AcP"; */
+"kSW-Xt-AcP.title" = "移除所有链接";
+
+/* Class = "NSMenuItem"; title = "Show Prototyping"; ObjectID = "kxL-QX-Etq"; */
+"kxL-QX-Etq.title" = "显示原型";
+
+/* Class = "NSMenuItem"; title = "Change Color Profile…"; ObjectID = "l2w-Wn-k4s"; */
+"l2w-Wn-k4s.title" = "更改颜色配置…";
+
+/* Class = "NSMenuItem"; title = "What’s New in Sketch"; ObjectID = "L7C-km-0qV"; */
+"L7C-km-0qV.title" = "Sketch 新功能介绍";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "L9G-aJ-4aQ"; */
+"L9G-aJ-4aQ.title" = "无";
+
+/* Class = "NSMenuItem"; title = "Ignore Underlying Mask"; ObjectID = "leB-XM-fha"; */
+"leB-XM-fha.title" = "忽略底层蒙版";
+
+/* Class = "NSMenuItem"; title = "Layout Settings…"; ObjectID = "Lqk-5D-wau"; */
+"Lqk-5D-wau.title" = "布局设置…";
+
+/* Class = "NSMenuItem"; title = "Find Component"; ObjectID = "LXZ-yv-WPa"; */
+"LXZ-yv-WPa.title" = "查找组件";
+
+/* Class = "NSMenuItem"; title = "Unlink and Sync"; ObjectID = "lZ0-E4-cxR"; */
+"lZ0-E4-cxR.title" = "取消关联与同步";
+
+/* Class = "NSMenuItem"; title = "Paste Style"; ObjectID = "m1q-4M-vvs"; */
+"m1q-4M-vvs.title" = "粘贴样式";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "M9z-Xm-pHF"; */
+"M9z-Xm-pHF.title" = "其他视图";
+
+/* Class = "NSMenuItem"; title = "Paste over Selection"; ObjectID = "MIR-pW-Ce2"; */
+"MIR-pW-Ce2.title" = "粘贴到选中项";
+
+/* Class = "NSMenuItem"; title = "Show Assistants"; ObjectID = "mw9-MN-xJj"; */
+"mw9-MN-xJj.title" = "显示助理";
+
+/* Class = "NSMenuItem"; title = "Bottom to Top"; ObjectID = "Mzz-Cb-UG7"; */
+"Mzz-Cb-UG7.title" = "从下往上";
+
+/* Class = "NSMenuItem"; title = "Convert to Outlines"; ObjectID = "N2m-Xd-GMg"; */
+"N2m-Xd-GMg.title" = "轮廓化";
+
+/* Class = "NSMenuItem"; title = "Data"; ObjectID = "N8J-tJ-ra0"; */
+"N8J-tJ-ra0.title" = "素材库";
+
+/* Class = "NSMenuItem"; title = "Copy"; ObjectID = "Naz-Fb-bRn"; */
+"Naz-Fb-bRn.title" = "拷贝";
+
+/* Class = "NSMenuItem"; title = "Animate Artboard from Left"; ObjectID = "ner-rn-duP"; */
+"ner-rn-duP.title" = "从左侧移入画板";
+
+/* Class = "NSMenuItem"; title = "Document Fonts…"; ObjectID = "nHM-pP-hl6"; */
+"nHM-pP-hl6.title" = "文档字体…";
+
+/* Class = "NSMenuItem"; title = "Pin Left"; ObjectID = "Nij-5g-c0k"; */
+"Nij-5g-c0k.title" = "固定在左侧";
+
+/* Class = "NSMenuItem"; title = "Align"; ObjectID = "nwI-sI-WiC"; */
+"nwI-sI-WiC.title" = "对齐";
+
+/* Class = "NSMenuItem"; title = "Go to Target Artboard"; ObjectID = "oaA-mO-k9B"; */
+"oaA-mO-k9B.title" = "定位到目标画板";
+
+/* Class = "NSMenu"; title = "Layout"; ObjectID = "Ocs-ed-tfo"; */
+"Ocs-ed-tfo.title" = "布局";
+
+/* Class = "NSMenuItem"; title = "Scale…"; ObjectID = "OFO-Wy-Q2Z"; */
+"OFO-Wy-Q2Z.title" = "缩放…";
+
+/* Class = "NSMenuItem"; title = "Select All Artboards"; ObjectID = "OgO-1q-fwT"; */
+"OgO-1q-fwT.title" = "选择所有画板";
+
+/* Class = "NSMenu"; title = "Data"; ObjectID = "ONC-F9-FFv"; */
+"ONC-F9-FFv.title" = "素材库";
+
+/* Class = "NSMenuItem"; title = "Add Inner Shadow"; ObjectID = "OVD-bP-8qo"; */
+"OVD-bP-8qo.title" = "添加内阴影";
+
+/* Class = "NSMenuItem"; title = "Layer Styles"; ObjectID = "oWk-sm-9lv"; */
+"oWk-sm-9lv.title" = "图层样式";
+
+/* Class = "NSMenuItem"; title = "Radial"; ObjectID = "pBt-Ct-hbq"; */
+"pBt-Ct-hbq.title" = "中心辐射";
+
+/* Class = "NSMenuItem"; title = "Pin Right"; ObjectID = "pgf-u6-U4z"; */
+"pgf-u6-U4z.title" = "固定在右侧";
+
+/* Class = "NSMenu"; title = "Prototype"; ObjectID = "phO-ke-wA4"; */
+"phO-ke-wA4.title" = "原型";
+
+/* Class = "NSMenuItem"; title = "Animate Artboard from Right"; ObjectID = "pjw-1Z-vcc"; */
+"pjw-1Z-vcc.title" = "从右侧移入画板";
+
+/* Class = "NSMenuItem"; title = "Add as Library…"; ObjectID = "Q3D-Cz-157"; */
+"Q3D-Cz-157.title" = "添加为组件库…";
+
+/* Class = "NSMenu"; title = "Debug"; ObjectID = "qcc-8p-TUR"; */
+"qcc-8p-TUR.title" = "调试";
+
+/* Class = "NSMenuItem"; title = "Pin Top"; ObjectID = "qeB-MT-Q3T"; */
+"qeB-MT-Q3T.title" = "固定在顶端";
+
+/* Class = "NSMenuItem"; title = "Copy CSS Attributes"; ObjectID = "qIC-yH-F3G"; */
+"qIC-yH-F3G.title" = "拷贝 CSS 属性";
+
+/* Class = "NSMenuItem"; title = "Add Border"; ObjectID = "qjH-6R-YCW"; */
+"qjH-6R-YCW.title" = "添加边框";
+
+/* Class = "NSMenuItem"; title = "Remove Unused Styles"; ObjectID = "qoD-2P-nCz"; */
+"qoD-2P-nCz.title" = "移除未使用的样式";
+
+/* Class = "NSMenuItem"; title = "Open Local Document…"; ObjectID = "QOL-8d-WA2"; */
+"QOL-8d-WA2.title" = "打开本地文档…";
+
+/* Class = "NSMenuItem"; title = "Paste"; ObjectID = "QQC-qv-8Kq"; */
+"QQC-qv-8Kq.title" = "粘贴";
+
+/* Class = "NSMenuItem"; title = "Mask Mode"; ObjectID = "qTn-NX-lmd"; */
+"qTn-NX-lmd.title" = "蒙版模式";
+
+/* Class = "NSMenuItem"; title = "Fix Width"; ObjectID = "QtV-dV-L9q"; */
+"QtV-dV-L9q.title" = "固定宽度";
+
+/* Class = "NSMenuItem"; title = "Collapse All Groups"; ObjectID = "qVZ-6K-dbK"; */
+"qVZ-6K-dbK.title" = "折叠所有编组";
+
+/* Class = "NSMenuItem"; title = "Find Assistants…"; ObjectID = "qXn-Vy-UZX"; */
+"qXn-Vy-UZX.title" = "查找助理…";
+
+/* Class = "NSMenuItem"; title = "Unlink from Library"; ObjectID = "QzM-3V-sNI"; */
+"QzM-3V-sNI.title" = "与组件库取消关联";
+
+/* Class = "NSMenuItem"; title = "Cloud"; ObjectID = "r4g-dP-utE"; */
+"r4g-dP-utE.title" = "Cloud";
+
+/* Class = "NSMenuItem"; title = "Copy Style"; ObjectID = "R4h-5Z-owW"; */
+"R4h-5Z-owW.title" = "拷贝样式";
+
+/* Class = "NSMenuItem"; title = "View on Cloud…"; ObjectID = "r4n-3t-yJd"; */
+"r4n-3t-yJd.title" = "在 Cloud 中查看…";
+
+/* Class = "NSMenuItem"; title = "Left to Right"; ObjectID = "rCx-g2-O9g"; */
+"rCx-g2-O9g.title" = "从左往右";
+
+/* Class = "NSMenuItem"; title = "OpenType Features"; ObjectID = "rE6-4L-Fal"; */
+"rE6-4L-Fal.title" = "OpenType 字体特性";
+
+/* Class = "NSMenu"; title = "Open Recent"; ObjectID = "rjl-cP-DFX"; */
+"rjl-cP-DFX.title" = "最近打开的文档";
+
+/* Class = "NSMenuItem"; title = "Constraints"; ObjectID = "rnH-Gj-jSK"; */
+"rnH-Gj-jSK.title" = "约束";
+
+/* Class = "NSMenuItem"; title = "Insert"; ObjectID = "Rps-Ec-dCV"; */
+"Rps-Ec-dCV.title" = "置入";
+
+/* Class = "NSMenuItem"; title = "Copy"; ObjectID = "SgJ-8m-7OY"; */
+"SgJ-8m-7OY.title" = "拷贝";
+
+/* Class = "NSMenuItem"; title = "Detach all contents from Symbol"; ObjectID = "sIl-43-VFT"; */
+"sIl-43-VFT.title" = "将内容全部与控件解绑";
+
+/* Class = "NSMenuItem"; title = "Offset…"; ObjectID = "slv-mD-N3s"; */
+"slv-mD-N3s.title" = "偏置…";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "SQm-om-QRq"; */
+"SQm-om-QRq.title" = "其他视图";
+
+/* Class = "NSMenuItem"; title = "Animate Artboard from Bottom"; ObjectID = "SrE-7r-Azk"; */
+"SrE-7r-Azk.title" = "从底部移入画板";
+
+/* Class = "NSMenuItem"; title = "Edit"; ObjectID = "STw-sc-nr8"; */
+"STw-sc-nr8.title" = "编辑";
+
+/* Class = "NSMenuItem"; title = "Colors"; ObjectID = "T3Q-wB-NDd"; */
+"T3Q-wB-NDd.title" = "颜色";
+
+/* Class = "NSMenuItem"; title = "Maintain scroll position after click"; ObjectID = "Tef-WO-Tze"; */
+"Tef-WO-Tze.title" = "点击后保持滚动位置";
+
+/* Class = "NSMenuItem"; title = "Check Document Now"; ObjectID = "TGv-7N-KDI"; */
+"TGv-7N-KDI.title" = "立刻检查文档";
+
+/* Class = "NSMenuItem"; title = "Reveal Selection"; ObjectID = "TnO-Qh-Dqv"; */
+"TnO-Qh-Dqv.title" = "显示选区";
+
+/* Class = "NSMenuItem"; title = "Select"; ObjectID = "tU4-IF-4Nf"; */
+"tU4-IF-4Nf.title" = "选择";
+
+/* Class = "NSMenuItem"; title = "Export…"; ObjectID = "tWJ-VH-FU7"; */
+"tWJ-VH-FU7.title" = "导出…";
+
+/* Class = "NSMenuItem"; title = "Previous Page"; ObjectID = "U2A-hJ-Wbg"; */
+"U2A-hJ-Wbg.title" = "上一页";
+
+/* Class = "NSMenuItem"; title = "Show Layout"; ObjectID = "u8d-kc-Lso"; */
+"u8d-kc-Lso.title" = "显示布局";
+
+/* Class = "NSMenuItem"; title = "Replace…"; ObjectID = "UbY-8f-fMi"; */
+"UbY-8f-fMi.title" = "替换…";
+
+/* Class = "NSMenu"; title = "Copy"; ObjectID = "UfE-sE-0di"; */
+"UfE-sE-0di.title" = "拷贝";
+
+/* Class = "NSMenuItem"; title = "Symbols"; ObjectID = "ugb-I5-Yce"; */
+"ugb-I5-Yce.title" = "控件";
+
+/* Class = "NSMenuItem"; title = "Fit Canvas"; ObjectID = "UMP-Ac-UHL"; */
+"UMP-Ac-UHL.title" = "适合于画布";
+
+/* Class = "NSMenuItem"; title = "Export Current Selection…"; ObjectID = "uPo-td-VoO"; */
+"uPo-td-VoO.title" = "导出当前选中项…";
+
+/* Class = "NSMenuItem"; title = "Sidebar"; ObjectID = "uTP-uR-Dlm"; */
+"uTP-uR-Dlm.title" = "侧边栏";
+
+/* Class = "NSMenuItem"; title = "No Animation"; ObjectID = "uYS-a7-xeM"; */
+"uYS-a7-xeM.title" = "无动画";
+
+/* Class = "NSMenuItem"; title = "Bullet"; ObjectID = "uzn-kt-24c"; */
+"uzn-kt-24c.title" = "项目符号";
+
+/* Class = "NSMenuItem"; title = "Bottom"; ObjectID = "vAB-CM-avX"; */
+"vAB-CM-avX.title" = "底部";
+
+/* Class = "NSMenuItem"; title = "Hide Interface"; ObjectID = "Vf5-JV-HiH"; */
+"Vf5-JV-HiH.title" = "隐藏工作界面";
+
+/* Class = "NSMenuItem"; title = "Documents"; ObjectID = "vGu-S8-qR3"; */
+"vGu-S8-qR3.title" = "文档";
+
+/* Class = "NSMenuItem"; title = "Flatten Selection to Bitmap"; ObjectID = "VUg-hb-GOV"; */
+"VUg-hb-GOV.title" = "拼合选中图像";
+
+/* Class = "NSMenuItem"; title = "Pattern"; ObjectID = "w8y-dD-8sY"; */
+"w8y-dD-8sY.title" = "纹理";
+
+/* Class = "NSMenuItem"; title = "Middle"; ObjectID = "w71-E7-UI7"; */
+"w71-E7-UI7.title" = "居中";
+
+/* Class = "NSMenu"; title = "Constraints"; ObjectID = "W96-Y4-msv"; */
+"W96-Y4-msv.title" = "约束";
+
+/* Class = "NSMenu"; title = "Layer"; ObjectID = "WBp-5d-uMx"; */
+"WBp-5d-uMx.title" = "图层";
+
+/* Class = "NSMenuItem"; title = "Right to Left"; ObjectID = "WE8-fp-zck"; */
+"WE8-fp-zck.title" = "从右往左";
+
+/* Class = "NSMenu"; title = "Align"; ObjectID = "wMa-O8-kR9"; */
+"wMa-O8-kR9.title" = "对齐";
+
+/* Class = "NSMenuItem"; title = "Link to Previous Artboard"; ObjectID = "wPq-kY-O0w"; */
+"wPq-kY-O0w.title" = "链接到上一个画板";
+
+/* Class = "NSMenu"; title = "Image"; ObjectID = "wRn-Qe-2uh"; */
+"wRn-Qe-2uh.title" = "图像";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "wSl-SD-ScG"; */
+"wSl-SD-ScG.title" = "无";
+
+/* Class = "NSMenuItem"; title = "Animate Artboard from Top"; ObjectID = "wSw-xo-BVP"; */
+"wSw-xo-BVP.title" = "从顶部移入画板";
+
+/* Class = "NSMenuItem"; title = "Reset Ruler Origin"; ObjectID = "Wvv-F1-xk6"; */
+"Wvv-F1-xk6.title" = "还原标尺";
+
+/* Class = "NSMenuItem"; title = "Color"; ObjectID = "wyt-pv-t6U"; */
+"wyt-pv-t6U.title" = "颜色";
+
+/* Class = "NSMenuItem"; title = "Prototype"; ObjectID = "XFr-z8-EHr"; */
+"XFr-z8-EHr.title" = "原型";
+
+/* Class = "NSMenuItem"; title = "Tidy"; ObjectID = "XLF-cV-xvF"; */
+"XLF-cV-xvF.title" = "整理";
+
+/* Class = "NSMenu"; title = "Select"; ObjectID = "y2G-4P-aAh"; */
+"y2G-4P-aAh.title" = "选择";
+
+/* Class = "NSMenuItem"; title = "Canvas"; ObjectID = "Y21-3t-jGy"; */
+"Y21-3t-jGy.title" = "画布";
+
+/* Class = "NSMenuItem"; title = "Resize to Fit Content"; ObjectID = "yb3-M3-mqs"; */
+"yb3-M3-mqs.title" = "调整尺寸以适应内容";
+
+/* Class = "NSMenuItem"; title = "Replace With"; ObjectID = "Yer-Gg-QQm"; */
+"Yer-Gg-QQm.title" = "替换为";
+
+/* Class = "NSMenuItem"; title = "Show Artboard Shadow"; ObjectID = "Yja-VR-q3f"; */
+"Yja-VR-q3f.title" = "显示画板阴影";
+
+/* Class = "NSMenuItem"; title = "List Options…"; ObjectID = "YLe-Ff-xTk"; */
+"YLe-Ff-xTk.title" = "列表选项…";
+
+/* Class = "NSMenuItem"; title = "New from Template…"; ObjectID = "Ym0-jT-QGN"; */
+"Ym0-jT-QGN.title" = "从模板新建…";
+
+/* Class = "NSMenuItem"; title = "Fix Layer Position when Scrolling"; ObjectID = "ynq-JM-Csn"; */
+"ynq-JM-Csn.title" = "滚动时固定画板位置";
+
+/* Class = "NSMenuItem"; title = "Next Page"; ObjectID = "YPU-Tp-MwD"; */
+"YPU-Tp-MwD.title" = "下一页";
+
+/* Class = "NSMenuItem"; title = "Outline Mask"; ObjectID = "yqp-wK-JYe"; */
+"yqp-wK-JYe.title" = "轮廓蒙版";
+
+/* Class = "NSMenuItem"; title = "Pin Bottom"; ObjectID = "z4i-pw-WSZ"; */
+"z4i-pw-WSZ.title" = "固定在底部";
+
+/* Class = "NSMenuItem"; title = "Show in Documents Window"; ObjectID = "zAw-aB-HeV"; */
+"zAw-aB-HeV.title" = "在文档窗口中打开";
+
+/* Class = "NSMenuItem"; title = "Minimize File Size"; ObjectID = "zqa-FO-LMX"; */
+"zqa-FO-LMX.title" = "最小化文件大小";
+
+/* Class = "NSMenuItem"; title = "Mask with Selected Shape"; ObjectID = "zqj-J4-Igv"; */
+"zqj-J4-Igv.title" = "将选中形状用作蒙版";
+
+/* Class = "NSMenuItem"; title = "Bottom in Artboard"; ObjectID = "ZTn-p6-ARp"; */
+"ZTn-p6-ARp.title" = "画板底部";
+
+/* Class = "NSMenuItem"; title = "View Components"; ObjectID = "zVI-Vh-brG"; */
+"zVI-Vh-brG.title" = "查看组件";
+
+/* Class = "NSMenuItem"; title = "Alpha Mask"; ObjectID = "zy2-Bb-Ngg"; */
+"zy2-Bb-Ngg.title" = "透明度蒙版";
+

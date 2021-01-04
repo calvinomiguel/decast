@@ -1,0 +1,18 @@
+/* Class = "NSTextFieldCell"; title = "Label"; ObjectID = "clh-2Z-wAk"; */
+"clh-2Z-wAk.title" = "标签";
+
+/* Class = "NSButtonCell"; title = " Version 1.5.3 Available"; ObjectID = "Jgc-aP-hLJ"; */
+"Jgc-aP-hLJ.title" = "版本 1.5.3 可用";
+
+/* Class = "NSTextFieldCell"; title = "Plugin description"; ObjectID = "LxG-rH-WRA"; */
+"LxG-rH-WRA.title" = "插件描述";
+
+/* Class = "NSButtonCell"; title = "Update"; ObjectID = "OI1-bV-caR"; */
+"OI1-bV-caR.title" = "更新";
+
+/* Class = "NSTextFieldCell"; title = "Plugin by Author"; ObjectID = "qEl-OQ-8rC"; */
+"qEl-OQ-8rC.title" = "插件作者";
+
+/* Class = "NSTextFieldCell"; title = "x.x"; ObjectID = "Tjq-gc-VHR"; */
+"Tjq-gc-VHR.title" = "x.x";
+

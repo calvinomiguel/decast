@@ -1,0 +1,27 @@
+/* Class = "NSTextFieldCell"; title = "Replace with:"; ObjectID = "7rt-ej-dv4"; */
+"7rt-ej-dv4.title" = "替换为:";
+
+/* Class = "NSTextFieldCell"; title = "Find and Replace Color"; ObjectID = "dDv-J3-nm9"; */
+"dDv-J3-nm9.title" = "查找并替换颜色";
+
+/* Class = "NSButtonCell"; title = "Include all opacities of this color"; ObjectID = "DEe-8R-OfY"; */
+"DEe-8R-OfY.title" = "包括所有该颜色的不透明度";
+
+/* Class = "NSWindow"; title = "Window"; ObjectID = "F0z-JX-Cv5"; */
+"F0z-JX-Cv5.title" = "窗口";
+
+/* Class = "NSButtonCell"; title = "Replace"; ObjectID = "h9R-Hf-VKF"; */
+"h9R-Hf-VKF.title" = "替换";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "hXQ-1E-rzH"; */
+"hXQ-1E-rzH.title" = "取消";
+
+/* Class = "NSTextFieldCell"; title = "Find:"; ObjectID = "l3a-zI-9GO"; */
+"l3a-zI-9GO.title" = "查找：";
+
+/* Class = "NSButtonCell"; title = "Preserve original opacity"; ObjectID = "pOm-e5-4zc"; */
+"pOm-e5-4zc.title" = "保持原来的不透明度";
+
+/* Class = "NSTextFieldCell"; title = "Select a color from your document, then choose to replace all instances of it with another color."; ObjectID = "QNK-UN-c8z"; */
+"QNK-UN-c8z.title" = "在文档中选择一种颜色，将所有使用它的实例都替换成另一种颜色。";
+

@@ -1,0 +1,6 @@
+/* Class = "NSTextFieldCell"; title = "No Text Styles Defined"; ObjectID = "sGb-Km-Jqa"; */
+"sGb-Km-Jqa.title" = "无设定字符样式";
+
+/* Class = "NSTextFieldCell"; title = "Define Text Styles by creating a new style from an existing text layer in the Inspector."; ObjectID = "z10-kf-Ohs"; */
+"z10-kf-Ohs.title" = "在检查器中从已有字符层创建字符样式。";
+

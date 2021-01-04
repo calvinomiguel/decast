@@ -1,0 +1,24 @@
+/* Class = "NSButtonCell"; title = "Update"; ObjectID = "0Mb-ek-rdl"; */
+"0Mb-ek-rdl.title" = "更新";
+
+/* Class = "NSButtonCell"; title = "Create"; ObjectID = "AeJ-kn-TQq"; */
+"AeJ-kn-TQq.title" = "新建";
+
+/* Class = "NSButtonCell"; title = "Detach"; ObjectID = "Hma-sK-caS"; */
+"Hma-sK-caS.title" = "解绑";
+
+/* Class = "NSMenuItem"; title = "Reset Style"; ObjectID = "iSm-Cb-JfV"; */
+"iSm-Cb-JfV.title" = "重设样式";
+
+/* Class = "NSButtonCell"; title = "More"; ObjectID = "ly5-nA-Deb"; */
+"ly5-nA-Deb.title" = "更多";
+
+/* Class = "NSMenuItem"; title = "Rename Style"; ObjectID = "nTl-Gg-TLm"; */
+"nTl-Gg-TLm.title" = "为样式重命名";
+
+/* Class = "NSMenuItem"; title = "Edit Style in Library"; ObjectID = "udT-hE-hXK"; */
+"udT-hE-hXK.title" = "在组件库中编辑样式";
+
+/* Class = "NSMenuItem"; title = "Create New Style and Replace"; ObjectID = "YRE-Mf-JKb"; */
+"YRE-Mf-JKb.title" = "新建样式并替换";
+

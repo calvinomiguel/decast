@@ -1,0 +1,22 @@
+{
+  "name": "@skpm/string_decoder",
+  "version": "0.1.5",
+  "description": "A drop-in replacement for the string_decoder NodeJS package",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./build.sh"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "string_decoder": "^1.2.0"
+  }
+
+,"_resolved": "https://registry.npmjs.org/@skpm/string_decoder/-/string_decoder-0.1.5.tgz"
+,"_integrity": "sha512-htrAeDW7B9RKVhsgjwo4PmHs1qLSSBJQGsq/54o96uiCmLGzmivKIxSBPfdnOstw1OMie13kK0zt1cvFFSCfMg=="
+,"_from": "@skpm/string_decoder@0.1.5"
+}

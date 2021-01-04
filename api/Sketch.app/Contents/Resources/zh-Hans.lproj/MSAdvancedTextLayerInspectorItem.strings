@@ -1,0 +1,27 @@
+/* Class = "NSTextFieldCell"; title = "Decoration"; ObjectID = "3Qb-fw-PD3"; */
+"3Qb-fw-PD3.title" = "文本修饰";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "9CU-k4-rBC"; */
+"9CU-k4-rBC.title" = "无";
+
+/* Class = "NSTextFieldCell"; title = "Transform"; ObjectID = "Gcx-DH-cnc"; */
+"Gcx-DH-cnc.title" = "变换";
+
+/* Class = "NSTextFieldCell"; title = "Text Options"; ObjectID = "naY-sd-lzx"; */
+"naY-sd-lzx.title" = "字符选项";
+
+/* Class = "NSMenuItem"; title = "Strikethrough"; ObjectID = "p5L-l4-NMJ"; */
+"p5L-l4-NMJ.title" = "删除线";
+
+/* Class = "NSSegmentedCell"; Rcp-Vs-PCE.ibShadowedToolTips[0] = "No letter casing."; ObjectID = "Rcp-Vs-PCE"; */
+"Rcp-Vs-PCE.ibShadowedToolTips[0]" = "无大写字母。";
+
+/* Class = "NSSegmentedCell"; Rcp-Vs-PCE.ibShadowedToolTips[1] = "Use uppercase characters."; ObjectID = "Rcp-Vs-PCE"; */
+"Rcp-Vs-PCE.ibShadowedToolTips[1]" = "使用大写字符。";
+
+/* Class = "NSSegmentedCell"; Rcp-Vs-PCE.ibShadowedToolTips[2] = "Use lowercase characters."; ObjectID = "Rcp-Vs-PCE"; */
+"Rcp-Vs-PCE.ibShadowedToolTips[2]" = "使用小写字符。";
+
+/* Class = "NSMenuItem"; title = "Underline"; ObjectID = "sK3-da-fpZ"; */
+"sK3-da-fpZ.title" = "下划线";
+

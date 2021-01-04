@@ -1,0 +1,21 @@
+/* Class = "NSButtonCell"; title = "Renew License…"; ObjectID = "6EK-4a-ei0"; */
+"6EK-4a-ei0.title" = "续期许可证…";
+
+/* Class = "NSTextFieldCell"; title = "In order to use this version of Sketch, you must first renew your license. Would you like to renew your license to receive updates for the next 12 months?"; ObjectID = "dL2-XI-yd0"; */
+"dL2-XI-yd0.title" = "要使用该版本 Sketch，您必须先续期许可证。 续期后的12个月您将持续收到软件更新，要现在续期吗？";
+
+/* Class = "NSWindow"; title = "License Update"; ObjectID = "ler-KL-fEk"; */
+"ler-KL-fEk.title" = "更新许可证";
+
+/* Class = "NSButtonCell"; title = "Use Trial Version"; ObjectID = "NdY-Kw-1Bv"; */
+"NdY-Kw-1Bv.title" = "使用试用版";
+
+/* Class = "NSButtonCell"; title = "Learn More…"; ObjectID = "OHC-20-hyO"; */
+"OHC-20-hyO.title" = "了解更多…";
+
+/* Class = "NSButtonCell"; title = "Download Earlier Version…"; ObjectID = "PeR-l5-3Eh"; */
+"PeR-l5-3Eh.title" = "下载旧版本…";
+
+/* Class = "NSTextFieldCell"; title = "Sketch license renewal required."; ObjectID = "q2L-Hg-wTR"; */
+"q2L-Hg-wTR.title" = "Sketch 许可证需要续期。";
+

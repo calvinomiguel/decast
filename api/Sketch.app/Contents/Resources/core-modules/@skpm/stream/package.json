@@ -1,0 +1,19 @@
+{
+  "name": "@skpm/stream",
+  "version": "0.1.4",
+  "description": "A drop-in replacement for the stream NodeJS package",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./build.sh"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "readable-stream": "^3.1.1"
+  }
+
+,"_resolved": "https://registry.npmjs.org/@skpm/stream/-/stream-0.1.4.tgz"
+,"_integrity": "sha512-BagPWlRJKrGwUCdqet1WDkY+0uYdVm7X+ladG8jD2mEs/nyXuTAog4RdSOLZzxjgf2zu4GbCdjhxU5l2kGkPyQ=="
+,"_from": "@skpm/stream@0.1.4"
+}

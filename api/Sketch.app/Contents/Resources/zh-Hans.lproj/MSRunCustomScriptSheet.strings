@@ -1,0 +1,24 @@
+/* Class = "NSWindow"; title = "Run Plugin"; ObjectID = "1"; */
+"1.title" = "运行插件";
+
+/* Class = "NSTextFieldCell"; title = "Sketch Plugins are written in JavaScript."; ObjectID = "3ZO-1Q-YEc"; */
+"3ZO-1Q-YEc.title" = "Sketch 的插件是用 JavaScript 编译的。";
+
+/* Class = "NSButtonCell"; title = "Run"; ObjectID = "6"; */
+"6.title" = "运行";
+
+/* Class = "NSTextFieldCell"; title = "Run Script"; ObjectID = "6iV-qR-cJw"; */
+"6iV-qR-cJw.title" = "运行脚本";
+
+/* Class = "NSButtonCell"; title = "Close"; ObjectID = "10"; */
+"10.title" = "关闭";
+
+/* Class = "NSTextFieldCell"; title = "Note that there is a special ‘context’ dictionary available containing a reference to the current document, selection and other useful values. Run ‘console.log(context)’ for more details."; ObjectID = "16"; */
+"16.title" = "请留意，有一个特殊的“上下文”字典中包含了对当前文档，选项以及其他有用值的引用。运行‘console.log(context)’ 以获取详情。";
+
+/* Class = "NSButtonCell"; title = "Save Script As Plugin"; ObjectID = "27"; */
+"27.title" = "将脚本保存为插件";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Enter a plugin name…"; ObjectID = "29"; */
+"29.placeholderString" = "输入插件名称…";
+

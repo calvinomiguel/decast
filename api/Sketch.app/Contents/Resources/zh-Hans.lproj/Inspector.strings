@@ -1,0 +1,27 @@
+/* Class = "NSButton"; ibShadowedToolTip = "Distribute layers horizontally."; ObjectID = "cZ4-wP-C3J"; */
+"cZ4-wP-C3J.ibShadowedToolTip" = "水平分布画板。";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Align layer to center."; ObjectID = "dyo-54-oMJ"; */
+"dyo-54-oMJ.ibShadowedToolTip" = "图层左右居中对齐。";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Align layer to bottom."; ObjectID = "GrG-az-8Tc"; */
+"GrG-az-8Tc.ibShadowedToolTip" = "图层对齐底部。";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Align layer to left."; ObjectID = "jPt-jf-I84"; */
+"jPt-jf-I84.ibShadowedToolTip" = "图层对齐到左侧。";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Distribute layers vertically."; ObjectID = "kHg-6E-Sm6"; */
+"kHg-6E-Sm6.ibShadowedToolTip" = "垂直分布画板。";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Align layer to right."; ObjectID = "Rgi-1Q-6Bf"; */
+"Rgi-1Q-6Bf.ibShadowedToolTip" = "图层对齐到右侧。";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Align layer to middle."; ObjectID = "yFE-Gw-k88"; */
+"yFE-Gw-k88.ibShadowedToolTip" = "图层上下居中对齐。";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Align layer to top."; ObjectID = "yuP-sR-qUY"; */
+"yuP-sR-qUY.ibShadowedToolTip" = "图层对齐顶部。";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Distribute layers vertically."; ObjectID = "zqe-8y-NmX"; */
+"zqe-8y-NmX.ibShadowedToolTip" = "垂直分布画板。";
+

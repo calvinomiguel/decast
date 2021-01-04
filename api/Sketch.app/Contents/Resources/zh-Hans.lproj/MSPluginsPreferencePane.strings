@@ -1,0 +1,30 @@
+/* Class = "NSButtonCell"; title = "Update All"; ObjectID = "0Bu-B2-f1U"; */
+"0Bu-B2-f1U.title" = "更新全部";
+
+/* Class = "NSMenuItem"; title = "Item 2"; ObjectID = "4eb-Yr-bzc"; */
+"4eb-Yr-bzc.title" = "选项2";
+
+/* Class = "NSTextFieldCell"; title = "Multiline Label"; ObjectID = "6E8-2M-zBc"; */
+"6E8-2M-zBc.title" = "多行标签";
+
+/* Class = "NSTextFieldCell"; title = "Label"; ObjectID = "7nS-OX-hSg"; */
+"7nS-OX-hSg.title" = "标签";
+
+/* Class = "NSTextFieldCell"; title = "Plugins are created by third-party developers to customize Sketch."; ObjectID = "ao2-LN-DK9"; */
+"ao2-LN-DK9.title" = "插件是由第三方为 Sketch 定制开发的。";
+
+/* Class = "NSMenuItem"; title = "Item 1"; ObjectID = "CoN-TJ-3Fd"; */
+"CoN-TJ-3Fd.title" = "选项1";
+
+/* Class = "NSButtonCell"; title = "Get Plugins…"; ObjectID = "dbK-6V-aC1"; */
+"dbK-6V-aC1.title" = "获取插件…";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "eFb-7e-vtL"; */
+"eFb-7e-vtL.title" = "文本单元格";
+
+/* Class = "NSMenuItem"; title = "Item 3"; ObjectID = "hsa-ov-5gT"; */
+"hsa-ov-5gT.title" = "选项3";
+
+/* Class = "NSSearchFieldCell"; placeholderString = "Filter"; ObjectID = "rvK-ei-OCQ"; */
+"rvK-ei-OCQ.placeholderString" = "删选";
+

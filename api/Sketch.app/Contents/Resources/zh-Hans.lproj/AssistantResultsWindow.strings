@@ -1,0 +1,99 @@
+/* Class = "NSButtonCell"; title = "Manage Assistants…"; ObjectID = "0yr-9m-xhO"; */
+"0yr-9m-xhO.title" = "管理助理…";
+
+/* Class = "NSTextFieldCell"; title = "Let’s Get Started"; ObjectID = "1Jx-cI-GYl"; */
+"1Jx-cI-GYl.title" = "开始吧";
+
+/* Class = "NSViewController"; title = "No Installed Assistants Overlay"; ObjectID = "3WJ-Tt-QK6"; */
+"3WJ-Tt-QK6.title" = "没有安装助手覆盖层";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "4PK-zx-uIm"; */
+"4PK-zx-uIm.title" = "文本单元格";
+
+/* Class = "NSViewController"; title = "All Assistants Failed Overlay Scene"; ObjectID = "6iv-zH-T73"; */
+"6iv-zH-T73.title" = "所有尝试覆盖场景的助理均告失败";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Copy error details"; ObjectID = "8xD-5V-goq"; */
+"8xD-5V-goq.ibShadowedToolTip" = "拷贝错误详情";
+
+/* Class = "NSButton"; ibShadowedToolTip = "View rule details…"; ObjectID = "12c-g6-MLT"; */
+"12c-g6-MLT.ibShadowedToolTip" = "查看规范详情…";
+
+/* Class = "NSButtonCell"; title = "Manage Assistants…"; ObjectID = "aPA-NH-AoX"; */
+"aPA-NH-AoX.title" = "管理助理…";
+
+/* Class = "NSViewController"; title = "No Active Assistant Overlay"; ObjectID = "bZV-WK-QOz"; */
+"bZV-WK-QOz.title" = "没有激活的助理覆盖层";
+
+/* Class = "NSTextFieldCell"; title = "Assistants can help you spot inconsistencies and validate your design against sets of rules."; ObjectID = "C5R-NX-RnI"; */
+"C5R-NX-RnI.title" = "助理能根据相应规则，校验您的设计并指出不统一之处。";
+
+/* Class = "NSTextFieldCell"; title = "Your Assistants could not check your document."; ObjectID = "f2g-ir-Gpv"; */
+"f2g-ir-Gpv.title" = "您的助理无法检查文档。";
+
+/* Class = "NSTextFieldCell"; title = "Checking your document to see Assistant feedback…"; ObjectID = "fTM-Vg-J1j"; */
+"fTM-Vg-J1j.title" = "正在检查文档并获取助理反馈…";
+
+/* Class = "NSTextFieldCell"; title = "A Helping Hand"; ObjectID = "Gb6-cq-e6K"; */
+"Gb6-cq-e6K.title" = "援助之手";
+
+/* Class = "NSButtonCell"; title = "Copy Error Details"; ObjectID = "HXT-4L-BqL"; */
+"HXT-4L-BqL.title" = "拷贝错误详情";
+
+/* Class = "NSButtonCell"; title = "Find Assistants…"; ObjectID = "I31-nG-LOw"; */
+"I31-nG-LOw.title" = "查找助理…";
+
+/* Class = "NSViewController"; title = "All Assistants Missing Overlay"; ObjectID = "lcT-GE-cc9"; */
+"lcT-GE-cc9.title" = "所有助理都缺失了覆盖层";
+
+/* Class = "NSButtonCell"; title = "Manage Assistants…"; ObjectID = "MqL-Ae-Vbl"; */
+"MqL-Ae-Vbl.title" = "管理助理…";
+
+/* Class = "NSViewController"; title = "No Errors Overlay"; ObjectID = "Mtb-O3-xwK"; */
+"Mtb-O3-xwK.title" = "没有错误的覆盖层";
+
+/* Class = "NSButtonCell"; title = "Check Document Now"; ObjectID = "nOk-EP-vyv"; */
+"nOk-EP-vyv.title" = "立即检查文档";
+
+/* Class = "NSTextFieldCell"; title = "A Helping Hand"; ObjectID = "NVd-5T-TjL"; */
+"NVd-5T-TjL.title" = "援助之手";
+
+/* Class = "NSViewController"; title = "Checking Document Overlay"; ObjectID = "OIh-Rz-REk"; */
+"OIh-Rz-REk.title" = "正在检查文档覆盖层";
+
+/* Class = "NSTextFieldCell"; title = "Let’s Get Started"; ObjectID = "pUM-8e-63f"; */
+"pUM-8e-63f.title" = "开始吧";
+
+/* Class = "NSTextFieldCell"; title = "Checking your document to see Assistant feedback…"; ObjectID = "qdA-AE-tBb"; */
+"qdA-AE-tBb.title" = "正在检查文档并获取助理反馈…";
+
+/* Class = "NSTextFieldCell"; title = "Assistants can help you spot inconsistencies and validate your design against sets of rules."; ObjectID = "QoU-Lh-FJT"; */
+"QoU-Lh-FJT.title" = "助理能帮您根据相应规则检查设计并校验不统一之处。";
+
+/* Class = "NSViewController"; title = "No Results Overlay"; ObjectID = "qtA-bf-eDr"; */
+"qtA-bf-eDr.title" = "没有结果覆盖";
+
+/* Class = "NSTextFieldCell"; title = "Checking Document"; ObjectID = "Raj-Or-2s1"; */
+"Raj-Or-2s1.title" = "正在检查文档";
+
+/* Class = "NSWindow"; title = "Assistants"; ObjectID = "rHq-dM-kdj"; */
+"rHq-dM-kdj.title" = "助理";
+
+/* Class = "NSTextFieldCell"; title = "It looks like you're missing Assistants attached to this document. Install missing or add new Assistants to get started."; ObjectID = "STe-8W-iqX"; */
+"STe-8W-iqX.title" = "您似乎缺少了文档附带的助理。安装缺失的助理添加新助理以开始使用。";
+
+/* Class = "NSButtonCell"; title = "Manage Assistants…"; ObjectID = "VDV-Kh-eH3"; */
+"VDV-Kh-eH3.title" = "管理助理…";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Show in document"; ObjectID = "VLb-BX-JsH"; */
+"VLb-BX-JsH.ibShadowedToolTip" = "在文档中展示";
+
+/* Class = "NSTextFieldCell"; title = "Something’s Wrong"; ObjectID = "WYb-UY-ehf"; */
+"WYb-UY-ehf.title" = "有点儿不对劲";
+
+/* Class = "NSTextFieldCell"; title = "Install missing assistants to get more results"; ObjectID = "yy0-f6-eZs"; */
+"yy0-f6-eZs.title" = "安装缺失的助理以获取更多检查结果";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Install"; ObjectID = "Zcs-WF-U7B"; */
+"Zcs-WF-U7B.ibShadowedToolTip" = "安装";
+

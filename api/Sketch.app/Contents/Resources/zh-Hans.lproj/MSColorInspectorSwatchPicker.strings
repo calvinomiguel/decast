@@ -1,0 +1,9 @@
+/* Class = "NSButtonCell"; title = "Color Variable Picker"; ObjectID = "fxu-q0-ZzU"; */
+"fxu-q0-ZzU.title" = "变量拾色器";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Detach from Color Variable"; ObjectID = "gKm-Y9-B69"; */
+"gKm-Y9-B69.ibShadowedToolTip" = "与颜色变量解绑";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Create Color Variable"; ObjectID = "J9f-9m-eLh"; */
+"J9f-9m-eLh.ibShadowedToolTip" = "创建颜色变量";
+

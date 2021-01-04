@@ -1,0 +1,6 @@
+/* Class = "NSTextFieldCell"; title = "EXPORT"; ObjectID = "8as-vw-uqn"; */
+"8as-vw-uqn.title" = "导出";
+
+/* Class = "NSTextField"; ibShadowedToolTip = "Apply export options to the layer."; ObjectID = "fm6-OR-0Ru"; */
+"fm6-OR-0Ru.ibShadowedToolTip" = "应用导出选项到图层。";
+

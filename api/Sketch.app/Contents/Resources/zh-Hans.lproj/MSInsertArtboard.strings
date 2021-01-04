@@ -1,0 +1,105 @@
+/* Class = "NSTextFieldCell"; title = "Height"; ObjectID = "0G9-R1-rvk"; */
+"0G9-R1-rvk.title" = "高度";
+
+/* Class = "NSTextFieldCell"; title = "100 × 100"; ObjectID = "1aA-qL-ixK"; */
+"1aA-qL-ixK.title" = "100 × 100";
+
+/* Class = "NSMenuItem"; title = "Paper Sizes"; ObjectID = "1rs-t6-hgq"; */
+"1rs-t6-hgq.title" = "纸张尺寸";
+
+/* Class = "NSButtonCell"; title = "Create Custom Size…"; ObjectID = "1Xw-Km-NXN"; */
+"1Xw-Km-NXN.title" = "创建自定义尺寸…";
+
+/* Class = "NSMenuItem"; title = "Responsive Web"; ObjectID = "2Wv-M0-xd6"; */
+"2Wv-M0-xd6.title" = "响应式网页";
+
+/* Class = "NSMenuItem"; title = "Edit"; ObjectID = "6lm-Jp-Z2j"; */
+"6lm-Jp-Z2j.title" = "编辑";
+
+/* Class = "NSTextFieldCell"; title = "iPhone"; ObjectID = "6NP-PM-ldS"; */
+"6NP-PM-ldS.title" = "iPhone";
+
+/* Class = "NSTextFieldCell"; title = "Size:"; ObjectID = "8MW-Uf-sxu"; */
+"8MW-Uf-sxu.title" = "尺寸：";
+
+/* Class = "NSMenuItem"; title = "Responsive Web"; ObjectID = "8pM-BE-qnN"; */
+"8pM-BE-qnN.title" = "响应式网页";
+
+/* Class = "NSMenuItem"; title = "Edit"; ObjectID = "a8J-3E-baG"; */
+"a8J-3E-baG.title" = "编辑";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Add a custom Artboard to Presets."; ObjectID = "c89-w3-L0Q"; */
+"c89-w3-L0Q.ibShadowedToolTip" = "添加自定义画板到预设。";
+
+/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "D4o-kN-tEL"; */
+"D4o-kN-tEL.title" = "删除";
+
+/* Class = "NSMenuItem"; title = "Apple Devices"; ObjectID = "fyD-mx-6LB"; */
+"fyD-mx-6LB.title" = "Apple设备";
+
+/* Class = "NSTextFieldCell"; title = "Section"; ObjectID = "g4a-zS-vOS"; */
+"g4a-zS-vOS.title" = "选项";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "gK7-Er-Hg9"; */
+"gK7-Er-Hg9.title" = "文本单元格";
+
+/* Class = "NSTextFieldCell"; title = "Custom Preset"; ObjectID = "hNW-sj-zyc"; */
+"hNW-sj-zyc.title" = "自定义预设";
+
+/* Class = "NSTextFieldCell"; title = "Width"; ObjectID = "ICo-Js-XT0"; */
+"ICo-Js-XT0.title" = "宽度";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "jFS-el-YUl"; */
+"jFS-el-YUl.title" = "文本单元格";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "K2P-nk-UiO"; */
+"K2P-nk-UiO.title" = "取消";
+
+/* Class = "NSMenuItem"; title = "Custom"; ObjectID = "Lbq-MJ-pR5"; */
+"Lbq-MJ-pR5.title" = "自定义";
+
+/* Class = "NSMenuItem"; title = "Apple Devices"; ObjectID = "lor-0F-5bb"; */
+"lor-0F-5bb.title" = "Apple 设备";
+
+/* Class = "NSButtonCell"; title = "Save"; ObjectID = "NFH-ng-hCX"; */
+"NFH-ng-hCX.title" = "保存";
+
+/* Class = "NSTextFieldCell"; title = "Name:"; ObjectID = "OUP-yI-F8e"; */
+"OUP-yI-F8e.title" = "名称：";
+
+/* Class = "NSMenuItem"; title = "Material Design"; ObjectID = "OuX-4e-fUE"; */
+"OuX-4e-fUE.title" = "Material Design";
+
+/* Class = "NSMenuItem"; title = "Paper Sizes"; ObjectID = "piz-0D-kTm"; */
+"piz-0D-kTm.title" = "纸张尺寸";
+
+/* Class = "NSMenuItem"; title = "Material Design"; ObjectID = "PLj-Pi-tym"; */
+"PLj-Pi-tym.title" = "Material Design";
+
+/* Class = "NSTextFieldCell"; title = "Section"; ObjectID = "pTD-aM-WC5"; */
+"pTD-aM-WC5.title" = "选项";
+
+/* Class = "NSSegmentedControl"; ibShadowedToolTip = "Choose between Portrait and Landscape dimensions."; ObjectID = "pWR-Ce-tyF"; */
+"pWR-Ce-tyF.ibShadowedToolTip" = "选择横屏或竖屏。";
+
+/* Class = "NSTextFieldCell"; title = "iPhone"; ObjectID = "QR0-IO-qn5"; */
+"QR0-IO-qn5.title" = "iPhone";
+
+/* Class = "NSMenuItem"; title = "Custom"; ObjectID = "R2r-ik-dD2"; */
+"R2r-ik-dD2.title" = "自定义";
+
+/* Class = "NSTextFieldCell"; title = "100 × 100"; ObjectID = "r7S-B7-vdf"; */
+"r7S-B7-vdf.title" = "100 × 100";
+
+/* Class = "NSSegmentedControl"; ibShadowedToolTip = "Choose between Portrait and Landscape dimensions."; ObjectID = "RAh-Jj-Vzk"; */
+"RAh-Jj-Vzk.ibShadowedToolTip" = "选择横屏或竖屏。";
+
+/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "tjG-aI-A8N"; */
+"tjG-aI-A8N.title" = "删除";
+
+/* Class = "NSButtonCell"; title = "Create Custom Size…"; ObjectID = "V4z-hB-pBM"; */
+"V4z-hB-pBM.title" = "创建自定义尺寸…";
+
+/* Class = "NSTextFieldCell"; title = "Create presets for your frequently used custom Artboard sizes."; ObjectID = "vNq-aL-uFQ"; */
+"vNq-aL-uFQ.title" = "根据您常用的自定义画板创建预设尺寸。";
+

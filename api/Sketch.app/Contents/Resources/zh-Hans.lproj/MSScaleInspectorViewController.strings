@@ -1,0 +1,30 @@
+/* Class = "NSTextFieldCell"; title = "Scale from center"; ObjectID = "6bc-7V-4sn"; */
+"6bc-7V-4sn.title" = "中心缩放";
+
+/* Class = "NSButtonCell"; title = "Finish"; ObjectID = "CtN-Jo-iY1"; */
+"CtN-Jo-iY1.title" = "结束";
+
+/* Class = "NSTextFieldCell"; title = "128"; ObjectID = "dTs-pP-Yie"; */
+"dTs-pP-Yie.title" = "128";
+
+/* Class = "NSTextFieldCell"; title = "Height"; ObjectID = "EdO-e1-fJr"; */
+"EdO-e1-fJr.title" = "高度";
+
+/* Class = "NSTextFieldCell"; title = "128"; ObjectID = "Em2-yJ-wyA"; */
+"Em2-yJ-wyA.title" = "128";
+
+/* Class = "NSTextFieldCell"; title = "Scale"; ObjectID = "gQb-ak-L3K"; */
+"gQb-ak-L3K.title" = "缩放";
+
+/* Class = "NSTextFieldCell"; title = "SCALE LAYERS"; ObjectID = "JNQ-hD-UJB"; */
+"JNQ-hD-UJB.title" = "缩放图层";
+
+/* Class = "NSTextFieldCell"; title = "1"; ObjectID = "NVi-KX-cCN"; */
+"NVi-KX-cCN.title" = "1";
+
+/* Class = "NSTextFieldCell"; title = "Width"; ObjectID = "SAV-PX-AhT"; */
+"SAV-PX-AhT.title" = "宽度";
+
+/* Class = "NSView"; ibShadowedToolTip = "Choose the origin the layer should scale from."; ObjectID = "VG1-70-wzH"; */
+"VG1-70-wzH.ibShadowedToolTip" = "选择图层的缩放中心点。";
+

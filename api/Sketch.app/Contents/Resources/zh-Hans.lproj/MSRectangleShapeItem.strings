@@ -1,0 +1,9 @@
+/* Class = "NSTextFieldCell"; title = "10"; ObjectID = "23"; */
+"23.title" = "10";
+
+/* Class = "NSMenuItem"; title = "Round Corners"; ObjectID = "b27-FL-cvZ"; */
+"b27-FL-cvZ.title" = "圆角";
+
+/* Class = "NSMenuItem"; title = "Smooth Corners"; ObjectID = "JLS-tY-7gV"; */
+"JLS-tY-7gV.title" = "平滑圆角";
+

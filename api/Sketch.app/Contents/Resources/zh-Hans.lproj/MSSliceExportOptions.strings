@@ -1,0 +1,45 @@
+/* Class = "NSTextFieldCell"; title = "WebP Quality:"; ObjectID = "1MR-gu-afO"; */
+"1MR-gu-afO.title" = "WebP 质量：";
+
+/* Class = "NSButtonCell"; title = "Save for web"; ObjectID = "8U9-bu-abs"; */
+"8U9-bu-abs.title" = "保存为 web";
+
+/* Class = "NSSlider"; ibShadowedToolTip = "Adjust the quality of the exported JPG."; ObjectID = "35"; */
+"35.ibShadowedToolTip" = "调整导出 JPG 的质量。";
+
+/* Class = "NSTextFieldCell"; title = "100%"; ObjectID = "40"; */
+"40.title" = "100%";
+
+/* Class = "NSButtonCell"; title = "Progressive JPG"; ObjectID = "53"; */
+"53.title" = "渐进式 JPG";
+
+/* Class = "NSTextFieldCell"; title = "JPG Quality:"; ObjectID = "58"; */
+"58.title" = "JPG质量：";
+
+/* Class = "NSTextFieldCell"; title = "JPG does not support transparency. Transparent pixels will appear as white instead. To retain transparency export as a PNG."; ObjectID = "60"; */
+"60.title" = "JPG 不支持显示透明度。透明像素会显示为白色。要保留透明度，请导出 PNG。";
+
+/* Class = "NSButtonCell"; title = "Interlace PNG"; ObjectID = "Ac1-Qe-1zB"; */
+"Ac1-Qe-1zB.title" = "交错式 PNG";
+
+/* Class = "NSTextFieldCell"; title = "Bitmap Exporting:"; ObjectID = "Bkf-o1-wS9"; */
+"Bkf-o1-wS9.title" = "位图导出：";
+
+/* Class = "NSSlider"; ibShadowedToolTip = "Adjust the quality of the exported WebP."; ObjectID = "Bxd-xG-MTw"; */
+"Bxd-xG-MTw.ibShadowedToolTip" = "调整导出 WebP 的质量。";
+
+/* Class = "NSTextFieldCell"; title = "100%"; ObjectID = "CSq-sB-7b9"; */
+"CSq-sB-7b9.title" = "100%";
+
+/* Class = "NSTextFieldCell"; title = "When displayed on the web, an interlaced PNG will load successively from a low quality image."; ObjectID = "Cub-GC-jT2"; */
+"Cub-GC-jT2.title" = "在网页上显示时，交错式 PNG 将从低质量图像开始逐步加载。";
+
+/* Class = "NSTextFieldCell"; title = "In order to decrease file size, color profile and EXIF metadata will be discarded."; ObjectID = "eoV-Sh-vZI"; */
+"eoV-Sh-vZI.title" = "为压缩文件大小，颜色配置和 EXIF 元数据将被丢弃。";
+
+/* Class = "NSTextFieldCell"; title = "PNG Exporting:"; ObjectID = "RtF-L3-Euh"; */
+"RtF-L3-Euh.title" = "PNG 导出：";
+
+/* Class = "NSTextFieldCell"; title = "When displayed on the web, a progressive JPG will load successively from a low quality image."; ObjectID = "uCf-oE-miz"; */
+"uCf-oE-miz.title" = "在网页上显示时，渐进式 JPG 将从低质量图像开始逐步加载。";
+

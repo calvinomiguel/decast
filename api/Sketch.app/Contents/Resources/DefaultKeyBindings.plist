@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>MSPreviewAtActualSizeAction</key>
+	<string>§~</string>
+	<key>MSZoomAction</key>
+	<string>zζяזظ</string>
+	<key>MSInsertVectorAction</key>
+	<string>vωмהد</string>
+	<key>MSPencilAction</key>
+	<string>pπзפح</string>
+	<key>MSInsertTextLayerAction</key>
+	<string>tτеאف</string>
+	<key>MSOvalShapeAction</key>
+	<string>oοщםخ</string>
+	<key>MSRectangleShapeAction</key>
+	<string>rρкרق</string>
+	<key>MSInsertArtboardAction</key>
+	<string>aαфשش</string>
+	<key>MSInsertSliceAction</key>
+	<string>sσыדس</string>
+	<key>MSInsertLineAction</key>
+	<string>lλдךم</string>
+	<key>MSRoundedRectangleShapeAction</key>
+	<string>uθгוع</string>
+	<key>MSToggleFillAction</key>
+	<string>fφаכب</string>
+	<key>MSToggleBorderAction</key>
+	<string>bβиנز</string>
+	<key>MSAddFlowAction</key>
+	<string>wц׳ص</string>
+	<key>MSInsertHotspotAction</key>
+	<string>hрיا</string>
+	<key>Sketch.MSComponentsPickerAction</key>
+	<string>cψсבذ</string>
+</dict>
+</plist>

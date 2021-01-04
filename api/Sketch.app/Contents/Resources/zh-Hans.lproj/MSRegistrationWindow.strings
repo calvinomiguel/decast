@@ -1,0 +1,90 @@
+/* Class = "NSMenuItem"; title = "Production"; ObjectID = "3Eh-bw-Upz"; */
+"3Eh-bw-Upz.title" = "生产环境";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "4vG-ay-wfZ"; */
+"4vG-ay-wfZ.title" = "盒子";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "9Is-qh-EMe"; Note = "Button to dismiss Sketch Cloud signin sheet"; */
+"9Is-qh-EMe.title" = "取消";
+
+/* Class = "NSTextFieldCell"; title = "Sign in with your Sketch Account to share your designs and prototypes with clients, colleagues and developers."; ObjectID = "ARL-SJ-OS2"; */
+"ARL-SJ-OS2.title" = "登录您的 Sketch 账户，把设计和原型分享给客户、同事和开发人员。";
+
+/* Class = "NSButtonCell"; title = "Visit Store…"; ObjectID = "BqZ-sw-EiW"; */
+"BqZ-sw-EiW.title" = "访问商店…";
+
+/* Class = "NSButtonCell"; title = "Create Account…"; ObjectID = "CyO-vf-wCs"; Note = "Button in Cloud signin sheet to open the browser to create a Sketch Cloud account."; */
+"CyO-vf-wCs.title" = "创建账户…";
+
+/* Class = "NSTextFieldCell"; title = "Invalid email or password."; ObjectID = "gWf-Nl-VLs"; Note = "Default error message in the Cloud signin sheet."; */
+"gWf-Nl-VLs.title" = "无效的邮箱或密码。";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Required"; ObjectID = "h0z-lo-HfZ"; */
+"h0z-lo-HfZ.ibShadowedIsNilPlaceholder" = "必填";
+
+/* Class = "NSTextFieldCell"; title = "Password"; ObjectID = "h1X-KO-1Ed"; Note = "Password field label in Cloud signin sheet"; */
+"h1X-KO-1Ed.title" = "密码";
+
+/* Class = "NSButtonCell"; title = "Register"; ObjectID = "Ja3-jS-bo6"; */
+"Ja3-jS-bo6.title" = "注册";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "SK3-0000-0000-0000-0000-0000"; ObjectID = "kCf-Hg-sTQ"; */
+"kCf-Hg-sTQ.ibShadowedIsNilPlaceholder" = "SK3-0000-0000-0000-0000-0000";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "example@sketch.com"; ObjectID = "kUG-6E-w0F"; */
+"kUG-6E-w0F.ibShadowedIsNilPlaceholder" = "example@sketch.com";
+
+/* Class = "NSMenuItem"; title = "Development"; ObjectID = "MFi-9w-frM"; */
+"MFi-9w-frM.title" = "开发";
+
+/* Class = "NSButtonCell"; title = "Learn More…"; ObjectID = "mJX-at-fhU"; */
+"mJX-at-fhU.title" = "了解更多…";
+
+/* Class = "NSSegmentedCell"; mSb-kZ-v2e.ibShadowedLabels[0] = "Personal License"; ObjectID = "mSb-kZ-v2e"; */
+"mSb-kZ-v2e.ibShadowedLabels[0]" = "个人许可证";
+
+/* Class = "NSSegmentedCell"; mSb-kZ-v2e.ibShadowedLabels[1] = "Sketch for Teams"; ObjectID = "mSb-kZ-v2e"; */
+"mSb-kZ-v2e.ibShadowedLabels[1]" = "Sketch 团队应用";
+
+/* Class = "NSButtonCell"; title = "Forgot Password?"; ObjectID = "oEr-Dw-WUj"; Note = "Button in Cloud signin sheet to reset password in the browser."; */
+"oEr-Dw-WUj.title" = "忘记密码？";
+
+/* Class = "NSWindow"; title = "Window"; ObjectID = "oTZ-0G-DjV"; */
+"oTZ-0G-DjV.title" = "窗口";
+
+/* Class = "NSTextFieldCell"; title = "You’re ready to get started. Enjoy!"; ObjectID = "pfs-Mp-bgn"; */
+"pfs-Mp-bgn.title" = "已经准备就绪。祝您使用愉快！";
+
+/* Class = "NSTextFieldCell"; title = "If you have already purchased a Personal Sketch License from our store, you should have received a license key via email. Lost Key?"; ObjectID = "qbZ-bh-bAs"; */
+"qbZ-bh-bAs.title" = "若您已从我们的商店购买了 Sketch 个人许可证，您将通过邮件收到许可证序列号。序列号丢失？";
+
+/* Class = "NSButtonCell"; title = "Sign In With SSO…"; ObjectID = "S2R-8u-Fau"; */
+"S2R-8u-Fau.title" = "通过 SSO 注册…";
+
+/* Class = "NSTextFieldCell"; title = "Collaborate with Sketch Cloud"; ObjectID = "smx-3b-taa"; */
+"smx-3b-taa.title" = "通过 Sketch Cloud 写作";
+
+/* Class = "NSViewController"; title = "Sign In to Sketch Cloud"; ObjectID = "THE-6F-9j7"; */
+"THE-6F-9j7.title" = "登录到 Sketch Cloud";
+
+/* Class = "NSViewController"; title = "Personal License"; ObjectID = "TTH-nH-24u"; */
+"TTH-nH-24u.title" = "个人许可证";
+
+/* Class = "NSMenuItem"; title = "Staging"; ObjectID = "Wca-3G-Kdr"; */
+"Wca-3G-Kdr.title" = "分期";
+
+/* Class = "NSButtonCell"; title = "Sign In"; ObjectID = "Wmw-WW-Jnd"; Note = "Button to start signing in to Sketch Cloud from the sign in sheet."; */
+"Wmw-WW-Jnd.title" = "注册";
+
+/* Class = "NSTextFieldCell"; title = "Email Address"; ObjectID = "xsA-iZ-yg7"; Note = "Email field label in Cloud signin sheet"; */
+"xsA-iZ-yg7.title" = "邮箱地址";
+
+/* Class = "NSButtonCell"; title = "Download Earlier Version…"; ObjectID = "y4T-cs-Jnd"; */
+"y4T-cs-Jnd.title" = "下载较早版本…";
+
+/* Class = "NSTextFieldCell"; placeholderString = "SK3-0000-0000-0000-0000-0000"; ObjectID = "yfB-jh-Is0"; */
+"yfB-jh-Is0.placeholderString" = "SK3-0000-0000-0000-0000-0000";
+
+/* Class = "NSMenuItem"; title = "Test"; ObjectID = "zFD-5E-GKT"; */
+"zFD-5E-GKT.title" = "测试";
+

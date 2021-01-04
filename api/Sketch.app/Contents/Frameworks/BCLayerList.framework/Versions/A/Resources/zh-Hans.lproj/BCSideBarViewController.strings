@@ -1,0 +1,39 @@
+/* Class = "NSButton"; ibShadowedToolTip = "Add Page"; ObjectID = "9Fs-KS-qYU"; */
+"9Fs-KS-qYU.ibShadowedToolTip" = "添加页面";
+
+/* Class = "NSMenuItem"; title = "Image"; ObjectID = "b3r-nJ-BDu"; */
+"b3r-nJ-BDu.title" = "图像";
+
+/* Class = "NSButtonCell"; title = "Pages"; ObjectID = "DvG-Zm-x3Q"; */
+"DvG-Zm-x3Q.title" = "页面";
+
+/* Class = "NSMenuItem"; title = "Prototyping"; ObjectID = "eSg-3c-ixq"; */
+"eSg-3c-ixq.title" = "原型";
+
+/* Class = "NSMenuItem"; title = "Page 1"; ObjectID = "Goo-E5-VCK"; */
+"Goo-E5-VCK.title" = "页面1";
+
+/* Class = "NSTabViewItem"; label = "Layer list"; ObjectID = "gwl-8c-vwb"; */
+"gwl-8c-vwb.label" = "图层列表";
+
+/* Class = "NSMenuItem"; title = "Group"; ObjectID = "H8G-cB-fHI"; */
+"H8G-cB-fHI.title" = "编组";
+
+/* Class = "NSMenuItem"; title = "Text"; ObjectID = "Hoz-9D-u2e"; */
+"Hoz-9D-u2e.title" = "字符";
+
+/* Class = "NSMenuItem"; title = "Shape"; ObjectID = "jBS-f5-5pN"; */
+"jBS-f5-5pN.title" = "图形";
+
+/* Class = "NSMenuItem"; title = "Exportable"; ObjectID = "rnb-ji-x4y"; */
+"rnb-ji-x4y.title" = "导出项";
+
+/* Class = "NSMenuItem"; title = "Symbol"; ObjectID = "TJn-gO-wa0"; */
+"TJn-gO-wa0.title" = "控件";
+
+/* Class = "NSSearchFieldCell"; placeholderString = "Search Layers"; ObjectID = "WLK-Si-a9R"; */
+"WLK-Si-a9R.placeholderString" = "搜索图层";
+
+/* Class = "NSMenuItem"; title = "Pick a filter"; ObjectID = "xa8-Eg-FZ4"; */
+"xa8-Eg-FZ4.title" = "筛选项";
+

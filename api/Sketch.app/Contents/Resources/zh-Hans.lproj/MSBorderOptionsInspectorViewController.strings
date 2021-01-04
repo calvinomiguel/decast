@@ -1,0 +1,42 @@
+/* Class = "NSTextFieldCell"; title = "Dash"; ObjectID = "2962"; */
+"2962.title" = "虚线";
+
+/* Class = "NSTextFieldCell"; title = "Gap"; ObjectID = "2965"; */
+"2965.title" = "间隔";
+
+/* Class = "NSTextFieldCell"; title = "Ends"; ObjectID = "2968"; */
+"2968.title" = "端点";
+
+/* Class = "NSTextFieldCell"; title = "Joins"; ObjectID = "2969"; */
+"2969.title" = "节点";
+
+/* Class = "NSTextFieldCell"; title = "End"; ObjectID = "3130"; */
+"3130.title" = "终点";
+
+/* Class = "NSTextFieldCell"; title = "Start"; ObjectID = "3131"; */
+"3131.title" = "起点";
+
+/* Class = "NSPopUpButton"; ibShadowedToolTip = "Choose Arrow type for the Start of an open shape."; ObjectID = "3132"; */
+"3132.ibShadowedToolTip" = "为开放图形的起点选择箭头样式。";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "3134"; */
+"3134.title" = "其他视图";
+
+/* Class = "NSMenuItem"; title = "-"; ObjectID = "3135"; */
+"3135.title" = "-";
+
+/* Class = "NSPopUpButton"; ibShadowedToolTip = "Choose Arrow type for the End of an open shape."; ObjectID = "3138"; */
+"3138.ibShadowedToolTip" = "为开放图形的终点选择箭头样式。";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "3140"; */
+"3140.title" = "其他视图";
+
+/* Class = "NSSegmentedControl"; ibShadowedToolTip = "Select the End type for open shapes.."; ObjectID = "d4Q-b7-py0"; */
+"d4Q-b7-py0.ibShadowedToolTip" = "为开放图形的端点选择样式。";
+
+/* Class = "NSMenuItem"; title = "-"; ObjectID = "tNm-kG-GeY"; */
+"tNm-kG-GeY.title" = "-";
+
+/* Class = "NSSegmentedControl"; ibShadowedToolTip = "Select the Join type for angles in a shape."; ObjectID = "Zrn-6Y-156"; */
+"Zrn-6Y-156.ibShadowedToolTip" = "为开放图形的节点选择样式。";
+

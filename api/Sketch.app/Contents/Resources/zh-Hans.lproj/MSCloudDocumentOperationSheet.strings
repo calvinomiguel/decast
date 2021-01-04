@@ -1,0 +1,27 @@
+/* Class = "NSTextFieldCell"; title = "Save As:"; ObjectID = "4uc-SE-2Gi"; Note = "Document save dialog: Save as name textfield label"; */
+"4uc-SE-2Gi.title" = "保存为：";
+
+/* Class = "NSTextFieldCell"; title = "Save Document to Sketch Cloud"; ObjectID = "7Bt-4Y-FgZ"; */
+"7Bt-4Y-FgZ.title" = "保存文档至 Sketch Cloud";
+
+/* Class = "NSButtonCell"; title = "Save"; ObjectID = "B1e-jo-2HG"; */
+"B1e-jo-2HG.title" = "保存";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "bBN-Z9-Hkd"; */
+"bBN-Z9-Hkd.title" = "取消";
+
+/* Class = "NSTextFieldCell"; title = "Project:"; ObjectID = "nHS-40-2mO"; Note = "Document save dialog: project selection input label"; */
+"nHS-40-2mO.title" = "项目：";
+
+/* Class = "NSButtonCell"; title = "Delete"; ObjectID = "oB0-xF-Wdr"; */
+"oB0-xF-Wdr.title" = "删除";
+
+/* Class = "NSTextFieldCell"; title = "Documents saved to your team workspace are shared by default. You can adjust a document’s settings on Sketch Cloud."; ObjectID = "ucB-Ve-dxd"; */
+"ucB-Ve-dxd.title" = "保存至团队办公空间的文档是默认共享的。您可以在 Sketch Cloud 中修改文档设置的权限。";
+
+/* Class = "NSWindow"; title = "Window"; ObjectID = "UJv-D2-e4U"; */
+"UJv-D2-e4U.title" = "窗口";
+
+/* Class = "NSTextFieldCell"; title = "Workspace:"; ObjectID = "y6R-G4-liy"; Note = "Document save dialog: team selection input label"; */
+"y6R-G4-liy.title" = "办公空间：";
+

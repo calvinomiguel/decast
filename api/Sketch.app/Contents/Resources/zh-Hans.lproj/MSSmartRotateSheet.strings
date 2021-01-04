@@ -1,0 +1,21 @@
+/* Class = "NSButtonCell"; title = "Rotate"; ObjectID = "13"; */
+"13.title" = "旋转";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "14"; */
+"14.title" = "取消";
+
+/* Class = "NSTextFieldCell"; title = "Create a number of copies of the selected layer around a point."; ObjectID = "19"; */
+"19.title" = "创建要围绕中心点拷贝的图层数量。";
+
+/* Class = "NSTextFieldCell"; title = "Rotate Copies"; ObjectID = "20"; */
+"20.title" = "旋转副本";
+
+/* Class = "NSTextFieldCell"; title = "6"; ObjectID = "75"; */
+"75.title" = "6";
+
+/* Class = "NSTextFieldCell"; title = "Number of Copies:"; ObjectID = "77"; */
+"77.title" = "副本数量：";
+
+/* Class = "NSTextFieldCell"; title = "You will have 7 layers in total."; ObjectID = "111"; */
+"111.title" = "将生成共7个图层。";
+

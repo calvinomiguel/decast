@@ -1,0 +1,27 @@
+/* Class = "NSButton"; ibShadowedToolTip = "Animate Artboard from Bottom."; ObjectID = "99B-Rs-Nhy"; */
+"99B-Rs-Nhy.ibShadowedToolTip" = "从底部移入画板。";
+
+/* Class = "NSTextFieldCell"; title = "Animation"; ObjectID = "AXr-0n-xXN"; */
+"AXr-0n-xXN.title" = "动画";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Animate Artboard from Right."; ObjectID = "b5P-Vn-92c"; */
+"b5P-Vn-92c.ibShadowedToolTip" = "从右侧移入画板。";
+
+/* Class = "NSTextFieldCell"; title = "Target"; ObjectID = "ccM-JS-nHT"; */
+"ccM-JS-nHT.title" = "目标";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "EEs-pW-imn"; */
+"EEs-pW-imn.title" = "其他视图";
+
+/* Class = "NSMenuItem"; title = "Item"; ObjectID = "EnG-wl-O3w"; */
+"EnG-wl-O3w.title" = "选项";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Animate Artboard from Left."; ObjectID = "Gij-eQ-xOw"; */
+"Gij-eQ-xOw.ibShadowedToolTip" = "从左侧移入画板。";
+
+/* Class = "NSButton"; ibShadowedToolTip = "No Artboard Animation."; ObjectID = "MdC-5Z-99u"; */
+"MdC-5Z-99u.ibShadowedToolTip" = "画板无动画。";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Animate Artboard from Top."; ObjectID = "ZZi-dy-aQf"; */
+"ZZi-dy-aQf.ibShadowedToolTip" = "从顶部移入画板。";
+

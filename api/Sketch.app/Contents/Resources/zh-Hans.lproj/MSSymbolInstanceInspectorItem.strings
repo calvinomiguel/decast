@@ -1,0 +1,24 @@
+/* Class = "NSButtonCell"; title = "Edit Source"; ObjectID = "7B0-ar-jyX"; */
+"7B0-ar-jyX.title" = "编辑资源";
+
+/* Class = "NSButtonCell"; title = "Detach"; ObjectID = "31d-Gf-und"; */
+"31d-Gf-und.title" = "解绑";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Detach instance from Symbol Source."; ObjectID = "BaA-jB-1Xb"; */
+"BaA-jB-1Xb.ibShadowedToolTip" = "将实例与控件资源解绑。";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Edit Symbol Source."; ObjectID = "C3y-fL-ljS"; */
+"C3y-fL-ljS.ibShadowedToolTip" = "编辑控件资源。";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Edit Symbol in Library."; ObjectID = "KYb-nI-mfl"; */
+"KYb-nI-mfl.ibShadowedToolTip" = "在组件库中编辑控件。";
+
+/* Class = "NSButtonCell"; title = "Make Local"; ObjectID = "QTE-Jr-2Xp"; */
+"QTE-Jr-2Xp.title" = "本地化";
+
+/* Class = "NSButtonCell"; title = "Edit in Library"; ObjectID = "uFG-y9-4iP"; */
+"uFG-y9-4iP.title" = "在组件库中编辑";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Import a local copy of this Symbol."; ObjectID = "v4k-et-W6D"; */
+"v4k-et-W6D.ibShadowedToolTip" = "导入该控件的本地副本。";
+

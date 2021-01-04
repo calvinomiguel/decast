@@ -1,0 +1,21 @@
+/* Class = "NSMenuItem"; title = "Background Blur"; ObjectID = "5av-9y-hg7"; */
+"5av-9y-hg7.title" = "背景模糊";
+
+/* Class = "NSMenuItem"; title = "Zoom Blur"; ObjectID = "5ZI-JG-4N4"; */
+"5ZI-JG-4N4.title" = "缩放模糊";
+
+/* Class = "NSPopUpButton"; ibShadowedToolTip = "Select the type of blur to apply to the layer."; ObjectID = "9g0-qg-CYQ"; */
+"9g0-qg-CYQ.ibShadowedToolTip" = "选择模糊样式应用于图层。";
+
+/* Class = "NSMenuItem"; title = "Motion Blur"; ObjectID = "cY0-Ea-fuO"; */
+"cY0-Ea-fuO.title" = "动感模糊";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "edA-qD-GlE"; */
+"edA-qD-GlE.title" = "其他视图";
+
+/* Class = "NSMenuItem"; title = "Multiple"; ObjectID = "pj0-2b-peV"; */
+"pj0-2b-peV.title" = "多种";
+
+/* Class = "NSMenuItem"; title = "Gaussian Blur"; ObjectID = "v7A-Wl-oN0"; */
+"v7A-Wl-oN0.title" = "高斯模糊";
+

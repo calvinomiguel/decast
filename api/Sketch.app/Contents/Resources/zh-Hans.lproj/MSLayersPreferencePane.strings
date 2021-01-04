@@ -1,0 +1,84 @@
+/* Class = "NSMenuItem"; title = "Top to bottom"; ObjectID = "0ww-KK-UNM"; */
+"0ww-KK-UNM.title" = "从上往下";
+
+/* Class = "NSButtonCell"; title = "Scale down images to fit Artboards"; ObjectID = "1dm-6g-EyF"; */
+"1dm-6g-EyF.title" = "缩小图像以适应画板";
+
+/* Class = "NSMenuItem"; title = "Bottom to top"; ObjectID = "8zI-Td-9WP"; */
+"8zI-Td-9WP.title" = "从下往上";
+
+/* Class = "NSTextFieldCell"; title = "This allows you to select objects inside groups directly from the Canvas without opening the group first. If deselected, you can still select a group’s layer with Command-click."; ObjectID = "b7w-Xh-rIM"; */
+"b7w-Xh-rIM.title" = "此功能允许您穿透编组直接选取对象。取消勾选后，您仍可以通过Command+点击选取编组中的图层。";
+
+/* Class = "NSTextFieldCell"; title = "Duplicating:"; ObjectID = "Dvn-M4-pqz"; */
+"Dvn-M4-pqz.title" = "复制：";
+
+/* Class = "NSButtonCell"; title = "Fit layers and points to pixel bounds"; ObjectID = "grU-ZA-Eka"; */
+"grU-ZA-Eka.title" = "将图层和锚点契合于像素边缘";
+
+/* Class = "NSMenuItem"; title = "Top to bottom"; ObjectID = "J2g-5r-gyG"; */
+"J2g-5r-gyG.title" = "从上往下";
+
+/* Class = "NSMenuItem"; title = "Left to right"; ObjectID = "JIU-dm-kwf"; */
+"JIU-dm-kwf.title" = "从左往右";
+
+/* Class = "NSButtonCell"; title = "Close path when clicking to select opposite end point"; ObjectID = "kk3-Dd-AA9"; */
+"kk3-Dd-AA9.title" = "点击另一端锚点时闭合路径";
+
+/* Class = "NSButtonCell"; title = "Rename duplicated layers"; ObjectID = "MhO-5H-ZXr"; */
+"MhO-5H-ZXr.title" = "为图层副本重命名";
+
+/* Class = "NSButtonCell"; title = "Offset duplicated layers"; ObjectID = "Nxn-hI-dET"; */
+"Nxn-hI-dET.title" = "偏置图层副本";
+
+/* Class = "NSTextFieldCell"; title = "Editing Shapes:"; ObjectID = "o3M-Az-T4D"; */
+"o3M-Az-T4D.title" = "编辑形状：";
+
+/* Class = "NSButtonCell"; title = "Radio"; ObjectID = "OCI-fE-GhH"; */
+"OCI-fE-GhH.title" = "单选框";
+
+/* Class = "NSTextFieldCell"; title = "Select how Artboards will be ordered when exporting to PDF."; ObjectID = "PGw-yY-aQQ"; */
+"PGw-yY-aQQ.title" = "选择导出到 PDF 时的画板排列方式。";
+
+/* Class = "NSMenuItem"; title = "From the Layer List"; ObjectID = "rZ8-de-TbK"; */
+"rZ8-de-TbK.title" = "来自图层列表";
+
+/* Class = "NSButtonCell"; title = "to @2x"; ObjectID = "S7H-jo-ruq"; */
+"S7H-jo-ruq.title" = "到 @2x";
+
+/* Class = "NSTextFieldCell"; title = "Flatten Bitmaps:"; ObjectID = "sGa-PD-Dl0"; */
+"sGa-PD-Dl0.title" = "拼合位图：";
+
+/* Class = "NSButtonCell"; title = "to @1x"; ObjectID = "Sle-up-w7k"; */
+"Sle-up-w7k.title" = "到 @1x";
+
+/* Class = "NSMenuItem"; title = "From the Canvas"; ObjectID = "UIu-jV-TYw"; */
+"UIu-jV-TYw.title" = "来自画布";
+
+/* Class = "NSTextFieldCell"; title = "Pixel Fitting:"; ObjectID = "uoa-W6-fr0"; */
+"uoa-W6-fr0.title" = "契合像素：";
+
+/* Class = "NSTextFieldCell"; title = "Artboard Export:"; ObjectID = "V8k-H4-Uf4"; */
+"V8k-H4-Uf4.title" = "导出画板：";
+
+/* Class = "NSTextFieldCell"; title = "Vector Import:"; ObjectID = "vNV-Nb-Hwe"; */
+"vNV-Nb-Hwe.title" = "导入矢量图形：";
+
+/* Class = "NSTextFieldCell"; title = "New Groups:"; ObjectID = "vtN-M7-LBA"; */
+"vtN-M7-LBA.title" = "新编组：";
+
+/* Class = "NSButtonCell"; title = "Select group’s content on click for new groups"; ObjectID = "W2L-52-JxL"; */
+"W2L-52-JxL.title" = "为新编组点选组内容";
+
+/* Class = "NSTextFieldCell"; title = "Bitmap Import:"; ObjectID = "W33-3D-31c"; */
+"W33-3D-31c.title" = "导入位图：";
+
+/* Class = "NSMenuItem"; title = "Right to left"; ObjectID = "WAv-OM-Lsg"; */
+"WAv-OM-Lsg.title" = "从右往左";
+
+/* Class = "NSTextFieldCell"; title = "Holding down the Option key reverses these behaviors."; ObjectID = "xAS-It-I9k"; */
+"xAS-It-I9k.title" = "按住 Option 键以反转操作。";
+
+/* Class = "NSButtonCell"; title = "Insert PDF and EPS files as bitmap layers"; ObjectID = "xpm-gS-Jrd"; */
+"xpm-gS-Jrd.title" = "将 PDF 和 EPS 文件作为位图置入";
+

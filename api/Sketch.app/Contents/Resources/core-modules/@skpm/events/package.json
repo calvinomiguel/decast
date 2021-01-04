@@ -1,0 +1,36 @@
+{
+  "name": "@skpm/events",
+  "version": "0.2.0",
+  "description": "Drop-in replacement for the events NodeJS package",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./build.sh"
+  },
+  "files": [
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skpm/events.git"
+  },
+  "keywords": [
+    "sketch",
+    "module",
+    "events",
+    "EventEmitter"
+  ],
+  "author": "Mathieu Dutour <mathieu@dutour.me> (http://mathieu.dutour.me/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/skpm/events/issues"
+  },
+  "homepage": "https://github.com/skpm/events#readme",
+  "devDependencies": {
+    "events": "^3.0.0"
+  }
+
+,"_resolved": "https://registry.npmjs.org/@skpm/events/-/events-0.2.0.tgz"
+,"_integrity": "sha512-+teVA15/f0bKX26y42qGLM5zTS4ALsN9Ja/9YTx88X/TG9GARIl9Kqlc0ZpqgYV/lgpw1TgWEPdyoXSug12PHA=="
+,"_from": "@skpm/events@0.2.0"
+}

@@ -1,0 +1,15 @@
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "7HV-5y-Eev"; */
+"7HV-5y-Eev.title" = "表视图单元格";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "EWW-XO-hqx"; */
+"EWW-XO-hqx.title" = "表视图单元格";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "MbA-8S-ugM"; */
+"MbA-8S-ugM.title" = "文本单元格";
+
+/* Class = "NSMenuItem"; title = "Unlink from Library"; ObjectID = "PpT-qj-0l1"; */
+"PpT-qj-0l1.title" = "与组件库取消关联";
+
+/* Class = "NSMenuItem"; title = "Edit in Library…"; ObjectID = "RAN-fU-Bql"; */
+"RAN-fU-Bql.title" = "在组件库中编辑…";
+

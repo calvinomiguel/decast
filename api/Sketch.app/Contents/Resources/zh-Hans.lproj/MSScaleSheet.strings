@@ -1,0 +1,39 @@
+/* Class = "NSView"; ibShadowedToolTip = "Choose the origin the layer should scale from."; ObjectID = "8tO-lJ-U7E"; */
+"8tO-lJ-U7E.ibShadowedToolTip" = "选择图层缩放的原点。";
+
+/* Class = "NSButtonCell"; title = "Scale"; ObjectID = "13"; */
+"13.title" = "缩放";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "14"; */
+"14.title" = "取消";
+
+/* Class = "NSTextFieldCell"; title = "Resizes the selected layers. Style attributes such as border thickness, shadow size, and radius will be scaled appropriately."; ObjectID = "19"; */
+"19.title" = "调整所选图层尺寸。边框粗细，阴影面积以及圆角等样式属性会被适当缩放。";
+
+/* Class = "NSTextFieldCell"; title = "Scale Layers"; ObjectID = "20"; */
+"20.title" = "缩放图层";
+
+/* Class = "NSTextFieldCell"; title = "100%"; ObjectID = "75"; */
+"75.title" = "100%";
+
+/* Class = "NSTextFieldCell"; title = "Resize To:"; ObjectID = "86"; */
+"86.title" = "调整大小至:";
+
+/* Class = "NSTextFieldCell"; title = "Height"; ObjectID = "116"; */
+"116.title" = "高度";
+
+/* Class = "NSTextFieldCell"; title = "Width"; ObjectID = "117"; */
+"117.title" = "宽度";
+
+/* Class = "NSTextFieldCell"; title = "128"; ObjectID = "118"; */
+"118.title" = "128";
+
+/* Class = "NSTextFieldCell"; title = "128"; ObjectID = "119"; */
+"119.title" = "128";
+
+/* Class = "NSTextFieldCell"; title = "Scale"; ObjectID = "134"; */
+"134.title" = "缩放";
+
+/* Class = "NSTextFieldCell"; title = "Scale from center"; ObjectID = "SMl-u6-yZ6"; */
+"SMl-u6-yZ6.title" = "中心缩放";
+

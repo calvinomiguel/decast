@@ -1,0 +1,30 @@
+/* Class = "NSMenuItem"; title = "Show in Finder"; ObjectID = "0K5-tG-Yct"; */
+"0K5-tG-Yct.title" = "在访达中显示";
+
+/* Class = "NSMenuItem"; title = "Rename"; ObjectID = "AnO-LF-whY"; */
+"AnO-LF-whY.title" = "重命名";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Cancel"; ObjectID = "B1U-rT-VUY"; */
+"B1U-rT-VUY.ibShadowedToolTip" = "取消";
+
+/* Class = "NSMenuItem"; title = "Reveal User Templates Folder"; ObjectID = "bSs-Xb-6rf"; */
+"bSs-Xb-6rf.title" = "打开用户模板文件夹";
+
+/* Class = "NSMenuItem"; title = "Copy Link"; ObjectID = "OcH-0H-m3K"; Note = "An menu item that allows you to copy a link to a cloud document. Available in the documents window."; */
+"OcH-0H-m3K.title" = "拷贝链接";
+
+/* Class = "NSTextFieldCell"; title = "Label"; ObjectID = "tO3-mo-QEb"; */
+"tO3-mo-QEb.title" = "标签";
+
+/* Class = "NSMenuItem"; title = "Delete Document…"; ObjectID = "u3q-Et-Tgm"; */
+"u3q-Et-Tgm.title" = "删除文档…";
+
+/* Class = "NSMenuItem"; title = "View on Cloud…"; ObjectID = "vEU-Hj-Ez2"; */
+"vEU-Hj-Ez2.title" = "在 Cloud 中查看…";
+
+/* Class = "NSMenuItem"; title = "Clear Recent Documents"; ObjectID = "wSY-th-ohA"; */
+"wSY-th-ohA.title" = "清除近期使用文档";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Name"; ObjectID = "ycA-iu-W1X"; */
+"ycA-iu-W1X.placeholderString" = "名称";
+

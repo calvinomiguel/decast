@@ -1,0 +1,12 @@
+/* Class = "NSTextFieldCell"; title = "_Position_"; ObjectID = "9Qg-NP-Xbz"; */
+"9Qg-NP-Xbz.title" = "_位置_";
+
+/* Class = "NSTextFieldCell"; title = "Width"; ObjectID = "Abp-rq-4l0"; */
+"Abp-rq-4l0.title" = "宽度";
+
+/* Class = "NSTextFieldCell"; title = "_FillType_"; ObjectID = "But-x5-fIY"; */
+"But-x5-fIY.title" = "_填充类型_";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedMultipleValuesPlaceholder = "Multiple"; ObjectID = "P33-dT-aYg"; */
+"P33-dT-aYg.ibShadowedMultipleValuesPlaceholder" = "多种";
+

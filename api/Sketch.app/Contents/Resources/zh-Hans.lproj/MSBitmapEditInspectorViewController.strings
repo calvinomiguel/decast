@@ -1,0 +1,30 @@
+/* Class = "NSButton"; ibShadowedToolTip = "Invert Selection"; ObjectID = "BtI-US-TV7"; */
+"BtI-US-TV7.ibShadowedToolTip" = "反向选区";
+
+/* Class = "NSButtonCell"; title = "Finish Editing"; ObjectID = "fDS-Fc-5lG"; */
+"fDS-Fc-5lG.title" = "结束编辑";
+
+/* Class = "NSButtonCell"; title = "Invert"; ObjectID = "hBH-S9-0Va"; */
+"hBH-S9-0Va.title" = "反选";
+
+/* Class = "NSButtonCell"; title = "Crop"; ObjectID = "k59-CW-4Lr"; */
+"k59-CW-4Lr.title" = "裁剪";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Crop to Selection"; ObjectID = "laH-cV-u7s"; */
+"laH-cV-u7s.ibShadowedToolTip" = "裁剪到选项";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Click-and-drag on the image to select similar colors."; ObjectID = "Qhn-JA-kPT"; */
+"Qhn-JA-kPT.ibShadowedToolTip" = "在图像上点击并拖动以选择相似颜色。";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Click-and-drag on the image to draw a rectangular selection."; ObjectID = "RFU-P1-x7N"; */
+"RFU-P1-x7N.ibShadowedToolTip" = "在图像上点击并拖动以绘制矩形选框。";
+
+/* Class = "NSTextFieldCell"; title = "IMAGE TOOLS"; ObjectID = "Uil-pg-iTl"; */
+"Uil-pg-iTl.title" = "图像工具";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Fill Selection"; ObjectID = "XC0-Pm-mJS"; */
+"XC0-Pm-mJS.ibShadowedToolTip" = "填充选区";
+
+/* Class = "NSButtonCell"; title = "Fill"; ObjectID = "zVT-Me-2GA"; */
+"zVT-Me-2GA.title" = "填充";
+

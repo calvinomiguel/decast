@@ -106,9 +106,9 @@ export default {
       }
 
       console.log(res.data);
-      if (res.status == "200") {
+      /*if (res.status == "200") {
         this.$router.push("/dashboard");
-      }
+      }*/
     },
   },
 };

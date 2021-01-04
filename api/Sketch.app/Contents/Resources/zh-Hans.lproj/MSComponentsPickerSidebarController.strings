@@ -1,0 +1,12 @@
+/* Class = "NSButton"; ibShadowedToolTip = "Show Text Styles"; ObjectID = "2qF-JA-e5v"; */
+"2qF-JA-e5v.ibShadowedToolTip" = "显示字符样式";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Show Layer Styles"; ObjectID = "CTI-0d-7ak"; */
+"CTI-0d-7ak.ibShadowedToolTip" = "显示图层样式";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Show Symbols"; ObjectID = "dn8-7y-UsT"; */
+"dn8-7y-UsT.ibShadowedToolTip" = "显示控件";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Show Color Variables"; ObjectID = "Xkn-N3-Fdp"; */
+"Xkn-N3-Fdp.ibShadowedToolTip" = "显示颜色变量";
+

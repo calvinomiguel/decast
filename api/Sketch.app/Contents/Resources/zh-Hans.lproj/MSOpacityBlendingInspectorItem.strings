@@ -1,0 +1,57 @@
+/* Class = "NSMenuItem"; title = "Plus Darker"; ObjectID = "2qO-dY-koL"; */
+"2qO-dY-koL.title" = "加暗";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "2579"; */
+"2579.title" = "其他视图";
+
+/* Class = "NSMenuItem"; title = "Overlay"; ObjectID = "2580"; */
+"2580.title" = "叠加";
+
+/* Class = "NSMenuItem"; title = "Lighten"; ObjectID = "2582"; */
+"2582.title" = "变亮";
+
+/* Class = "NSMenuItem"; title = "Screen"; ObjectID = "2583"; */
+"2583.title" = "滤色";
+
+/* Class = "NSMenuItem"; title = "Color Burn"; ObjectID = "2587"; */
+"2587.title" = "颜色加深";
+
+/* Class = "NSMenuItem"; title = "Multiply"; ObjectID = "2588"; */
+"2588.title" = "正片叠底";
+
+/* Class = "NSMenuItem"; title = "Darken"; ObjectID = "2590"; */
+"2590.title" = "变暗";
+
+/* Class = "NSMenuItem"; title = "Luminosity"; ObjectID = "2591"; */
+"2591.title" = "明度";
+
+/* Class = "NSMenuItem"; title = "Color"; ObjectID = "2592"; */
+"2592.title" = "颜色";
+
+/* Class = "NSMenuItem"; title = "Saturation"; ObjectID = "2593"; */
+"2593.title" = "饱和度";
+
+/* Class = "NSMenuItem"; title = "Hue"; ObjectID = "2594"; */
+"2594.title" = "色相";
+
+/* Class = "NSMenuItem"; title = "Exclusion"; ObjectID = "2595"; */
+"2595.title" = "排除";
+
+/* Class = "NSMenuItem"; title = "Difference"; ObjectID = "2596"; */
+"2596.title" = "差值";
+
+/* Class = "NSMenuItem"; title = "Hard Light"; ObjectID = "2597"; */
+"2597.title" = "强光";
+
+/* Class = "NSMenuItem"; title = "Soft Light"; ObjectID = "2598"; */
+"2598.title" = "柔光";
+
+/* Class = "NSMenuItem"; title = "Color Dodge"; ObjectID = "2599"; */
+"2599.title" = "颜色减淡";
+
+/* Class = "NSMenuItem"; title = "Normal"; ObjectID = "2600"; */
+"2600.title" = "正常";
+
+/* Class = "NSMenuItem"; title = "Plus Lighter"; ObjectID = "dhl-qx-nMZ"; */
+"dhl-qx-nMZ.title" = "提亮";
+

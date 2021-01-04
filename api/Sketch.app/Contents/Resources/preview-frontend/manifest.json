@@ -1,0 +1,15 @@
+{
+  "short_name": "Sketch Mirror",
+  "name": "Sketch Mirror Web",
+  "icons": [
+    {
+      "src": "apple-touch-icon-precomposed.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

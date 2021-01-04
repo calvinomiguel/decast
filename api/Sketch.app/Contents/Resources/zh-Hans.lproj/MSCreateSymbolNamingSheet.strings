@@ -1,0 +1,42 @@
+/* Class = "NSTextFieldCell"; placeholderString = "New Symbol"; ObjectID = "2W0-OO-Z3Z"; */
+"2W0-OO-Z3Z.placeholderString" = "新控件";
+
+/* Class = "NSTextFieldCell"; title = "If you select a Layout option, instances of this Symbol will resize when you edit their overrides."; ObjectID = "4MC-mA-WTK"; */
+"4MC-mA-WTK.title" = "若选中“布局”选项，该控件的实例会随着覆盖层的修改而调整尺寸。";
+
+/* Class = "NSMenuItem"; title = "Horizontally Center Layout"; ObjectID = "aXY-c0-GtO"; */
+"aXY-c0-GtO.title" = "水平居中布局";
+
+/* Class = "NSButtonCell"; title = "Create"; ObjectID = "dCW-qE-T0O"; */
+"dCW-qE-T0O.title" = "创建";
+
+/* Class = "NSMenuItem"; title = "Bottom to Top Layout"; ObjectID = "eEU-kG-FAW"; */
+"eEU-kG-FAW.title" = "从下往上布局";
+
+/* Class = "NSTextFieldCell"; title = "Create new Symbol"; ObjectID = "FJw-9a-xMO"; */
+"FJw-9a-xMO.title" = "新建控件";
+
+/* Class = "NSMenuItem"; title = "Right to Left Layout"; ObjectID = "g8L-GS-u8z"; */
+"g8L-GS-u8z.title" = "从右往左布局";
+
+/* Class = "NSTextFieldCell"; title = "The selected layers will be replaced by a single layer. A new \nSymbol will be created in your document. Whenever this Symbol is edited, all its layers will update to reflect the changes."; ObjectID = "Jai-os-IS5"; */
+"Jai-os-IS5.title" = "所选的图层将被替换为一个单独图层。文档中将生成一个新的控件。编辑该控件后，所产生的更改会反应在所有相应的图层上。";
+
+/* Class = "NSMenuItem"; title = "Top to Bottom Layout"; ObjectID = "L0P-Fj-pXe"; */
+"L0P-Fj-pXe.title" = "从上往下布局";
+
+/* Class = "NSMenuItem"; title = "Vertically Center Layout"; ObjectID = "rjs-AU-SIx"; */
+"rjs-AU-SIx.title" = "垂直居中布局";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "TzH-Bd-o2k"; */
+"TzH-Bd-o2k.title" = "取消";
+
+/* Class = "NSMenuItem"; title = "No Layout"; ObjectID = "ujG-Vm-MXO"; */
+"ujG-Vm-MXO.title" = "无";
+
+/* Class = "NSButtonCell"; title = "Send Symbol to “Symbols” Page"; ObjectID = "vUV-au-d3L"; */
+"vUV-au-d3L.title" = "发送控件至“控件”页面";
+
+/* Class = "NSMenuItem"; title = "Left to Right Layout"; ObjectID = "yk5-Qm-3Fp"; */
+"yk5-Qm-3Fp.title" = "从左往右布局";
+

@@ -1,0 +1,45 @@
+{
+  "name": "@skpm/buffer",
+  "description": "Node.js Buffer API, for Sketch",
+  "version": "0.1.4",
+  "author": {
+    "name": "Feross Aboukhadijeh",
+    "email": "feross@feross.org",
+    "url": "http://feross.org"
+  },
+  "bugs": {
+    "url": "https://github.com/skpm/buffer/issues"
+  },
+  "contributors": [
+    "Romain Beauxis <toots@rastageeks.org>",
+    "James Halliday <mail@substack.net>"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "@skpm/test-runner": "^0.3.13"
+  },
+  "homepage": "https://github.com/skpm/buffer",
+  "keywords": [
+    "arraybuffer",
+    "browser",
+    "browserify",
+    "buffer",
+    "compatible",
+    "dataview",
+    "uint8array"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/skpm/buffer.git"
+  },
+  "scripts": {
+    "test": "skpm-test --app=latest"
+  }
+
+,"_resolved": "https://registry.npmjs.org/@skpm/buffer/-/buffer-0.1.4.tgz"
+,"_integrity": "sha512-Z4tBlbPCSQHknIQL+f0Ex4UhXeqUehtY2pbWFmwcYzk/KDIPRKzHZd4h79z0PHModvtZo7+0CUb/UaGtOfPo2A=="
+,"_from": "@skpm/buffer@0.1.4"
+}

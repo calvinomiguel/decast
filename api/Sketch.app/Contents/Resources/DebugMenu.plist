@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Scripting</key>
+	<dict>
+		<key>title</key>
+		<string>Scripting</string>
+		<key>suboptions</key>
+		<dict>
+			<key>AlwaysReloadScript</key>
+			<dict>
+				<key>default</key>
+				<false/>
+				<key>title</key>
+				<string>Always Reload Scripts</string>
+			</dict>
+			<key>actionWildcardsAllowed</key>
+			<dict>
+				<key>default</key>
+				<false/>
+				<key>title</key>
+				<string>Allow Wildcard Events</string>
+			</dict>
+		</dict>
+	</dict>
+	<key>Other</key>
+	<dict>
+		<key>title</key>
+		<string>Other</string>
+		<key>suboptions</key>
+		<dict>
+			<key>DontExitWhenValidationFails</key>
+			<dict>
+				<key>default</key>
+				<false/>
+				<key>title</key>
+				<string>Don&apos;t Exit When Validation Fails (Pretend to be hacked)</string>
+			</dict>
+			<key>recordAllocations</key>
+			<dict>
+				<key>default</key>
+				<false/>
+				<key>title</key>
+				<string>Record Model Object Allocations</string>
+			</dict>
+			<key>SketchPlayDebug</key>
+			<dict>
+				<key>default</key>
+				<false/>
+				<key>title</key>
+				<string>Sketch Mirror Debugging Enabled</string>
+			</dict>
+			<key>RevealConvertedEPSFile</key>
+			<dict>
+				<key>default</key>
+				<false/>
+				<key>title</key>
+				<string>Show PDF For Converted EPS </string>
+			</dict>
+			<key>UseStagingVersionOfSparkleKey</key>
+			<dict>
+				<key>default</key>
+				<false/>
+				<key>title</key>
+				<string>Use Staging For Sparkle Feed</string>
+			</dict>
+		</dict>
+	</dict>
+	<key>Internationalization</key>
+	<dict>
+		<key>title</key>
+		<string>Internationalization</string>
+		<key>suboptions</key>
+		<dict>
+			<key>NSShowNonLocalizedStrings</key>
+			<dict>
+				<key>default</key>
+				<false/>
+				<key>title</key>
+				<string>Capitalize Non-Localized Strings</string>
+			</dict>
+			<key>NSAccentuateLocalizedStrings</key>
+			<dict>
+				<key>default</key>
+				<false/>
+				<key>title</key>
+				<string>Use Accented Pseudo Language Localizations</string>
+			</dict>
+			<key>AppleLanguages</key>
+			<dict>
+				<key>title</key>
+				<string>Use Localizations</string>
+				<key>values</key>
+				<dict>
+					<key>English</key>
+					<dict>
+						<key>value</key>
+						<array>
+							<string>en</string>
+						</array>
+						<key>title</key>
+						<string>English</string>
+					</dict>
+					<key>Chinese</key>
+					<dict>
+						<key>value</key>
+						<array>
+							<string>zh-hans</string>
+						</array>
+						<key>title</key>
+						<string>Chinese</string>
+					</dict>
+				</dict>
+			</dict>
+		</dict>
+	</dict>
+	<key>Views</key>
+	<dict>
+		<key>title</key>
+		<string>Views</string>
+		<key>suboptions</key>
+		<dict>
+			<key>NSShowAlignmentRects</key>
+			<dict>
+				<key>default</key>
+				<false/>
+				<key>title</key>
+				<string>Show Alignment Rects</string>
+			</dict>
+			<key>NSShowAllViews</key>
+			<dict>
+				<key>default</key>
+				<false/>
+				<key>title</key>
+				<string>Show All Views</string>
+			</dict>
+		</dict>
+	</dict>
+	<key>Rendering</key>
+	<dict>
+		<key>title</key>
+		<string>Rendering</string>
+		<key>suboptions</key>
+		<dict>
+			<key>MSTilingSystemClass</key>
+			<dict>
+				<key>title</key>
+				<string>Tiling System</string>
+				<key>values</key>
+				<dict>
+					<key>MSTiledRenderer</key>
+					<dict>
+						<key>title</key>
+						<string>Software</string>
+					</dict>
+					<key>MSEkranoplanRenderer</key>
+					<dict>
+						<key>title</key>
+						<string>GPU based</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>MSLayerOptions</key>
+			<dict>
+				<key>title</key>
+				<string>Layers</string>
+				<key>suboptions</key>
+				<dict>
+					<key>MSDrawLayerRect</key>
+					<dict>
+						<key>New item</key>
+						<false/>
+						<key>title</key>
+						<string>Draw Layer Bounds</string>
+					</dict>
+					<key>MSDrawLayerInfluence</key>
+					<dict>
+						<key>New item</key>
+						<false/>
+						<key>title</key>
+						<string>Draw Layer Influence</string>
+					</dict>
+					<key>DisableMSImmutableArtboardGroup</key>
+					<dict>
+						<key>New item</key>
+						<false/>
+						<key>title</key>
+						<string>Don&apos;t Draw Artboards</string>
+					</dict>
+					<key>DisableMSImmutableSymbolMaster</key>
+					<dict>
+						<key>New item</key>
+						<false/>
+						<key>title</key>
+						<string>Don&apos;t Draw Symbols</string>
+					</dict>
+					<key>DisableMSImmutableLayerGroup</key>
+					<dict>
+						<key>New item</key>
+						<false/>
+						<key>title</key>
+						<string>Don&apos;t Draw Groups</string>
+					</dict>
+					<key>DisableMSImmutablePage</key>
+					<dict>
+						<key>New item</key>
+						<false/>
+						<key>title</key>
+						<string>Don&apos;t Draw Pages</string>
+					</dict>
+					<key>DisableMSImmutableSymbolInstance</key>
+					<dict>
+						<key>New item</key>
+						<false/>
+						<key>title</key>
+						<string>Don&apos;t Draw Symbol Instances</string>
+					</dict>
+					<key>DisableMSImmutableShapeGroup</key>
+					<dict>
+						<key>New item</key>
+						<false/>
+						<key>title</key>
+						<string>Don&apos;t Draw Shapes</string>
+					</dict>
+					<key>DisableMSImmutableTextLayer</key>
+					<dict>
+						<key>New item</key>
+						<false/>
+						<key>title</key>
+						<string>Don&apos;t Draw Text</string>
+					</dict>
+					<key>DisableMSImmutableBitmapLayer</key>
+					<dict>
+						<key>New item</key>
+						<false/>
+						<key>title</key>
+						<string>Don&apos;t Draw Images</string>
+					</dict>
+					<key>DisableMSPath</key>
+					<dict>
+						<key>New item</key>
+						<false/>
+						<key>title</key>
+						<string>Don&apos;t Draw Paths</string>
+					</dict>
+					<key>DisableMSImmutableStyleFill</key>
+					<dict>
+						<key>New item</key>
+						<false/>
+						<key>title</key>
+						<string>Don&apos;t Draw Fills</string>
+					</dict>
+					<key>DisableMSImmutableStyleBlur</key>
+					<dict>
+						<key>New item</key>
+						<false/>
+						<key>title</key>
+						<string>Don&apos;t Draw Background Blurs</string>
+					</dict>
+					<key>DisableMSImmutableStyleShadow</key>
+					<dict>
+						<key>New item</key>
+						<false/>
+						<key>title</key>
+						<string>Don&apos;t Draw Shadows</string>
+					</dict>
+					<key>DisableMSImmutableStyleInnerShadow</key>
+					<dict>
+						<key>New item</key>
+						<false/>
+						<key>title</key>
+						<string>Don&apos;t Draw Inner Shadows</string>
+					</dict>
+					<key>DisableMSImmutableSimpleGrid</key>
+					<dict>
+						<key>New item</key>
+						<false/>
+						<key>title</key>
+						<string>Don&apos;t Draw Simple Grids</string>
+					</dict>
+					<key>DisableMSImmutableLayoutGrid</key>
+					<dict>
+						<key>New item</key>
+						<false/>
+						<key>title</key>
+						<string>Don&apos;t Draw Layout Grids</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>MSRenderingDriver</key>
+			<dict>
+				<key>title</key>
+				<string>Driver</string>
+				<key>values</key>
+				<dict>
+					<key>MSRenderingDriverCG</key>
+					<dict>
+						<key>title</key>
+						<string>Normal Driver</string>
+					</dict>
+					<key>MSRenderingDriverCGDebug</key>
+					<dict>
+						<key>title</key>
+						<string>Debug Driver</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>MSOverlayOptions</key>
+			<dict>
+				<key>title</key>
+				<string>Overlay</string>
+				<key>suboptions</key>
+				<dict>
+					<key>DisableMSPageOverlay</key>
+					<dict>
+						<key>default</key>
+						<false/>
+						<key>title</key>
+						<string>Hide Background Behind Artboards</string>
+					</dict>
+					<key>DisableMSPageOverlayArtboardTitle</key>
+					<dict>
+						<key>default</key>
+						<false/>
+						<key>title</key>
+						<string>Hide Artboard Titles</string>
+					</dict>
+					<key>DisableMSPageOverlayArtboardShadow</key>
+					<dict>
+						<key>default</key>
+						<false/>
+						<key>title</key>
+						<string>Hide Artboard Shadows</string>
+					</dict>
+					<key>MSPageOverlayDrawCoordinatesKey</key>
+					<dict>
+						<key>default</key>
+						<false/>
+						<key>title</key>
+						<string>Show Coordinates</string>
+					</dict>
+					<key>MSOverlayShowSnapNodes</key>
+					<dict>
+						<key>default</key>
+						<false/>
+						<key>title</key>
+						<string>Show Snap Nodes</string>
+					</dict>
+					<key>MSOverlayShowRasterisedArea</key>
+					<dict>
+						<key>default</key>
+						<false/>
+						<key>title</key>
+						<string>Show Rasterised Area</string>
+					</dict>
+				</dict>
+			</dict>
+		</dict>
+	</dict>
+</dict>
+</plist>

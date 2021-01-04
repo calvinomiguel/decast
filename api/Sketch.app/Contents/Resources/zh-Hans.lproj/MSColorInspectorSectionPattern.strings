@@ -1,0 +1,24 @@
+/* Class = "NSImageView"; ibShadowedToolTip = "Drag an image to apply it to the fill."; ObjectID = "151"; */
+"151.ibShadowedToolTip" = "拖拽图像用于填充。";
+
+/* Class = "NSButtonCell"; title = "Choose Image…"; ObjectID = "154"; */
+"154.title" = "选择图像…";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "157"; */
+"157.title" = "其他视图";
+
+/* Class = "NSMenuItem"; title = "Tile Image"; ObjectID = "158"; */
+"158.title" = "平铺";
+
+/* Class = "NSMenuItem"; title = "Fill Image"; ObjectID = "159"; */
+"159.title" = "充满";
+
+/* Class = "NSTextFieldCell"; title = "Type"; ObjectID = "i7H-0p-MOK"; */
+"i7H-0p-MOK.title" = "输入";
+
+/* Class = "NSMenuItem"; title = "Fit Image"; ObjectID = "mzb-dL-Aow"; */
+"mzb-dL-Aow.title" = "适合";
+
+/* Class = "NSMenuItem"; title = "Stretch Image"; ObjectID = "RUD-Q0-dvZ"; */
+"RUD-Q0-dvZ.title" = "拉伸";
+

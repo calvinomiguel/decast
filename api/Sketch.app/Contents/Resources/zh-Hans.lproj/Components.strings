@@ -1,0 +1,84 @@
+/* Class = "NSTextFieldCell"; placeholderString = "Text Component title"; ObjectID = "2ic-G7-tzG"; */
+"2ic-G7-tzG.placeholderString" = "文本组件标题";
+
+/* Class = "NSMenuItem"; title = "Copy"; ObjectID = "3o0-U0-wpx"; */
+"3o0-U0-wpx.title" = "拷贝";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Preview info"; ObjectID = "13i-Py-kwg"; */
+"13i-Py-kwg.placeholderString" = "预览信息";
+
+/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "31K-iF-ZDe"; */
+"31K-iF-ZDe.title" = "删除";
+
+/* Class = "NSTextFieldCell"; title = "Multiple Components"; ObjectID = "A0I-pK-5mm"; */
+"A0I-pK-5mm.title" = "多个组件";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Group title"; ObjectID = "ahK-H1-yKJ"; */
+"ahK-H1-yKJ.placeholderString" = "编组标题";
+
+/* Class = "NSMenuItem"; title = "Edit"; ObjectID = "b45-Q9-Huj"; */
+"b45-Q9-Huj.title" = "编辑";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Library title"; ObjectID = "dHc-oc-wIc"; */
+"dHc-oc-wIc.placeholderString" = "组件库标题";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Group path"; ObjectID = "DHd-ZC-bS4"; */
+"DHd-ZC-bS4.placeholderString" = "编组路径";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Component title"; ObjectID = "F5j-1i-Jpe"; */
+"F5j-1i-Jpe.placeholderString" = "组件标题";
+
+/* Class = "NSTextFieldCell"; title = "Missing font"; ObjectID = "GaJ-Zl-f7R"; */
+"GaJ-Zl-f7R.title" = "缺失字体";
+
+/* Class = "NSMenuItem"; title = "Reveal in Layer List"; ObjectID = "IDb-uk-Zew"; */
+"IDb-uk-Zew.title" = "在图层列表中显示";
+
+/* Class = "NSMenuItem"; title = "Group"; ObjectID = "jnc-QK-qhK"; */
+"jnc-QK-qhK.title" = "编组";
+
+/* Class = "NSSegmentedCell"; Kle-Md-VeB.ibShadowedToolTips[0] = "Show Symbols."; ObjectID = "Kle-Md-VeB"; */
+"Kle-Md-VeB.ibShadowedToolTips[0]" = "显示控件。";
+
+/* Class = "NSSegmentedCell"; Kle-Md-VeB.ibShadowedToolTips[1] = "Show Text Styles."; ObjectID = "Kle-Md-VeB"; */
+"Kle-Md-VeB.ibShadowedToolTips[1]" = "显示字符样式。";
+
+/* Class = "NSSegmentedCell"; Kle-Md-VeB.ibShadowedToolTips[2] = "Show Layer Styles."; ObjectID = "Kle-Md-VeB"; */
+"Kle-Md-VeB.ibShadowedToolTips[2]" = "显示图层样式。";
+
+/* Class = "NSSegmentedCell"; Kle-Md-VeB.ibShadowedToolTips[3] = "Show Color Variables."; ObjectID = "Kle-Md-VeB"; */
+"Kle-Md-VeB.ibShadowedToolTips[3]" = "显示颜色变量。";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Library title"; ObjectID = "mjC-3w-vgI"; */
+"mjC-3w-vgI.placeholderString" = "组件库标题";
+
+/* Class = "NSMenuItem"; title = "Ungroup"; ObjectID = "mX6-vI-9zm"; */
+"mX6-vI-9zm.title" = "未编组";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "nre-7K-QAo"; */
+"nre-7K-QAo.title" = "文本单元格";
+
+/* Class = "NSMenuItem"; title = "Duplicate"; ObjectID = "OqQ-mh-bxw"; */
+"OqQ-mh-bxw.title" = "复制";
+
+/* Class = "NSTextFieldCell"; title = "SF Pro Display Regular — 47pt"; ObjectID = "peu-61-QhX"; */
+"peu-61-QhX.title" = "SF Pro Display Regular — 47pt";
+
+/* Class = "NSSearchFieldCell"; placeholderString = "Filter"; ObjectID = "sGL-KQ-C9F"; */
+"sGL-KQ-C9F.placeholderString" = "筛选";
+
+/* Class = "NSMenuItem"; title = "Rename"; ObjectID = "SjS-QX-fcU"; */
+"SjS-QX-fcU.title" = "重命名";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Component title"; ObjectID = "soU-dm-EKm"; */
+"soU-dm-EKm.placeholderString" = "组件标题";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Library title"; ObjectID = "wNy-oh-LZL"; */
+"wNy-oh-LZL.placeholderString" = "组件库标题";
+
+/* Class = "NSTextFieldCell"; title = "No Components"; ObjectID = "yel-S5-OtW"; */
+"yel-S5-OtW.title" = "无组件";
+
+/* Class = "NSTextFieldCell"; title = "Symbols"; ObjectID = "yrl-GS-Acb"; */
+"yrl-GS-Acb.title" = "控件";
+

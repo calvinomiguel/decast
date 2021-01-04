@@ -1,0 +1,42 @@
+/* Class = "NSMenuItem"; title = "Light Canvas"; ObjectID = "AC2-xv-Jke"; */
+"AC2-xv-Jke.title" = "浅色画布";
+
+/* Class = "NSMenuItem"; title = "System Default"; ObjectID = "E7q-rD-8uP"; */
+"E7q-rD-8uP.title" = "系统默认";
+
+/* Class = "NSMenuItem"; title = "Sketch Default"; ObjectID = "EUd-6t-NzF"; */
+"EUd-6t-NzF.title" = "Sketch 默认";
+
+/* Class = "NSButtonCell"; title = "Use macOS Auto Save"; ObjectID = "EV2-Hw-MTk"; */
+"EV2-Hw-MTk.title" = "使用 macOS 自动保存";
+
+/* Class = "NSTextFieldCell"; title = "Automatically save documents to your Mac as you work. For local documents, Auto Save also creates a browsable version history. Takes effect at next launch."; ObjectID = "gZr-Xb-DjR"; */
+"gZr-Xb-DjR.title" = "工作中自动保存文档到您的 Mac. 对于本地文档，自动保存还将创建可供浏览的版本记录。下次启动时生效。";
+
+/* Class = "NSMenuItem"; title = "Dark Canvas"; ObjectID = "jN6-dw-paN"; */
+"jN6-dw-paN.title" = "深色画布";
+
+/* Class = "NSButtonCell"; title = "Share analytics with Sketch"; ObjectID = "L6G-7w-ojc"; */
+"L6G-7w-ojc.title" = "与 Sketch 分享软件分析";
+
+/* Class = "NSTextFieldCell"; title = "Privacy:"; ObjectID = "N9T-5l-EVw"; */
+"N9T-5l-EVw.title" = "隐私：";
+
+/* Class = "NSTextFieldCell"; title = "Auto Save:"; ObjectID = "N63-o9-WgF"; */
+"N63-o9-WgF.title" = "自动保存：";
+
+/* Class = "NSTextFieldCell"; title = "Help improve Sketch by automatically sending diagnostics and usage data. Diagnostic data is collected anonymously and cannot be used to identify you."; ObjectID = "qLy-QE-Zo5"; */
+"qLy-QE-Zo5.title" = "自动发送诊断和使用数据以帮助 Sketch 改进。 诊断数据是匿名收集的，不会被用于识别您的身份。";
+
+/* Class = "NSTextFieldCell"; title = "Canvas:"; ObjectID = "RRW-KP-jTL"; */
+"RRW-KP-jTL.title" = "画布：";
+
+/* Class = "NSMenuItem"; title = "Light Mode"; ObjectID = "tOj-pn-rB0"; */
+"tOj-pn-rB0.title" = "浅色外观";
+
+/* Class = "NSTextFieldCell"; title = "Appearance:"; ObjectID = "wf3-4Q-5L4"; */
+"wf3-4Q-5L4.title" = "外观";
+
+/* Class = "NSMenuItem"; title = "Dark Mode"; ObjectID = "wqk-40-ZtV"; */
+"wqk-40-ZtV.title" = "深色外观";
+

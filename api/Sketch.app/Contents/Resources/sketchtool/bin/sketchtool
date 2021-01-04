@@ -1,0 +1,15 @@
+#!/bin/sh
+
+#  sketchtool.sh
+#  SketchTool
+#
+#  Copyright © 2019 Bohemian Coding. All rights reserved.
+
+# sketchtool now lives in Sketch.app/Contents/MacOS
+#
+# In order to provide backwards compatibility for tools expecting it still to be
+# in the location, this shell script (in the old location) calls sketchtool
+# in the new location.
+
+LEADING=`dirname "$BASH_SOURCE"`
+"$LEADING/../../../MacOS/sketchtool" "$@"

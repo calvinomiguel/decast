@@ -1,0 +1,42 @@
+/* Class = "NSTextFieldCell"; title = "File name"; ObjectID = "4zJ-w2-mfU"; */
+"4zJ-w2-mfU.title" = "文件名";
+
+/* Class = "NSSearchFieldCell"; placeholderString = "Filter"; ObjectID = "256-l8-jES"; */
+"256-l8-jES.placeholderString" = "筛选";
+
+/* Class = "NSButtonCell"; title = "Add Library…"; ObjectID = "apJ-PX-odL"; */
+"apJ-PX-odL.title" = "添加组件库…";
+
+/* Class = "NSMenuItem"; title = "Open in Sketch"; ObjectID = "ATj-2x-K5w"; */
+"ATj-2x-K5w.title" = "在 Sketch 中打开";
+
+/* Class = "NSButtonCell"; title = "Download"; ObjectID = "duA-IX-13r"; */
+"duA-IX-13r.title" = "下载";
+
+/* Class = "NSMenuItem"; title = "Remove Library"; ObjectID = "OOr-qZ-FE2"; */
+"OOr-qZ-FE2.title" = "移除组件库";
+
+/* Class = "NSTextFieldCell"; title = "Libraries allow you to use their Symbols in all other documents."; ObjectID = "oRv-IH-iZm"; */
+"oRv-IH-iZm.title" = "您可以在各个文档自由地选择使用组件库中的控件。";
+
+/* Class = "NSMenuItem"; title = "Enable Library"; ObjectID = "Pe0-9D-g8j"; */
+"Pe0-9D-g8j.title" = "启用组件库";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "RWC-Rr-7B0"; */
+"RWC-Rr-7B0.title" = "文本单元格";
+
+/* Class = "NSTextFieldCell"; title = "Modified Date"; ObjectID = "tnQ-9n-C5y"; */
+"tnQ-9n-C5y.title" = "更改日期";
+
+/* Class = "NSMenuItem"; title = "Locate Missing Library…"; ObjectID = "TPO-Wb-rP6"; */
+"TPO-Wb-rP6.title" = "定位缺失的组件库…";
+
+/* Class = "NSMenuItem"; title = "Show in Finder"; ObjectID = "tVf-Bx-2uE"; */
+"tVf-Bx-2uE.title" = "在访达中显示";
+
+/* Class = "NSTextFieldCell"; title = "Header"; ObjectID = "VPS-TA-brN"; */
+"VPS-TA-brN.title" = "标题";
+
+/* Class = "NSMenuItem"; title = "Preview Library"; ObjectID = "ys5-w5-2Ja"; */
+"ys5-w5-2Ja.title" = "预览组件库";
+

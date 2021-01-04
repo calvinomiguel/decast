@@ -1,0 +1,9 @@
+/* Class = "NSButton"; ibShadowedToolTip = "Adjust Text options."; ObjectID = "0Zy-Qo-1sw"; */
+"0Zy-Qo-1sw.ibShadowedToolTip" = "调整字符选项。";
+
+/* Class = "NSTextFieldCell"; title = "TEXT"; ObjectID = "AOk-k0-I0t"; */
+"AOk-k0-I0t.title" = "字符";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Apply Data image as fill."; ObjectID = "H6a-zC-reb"; */
+"H6a-zC-reb.ibShadowedToolTip" = "应用素材图片作为填充。";
+

@@ -1,0 +1,15 @@
+/* Class = "NSButtonCell"; title = "Don’t Close"; ObjectID = "98C-Am-wC9"; */
+"98C-Am-wC9.title" = "不要关闭";
+
+/* Class = "NSWindow"; title = "Window"; ObjectID = "F0z-JX-Cv5"; */
+"F0z-JX-Cv5.title" = "窗口";
+
+/* Class = "NSTextFieldCell"; title = "This document is being uploaded to Cloud."; ObjectID = "lDw-OP-ZSP"; */
+"lDw-OP-ZSP.title" = "文档已上传至 Cloud。";
+
+/* Class = "NSButtonCell"; title = "Close Anyway"; ObjectID = "NXU-xm-AxP"; */
+"NXU-xm-AxP.title" = "仍然关闭";
+
+/* Class = "NSTextFieldCell"; title = "Are you sure you want to close the document “%@”? If you close the document before the upload is complete any changes won’t be saved to Cloud."; ObjectID = "rSE-cC-4HT"; */
+"rSE-cC-4HT.title" = "确定要关闭文档“%@”吗？若在上传完毕前关闭，所做的修改将不会保存至 Cloud。";
+

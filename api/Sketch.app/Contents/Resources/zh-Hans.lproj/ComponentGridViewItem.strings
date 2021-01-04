@@ -1,0 +1,27 @@
+/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "8VD-T8-2B3"; */
+"8VD-T8-2B3.title" = "删除";
+
+/* Class = "NSTextFieldCell"; title = "Component Name"; ObjectID = "92S-Iy-SqJ"; */
+"92S-Iy-SqJ.title" = "组件命名";
+
+/* Class = "NSMenuItem"; title = "Group"; ObjectID = "B91-uv-ap3"; */
+"B91-uv-ap3.title" = "编组";
+
+/* Class = "NSMenuItem"; title = "Rename"; ObjectID = "DG9-lG-Cpt"; */
+"DG9-lG-Cpt.title" = "重命名";
+
+/* Class = "NSMenuItem"; title = "Copy CSS Attributes"; ObjectID = "er8-KC-4CP"; */
+"er8-KC-4CP.title" = "拷贝 CSS 属性";
+
+/* Class = "NSMenuItem"; title = "Insert"; ObjectID = "Kol-Yl-dub"; */
+"Kol-Yl-dub.title" = "置入";
+
+/* Class = "NSMenuItem"; title = "Duplicate"; ObjectID = "Kya-a0-gpe"; */
+"Kya-a0-gpe.title" = "复制";
+
+/* Class = "NSTextFieldCell"; title = "64x64"; ObjectID = "LXq-7f-j8z"; */
+"LXq-7f-j8z.title" = "64x64";
+
+/* Class = "NSTextFieldCell"; title = "Component Path"; ObjectID = "xDI-Nq-9A5"; */
+"xDI-Nq-9A5.title" = "组件路径";
+

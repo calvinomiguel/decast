@@ -1,0 +1,21 @@
+/* Class = "NSButton"; ibShadowedToolTip = "Create separate slice layer."; ObjectID = "4bB-Nb-ngi"; */
+"4bB-Nb-ngi.ibShadowedToolTip" = "创建单独的切片图层。";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Apply a slice preset."; ObjectID = "8R2-29-fDd"; */
+"8R2-29-fDd.ibShadowedToolTip" = "应用切片预设。";
+
+/* Class = "NSTextFieldCell"; title = "Presets"; ObjectID = "9O3-lQ-SE7"; */
+"9O3-lQ-SE7.title" = "预设";
+
+/* Class = "NSTextFieldCell"; title = "Size"; ObjectID = "Br2-Uo-fag"; */
+"Br2-Uo-fag.title" = "尺寸";
+
+/* Class = "NSTextFieldCell"; title = "Prefix/Suffix"; ObjectID = "hOs-r5-1M1"; */
+"hOs-r5-1M1.title" = "前缀/后缀";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Add new Export option."; ObjectID = "iiy-P6-UkD"; */
+"iiy-P6-UkD.ibShadowedToolTip" = "新增导出选项。";
+
+/* Class = "NSTextFieldCell"; title = "Format"; ObjectID = "ZdS-Ym-f8a"; */
+"ZdS-Ym-f8a.title" = "格式";
+

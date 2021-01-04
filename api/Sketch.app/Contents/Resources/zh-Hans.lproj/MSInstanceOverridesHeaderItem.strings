@@ -1,0 +1,12 @@
+/* Class = "NSButton"; ibShadowedToolTip = "Refresh Instance from Symbol Source’s data"; ObjectID = "0W3-kT-tTP"; */
+"0W3-kT-tTP.ibShadowedToolTip" = "刷新实例中的控件资源";
+
+/* Class = "NSTextFieldCell"; title = "Overrides"; ObjectID = "8wH-0b-sjS"; */
+"8wH-0b-sjS.title" = "覆盖层";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Reset Overrides."; ObjectID = "Fxx-Oz-A8L"; */
+"Fxx-Oz-A8L.ibShadowedToolTip" = "重设覆盖层。";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Shrink Instance to fit content."; ObjectID = "kmU-8Y-q9b"; */
+"kmU-8Y-q9b.ibShadowedToolTip" = "缩小实例以适配内容。";
+

@@ -7,10 +7,10 @@ const fs = require('fs');
 const ns = require('node-sketch');
 const port = process.env.PORT || 3060;
 const cors = require('cors');
+const sketchtool = require('sketchtool-cli');
 const {
     json
 } = require("body-parser");
-const Sketch = require("node-sketch/src/Sketch");
 const dir = process.argv[2] || process.cwd() + "/uploads";
 const upload = multer({
     dest: "./uploads/"
@@ -381,8 +381,18 @@ app.post("/uploads", upload.array("files"), async (req, res) => {
     uniqueSymbols = await getUniqueSymbolsUsage(uniqueSymbols, allSymbols);
     let deadCount = await getDeadComponentsCount(uniqueSymbols);
     let infos = await sendInfos(count, uniqueSymbols, deadCount);
+    console.log(sketchtool.check());
     res.status(200).send(infos);
 });
+let pages = sketchtool.list('layers', '/Users/calvino/Documents/Dev/decast/api/uploads/S.sketch').pages;
+let layers = [];
+pages.forEach(page => {
+    console.log(page);
+    //layers = layers.concat(...page.layers);
+})
+
+console.log(layers);
+sketchtool.run('export layers /Users/calvino/Documents/Dev/decast/api/uploads/S.sketch --formats=jpg --scales=2 --item=41045A3B-9ECC-418E-B8CC-3B50814A0B31 --output=/Users/calvino/Documents/Dev/decast/api/exports');
 
 //Handle GET Request from Client Form
 router.get("/dashboard", async (req, res) => {

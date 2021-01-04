@@ -1,0 +1,39 @@
+/* Class = "NSButtonCell"; title = "Confirm"; ObjectID = "83"; */
+"83.title" = "确认";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "85"; */
+"85.title" = "取消";
+
+/* Class = "NSTextFieldCell"; title = "Grid Settings"; ObjectID = "112"; */
+"112.title" = "网格设置";
+
+/* Class = "NSTextFieldCell"; title = "These settings apply to selected Pages or Artboards only."; ObjectID = "113"; */
+"113.title" = "这些设置仅适用于选中的页面或画板。";
+
+/* Class = "NSTextFieldCell"; title = "10px"; ObjectID = "175"; */
+"175.title" = "10px";
+
+/* Class = "NSTextFieldCell"; title = "Grid block size:"; ObjectID = "177"; */
+"177.title" = "网格尺寸：";
+
+/* Class = "NSTextFieldCell"; title = "8"; ObjectID = "179"; */
+"179.title" = "8";
+
+/* Class = "NSTextFieldCell"; title = "Thick lines every:"; ObjectID = "180"; */
+"180.title" = "粗线每隔：";
+
+/* Class = "NSTextFieldCell"; title = "blocks."; ObjectID = "192"; */
+"192.title" = "格子。";
+
+/* Class = "NSTextFieldCell"; title = "Light"; ObjectID = "akK-2Y-j41"; */
+"akK-2Y-j41.title" = "亮";
+
+/* Class = "NSTextFieldCell"; title = "Colors:"; ObjectID = "d06-9o-QHL"; */
+"d06-9o-QHL.title" = "颜色：";
+
+/* Class = "NSTextFieldCell"; title = "Dark"; ObjectID = "pXp-YN-hC3"; */
+"pXp-YN-hC3.title" = "暗";
+
+/* Class = "NSButtonCell"; title = "Make Default Settings"; ObjectID = "Yb1-Xo-8BZ"; */
+"Yb1-Xo-8BZ.title" = "默认设置";
+

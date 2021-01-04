@@ -1,0 +1,18 @@
+/* Class = "NSWindow"; title = "Export"; ObjectID = "1"; */
+"1.title" = "导出";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "8ah-5F-dRY"; */
+"8ah-5F-dRY.title" = "取消";
+
+/* Class = "NSButtonCell"; title = "Export All"; ObjectID = "aNC-Wr-s5j"; */
+"aNC-Wr-s5j.title" = "导出全部";
+
+/* Class = "NSButtonCell"; title = "Export"; ObjectID = "eUp-nG-TG4"; */
+"eUp-nG-TG4.title" = "导出";
+
+/* Class = "NSTextFieldCell"; title = "Export Slices"; ObjectID = "uAh-fv-Tkr"; */
+"uAh-fv-Tkr.title" = "导出切片";
+
+/* Class = "NSTextFieldCell"; title = "Select which Slices you would like to export."; ObjectID = "uKv-JJ-7z1"; */
+"uKv-JJ-7z1.title" = "选择要导出的切片。";
+

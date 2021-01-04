@@ -43,7 +43,7 @@ export default {
     },
     count: {
       type: Number,
-      default: 9630,
+      default: 0,
     },
     checkBoxValue: {
       type: Boolean,

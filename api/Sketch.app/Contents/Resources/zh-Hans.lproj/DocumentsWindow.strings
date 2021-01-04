@@ -1,0 +1,81 @@
+/* Class = "NSMenuItem"; title = "Clear Recent Documents"; ObjectID = "8vM-H3-LHD"; */
+"8vM-H3-LHD.title" = "清空最近文档";
+
+/* Class = "NSToolbarItem"; label = "New Document"; ObjectID = "395-J5-ftd"; Note = "A button that allows creating a new document. Displayed in the top left of the documents window"; */
+"395-J5-ftd.label" = "新文档";
+
+/* Class = "NSToolbarItem"; paletteLabel = "New Document"; ObjectID = "395-J5-ftd"; Note = "A button that allows creating a new document. Displayed in the top left of the documents window"; */
+"395-J5-ftd.paletteLabel" = "新文档";
+
+/* Class = "NSWindow"; title = "Documents"; ObjectID = "bEv-Ix-mMK"; */
+"bEv-Ix-mMK.title" = "文档";
+
+/* Class = "NSButtonCell"; title = "Get Started"; ObjectID = "D8H-9D-liK"; Note = "A button to let the user login to sketch cloud (or make an account)"; */
+"D8H-9D-liK.title" = "开始使用";
+
+/* Class = "NSToolbarItem"; label = "Search Documents"; ObjectID = "FhS-Ri-ck6"; Note = "The search field in the top right of the documents. Allows for searching through documents"; */
+"FhS-Ri-ck6.label" = "搜索文档";
+
+/* Class = "NSToolbarItem"; paletteLabel = "Search Documents"; ObjectID = "FhS-Ri-ck6"; Note = "The search field in the top right of the documents. Allows for searching through documents"; */
+"FhS-Ri-ck6.paletteLabel" = "搜索文档";
+
+/* Class = "NSMenuItem"; title = "View on Sketch Cloud…"; ObjectID = "FJA-JT-y3T"; */
+"FJA-JT-y3T.title" = "在 Sketch Cloud 上查看…";
+
+/* Class = "NSTextFieldCell"; title = "No Results"; ObjectID = "Jcn-Sz-4sr"; */
+"Jcn-Sz-4sr.title" = "什么也没搜到";
+
+/* Class = "NSToolbarItem"; label = "Window Name"; ObjectID = "Jdo-If-A6f"; */
+"Jdo-If-A6f.label" = "窗口名称";
+
+/* Class = "NSToolbarItem"; paletteLabel = "Window Name"; ObjectID = "Jdo-If-A6f"; */
+"Jdo-If-A6f.paletteLabel" = "窗口名称";
+
+/* Class = "NSTextFieldCell"; title = "Documents"; ObjectID = "jNC-ey-RSm"; */
+"jNC-ey-RSm.title" = "文档";
+
+/* Class = "NSTextFieldCell"; title = "Collaborate with Sketch Cloud"; ObjectID = "lhr-RP-3as"; Note = "The title of an introduction to Sketch cloud in the documents window"; */
+"lhr-RP-3as.title" = "通过 Sketch Cloud 协作";
+
+/* Class = "NSMenuItem"; title = "Delete Project…"; ObjectID = "lUL-Cr-wy1"; */
+"lUL-Cr-wy1.title" = "删除项目…";
+
+/* Class = "NSTextFieldCell"; title = "Sketch Cloud simplifies your work, with a central place to access, discuss and share documents with your team, clients and colleagues."; ObjectID = "nvW-G7-OEU"; Note = "The description of an introduction to Sketch cloud in the documents window"; */
+"nvW-G7-OEU.title" = "Sketch Cloud 让工作更简单，您可以在此与团队、客户或同事协同工作，获取、讨论并分享文档。";
+
+/* Class = "NSMenuItem"; title = "Copy Link"; ObjectID = "pi1-x2-8fO"; */
+"pi1-x2-8fO.title" = "拷贝链接";
+
+/* Class = "NSToolbarItem"; label = "Start Fixed Space"; ObjectID = "Pmv-wj-pOb"; Note = "Not actually shown to the user, translation doesn’t have a high priority"; */
+"Pmv-wj-pOb.label" = "启用固定空间";
+
+/* Class = "NSToolbarItem"; paletteLabel = "Start Fixed Space"; ObjectID = "Pmv-wj-pOb"; Note = "Not actually shown to the user, translation doesn’t have a high priority"; */
+"Pmv-wj-pOb.paletteLabel" = "启用固定空间";
+
+/* Class = "NSMenuItem"; title = "Show User Templates Folder"; ObjectID = "r7V-JN-KOp"; */
+"r7V-JN-KOp.title" = "显示用户模板文件夹";
+
+/* Class = "NSButtonCell"; title = "New Document"; ObjectID = "RFe-b7-tXe"; */
+"RFe-b7-tXe.title" = "新文档";
+
+/* Class = "NSTextFieldCell"; title = "HEADER CELL"; ObjectID = "RPX-bK-rDk"; */
+"RPX-bK-rDk.title" = "标题单元格";
+
+/* Class = "NSTextFieldCell"; title = "There was an error loading the documents."; ObjectID = "Se9-bn-vR6"; */
+"Se9-bn-vR6.title" = "加载文档时出错。";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Sri-gM-Wx0"; */
+"Sri-gM-Wx0.title" = "文本单元格";
+
+/* Class = "NSButtonCell"; title = "Open Local Document…"; ObjectID = "Sxj-Yu-Tie"; Note = "A button that allows opening a local Sketch document"; */
+"Sxj-Yu-Tie.title" = "打开本地文档…";
+
+/* Class = "NSMenuItem"; title = "Rename Project"; ObjectID = "VeH-kf-lGf"; */
+"VeH-kf-lGf.title" = "为项目重命名";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "yhA-Kn-Fb5"; */
+"yhA-Kn-Fb5.title" = "表视图单元格";
+
+/* Class = "NSButtonCell"; title = "Create New Document"; ObjectID = "Yww-fR-MVz"; Note = "A button that allows creating a new document from an empty team or project"; */
+"Yww-fR-MVz.title" = "新建文档";
+
