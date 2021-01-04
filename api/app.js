@@ -361,6 +361,14 @@ function sendInfos(count, uniqueSymbols, deadSymbolsCount) {
     });
 }
 
+function exportComponent(componentID, sketchFile) {
+    sketchtool.run('export layers' + process.cwd() + '/uploads/' + sketchFile + ' --formats=jpg --scales=2 --item=' + componentID + ' --output=/Users/calvino/Documents/Dev/decast/api/exports');
+}
+
+function exportComponentArtboards(sketchFile) {
+    sketchtool.run('export layers' + process.cwd() + '/uploads/' + sketchFile + ' --formats=jpg --scales=2 --output=/Users/calvino/Documents/Dev/decast/api/exports');
+}
+
 //Handle POST Request from Client Form to upload files
 app.post("/uploads", upload.array("files"), async (req, res) => {
     let reqData = req.files;
@@ -381,18 +389,13 @@ app.post("/uploads", upload.array("files"), async (req, res) => {
     uniqueSymbols = await getUniqueSymbolsUsage(uniqueSymbols, allSymbols);
     let deadCount = await getDeadComponentsCount(uniqueSymbols);
     let infos = await sendInfos(count, uniqueSymbols, deadCount);
-    console.log(sketchtool.check());
     res.status(200).send(infos);
 });
-let pages = sketchtool.list('layers', '/Users/calvino/Documents/Dev/decast/api/uploads/S.sketch').pages;
+let pages = sketchtool.list('layers', process.cwd() + '/uploads/S.sketch').pages;
 let layers = [];
 pages.forEach(page => {
-    console.log(page);
     //layers = layers.concat(...page.layers);
 })
-
-console.log(layers);
-sketchtool.run('export layers /Users/calvino/Documents/Dev/decast/api/uploads/S.sketch --formats=jpg --scales=2 --item=41045A3B-9ECC-418E-B8CC-3B50814A0B31 --output=/Users/calvino/Documents/Dev/decast/api/exports');
 
 //Handle GET Request from Client Form
 router.get("/dashboard", async (req, res) => {

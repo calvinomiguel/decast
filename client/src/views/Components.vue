@@ -32,21 +32,35 @@
             <h1 class="font-mono font-bold text-4xl mb-3">
               {{ componentName }}
             </h1>
-            <ButtonMenu class="mr-2" text="Component" />
-            <ButtonMenu class="mr-2" text="Stats" />
-            <ButtonMenu text="Usage context" />
+            <ButtonMenu
+              @click.native="changeView"
+              id="c-view"
+              class="mr-2"
+              text="Component"
+            />
+            <ButtonMenu
+              @click.native="changeView"
+              id="s-view"
+              class="mr-2"
+              text="Stats"
+            />
+            <ButtonMenu
+              @click.native="changeView"
+              id="u-view"
+              text="Usage context"
+            />
             <Divider class="mt-6" />
           </div>
           <div class="content-view mt-6 pb-6">
             <div
-              class="component-view bg-smokey w-full flex items-center justify-center px-4 py-4 rounded"
+              class="c-view bg-smokey w-full flex items-center justify-center px-4 py-4 rounded"
             >
               <img
-                src="https://semble.org/wp-content/uploads/2020/04/273944_5895ce6dcba9841eabab6068.png"
+                src="/Users/calvino/Documents/Dev/decast/api/exports/primary-button@2x.jpg"
                 alt=""
               />
             </div>
-            <div class="stats-view pb-6">
+            <div class="s-view pb-6">
               <h2 class="font-mono font-bold text-2xl text-night-300">
                 Scope of use
               </h2>
@@ -146,7 +160,7 @@
                 </div>
               </div>
             </div>
-            <div class="context-view">
+            <div class="u-view">
               <div class="artboards-view inline-flex flex-wrap">
                 <div
                   class="artboard rounded-lg hover:bg-smokey p-3 transition-all duration-300 mb-3"
@@ -284,6 +298,7 @@ export default {
       },
       data: null,
       symbols: [],
+      views: ["s-view", "c-view", "u-view"],
     };
   },
   props: {
@@ -304,6 +319,18 @@ export default {
       });
       console.log(this.symbols);
     }
+  },
+  methods: {
+    changeView(event) {
+      this.views.forEach((view) => {
+        let element = document.querySelector("." + view);
+        element.style.display = "none";
+        if (view == event.target.id) {
+          element.style.display = "initial";
+        }
+      });
+      console.log(event.target.id);
+    },
   },
   computed: {
     degreeOfUse: function () {
