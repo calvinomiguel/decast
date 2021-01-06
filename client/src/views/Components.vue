@@ -21,6 +21,7 @@
               :key="index"
               :name="symbol.originalMaster.name"
               :count="symbol.usage"
+              :id="symbol.originalMaster.id"
               class="mb-2"
             />
           </div>
@@ -53,12 +54,9 @@
           </div>
           <div class="content-view mt-6 pb-6">
             <div
-              class="c-view bg-smokey w-full flex items-center justify-center px-4 py-4 rounded"
+              class="c-view bg-smokey h-full w-full flex items-center justify-center px-4 py-4 rounded"
             >
-              <img
-                src="/Users/calvino/Documents/Dev/decast/api/exports/primary-button@2x.jpg"
-                alt=""
-              />
+              <img src="../../../api/exports/primary-button@2x.jpg" alt="" />
             </div>
             <div class="s-view pb-6">
               <h2 class="font-mono font-bold text-2xl text-night-300">
@@ -296,6 +294,10 @@ export default {
         "Total artboards": 999,
         "Artboards using component": 1440,
       },
+      currentComponent: {
+        name: null,
+        id: null,
+      },
       data: null,
       symbols: [],
       views: ["s-view", "c-view", "u-view"],
@@ -326,10 +328,11 @@ export default {
         let element = document.querySelector("." + view);
         element.style.display = "none";
         if (view == event.target.id) {
-          element.style.display = "initial";
+          view == "c-view"
+            ? (element.style.display = "flex")
+            : (element.style.display = "block");
         }
       });
-      console.log(event.target.id);
     },
   },
   computed: {
@@ -411,8 +414,8 @@ aside {
   cursor: pointer;
 }
 
-.stats-view,
-.component-view {
+.s-view,
+.u-view {
   display: none;
 }
 .btn-organizer {

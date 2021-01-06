@@ -11,6 +11,9 @@ const sketchtool = require('sketchtool-cli');
 const {
     json
 } = require("body-parser");
+const {
+    file
+} = require("jszip");
 const dir = process.argv[2] || process.cwd() + "/uploads";
 const upload = multer({
     dest: "./uploads/"
@@ -62,8 +65,8 @@ function changeFileNames(fileNames) {
     });
 }
 
-//Get all files in upload directory
-function getFiles() {
+//Get all file names in upload directory
+function getFileNames() {
     return new Promise((resolve, reject) => {
         let fileNames = [];
         fs.readdir(dir, (err, files) => {
@@ -72,25 +75,156 @@ function getFiles() {
             } else {
                 files.forEach(file => {
                     if (file.includes('.sketch')) {
-                        fileNames.push(file);
+                        fileNames.push({
+                            name: file,
+                            path: dir + '/' + file
+                        });
                     }
                 });
-                resolve(fileNames);
+                if (fileNames.length > 0) {
+                    resolve(fileNames);
+                } else {
+                    reject("No files found.");
+                }
+
             }
         });
     });
 }
 
+async function getPages(files) {
+    let pages = [];
+    let filePages;
+    for (let file of files) {
+        filePages = await sketchtool.list('layers', file.path).pages;
+        pages.push(...filePages);
+        file.pages = pages;
+    }
+    for (let page of pages) {
+        delete page.layers;
+        delete page.bounds;
+    }
+    return files;
+};
+
 //Get all symbols
 async function getSymbols(files) {
     let symbols = [];
+
+    //Get all foreign and local symbols and push them in file object
     for (let file of files) {
-        const sketch = await ns.read(dir + '/' + file);
-        symbols = symbols.concat(...sketch.symbols);
-    };
-    return symbols;
+        let sketch = await ns.read(file.path);
+        let masterSymbols = sketch.symbols;
+        let foreignSymbols = sketch.foreignSymbols;
+        symbols.push(...masterSymbols);
+        symbols.push(...foreignSymbols);
+        file.symbols = symbols;
+    }
+    return files;
 }
 
+function restructureSymbolsObj(files) {
+    return new Promise((resolve, reject) => {
+        //Restructure symbol objects
+        for (let file of files) {
+            let symbolArr = [];
+            file.symbols.forEach(symbol => {
+                if (symbol._class == "MSImmutableForeignSymbol") {
+                    let _libraryID = symbol.libraryID;
+                    let _sourceLibraryName = symbol.sourceLibraryName;
+                    let _name = symbol.originalMaster.name;
+                    let _symbolClass = symbol.originalMaster._class;
+                    let _originalMasterID = symbol.originalMaster.symbolID;
+                    let _symbolMasterID = symbol.originalMaster.symbolID;
+                    symbolArr.push({
+                        libraryID: _libraryID,
+                        sourceLibraryName: _sourceLibraryName,
+                        name: _name,
+                        _class: _symbolClass,
+                        originalMasterId: _originalMasterID,
+                        symbolMasterID: _symbolMasterID
+                    });
+                } else {
+                    let _libraryID = false;
+                    let _sourceLibraryName = false;
+                    let _name = symbol.name;
+                    let _symbolClass = symbol._class;
+                    let _originalMasterID = symbol.symbolID;
+                    let _symbolMasterID = false;
+                    symbolArr.push({
+                        libraryID: _libraryID,
+                        sourceLibraryName: _sourceLibraryName,
+                        name: _name,
+                        _class: _symbolClass,
+                        originalMasterId: _originalMasterID,
+                        symbolMasterID: _symbolMasterID
+                    })
+                }
+            });
+            file.symbols = symbolArr;
+        }
+        if (files) {
+            resolve(files);
+        } else {
+            reject("Something went wrong.");
+        }
+    });
+}
+
+function uniteIdenticalSymbols(files) {
+    return new Promise((resolve, reject) => {
+        files.forEach(file => {
+
+            //Set new array
+            let symbols = [...new Set(file.symbols)];
+            let array = [];
+            const data = symbols.reduce((acc, v) => {
+                const exists = acc[v.originalMasterId];
+                if (exists) {
+                    // if current obj is an instance of master
+                    if (v.symbolMasterID) {
+                        // push to id to master's symbols array
+                        acc[v.originalMasterId].symbolMasterIDs.push(v.symbolMasterID);
+                    }
+                    return acc;
+                }
+
+                // if doesnt exist, make a new entry in accumulator
+                const entry = {
+                    ...v,
+                    symbolMasterIDs: []
+                };
+                const symbolMasterID = v.symbolMasterID;
+
+                // since symbolMasterID is false, we can just remove it from object
+                // it gets replaced by symbols array anyways
+                delete entry.symbolMasterID;
+
+                // if we're iterating over an instance of a symbol and not a master component
+                // (because the array isnt sorted to have symbolMasterID:false first)
+                if (symbolMasterID) {
+                    // then push into symbols
+                    entry.symbolMasterIDs.push(symbolMasterID);
+                }
+
+                // push entry into accumulator, unique by originalMasterId
+                acc[v.originalMasterId] = entry;
+                return acc;
+            }, {});
+            //Create array of symbol objects
+            for (let obj in data) {
+                array.push(data[obj]);
+            }
+            file.symbols = array;
+        });
+        if (files) {
+            resolve(files);
+        }
+    });
+}
+
+
+/*
 async function getForeignSymbols(files) {
     let foreignSymbols = [];
     for (let file of files) {
@@ -98,19 +232,6 @@ async function getForeignSymbols(files) {
         foreignSymbols = foreignSymbols.concat(...sketch.document.foreignSymbols);
     };
     return foreignSymbols;
-}
-
-function getOriginalSymbols(arr_1, arr_2) {
-    return new Promise((resolve, reject) => {
-        let arr = [];
-        arr = arr.concat(...arr_1);
-        arr = arr.concat(...arr_2);
-        if (arr.length == arr_1.length + arr_2.length) {
-            resolve(arr);
-        } else {
-            console.error("Couldn't unite all symbols.");
-        }
-    });
 }
 
 function getAllSymbols(foreignSymbols, symbols) {
@@ -362,22 +483,26 @@ function sendInfos(count, uniqueSymbols, deadSymbolsCount) {
 }
 
 function exportComponent(componentID, sketchFile) {
-    sketchtool.run('export layers' + process.cwd() + '/uploads/' + sketchFile + ' --formats=jpg --scales=2 --item=' + componentID + ' --output=/Users/calvino/Documents/Dev/decast/api/exports');
+    sketchtool.run('export layers' + process.cwd() + '/uploads/' + sketchFile + ' --formats=png --scales=2 --item=' + componentID + ' --output=/Users/calvino/Documents/Dev/decast/api/exports');
 }
 
 function exportComponentArtboards(sketchFile) {
     sketchtool.run('export layers' + process.cwd() + '/uploads/' + sketchFile + ' --formats=jpg --scales=2 --output=/Users/calvino/Documents/Dev/decast/api/exports');
 }
-
+*/
 //Handle POST Request from Client Form to upload files
 app.post("/uploads", upload.array("files"), async (req, res) => {
     let reqData = req.files;
     let fileNames = await storeFileNames(reqData);
     fileNames = await changeFileNames(fileNames);
-    let files = await getFiles();
-    let foreignSymbols = await getForeignSymbols(files);
-    let symbols = await getSymbols(files);
-    let allSymbols = await getAllSymbols(foreignSymbols, symbols);
+    let files = await getFileNames();
+    // let foreignSymbols = await getForeignSymbols(files);
+    let pages = await getPages(files);
+    pages = await getSymbols(pages);
+    pages = await restructureSymbolsObj(pages)
+    await uniteIdenticalSymbols(pages)
+    //let symbols = await getSymbols(files, pages);
+    /*let allSymbols = await getAllSymbols(foreignSymbols, symbols);
     let count = await getSymbolCount(symbols, foreignSymbols);
     let pages = await getPages(files);
     let layers = await getLayers(pages);
@@ -388,14 +513,10 @@ app.post("/uploads", upload.array("files"), async (req, res) => {
     let uniqueSymbols = await getUniqueSymbols(allSymbols);
     uniqueSymbols = await getUniqueSymbolsUsage(uniqueSymbols, allSymbols);
     let deadCount = await getDeadComponentsCount(uniqueSymbols);
-    let infos = await sendInfos(count, uniqueSymbols, deadCount);
-    res.status(200).send(infos);
+    let infos = await sendInfos(count, uniqueSymbols, deadCount);*/
+    res.status(200).send(pages);
 });
-let pages = sketchtool.list('layers', process.cwd() + '/uploads/S.sketch').pages;
-let layers = [];
-pages.forEach(page => {
-    //layers = layers.concat(...page.layers);
-})
+
 
 //Handle GET Request from Client Form
 router.get("/dashboard", async (req, res) => {
