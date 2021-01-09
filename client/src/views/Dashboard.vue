@@ -20,7 +20,8 @@
 import DeadBoard from "@/components/DeadBoard";
 import SuggestBoard from "@/components/SuggestBoard";
 import NavBar from "@/components/NavBar";
-let data = localStorage.data;
+import axios from "axios";
+
 export default {
   name: "Dashboard",
   components: {
@@ -32,7 +33,6 @@ export default {
     return {
       totalComponents: null,
       deadComponents: null,
-      symbols: null,
       ratio: null,
       data: null,
       suggestions: [
@@ -61,10 +61,29 @@ export default {
     };
   },
   mounted() {
-    if (data) {
-      this.data = data;
-      console.log(JSON.parse(this.data));
-      this.data = JSON.parse(this.data);
+    const getData = async () => {
+      try {
+        const port = process.env.PORT || 3060;
+        const protocol = "http";
+        const host = "localhost";
+        const res = await axios.get(`${protocol}://${host}:${port}/data`);
+        this.data = res.data;
+        let data = this.data;
+        let count = 0;
+        data.symbols.forEach((symbol) => {
+          this.deadComponents = symbol.count == 0 ? (count += 1) : (count += 0);
+          console.log(count);
+        });
+        this.totalComponents = data.symbols.length;
+        this.ratio = this.deadComponents / this.totalComponents;
+        console.log(JSON.parse(JSON.stringify(data.symbols)));
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getData();
+
+    /*
       this.data.symbols.forEach((symbol) => {
         let count = 0;
         this.deadComponents = symbol.count == 0 ? (count += 1) : (count += 0);
@@ -73,7 +92,7 @@ export default {
       this.ratio = this.deadComponents / this.totalComponents;
       this.symbols = this.data.symbols;
     }
-    this.deadComponents > 0 ? (this.suggestions[0].status = true) : false;
+    this.deadComponents > 0 ? (this.suggestions[0].status = true) : false;*/
   },
   computed: {
     deadComponentsRatio: function () {

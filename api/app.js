@@ -107,7 +107,7 @@ async function getGlobalPages(files) {
             name: page.name,
             _class: page._class,
             do_objectID: page.do_objectID,
-            layers: page.layers
+            //layers: page.layers
         });
     }
     let objSchema = {
@@ -159,39 +159,41 @@ function restructureSymbolsObj(objSchema) {
         //Restructure symbol objects
         for (let file of files) {
             let symbolArr = [];
-            file.symbols.forEach(symbol => {
+            let symbols = file.symbols;
+            for (let symbol of symbols) {
                 if (symbol._class == "MSImmutableForeignSymbol") {
-                    let _libraryID = symbol.libraryID;
-                    let _sourceLibraryName = symbol.sourceLibraryName;
+                    //let _libraryID = symbol.libraryID;
+                    //let _sourceLibraryName = symbol.sourceLibraryName;
                     let _name = symbol.originalMaster.name;
                     let _symbolClass = symbol.originalMaster._class;
                     let _originalMasterID = symbol.originalMaster.symbolID;
-                    let _symbolMasterID = symbol.originalMaster.symbolID;
+                    let _symbolMasterID = symbol.symbolMaster.symbolID;
                     symbolArr.push({
-                        libraryID: _libraryID,
-                        sourceLibraryName: _sourceLibraryName,
+                        //libraryID: _libraryID,
+                        //sourceLibraryName: _sourceLibraryName,
                         name: _name,
                         _class: _symbolClass,
                         originalMasterId: _originalMasterID,
                         symbolMasterID: _symbolMasterID
                     });
-                } else {
-                    let _libraryID = false;
-                    let _sourceLibraryName = false;
+                }
+                if (symbol._class == "symbolMaster") {
+                    //let _libraryID = false;
+                    //let _sourceLibraryName = false;
                     let _name = symbol.name;
                     let _symbolClass = symbol._class;
                     let _originalMasterID = symbol.symbolID;
                     let _symbolMasterID = false;
                     symbolArr.push({
-                        libraryID: _libraryID,
-                        sourceLibraryName: _sourceLibraryName,
+                        //libraryID: _libraryID,
+                        //sourceLibraryName: _sourceLibraryName,
                         name: _name,
                         _class: _symbolClass,
                         originalMasterId: _originalMasterID,
                         symbolMasterID: _symbolMasterID
                     })
                 }
-            });
+            };
             file.symbols = symbolArr;
         }
         if (objSchema) {
@@ -204,7 +206,6 @@ function restructureSymbolsObj(objSchema) {
 
 //Restructure symbols objects and set them globally
 function uniteIdenticalSymbols(objSchema) {
-
     return new Promise((resolve, reject) => {
         let files = objSchema.files;
         let array = [];
@@ -252,7 +253,6 @@ function uniteIdenticalSymbols(objSchema) {
                 return acc;
             }, {});
         }
-
         //Remove symbol ID as property
         for (const [key, value] of Object.entries(data)) {
             array.push(value);
@@ -300,6 +300,7 @@ async function getGlobalSymbolInstances(objSchema) {
     //Filter all symbolInstances from the layers
     instancesFilter = symbolInstances.filter(layer => layer._class == "symbolInstance");
     objSchema.symbolInstances = instancesFilter;
+    console.log(objSchema);
     return objSchema;
 }
 
@@ -309,20 +310,29 @@ function getGlobalSymbolsCount(objSchema) {
         let symbols = objSchema.symbols;
         let symbolInstances = objSchema.symbolInstances;
 
-        for (let symbol of symbols) {
+        symbols.forEach(symbol => {
             let count = 0;
-            let symbolIDs = symbol.symbolIDs.length > 0 ? symbol.symbolIDs : false;
-
-            for (let instance of symbolInstances) {
-                instance.symbolID == symbol.originalMasterId ? count += 1 : count += 0;
-                if (symbolIDs != false) {
-                    for (let id of symbolIDs) {
-                        id == instance.symbolID ? count += 1 : count += 0;
-                    }
+            let symbolIds = symbol.symbolIDs;
+            let originalMasterId = symbol.originalMasterId;
+            symbolInstances.forEach(instance => {
+                if (instance.symbolID == originalMasterId) {
+                    count = count + 1;
                 }
+            });
+            if (symbolIds != false) {
+                symbolIds.forEach(symbolID => {
+                    console.log(symbolID);
+                    symbolInstances.forEach(instance => {
+                        if (symbolID == instance.symbolID) {
+                            count = count + 1
+                        }
+                    });
+                });
             }
             symbol.count = count;
-        }
+        });
+
+        delete objSchema.symbolInstances;
 
         if (files) {
             resolve(objSchema);
@@ -333,24 +343,6 @@ function getGlobalSymbolsCount(objSchema) {
 }
 
 /*
-function sendInfos(count, uniqueSymbols, deadSymbolsCount) {
-    return new Promise((resolve, reject) => {
-
-        let obj = {
-            symbols: uniqueSymbols,
-            count: count,
-            deadCount: deadSymbolsCount
-        };
-
-        //Check if object has properties
-        if (Object.keys(obj).length > 0) {
-            resolve(obj);
-        } else {
-            reject("Send infos error.");
-        }
-    });
-}
-
 function exportComponent(componentID, sketchFile) {
     sketchtool.run('export layers' + process.cwd() + '/uploads/' + sketchFile + ' --formats=png --scales=2 --item=' + componentID + ' --output=/Users/calvino/Documents/Dev/decast/api/exports');
 }
@@ -372,9 +364,23 @@ app.post("/uploads", upload.array("files"), async (req, res) => {
     files = await uniteIdenticalSymbols(files);
     files = await getGlobalSymbolInstances(files);
     files = await getGlobalSymbolsCount(files);
-    res.status(200).send(Buffer.from(JSON.stringify(files),'utf8'));
+    files = Buffer.from(JSON.stringify(files));
+    await fs.writeFile(dir + "/data.json", files, () => {
+        console.log("File created");
+    })
+    res.status(200).send(files);
 });
-
+//Handle GET Request from Client Form
+router.get("/data", async (req, res, next) => {
+    let fileName = "data.json"
+    res.sendFile(dir + "/" + fileName, (err) => {
+        if (err) {
+            next(err);
+        } else {
+            console.log("Sent:", fileName);
+        }
+    });
+});
 //Handle GET Request from Client Form
 router.get("/dashboard", async (req, res) => {
     res.status(200).send('Hi');
