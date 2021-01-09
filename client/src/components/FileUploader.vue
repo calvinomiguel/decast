@@ -99,16 +99,16 @@ export default {
         data: pkg,
       });
 
-      localStorage.setItem("data", JSON.stringify(res.data));
-
+      localStorage.setItem("data", res.data);
+      /*
       for (let pair of pkg.entries()) {
         console.log(pair[1]);
-      }
+      }*/
 
       console.log(res.data);
-      /*if (res.status == "200") {
+      if (res.status == "200") {
         this.$router.push("/dashboard");
-      }*/
+      }
     },
   },
 };

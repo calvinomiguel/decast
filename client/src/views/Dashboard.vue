@@ -65,8 +65,11 @@ export default {
       this.data = data;
       console.log(JSON.parse(this.data));
       this.data = JSON.parse(this.data);
-      this.deadComponents = this.data.deadCount;
-      this.totalComponents = this.data.count;
+      this.data.symbols.forEach((symbol) => {
+        let count = 0;
+        this.deadComponents = symbol.count == 0 ? (count += 1) : (count += 0);
+      });
+      this.totalComponents = this.data.symbols.length;
       this.ratio = this.deadComponents / this.totalComponents;
       this.symbols = this.data.symbols;
     }
