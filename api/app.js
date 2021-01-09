@@ -300,7 +300,6 @@ async function getGlobalSymbolInstances(objSchema) {
     //Filter all symbolInstances from the layers
     instancesFilter = symbolInstances.filter(layer => layer._class == "symbolInstance");
     objSchema.symbolInstances = instancesFilter;
-    console.log(objSchema);
     return objSchema;
 }
 

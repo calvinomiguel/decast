@@ -101,7 +101,7 @@ export default {
 
       if (res.status == "200") {
         console.log(res.data);
-        //this.$router.push("/dashboard");
+        this.$router.push("/dashboard");
       }
       /*
       const createDB = async () => {

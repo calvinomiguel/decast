@@ -69,30 +69,19 @@ export default {
         const res = await axios.get(`${protocol}://${host}:${port}/data`);
         this.data = res.data;
         let data = this.data;
+        //Get number of deadComponents
         let count = 0;
         data.symbols.forEach((symbol) => {
           this.deadComponents = symbol.count == 0 ? (count += 1) : (count += 0);
-          console.log(count);
         });
         this.totalComponents = data.symbols.length;
         this.ratio = this.deadComponents / this.totalComponents;
-        console.log(JSON.parse(JSON.stringify(data.symbols)));
+        console.log(data);
       } catch (err) {
         console.error(err);
       }
     };
     getData();
-
-    /*
-      this.data.symbols.forEach((symbol) => {
-        let count = 0;
-        this.deadComponents = symbol.count == 0 ? (count += 1) : (count += 0);
-      });
-      this.totalComponents = this.data.symbols.length;
-      this.ratio = this.deadComponents / this.totalComponents;
-      this.symbols = this.data.symbols;
-    }
-    this.deadComponents > 0 ? (this.suggestions[0].status = true) : false;*/
   },
   computed: {
     deadComponentsRatio: function () {

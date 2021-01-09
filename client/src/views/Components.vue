@@ -17,17 +17,31 @@
           <CheckBox label="Select all" class="ml-4 mt-8" />
           <div class="components-list mt-4">
             <ListCard
+              v-on:click.native="selectComponent"
               v-for="(symbol, index) in symbols"
               :key="index"
-              :name="symbol.originalMaster.name"
-              :count="symbol.usage"
-              :id="symbol.originalMaster.id"
-              class="mb-2"
+              :name="symbol.name"
+              :count="symbol.count"
+              :id="symbol.originalMasterId"
+              class="mb-2 border-lila-200"
             />
           </div>
         </div>
       </aside>
       <main class="main bg-cloud w-full">
+        <div
+          class="empty-state h-full w-full flex items-center justify-center bg-cloud"
+        >
+          <div class="txt-container">
+            <h3 class="font-mono font-bold text-2xl text-center text-night-300">
+              Start by selecting a component
+            </h3>
+            <p class="font-mono text-night-100 text-center">
+              By selecting a component you can preview it, see its statistics or
+              its usage context.
+            </p>
+          </div>
+        </div>
         <div class="main-wrapper px-5 py-6">
           <div class="main-head">
             <h1 class="font-mono font-bold text-4xl mb-3">
@@ -281,7 +295,7 @@ import CheckBox from "@/components/CheckBox";
 import ListCard from "@/components/ListCard";
 import ButtonMenu from "@/components/ButtonMenu";
 import Divider from "@/components/Divider";
-let data = localStorage.data;
+import axios from "axios";
 export default {
   name: "Components",
   data() {
@@ -314,13 +328,24 @@ export default {
     },
   },
   mounted() {
-    if (data) {
-      this.data = JSON.parse(data);
-      this.data.symbols.forEach((symbol) => {
-        this.symbols.push(symbol);
-      });
-      console.log(this.symbols);
-    }
+    const getData = async () => {
+      try {
+        const port = process.env.PORT || 3060;
+        const protocol = "http";
+        const host = "localhost";
+        const res = await axios.get(`${protocol}://${host}:${port}/data`);
+        let data = res.data;
+        let symbols = data.symbols;
+
+        symbols.forEach((symbol) => {
+          this.symbols.push(symbol);
+        });
+        console.log(data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getData();
   },
   methods: {
     changeView(event) {
@@ -333,6 +358,49 @@ export default {
             : (element.style.display = "block");
         }
       });
+    },
+    selectComponent(event) {
+      let emptyState = document.querySelector(".empty-state");
+      let mainView = document.querySelector(".main-wrapper");
+      let element = event.currentTarget;
+      let listCardList = element.parentNode.childNodes;
+
+      //Show Mainview and close empty state
+      emptyState.style.display = "none";
+      mainView.style.display = "block";
+
+      //Remove selection from all list card elements
+      listCardList.forEach((listcard) => {
+        listcard.classList.remove("border-2", "border-lila-100");
+        listcard.classList.add("border-night-100", "border");
+      });
+
+      //Add selection to current target
+      element.classList.remove("border-night-100", "border");
+      element.classList.add("border-2", "border-lila-100");
+
+      /*
+      const getComponentData = async () => {
+      try {
+        const port = process.env.PORT || 3060;
+        const protocol = "http";
+        const host = "localhost";
+        const res = await axios.get(`${protocol}://${host}:${port}/data`);
+        this.data = res.data;
+        let data = this.data;
+        //Get number of deadComponents
+        let count = 0;
+        data.symbols.forEach((symbol) => {
+          this.deadComponents = symbol.count == 0 ? (count += 1) : (count += 0);
+        });
+        this.totalComponents = data.symbols.length;
+        this.ratio = this.deadComponents / this.totalComponents;
+        console.log(data);
+      } catch (err) {
+        console.error(err);
+      }
+    };*/
+      console.log(event);
     },
   },
   computed: {
@@ -394,6 +462,10 @@ aside {
   overflow: hidden;
 }
 
+.list-card {
+  cursor: pointer;
+}
+
 .main-wrapper {
   overflow: scroll;
 }
@@ -413,7 +485,7 @@ aside {
 .artboard {
   cursor: pointer;
 }
-
+.main-wrapper,
 .s-view,
 .u-view {
   display: none;
