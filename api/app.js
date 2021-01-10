@@ -366,7 +366,7 @@ function exportComponent(sketchFile, symbolId) {
 }
 //exportComponent('botschaft.sketch', "F9CD18F5-5706-4E29-86F1-94E537FF1AC2");
 
-function exportComponentArtboards(sketchFile) {
+async function exportComponentArtboards(sketchFile) {
     sketchtool.run('export artboards ' + dir + '/' + sketchFile + ' --formats=jpg --scales=2 --output=' + outputDir);
 }
 //console.log(sketchtool.run("help export layers"));
@@ -407,7 +407,7 @@ router.get('/component/', async (req, res, next) => {
     let symbolId = req.query.id;
     let fileName = req.query.origin;
     let filePath = outputDir + '/' + symbolId + '@2x.png';
-    console.log(fileName, symbolId);
+    //console.log(fileName, symbolId);
     try {
         if (!fs.existsSync(filePath)) {
             exportComponent(fileName, symbolId);
@@ -423,7 +423,7 @@ router.get('/component/', async (req, res, next) => {
         if (err) {
             next(err);
         } else {
-            console.log('Sent:', symbolId);
+            //console.log('Sent:', symbolId);
         }
     });
 });

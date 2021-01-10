@@ -71,7 +71,16 @@
             <div
               class="c-view bg-smokey h-full w-full flex items-center justify-center px-4 py-4 rounded"
             >
-              <img :src="previewPath" alt="" />
+              <div class="sl-wrapper">
+                <div class="sl-component"></div>
+              </div>
+              <ComponentPreview
+                :imgPath="
+                  imgPath.status == false
+                    ? require('@/assets/img/Ajax-Preloader.gif')
+                    : imgPath.img
+                "
+              />
             </div>
             <div class="s-view pb-6">
               <h2 class="font-mono font-bold text-2xl text-night-300">
@@ -296,12 +305,16 @@ import CheckBox from "@/components/CheckBox";
 import ListCard from "@/components/ListCard";
 import ButtonMenu from "@/components/ButtonMenu";
 import Divider from "@/components/Divider";
+import ComponentPreview from "@/components/ComponentPreview";
 import axios from "axios";
 export default {
   name: "Components",
   data() {
     return {
-      previewPath: null,
+      imgPath: {
+        status: false,
+        img: null,
+      },
       components: undefined,
       totalArtboards: 1440,
       artboardsUsingComponent: 999,
@@ -369,6 +382,7 @@ export default {
       let symbolId = element.getAttribute("id");
       let symbolOrigin = element.getAttribute("origin");
 
+      this.imgPath.status = false;
       //Show Mainview and close empty state
       emptyState.style.display = "none";
       mainView.style.display = "block";
@@ -382,7 +396,6 @@ export default {
       //Add selection to current target
       element.classList.remove("border-night-100", "border");
       element.classList.add("border-2", "border-lila-100");
-
       const getComponentData = async () => {
         try {
           const port = process.env.PORT || 3060;
@@ -397,9 +410,11 @@ export default {
               },
             }
           );
-          //let data = res.data;
-          this.previewPath = res.request.responseURL;
-          console.log(this.previewPath);
+
+          if (res.request.readyState == 4) {
+            this.imgPath.img = res.request.responseURL;
+            this.imgPath.status = true;
+          }
         } catch (err) {
           console.error(err);
         }
@@ -424,6 +439,7 @@ export default {
     ListCard,
     ButtonMenu,
     Divider,
+    ComponentPreview,
   },
 };
 </script>
@@ -478,6 +494,9 @@ aside {
   height: calc(100% - 118px);
 }
 
+.component-preview {
+  max-height: 100%;
+}
 .artboards-view {
   gap: calc(4% / 3);
 }
