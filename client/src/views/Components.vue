@@ -71,7 +71,7 @@
             <div
               class="c-view bg-smokey h-full w-full flex items-center justify-center px-4 py-4 rounded"
             >
-              <img src="../../../api/exports/primary-button@2x.jpg" alt="" />
+              <img :src="previewPath" alt="" />
             </div>
             <div class="s-view pb-6">
               <h2 class="font-mono font-bold text-2xl text-night-300">
@@ -301,6 +301,7 @@ export default {
   name: "Components",
   data() {
     return {
+      previewPath: null,
       components: undefined,
       totalArtboards: 1440,
       artboardsUsingComponent: 999,
@@ -396,8 +397,9 @@ export default {
               },
             }
           );
-          let data = res.data;
-          console.log(data);
+          //let data = res.data;
+          this.previewPath = res.request.responseURL;
+          console.log(this.previewPath);
         } catch (err) {
           console.error(err);
         }

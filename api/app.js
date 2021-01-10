@@ -415,6 +415,9 @@ router.get('/component/', async (req, res, next) => {
     } catch (err) {
         console.error(err);
     }
+    res.set({
+        'Content-Type': 'image/png'
+    });
 
     res.sendFile(filePath, (err) => {
         if (err) {
