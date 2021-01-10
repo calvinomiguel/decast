@@ -19,10 +19,11 @@
             <ListCard
               v-on:click.native="selectComponent"
               v-for="(symbol, index) in symbols"
+              :origin="symbol.originFile"
               :key="index"
               :name="symbol.name"
               :count="symbol.count"
-              :id="symbol.originalMasterId"
+              :id="symbol.do_objectID"
               class="mb-2 border-lila-200"
             />
           </div>
@@ -364,6 +365,8 @@ export default {
       let mainView = document.querySelector(".main-wrapper");
       let element = event.currentTarget;
       let listCardList = element.parentNode.childNodes;
+      let symbolId = element.getAttribute("id");
+      let symbolOrigin = element.getAttribute("origin");
 
       //Show Mainview and close empty state
       emptyState.style.display = "none";
@@ -379,28 +382,27 @@ export default {
       element.classList.remove("border-night-100", "border");
       element.classList.add("border-2", "border-lila-100");
 
-      /*
       const getComponentData = async () => {
-      try {
-        const port = process.env.PORT || 3060;
-        const protocol = "http";
-        const host = "localhost";
-        const res = await axios.get(`${protocol}://${host}:${port}/data`);
-        this.data = res.data;
-        let data = this.data;
-        //Get number of deadComponents
-        let count = 0;
-        data.symbols.forEach((symbol) => {
-          this.deadComponents = symbol.count == 0 ? (count += 1) : (count += 0);
-        });
-        this.totalComponents = data.symbols.length;
-        this.ratio = this.deadComponents / this.totalComponents;
-        console.log(data);
-      } catch (err) {
-        console.error(err);
-      }
-    };*/
-      console.log(event);
+        try {
+          const port = process.env.PORT || 3060;
+          const protocol = "http";
+          const host = "localhost";
+          const res = await axios.get(
+            `${protocol}://${host}:${port}/component`,
+            {
+              params: {
+                id: symbolId,
+                origin: symbolOrigin,
+              },
+            }
+          );
+          let data = res.data;
+          console.log(data);
+        } catch (err) {
+          console.error(err);
+        }
+      };
+      getComponentData();
     },
   },
   computed: {

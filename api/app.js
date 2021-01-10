@@ -1,6 +1,6 @@
-const express = require("express");
+const express = require('express');
 const app = express();
-const multer = require("multer");
+const multer = require('multer');
 const bodyParser = require('body-parser');
 const router = express.Router();
 const fs = require('fs');
@@ -10,13 +10,14 @@ const cors = require('cors');
 const sketchtool = require('sketchtool-cli');
 const {
     json
-} = require("body-parser");
+} = require('body-parser');
 const {
     file
-} = require("jszip");
-const dir = process.argv[2] || process.cwd() + "/uploads";
+} = require('jszip');
+const dir = process.argv[2] || process.cwd() + '/uploads';
+const outputDir = process.cwd() + '/exports';
 const upload = multer({
-    dest: "./uploads/"
+    dest: './uploads/'
 });
 
 app.use(cors());
@@ -51,7 +52,7 @@ function changeFileNames(fileNames) {
     return new Promise((resolve, reject) => {
         fileNames.forEach(nameGroup => {
             let tmpPath = `${dir}/${nameGroup.tmpName}`;
-            let oPath = `${dir}/${nameGroup.oName}`;
+            let oPath = `${dir}/${nameGroup.oName.replace(/ *\([^)]*\) */g, '')}`;
 
             fs.renameSync(tmpPath, oPath, () => {
                 console.log(`${nameGroup.tmpName} was renamed to ${nameGroup.oName}!`);
@@ -60,7 +61,7 @@ function changeFileNames(fileNames) {
         if (fileNames) {
             resolve(fileNames);
         } else {
-            reject("Failed in changing tmp file names to original file names.");
+            reject('Failed in changing tmp file names to original file names.');
         }
     });
 }
@@ -84,7 +85,7 @@ function getFileNames() {
                 if (fileNames.length > 0) {
                     resolve(fileNames);
                 } else {
-                    reject("No files found.");
+                    reject('No files found.');
                 }
 
             }
@@ -161,36 +162,44 @@ function restructureSymbolsObj(objSchema) {
             let symbolArr = [];
             let symbols = file.symbols;
             for (let symbol of symbols) {
-                if (symbol._class == "MSImmutableForeignSymbol") {
+                if (symbol._class == 'MSImmutableForeignSymbol') {
                     //let _libraryID = symbol.libraryID;
                     //let _sourceLibraryName = symbol.sourceLibraryName;
                     let _name = symbol.originalMaster.name;
                     let _symbolClass = symbol.originalMaster._class;
                     let _originalMasterID = symbol.originalMaster.symbolID;
                     let _symbolMasterID = symbol.symbolMaster.symbolID;
+                    let _originFile = symbol.sourceLibraryName + '.sketch';
+                    let _objectID = symbol.symbolMaster.do_objectID;
                     symbolArr.push({
                         //libraryID: _libraryID,
                         //sourceLibraryName: _sourceLibraryName,
                         name: _name,
                         _class: _symbolClass,
                         originalMasterId: _originalMasterID,
-                        symbolMasterID: _symbolMasterID
+                        symbolMasterID: _symbolMasterID,
+                        originFile: _originFile,
+                        do_objectID: _objectID
                     });
                 }
-                if (symbol._class == "symbolMaster") {
+                if (symbol._class == 'symbolMaster') {
                     //let _libraryID = false;
                     //let _sourceLibraryName = false;
                     let _name = symbol.name;
                     let _symbolClass = symbol._class;
                     let _originalMasterID = symbol.symbolID;
                     let _symbolMasterID = false;
+                    let _originFile = file.name;
+                    let _objectID = symbol.do_objectID;
                     symbolArr.push({
                         //libraryID: _libraryID,
                         //sourceLibraryName: _sourceLibraryName,
                         name: _name,
                         _class: _symbolClass,
                         originalMasterId: _originalMasterID,
-                        symbolMasterID: _symbolMasterID
+                        do_objectID: _objectID,
+                        symbolMasterID: _symbolMasterID,
+                        originFile: _originFile
                     })
                 }
             };
@@ -199,7 +208,7 @@ function restructureSymbolsObj(objSchema) {
         if (objSchema) {
             resolve(objSchema);
         } else {
-            reject("Something went wrong.");
+            reject('Something went wrong.');
         }
     });
 }
@@ -275,6 +284,7 @@ async function getGlobalSymbolInstances(objSchema) {
     let symbolInstances = [];
     let artboardsFilter;
     let instancesFilter;
+    let outOfBoard;
 
     //Get pages of all files
     for (let file of files) {
@@ -289,7 +299,12 @@ async function getGlobalSymbolInstances(objSchema) {
 
     //Filter all artboards from the layers
     artboardsFilter = artboards.filter(layer => {
-        return layer._class == "artboard";
+        return layer._class == 'artboard';
+    });
+
+    //Filter all symbol instances outside of artboards
+    outOfBoard = artboards.filter(layer => {
+        return layer._class == 'symbolInstance';
     });
 
     //Get all layers from the artboards
@@ -298,7 +313,13 @@ async function getGlobalSymbolInstances(objSchema) {
     }
 
     //Filter all symbolInstances from the layers
-    instancesFilter = symbolInstances.filter(layer => layer._class == "symbolInstance");
+    instancesFilter = symbolInstances.filter(layer => layer._class == 'symbolInstance');
+
+    //Push symbols out of artboards into instancesFilter array
+    for (let instance of outOfBoard) {
+        instancesFilter.push(instance);
+    }
+
     objSchema.symbolInstances = instancesFilter;
     return objSchema;
 }
@@ -320,7 +341,6 @@ function getGlobalSymbolsCount(objSchema) {
             });
             if (symbolIds != false) {
                 symbolIds.forEach(symbolID => {
-                    console.log(symbolID);
                     symbolInstances.forEach(instance => {
                         if (symbolID == instance.symbolID) {
                             count = count + 1
@@ -336,23 +356,23 @@ function getGlobalSymbolsCount(objSchema) {
         if (files) {
             resolve(objSchema);
         } else {
-            reject("Could not get symbol counts");
+            reject('Could not get symbol counts');
         }
     });
 }
 
-/*
-function exportComponent(componentID, sketchFile) {
-    sketchtool.run('export layers' + process.cwd() + '/uploads/' + sketchFile + ' --formats=png --scales=2 --item=' + componentID + ' --output=/Users/calvino/Documents/Dev/decast/api/exports');
+function exportComponent(sketchFile, symbolId) {
+    sketchtool.run('export layers ' + dir + '/' + sketchFile + ' --item=' + symbolId + ' --formats=png --scales=2 --use-id-for-name --output=' + outputDir);
 }
+//exportComponent('botschaft.sketch', "F9CD18F5-5706-4E29-86F1-94E537FF1AC2");
 
 function exportComponentArtboards(sketchFile) {
-    sketchtool.run('export layers' + process.cwd() + '/uploads/' + sketchFile + ' --formats=jpg --scales=2 --output=/Users/calvino/Documents/Dev/decast/api/exports');
+    sketchtool.run('export artboards ' + dir + '/' + sketchFile + ' --formats=jpg --scales=2 --output=' + outputDir);
 }
-*/
+//console.log(sketchtool.run("help export layers"));
 
 //Handle POST Request from Client Form to upload files
-app.post("/uploads", upload.array("files"), async (req, res) => {
+app.post('/uploads', upload.array('files'), async (req, res) => {
     let reqData = req.files;
     let fileNames = await storeFileNames(reqData);
     fileNames = await changeFileNames(fileNames);
@@ -364,37 +384,63 @@ app.post("/uploads", upload.array("files"), async (req, res) => {
     files = await getGlobalSymbolInstances(files);
     files = await getGlobalSymbolsCount(files);
     files = Buffer.from(JSON.stringify(files));
-    await fs.writeFile(dir + "/data.json", files, () => {
-        console.log("File created");
+    await fs.writeFile(dir + '/data.json', files, () => {
+        console.log('File created');
     })
     res.status(200).send(files);
 });
+
 //Handle GET Request from Client Form
-router.get("/data", async (req, res, next) => {
-    let fileName = "data.json"
-    res.sendFile(dir + "/" + fileName, (err) => {
+router.get('/data', async (req, res, next) => {
+    let fileName = 'data.json'
+    res.sendFile(dir + '/' + fileName, (err) => {
         if (err) {
             next(err);
         } else {
-            console.log("Sent:", fileName);
+            console.log('Sent:', fileName);
         }
     });
 });
+
 //Handle GET Request from Client Form
-router.get("/dashboard", async (req, res) => {
+router.get('/component/', async (req, res, next) => {
+    let symbolId = req.query.id;
+    let fileName = req.query.origin;
+    let filePath = outputDir + '/' + symbolId + '@2x.png';
+    console.log(fileName, symbolId);
+    try {
+        if (!fs.existsSync(filePath)) {
+            exportComponent(fileName, symbolId);
+        }
+    } catch (err) {
+        console.error(err);
+    }
+
+    res.sendFile(filePath, (err) => {
+        if (err) {
+            next(err);
+        } else {
+            console.log('Sent:', symbolId);
+        }
+    });
+});
+
+
+//Handle GET Request from Client Form
+router.get('/dashboard', async (req, res) => {
     res.status(200).send('Hi');
 });
 
-router.post("/submit", (req, res) => {
+router.post('/submit', (req, res) => {
     res.status(200).send('hi');
 });
 //Handle GET Request from Client Form
-router.get("/components", (req, res) => {
+router.get('/components', (req, res) => {
     res.status(200).send('hi');
 });
 
 //Add router in the Express app.
-app.use("/", router);
+app.use('/', router);
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
