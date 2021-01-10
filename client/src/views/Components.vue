@@ -315,6 +315,7 @@ export default {
         status: false,
         img: null,
       },
+      componentName: null,
       components: undefined,
       totalArtboards: 1440,
       artboardsUsingComponent: 999,
@@ -333,10 +334,6 @@ export default {
     };
   },
   props: {
-    componentName: {
-      type: String,
-      default: "btn-primary",
-    },
     viewTitle: {
       type: String,
       default: "Component",
@@ -381,8 +378,14 @@ export default {
       let listCardList = element.parentNode.childNodes;
       let symbolId = element.getAttribute("id");
       let symbolOrigin = element.getAttribute("origin");
+      let symbolName = element.getAttribute("name");
 
+      //Set imgPath status to false
       this.imgPath.status = false;
+
+      //Set component name
+      this.componentName = symbolName;
+
       //Show Mainview and close empty state
       emptyState.style.display = "none";
       mainView.style.display = "block";

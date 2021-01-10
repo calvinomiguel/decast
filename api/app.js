@@ -52,8 +52,7 @@ function changeFileNames(fileNames) {
     return new Promise((resolve, reject) => {
         fileNames.forEach(nameGroup => {
             let tmpPath = `${dir}/${nameGroup.tmpName}`;
-            let oPath = `${dir}/${nameGroup.oName.replace(/ *\([^)]*\) */g, '')}`;
-
+            let oPath = `${dir}/${nameGroup.oName.replace(/[- )(]/g,'')}`;
             fs.renameSync(tmpPath, oPath, () => {
                 console.log(`${nameGroup.tmpName} was renamed to ${nameGroup.oName}!`);
             });
@@ -407,7 +406,7 @@ router.get('/component/', async (req, res, next) => {
     let symbolId = req.query.id;
     let fileName = req.query.origin;
     let filePath = outputDir + '/' + symbolId + '@2x.png';
-    //console.log(fileName, symbolId);
+    console.log(fileName, symbolId);
     try {
         if (!fs.existsSync(filePath)) {
             exportComponent(fileName, symbolId);
