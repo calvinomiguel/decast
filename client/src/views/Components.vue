@@ -24,6 +24,8 @@
               :name="symbol.name"
               :count="symbol.count"
               :id="symbol.do_objectID"
+              :originalMasterId="symbol.originalMasterId"
+              :symbolIds="symbol.symbolIds"
               class="mb-2 border-lila-200"
             />
           </div>
@@ -71,8 +73,18 @@
             <div
               class="c-view bg-smokey h-full w-full flex items-center justify-center px-4 py-4 rounded"
             >
-              <div class="sl-wrapper">
-                <div class="sl-component"></div>
+              <div class="txt-container w-full preview-error">
+                <h2
+                  class="font-mono w-full font-bold text-2xl text-center text-night-300"
+                >
+                  Root file not found
+                </h2>
+                <p class="w-full font-mono text-night-100 text-center">
+                  In order to preview this component you need to upload
+                  <span class="code-tag">{{ rootFile }}</span
+                  >. In general we recommend to always upload all project files
+                  to prevent such occurences.
+                </p>
               </div>
               <ComponentPreview
                 :imgPath="
@@ -311,6 +323,7 @@ export default {
   name: "Components",
   data() {
     return {
+      rootFile: null,
       imgPath: {
         status: false,
         img: null,
@@ -327,6 +340,9 @@ export default {
       currentComponent: {
         name: null,
         id: null,
+        originalMasterId: null,
+        symbolIds: null,
+        origin: null,
       },
       data: null,
       symbols: [],
@@ -379,16 +395,30 @@ export default {
       let symbolId = element.getAttribute("id");
       let symbolOrigin = element.getAttribute("origin");
       let symbolName = element.getAttribute("name");
-
+      let originalMasterId = element.getAttribute("originalmasterid");
+      let symbolIds = element.getAttribute("symbolIds");
+      let componentPreview = document.querySelector(".component-preview");
+      let previewError = document.querySelector(".preview-error");
       //Set imgPath status to false
       this.imgPath.status = false;
 
       //Set component name
       this.componentName = symbolName;
 
+      //Set data of current component
+      this.currentComponent.id = symbolId;
+      this.currentComponent.originalMasterId = originalMasterId;
+      this.currentComponent.origin = symbolOrigin;
+      this.currentComponent.name = symbolName;
+      this.currentComponent.symbolIds = symbolIds;
+
       //Show Mainview and close empty state
       emptyState.style.display = "none";
       mainView.style.display = "block";
+
+      //Show componentpreview and hide preview error
+      componentPreview.style.display = "block";
+      previewError.style.display = "none";
 
       //Remove selection from all list card elements
       listCardList.forEach((listcard) => {
@@ -399,7 +429,9 @@ export default {
       //Add selection to current target
       element.classList.remove("border-night-100", "border");
       element.classList.add("border-2", "border-lila-100");
-      const getComponentData = async () => {
+
+      //Get component image
+      const getComponentImg = async () => {
         try {
           const port = process.env.PORT || 3060;
           const protocol = "http";
@@ -414,15 +446,55 @@ export default {
             }
           );
 
-          if (res.request.readyState == 4) {
-            this.imgPath.img = res.request.responseURL;
-            this.imgPath.status = true;
+
+              
+          if (res.headers["content-type"] == "image/png") {
+            if (res.request.readyState == 4) {
+              this.imgPath.img = res.request.responseURL;
+              this.imgPath.status = true;
+              previewError.style.display = "none";
+            }
           }
+
+          if (
+            res.headers["content-type"] == "application/json; charset=utf-8"
+          ) {
+            this.rootFile = res.data.file;
+            componentPreview.style.display = "none";
+            previewError.style.display = "block";
+            this.imgPath.status = false;
+          }
+
+          console.log(res);
         } catch (err) {
           console.error(err);
         }
       };
-      getComponentData();
+      /*
+      //Get component Stats
+      const getComponentStats = async () => {
+        try {
+          const port = process.env.PORT || 3060;
+          const protocol = "http";
+          const host = "localhost";
+          const res = await axios.get(`${protocol}://${host}:${port}/stats/`, {
+            params: {
+              id: symbolId,
+              origin: symbolOrigin,
+              originalMasterId: originalMasterId,
+              symbolIds: symbolIds,
+            },
+          });
+
+          console.log(res);
+        } catch (err) {
+          console.error(err);
+        }
+      };
+
+      //Call functions
+      getComponentStats();*/
+      getComponentImg();
     },
   },
   computed: {
@@ -500,6 +572,7 @@ aside {
 .component-preview {
   max-height: 100%;
 }
+
 .artboards-view {
   gap: calc(4% / 3);
 }
@@ -507,7 +580,12 @@ aside {
   max-width: calc(96% / 4);
   width: 100%;
 }
-
+.code-tag {
+  font-family: monospace;
+  font-size: 16px;
+  font-weight: bold;
+  color: theme("colors.lila.100");
+}
 .artboard {
   cursor: pointer;
 }

@@ -103,26 +103,10 @@ export default {
         console.log(res.data);
         this.$router.push("/dashboard");
       }
-      /*
-      const createDB = async () => {
-        const request = await indexedDB.open("data");
-        request.onupgradeneeded = (event) => {
-          let db = event.target.result;
-          db.createObjectStore("data", { keyPath: "id" });
-          alert("Upgrade is called: ", event);
-        };
-        request.onsuccess = (event) => {
-          let db = event.target.result;
-          console.log(db);
-          alert("Success is called:", event);
-        };
-        request.onerror = (event) => {
-          alert("Error is called:", event);
-        };
-      };
+
       for (let pair of pkg.entries()) {
         console.log(pair[1]);
-      }*/
+      }
     },
   },
 };

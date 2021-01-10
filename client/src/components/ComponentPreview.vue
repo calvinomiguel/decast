@@ -1,5 +1,5 @@
 <template>
-  <img :src="imgPath" alt="Component preview" />
+  <img class="component-preview" :src="imgPath" alt="Component preview" />
 </template>
 <script>
 export default {

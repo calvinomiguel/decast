@@ -3,6 +3,8 @@
     :count="count"
     :origin="origin"
     :name="name"
+    :originalmasterid="originalMasterId"
+    :symbolIds="symbolIds"
     class="list-card flex items-center bg-cloud px-4 py-3 rounded hover:shadow-lg transition-shadow ease-in-out duration-300 justify-between border border-night-100"
   >
     <label class="label-container flex align-center mr-4 font-mono">
@@ -33,6 +35,12 @@ export default {
     origin: {
       type: String,
       default: "Root file name",
+    },
+    originalMasterId: {
+      type: String,
+    },
+    symbolIds: {
+      type: String,
     },
     name: {
       type: String,

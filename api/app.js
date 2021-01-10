@@ -4,6 +4,7 @@ const multer = require('multer');
 const bodyParser = require('body-parser');
 const router = express.Router();
 const fs = require('fs');
+const fsp = fs.promises;
 const ns = require('node-sketch');
 const port = process.env.PORT || 3060;
 const cors = require('cors');
@@ -16,10 +17,11 @@ const {
 } = require('jszip');
 const dir = process.argv[2] || process.cwd() + '/uploads';
 const outputDir = process.cwd() + '/exports';
+const dataDir = process.cwd() + '/data';
 const upload = multer({
     dest: './uploads/'
 });
-
+let artboardsList = [];
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.raw());
@@ -86,7 +88,6 @@ function getFileNames() {
                 } else {
                     reject('No files found.');
                 }
-
             }
         });
     });
@@ -301,6 +302,9 @@ async function getGlobalSymbolInstances(objSchema) {
         return layer._class == 'artboard';
     });
 
+    //Save artboards in global variable
+    artboardsList.push(...artboardsFilter);
+
     //Filter all symbol instances outside of artboards
     outOfBoard = artboards.filter(layer => {
         return layer._class == 'symbolInstance';
@@ -318,7 +322,10 @@ async function getGlobalSymbolInstances(objSchema) {
     for (let instance of outOfBoard) {
         instancesFilter.push(instance);
     }
-
+    //Create a file with all artboards
+    await fsp.writeFile(dataDir + '/artboards.json', JSON.stringify(artboardsFilter), () => {
+        console.log('File created');
+    });
     objSchema.symbolInstances = instancesFilter;
     return objSchema;
 }
@@ -360,17 +367,20 @@ function getGlobalSymbolsCount(objSchema) {
     });
 }
 
+//Export symbol
 function exportComponent(sketchFile, symbolId) {
     sketchtool.run('export layers ' + dir + '/' + sketchFile + ' --item=' + symbolId + ' --formats=png --scales=2 --use-id-for-name --output=' + outputDir);
 }
-//exportComponent('botschaft.sketch', "F9CD18F5-5706-4E29-86F1-94E537FF1AC2");
 
-async function exportComponentArtboards(sketchFile) {
+//Export artboards
+function exportComponentArtboards(sketchFile) {
     sketchtool.run('export artboards ' + dir + '/' + sketchFile + ' --formats=jpg --scales=2 --output=' + outputDir);
 }
-//console.log(sketchtool.run("help export layers"));
 
-//Handle POST Request from Client Form to upload files
+//console.log(sketchtool.run("help export layers"));
+//console.log(sketchtool.run("help export artboards"));
+
+//Upload files, process data, create json file
 app.post('/uploads', upload.array('files'), async (req, res) => {
     let reqData = req.files;
     let fileNames = await storeFileNames(reqData);
@@ -383,16 +393,16 @@ app.post('/uploads', upload.array('files'), async (req, res) => {
     files = await getGlobalSymbolInstances(files);
     files = await getGlobalSymbolsCount(files);
     files = Buffer.from(JSON.stringify(files));
-    await fs.writeFile(dir + '/data.json', files, () => {
+    await fsp.writeFile(dataDir + '/data.json', files, () => {
         console.log('File created');
     })
     res.status(200).send(files);
 });
 
-//Handle GET Request from Client Form
+//Send json file to client
 router.get('/data', async (req, res, next) => {
-    let fileName = 'data.json'
-    res.sendFile(dir + '/' + fileName, (err) => {
+    let fileName = 'data.json';
+    res.sendFile(dataDir + '/' + fileName, (err) => {
         if (err) {
             next(err);
         } else {
@@ -401,44 +411,53 @@ router.get('/data', async (req, res, next) => {
     });
 });
 
-//Handle GET Request from Client Form
+//Export symbol and send to client
 router.get('/component/', async (req, res, next) => {
     let symbolId = req.query.id;
     let fileName = req.query.origin;
-    let filePath = outputDir + '/' + symbolId + '@2x.png';
-    console.log(fileName, symbolId);
+    let imgPath = outputDir + '/' + symbolId + '@2x.png';
+    let sketchFilePath = dir + '/' + fileName;
+    console.log(symbolId, fileName);
     try {
-        if (!fs.existsSync(filePath)) {
-            exportComponent(fileName, symbolId);
+        //If rootfile doesn't exist send message to client
+        if (!fs.existsSync(sketchFilePath)) {
+            res.status(200).send({
+                message: false,
+                file: fileName
+            });
+        } else {
+
+            //Else check if img of the file to be export already exists
+            //If not export and send to client
+            if (!fs.existsSync(imgPath)) {
+                exportComponent(fileName, symbolId);
+            }
+            res.set({
+                'Content-Type': 'image/png'
+            });
+
+            res.sendFile(imgPath, (err) => {
+                if (err) {
+                    next(err);
+                } else {
+                    //console.log('Sent:', symbolId);
+                }
+            });
         }
+
     } catch (err) {
         console.error(err);
     }
-    res.set({
-        'Content-Type': 'image/png'
-    });
-
-    res.sendFile(filePath, (err) => {
-        if (err) {
-            next(err);
-        } else {
-            //console.log('Sent:', symbolId);
-        }
-    });
 });
 
+//Export symbol and send to client
+router.get('/stats/', async (req, res) => {
+    let originalMasterId = req.query.originalMasterId;
+    let symbolIds = req.query.symbolIds;
 
-//Handle GET Request from Client Form
-router.get('/dashboard', async (req, res) => {
-    res.status(200).send('Hi');
-});
-
-router.post('/submit', (req, res) => {
-    res.status(200).send('hi');
-});
-//Handle GET Request from Client Form
-router.get('/components', (req, res) => {
-    res.status(200).send('hi');
+    //await fsp.readFile(dir)
+    console.log(symbolIds, originalMasterId);
+    res.send(artboardsList);
 });
 
 //Add router in the Express app.
