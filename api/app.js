@@ -278,15 +278,83 @@ function uniteIdenticalSymbols(objSchema) {
     });
 }
 
+//Recursive function to get symbols nested in groups
+function getSymbolsInGroups(groupsArr, symbolsArr) {
+    let groupLayers = groupsArr.filter(group => group.hasOwnProperty("layers"));
+    let layers = [];
+    let symbols;
+    let subGroups;
+    for (let group of groupLayers) {
+        layers.push(...group.layers);
+    }
+
+    if (layers.length > 0) {
+        symbols = layers.filter(layer => layer._class == 'symbolInstance');
+        subGroups = layers.filter(layer => layer._class == 'group');
+        symbolsArr.push(...symbols);
+        return getSymbolsInGroups(subGroups, symbolsArr);
+    } else {
+        return symbolsArr;
+    }
+}
+
+async function getArtboards(objSchema) {
+    let files = objSchema.files;
+    let obj = [];
+    let artboards = [];
+    for (let file of files) {
+        const sketch = await ns.read(file.path);
+        let pages = sketch.pages;
+        let layers = [];
+        let boards;
+        let boardLayers = [];
+        let symbols = [];
+        let groups = [];
+        //Push all layers of the file pages into layers array
+        for (let page of pages) {
+            layers.push(...page.layers);
+        }
+
+        //Filter layers array for layers of the class artboard
+        boards = layers.filter(layer => layer._class == 'artboard');
+
+        for (let board of boards) {
+            //Push the artboards layers into the layers array
+            artboards.push({
+                file: {
+                    name: file.name,
+                    path: file.path
+                },
+                name: board.name,
+                _class: board._class,
+                do_objectID: board.do_objectID,
+                layers: [...board.layers]
+            });
+        }
+
+        for (let artboard of artboards) {
+            boardLayers.push(...artboard.layers);
+            groups = boardLayers.filter(layer => layer._class == "group");
+            symbols = boardLayers.filter(layer => layer._class == "symbolInstance");
+            symbols = getSymbolsInGroups(groups, symbols);
+            delete artboard.layers;
+            artboard.symbolInstances = [...symbols];
+        }
+
+        obj = [...artboards];
+    }
+    return obj;
+}
+
 async function getGlobalSymbolInstances(objSchema) {
     const files = objSchema.files;
     let pages = [];
     let layers = [];
-    let symbolInstances = [];
+    let symbolInstances;
     let artboards;
     let totalArtboards = 0;
-    let outOfBoard;
-
+    let artboardLayers = [];
+    let artboardSymbolInstances;
     //Get pages of all files
     for (let file of files) {
         const sketch = await ns.read(file.path);
@@ -304,18 +372,32 @@ async function getGlobalSymbolInstances(objSchema) {
     });
 
     //Filter all symbol instances outside of artboards
-    layers = artboards.filter(layer => {
+    symbolInstances = artboards.filter(layer => {
         return layer._class == 'symbolInstance';
     });
 
+    //Filter all group layers outside of artboards
+    groups = artboards.filter(layer => {
+        return layer._class == 'group'
+    });
+
+    //Get all symbols inside of groups
+    symbolInstances = getSymbolsInGroups(groups, symbolInstances);
+
+
     //Get all layers from the artboards
     for (let artboard of artboards) {
+        artboardLayers.push(...artboard.layers);
+
+        //Get total count of artboards
         totalArtboards += 1;
-        layers.push(...artboard.layers)
     }
 
     //Filter all symbolInstances from the layers
-    symbolInstances = layers.filter(layer => layer._class == 'symbolInstance');
+    artboardSymbolInstances = artboardLayers.filter(layer => layer._class == 'symbolInstance');
+    groups = artboardLayers.filter(layer => layer._class == 'group');
+    artboardSymbolInstances = getSymbolsInGroups(groups, artboardSymbolInstances);
+    symbolInstances.push(...artboardSymbolInstances);
 
     objSchema.totalArtboards = totalArtboards;
     objSchema.symbolInstances = symbolInstances;
@@ -379,6 +461,8 @@ app.post('/uploads', upload.array('files'), async (req, res) => {
     fileNames = await changeFileNames(fileNames);
     let files = await getFileNames();
     files = await getGlobalPages(files);
+    let artboards = await getArtboards(files);
+    artboards = Buffer.from(JSON.stringify(artboards));
     files = await getSymbols(files);
     files = await restructureSymbolsObj(files);
     files = await uniteIdenticalSymbols(files);
@@ -386,8 +470,12 @@ app.post('/uploads', upload.array('files'), async (req, res) => {
     files = await getGlobalSymbolsCount(files);
     files = Buffer.from(JSON.stringify(files));
     await fsp.writeFile(dataDir + '/data.json', files, () => {
-        console.log('File created');
-    })
+        console.log('Data file created');
+    });
+
+    await fsp.writeFile(dataDir + '/artboards.json', artboards, () => {
+        console.log('Artboards file created');
+    });
     res.status(200).send(files);
 });
 
@@ -444,76 +532,15 @@ router.get('/component/', async (req, res, next) => {
 
 //Export symbol and send to client
 router.get('/stats/', async (req, res) => {
-    let data = await readFile(dataDir + '/data.json', 'utf8'); //Get data.json file content
+    let data = await readFile(dataDir + '/artboards.json', 'utf8'); //Get data.json file content
     let originalMasterId = req.query.originalMasterId;
     let symbolIds = req.query.symbolIds;
     data = JSON.parse(data); //Parse data
     let files = data.files;
-    let obj = [];
-    let artboards = [];
-    for (let file of files) {
-        const sketch = await ns.read(file.path);
-        let pages = sketch.pages;
-        let layers = [];
-        let boards;
-        let boardLayers = [];
-        let symbols = [];
-        let groups = [];
-        let maka;
-        //Push all layers of the file pages into layers array
-        for (let page of pages) {
-            layers.push(...page.layers);
-        }
 
-        //Filter layers array for layers of the class artboard
-        boards = layers.filter(layer => layer._class == 'artboard');
+    obj = "Hello World";
 
-        for (let board of boards) {
-            //Push the artboards layers into the layers array
-            artboards.push({
-                name: board.name,
-                _class: board._class,
-                do_objectID: board.do_objectID,
-                layers: [...board.layers]
-            });
-        }
-
-        //Recursive function to get symbols nested in groups
-        function getSymbolsInGroups(groupsArr, symbolsArr) {
-            let groupLayers = groupsArr.filter(group => group.hasOwnProperty("layers"));
-            let layers = [];
-            let symbols;
-            let subGroups;
-            for (let group of groupLayers) {
-                layers.push(...group.layers);
-            }
-
-            if (layers.length > 0) {
-                symbols = layers.filter(layer => layer._class == 'symbolInstance');
-                subGroups = layers.filter(layer => layer._class == 'group');
-                symbolsArr.push(...symbols);
-                return getSymbolsInGroups(subGroups, symbolsArr);
-            } else {
-                return symbolsArr;
-            }
-        }
-        for (let artboard of artboards) {
-            boardLayers.push(...artboard.layers);
-            groups = boardLayers.filter(layer => layer._class == "group");
-            symbols = boardLayers.filter(layer => layer._class == "symbolInstance");
-            symbols = getSymbolsInGroups(groups, symbols);
-        }
-
-        obj = symbols;
-
-        //console.log();
-
-
-
-
-    }
-
-    res.send(obj);
+    res.send(data);
 });
 
 //Add router in the Express app.
