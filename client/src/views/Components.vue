@@ -324,6 +324,7 @@ export default {
   data() {
     return {
       rootFile: null,
+      rootStatus: true,
       imgPath: {
         status: false,
         img: null,
@@ -402,6 +403,7 @@ export default {
       let symbolIds = element.getAttribute("symbolIds");
       let componentPreview = document.querySelector(".component-preview");
       let previewError = document.querySelector(".preview-error");
+
       //Set imgPath status to false
       this.imgPath.status = false;
 
@@ -414,6 +416,7 @@ export default {
       this.currentComponent.origin = symbolOrigin;
       this.currentComponent.name = symbolName;
       this.currentComponent.symbolIds = symbolIds;
+      this.rootStatus = true;
 
       //Show Mainview and close empty state
       emptyState.style.display = "none";
@@ -432,7 +435,6 @@ export default {
       //Add selection to current target
       element.classList.remove("border-night-100", "border");
       element.classList.add("border-2", "border-lila-100");
-
       //Get component image
       const getComponentImg = async () => {
         try {
@@ -464,6 +466,7 @@ export default {
             componentPreview.style.display = "none";
             previewError.style.display = "block";
             this.imgPath.status = false;
+            this.rootStatus = false;
           }
         } catch (err) {
           console.error(err);

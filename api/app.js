@@ -338,7 +338,18 @@ async function getArtboards(objSchema) {
             symbols = boardLayers.filter(layer => layer._class == "symbolInstance");
             symbols = getSymbolsInGroups(groups, symbols);
             delete artboard.layers;
-            artboard.symbolInstances = [...symbols];
+
+            let symbolInstances = [];
+            for (let symbol of symbols) {
+                symbolInstances.push({
+                    name: symbol.name,
+                    _class: symbol._class,
+                    symbolID: symbol.symbolID,
+                    do_objectID: symbol.do_objectID,
+                });
+            }
+
+            artboard.symbolInstances = [...symbolInstances];
         }
 
         obj = [...artboards];
@@ -535,12 +546,31 @@ router.get('/stats/', async (req, res) => {
     let data = await readFile(dataDir + '/artboards.json', 'utf8'); //Get data.json file content
     let originalMasterId = req.query.originalMasterId;
     let symbolIds = req.query.symbolIds;
-    data = JSON.parse(data); //Parse data
-    let files = data.files;
+    let artboards = JSON.parse(data); //Parse data
+    let artboardsCount = 0;
 
-    obj = "Hello World";
+    for (let artboard of artboards) {
+        let symbolInstances = artboard.symbolInstances;
+        console.log(originalMasterId);
+        for (let instance of symbolInstances) {
+            if (instance.symbolID == originalMasterId) {
+                artboardsCount += 1;
+            }
+            if (symbolIds != undefined) {
+                for (let id of symbolIds) {
+                    if (id == instance.symbolID) {
+                        artboardsCount += 1;
+                    }
+                }
+            }
+        }
+    }
 
-    res.send(data);
+    let deliverable = {
+        artbordsUsing: artboardsCount,
+    }
+
+    res.send(deliverable);
 });
 
 //Add router in the Express app.
