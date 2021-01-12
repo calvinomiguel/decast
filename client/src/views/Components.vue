@@ -331,8 +331,8 @@ export default {
       },
       componentName: null,
       components: undefined,
-      totalArtboards: null,
-      artboardsUsingComponent: 999,
+      totalArtboards: 0,
+      artboardsUsingComponent: 0,
       colors: ["#856de7", "#23272a"],
       chartData: {
         "Total artboards": 999,
@@ -369,8 +369,6 @@ export default {
         symbols.forEach((symbol) => {
           this.symbols.push(symbol);
         });
-
-        this.totalArtboards = data.totalArtboards;
 
         console.log(data);
       } catch (err) {
@@ -429,11 +427,9 @@ export default {
       //Remove selection from all list card elements
       listCardList.forEach((listcard) => {
         listcard.classList.remove("border-2", "border-lila-100");
-        listcard.classList.add("border-night-100", "border");
       });
 
       //Add selection to current target
-      element.classList.remove("border-night-100", "border");
       element.classList.add("border-2", "border-lila-100");
       //Get component image
       const getComponentImg = async () => {
@@ -487,7 +483,8 @@ export default {
               symbolIds: symbolIds,
             },
           });
-
+          this.artboardsUsingComponent = res.data.artboardsUsing;
+          this.totalArtboards = res.data.totalArtboards;
           console.log(res.data);
         } catch (err) {
           console.error(err);

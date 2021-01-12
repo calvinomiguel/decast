@@ -302,14 +302,13 @@ async function getArtboards(objSchema) {
     let files = objSchema.files;
     let obj = [];
     let artboards = [];
+    let totalArtboards = 0;
     for (let file of files) {
         const sketch = await ns.read(file.path);
         let pages = sketch.pages;
         let layers = [];
         let boards;
-        let boardLayers = [];
-        let symbols = [];
-        let groups = [];
+
         //Push all layers of the file pages into layers array
         for (let page of pages) {
             layers.push(...page.layers);
@@ -326,34 +325,37 @@ async function getArtboards(objSchema) {
                     path: file.path
                 },
                 name: board.name,
-                _class: board._class,
+                //_class: board._class,
                 do_objectID: board.do_objectID,
                 layers: [...board.layers]
             });
         }
 
         for (let artboard of artboards) {
-            boardLayers.push(...artboard.layers);
-            groups = boardLayers.filter(layer => layer._class == "group");
-            symbols = boardLayers.filter(layer => layer._class == "symbolInstance");
+            let boardLayers = [...artboard.layers];
+
+            let groups = boardLayers.filter(layer => layer._class == "group");
+            let symbols = boardLayers.filter(layer => layer._class == "symbolInstance");
             symbols = getSymbolsInGroups(groups, symbols);
-            delete artboard.layers;
 
             let symbolInstances = [];
             for (let symbol of symbols) {
-                symbolInstances.push({
-                    name: symbol.name,
-                    _class: symbol._class,
-                    symbolID: symbol.symbolID,
-                    do_objectID: symbol.do_objectID,
-                });
+                symbolInstances.push(symbol.symbolID);
             }
+            artboard.symbolInstances = symbolInstances;
+            //Get total count of artboards
+            totalArtboards += 1;
 
-            artboard.symbolInstances = [...symbolInstances];
         }
-
-        obj = [...artboards];
     }
+    for (let artboard of artboards) {
+        delete artboard.layers;
+    }
+
+    obj = {
+        totalArtboards: totalArtboards,
+        artboards: [...artboards]
+    };
     return obj;
 }
 
@@ -363,7 +365,6 @@ async function getGlobalSymbolInstances(objSchema) {
     let layers = [];
     let symbolInstances;
     let artboards;
-    let totalArtboards = 0;
     let artboardLayers = [];
     let artboardSymbolInstances;
     //Get pages of all files
@@ -399,9 +400,6 @@ async function getGlobalSymbolInstances(objSchema) {
     //Get all layers from the artboards
     for (let artboard of artboards) {
         artboardLayers.push(...artboard.layers);
-
-        //Get total count of artboards
-        totalArtboards += 1;
     }
 
     //Filter all symbolInstances from the layers
@@ -410,7 +408,6 @@ async function getGlobalSymbolInstances(objSchema) {
     artboardSymbolInstances = getSymbolsInGroups(groups, artboardSymbolInstances);
     symbolInstances.push(...artboardSymbolInstances);
 
-    objSchema.totalArtboards = totalArtboards;
     objSchema.symbolInstances = symbolInstances;
     return objSchema;
 }
@@ -508,7 +505,7 @@ router.get('/component/', async (req, res, next) => {
     let fileName = req.query.origin;
     let imgPath = outputDir + '/' + symbolId + '@2x.png';
     let sketchFilePath = dir + '/' + fileName;
-    console.log(symbolId, fileName);
+
     try {
         //If rootfile doesn't exist send message to client
         if (!fs.existsSync(sketchFilePath)) {
@@ -546,28 +543,30 @@ router.get('/stats/', async (req, res) => {
     let data = await readFile(dataDir + '/artboards.json', 'utf8'); //Get data.json file content
     let originalMasterId = req.query.originalMasterId;
     let symbolIds = req.query.symbolIds;
-    let artboards = JSON.parse(data); //Parse data
+    data = JSON.parse(data);
+    let artboards = data.artboards; //Parse data
+    let totalArtboards = data.totalArtboards;
     let artboardsCount = 0;
 
     for (let artboard of artboards) {
-        let symbolInstances = artboard.symbolInstances;
-        console.log(originalMasterId);
-        for (let instance of symbolInstances) {
-            if (instance.symbolID == originalMasterId) {
-                artboardsCount += 1;
-            }
-            if (symbolIds != undefined) {
-                for (let id of symbolIds) {
-                    if (id == instance.symbolID) {
-                        artboardsCount += 1;
-                    }
-                }
-            }
+        let instancesIDs = artboard.symbolInstances;
+
+        let originalIdExists = instancesIDs.some((id) => id == originalMasterId);
+        let symbolIdExists = false;
+
+        if (symbolIds != undefined) {
+            symbolIdExists = instancesIDs.some(id => symbolIds.includes(id));
         }
+
+        if (originalIdExists == true || symbolIdExists) {
+            artboardsCount += 1;
+        }
+        console.log(originalIdExists, symbolIdExists);
     }
 
     let deliverable = {
-        artbordsUsing: artboardsCount,
+        artboardsUsing: artboardsCount,
+        totalArtboards: totalArtboards
     }
 
     res.send(deliverable);
