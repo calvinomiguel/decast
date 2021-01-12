@@ -558,7 +558,7 @@ router.get('/stats/', async (req, res) => {
             symbolIdExists = instancesIDs.some(id => symbolIds.includes(id));
         }
 
-        if (originalIdExists == true || symbolIdExists) {
+        if (originalIdExists == true || symbolIdExists == true) {
             artboardsCount += 1;
         }
         console.log(originalIdExists, symbolIdExists);

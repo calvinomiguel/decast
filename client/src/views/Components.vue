@@ -33,6 +33,7 @@
       </aside>
       <main class="main bg-cloud w-full">
         <div
+          v-show="showEmpty"
           class="empty-state h-full w-full flex items-center justify-center bg-cloud"
         >
           <div class="txt-container">
@@ -45,35 +46,40 @@
             </p>
           </div>
         </div>
-        <div class="main-wrapper px-5 py-6">
+        <div v-show="showMain" class="main-wrapper px-5 py-6">
           <div class="main-head">
             <h1 class="font-mono font-bold text-4xl mb-3">
               {{ componentName }}
             </h1>
             <ButtonMenu
               @click.native="changeView"
-              id="c-view"
-              class="mr-2"
+              id="c"
+              class="mr-2 m-nav"
               text="Component"
             />
             <ButtonMenu
               @click.native="changeView"
-              id="s-view"
-              class="mr-2"
+              id="s"
+              class="mr-2 m-nav"
               text="Stats"
             />
             <ButtonMenu
               @click.native="changeView"
-              id="u-view"
+              id="u"
               text="Usage context"
+              class="m-nav"
             />
             <Divider class="mt-6" />
           </div>
           <div class="content-view mt-6 pb-6">
             <div
-              class="c-view bg-smokey h-full w-full flex items-center justify-center px-4 py-4 rounded"
+              v-show="view.c"
+              class="bg-smokey h-full w-full flex items-center justify-center px-4 py-4 rounded"
             >
-              <div class="txt-container w-full preview-error">
+              <div
+                v-show="showError"
+                class="txt-container w-full preview-error"
+              >
                 <h2
                   class="font-mono w-full font-bold text-2xl text-center text-night-300"
                 >
@@ -94,107 +100,114 @@
                 "
               />
             </div>
-            <div class="s-view pb-6">
-              <h2 class="font-mono font-bold text-2xl text-night-300">
-                Scope of use
-              </h2>
-              <div class="chart-container flex justify-center py-24">
-                <pie-chart
-                  id="pie-chart"
-                  width="240px"
-                  height="240px"
-                  :data="chartData"
-                  :colors="colors"
-                  :legend="false"
-                ></pie-chart>
-              </div>
-              <div class="chart-context">
-                <div class="context-table justify-between flex">
-                  <div class="context-row">
-                    <div class="row-wrapper flex justify-between">
-                      <div class="row-text">
-                        <h4 class="text-night-300 font-mono">
-                          Total artboards
-                        </h4>
-                        <p class="font-bold text-night-300 mt-2 font-mono">
-                          {{ totalArtboards }}
-                        </p>
+            <div class="s-view-wrapper pb-6">
+              <ComponentPreview
+                class="p-view"
+                v-show="view.p"
+                :imgPath="require('@/assets/img/Ajax-Preloader.gif')"
+              />
+              <div class="s-view" v-show="view.s">
+                <h2 class="font-mono font-bold text-2xl text-night-300">
+                  Scope of use
+                </h2>
+                <div class="chart-container flex justify-center py-24">
+                  <pie-chart
+                    id="pie-chart"
+                    width="240px"
+                    height="240px"
+                    :data="chartData"
+                    :colors="colors"
+                    :legend="false"
+                  ></pie-chart>
+                </div>
+                <div class="chart-context">
+                  <div class="context-table justify-between flex">
+                    <div class="context-row">
+                      <div class="row-wrapper flex justify-between">
+                        <div class="row-text">
+                          <h4 class="text-night-300 font-mono">
+                            Total artboards
+                          </h4>
+                          <p class="font-bold text-night-300 mt-2 font-mono">
+                            {{ totalArtboards }}
+                          </p>
+                        </div>
+                        <div class="tag bg-night-400"></div>
                       </div>
-                      <div class="tag bg-night-400"></div>
+                      <Divider class="mt-2 w-full" />
                     </div>
-                    <Divider class="mt-2 w-full" />
-                  </div>
-                  <div class="context-row">
-                    <div class="row-wrapper flex justify-between">
-                      <div class="row-text">
-                        <h4 class="text-night-300 font-mono">
-                          Artboards using component
-                        </h4>
-                        <p class="font-bold text-night-300 mt-2 font-mono">
-                          {{ artboardsUsingComponent }}
-                        </p>
+                    <div class="context-row">
+                      <div class="row-wrapper flex justify-between">
+                        <div class="row-text">
+                          <h4 class="text-night-300 font-mono">
+                            Artboards using component
+                          </h4>
+                          <p class="font-bold text-night-300 mt-2 font-mono">
+                            {{ artboardsUsingComponent }}
+                          </p>
+                        </div>
+                        <div class="tag bg-lila-100"></div>
                       </div>
-                      <div class="tag bg-lila-100"></div>
-                    </div>
-                    <Divider class="mt-2 w-full" />
-                  </div>
-                </div>
-                <h3 class="font-mono text-xl text-right text-night-300 mt-4">
-                  Degree of use
-                </h3>
-                <p
-                  class="font-mono text-night-300 text-xl text-right font-bold"
-                >
-                  {{ degreeOfUse }}%
-                </p>
-              </div>
-              <h2 class="font-mono font-bold text-2xl mt-24 text-night-300">
-                Artboards
-              </h2>
-              <div class="artboard-table mt-10">
-                <div class="artboard-row mb-3">
-                  <div class="flex justify-between">
-                    <div class="artboard-name font-mono text-night-300">
-                      Homepage
-                    </div>
-                    <div
-                      class="usage-count text-night-300 font-mono text-right font-bold"
-                    >
-                      600
+                      <Divider class="mt-2 w-full" />
                     </div>
                   </div>
-                  <Divider class="mt-3" />
+                  <h3 class="font-mono text-xl text-right text-night-300 mt-4">
+                    Degree of use
+                  </h3>
+                  <p
+                    class="font-mono text-night-300 text-xl text-right font-bold"
+                  >
+                    {{ degreeOfUse }}%
+                  </p>
                 </div>
-                <div class="artboard-row mb-3">
-                  <div class="flex justify-between">
-                    <div class="artboard-name font-mono text-night-300">
-                      Homepage
+                <h2 class="font-mono font-bold text-2xl mt-24 text-night-300">
+                  Artboards
+                </h2>
+                <div class="artboard-table mt-10">
+                  <div class="artboard-row mb-3">
+                    <div class="flex justify-between">
+                      <div class="artboard-name font-mono text-night-300">
+                        Homepage
+                      </div>
+                      <div
+                        class="usage-count text-night-300 font-mono text-right font-bold"
+                      >
+                        600
+                      </div>
                     </div>
-                    <div
-                      class="usage-count text-night-300 font-mono text-right font-bold"
-                    >
-                      600
-                    </div>
+                    <Divider class="mt-3" />
                   </div>
-                  <Divider class="mt-3" />
-                </div>
-                <div class="artboard-row mt-6">
-                  <div class="flex justify-between">
-                    <div
-                      class="artboard-name font-mono text-2xl text-night-300"
-                    >
-                      Total usage
+                  <div class="artboard-row mb-3">
+                    <div class="flex justify-between">
+                      <div class="artboard-name font-mono text-night-300">
+                        Homepage
+                      </div>
+                      <div
+                        class="usage-count text-night-300 font-mono text-right font-bold"
+                      >
+                        600
+                      </div>
                     </div>
-                    <div
-                      class="usage-count text-night-300 font-mono text-2xl text-right font-bold"
-                    >
-                      600
+                    <Divider class="mt-3" />
+                  </div>
+                  <div class="artboard-row mt-6">
+                    <div class="flex justify-between">
+                      <div
+                        class="artboard-name font-mono text-2xl text-night-300"
+                      >
+                        Total usage
+                      </div>
+                      <div
+                        class="usage-count text-night-300 font-mono text-2xl text-right font-bold"
+                      >
+                        600
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="u-view">
+            <div class="u-view" v-show="view.u">
               <div class="artboards-view inline-flex flex-wrap">
                 <div
                   class="artboard rounded-lg hover:bg-smokey p-3 transition-all duration-300 mb-3"
@@ -323,14 +336,23 @@ export default {
   name: "Components",
   data() {
     return {
+      showMain: false,
+      showError: false,
       rootFile: null,
-      rootStatus: true,
+      showEmpty: true,
+      loaderStatus: false,
+      view: {
+        c: false,
+        s: false,
+        p: false,
+        u: false,
+      },
       imgPath: {
         status: false,
         img: null,
       },
       componentName: null,
-      components: undefined,
+      componentsList: null,
       totalArtboards: 0,
       artboardsUsingComponent: 0,
       colors: ["#856de7", "#23272a"],
@@ -347,7 +369,6 @@ export default {
       },
       data: null,
       symbols: [],
-      views: ["s-view", "c-view", "u-view"],
     };
   },
   props: {
@@ -369,8 +390,6 @@ export default {
         symbols.forEach((symbol) => {
           this.symbols.push(symbol);
         });
-
-        console.log(data);
       } catch (err) {
         console.error(err);
       }
@@ -379,31 +398,99 @@ export default {
   },
   methods: {
     changeView(event) {
-      this.views.forEach((view) => {
-        let element = document.querySelector("." + view);
-        element.style.display = "none";
-        if (view == event.target.id) {
-          view == "c-view"
-            ? (element.style.display = "flex")
-            : (element.style.display = "block");
-        }
-      });
-    },
-    selectComponent(event) {
-      let emptyState = document.querySelector(".empty-state");
-      let mainView = document.querySelector(".main-wrapper");
       let element = event.currentTarget;
-      let listCardList = element.parentNode.childNodes;
-      let symbolId = element.getAttribute("id");
-      let symbolOrigin = element.getAttribute("origin");
-      let symbolName = element.getAttribute("name");
-      let originalMasterId = element.getAttribute("originalmasterid");
-      let symbolIds = element.getAttribute("symbolIds");
-      let componentPreview = document.querySelector(".component-preview");
-      let previewError = document.querySelector(".preview-error");
+      let viewList = this.view;
 
-      //Set imgPath status to false
-      this.imgPath.status = false;
+      //Set all views to false
+      for (let v in viewList) {
+        viewList[v] = false;
+        console.log(viewList[v]);
+      }
+
+      //Set current view to true
+      if (element.getAttribute("id") == "c") {
+        this.view.c = true;
+      }
+
+      if (element.getAttribute("id") == "s") {
+        if (this.loaderStatus == true) {
+          this.view.s = true;
+          this.view.p = false;
+        } else {
+          this.view.p = true;
+          this.view.s = false;
+        }
+      }
+
+      if (element.getAttribute("id") == "u") {
+        this.view.u = true;
+      }
+    },
+    async getComponentImg(eventTarget) {
+      try {
+        let symbolId = eventTarget.getAttribute("id");
+        let symbolOrigin = eventTarget.getAttribute("origin");
+        const port = process.env.PORT || 3060;
+        const protocol = "http";
+        const host = "localhost";
+        const res = await axios.get(`${protocol}://${host}:${port}/component`, {
+          params: {
+            id: symbolId,
+            origin: symbolOrigin,
+          },
+        });
+
+        if (res.headers["content-type"] == "image/png") {
+          if (res.request.readyState == 4) {
+            this.imgPath.img = res.request.responseURL;
+            this.imgPath.status = true;
+            this.showError = false;
+            console.log(res);
+          }
+        }
+
+        if (res.headers["content-type"] == "application/json; charset=utf-8") {
+          this.rootFile = res.data.file;
+          this.view.c = true;
+          this.showError = true;
+          this.imgPath.status = false;
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    },
+    async getComponentStats(eventTarget) {
+      try {
+        let symbolId = eventTarget.getAttribute("id");
+        let symbolOrigin = eventTarget.getAttribute("origin");
+        let originalMasterId = eventTarget.getAttribute("originalmasterid");
+        let symbolIds = eventTarget.getAttribute("symbolIds");
+        const port = process.env.PORT || 3060;
+        const protocol = "http";
+        const host = "localhost";
+        const res = await axios.get(`${protocol}://${host}:${port}/stats/`, {
+          params: {
+            id: symbolId,
+            origin: symbolOrigin,
+            originalMasterId: originalMasterId,
+            symbolIds: symbolIds,
+          },
+        });
+
+        if (res.request.readyState == 4) {
+          this.artboardsUsingComponent = res.data.artboardsUsing;
+          this.totalArtboards = res.data.totalArtboards;
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    },
+    setComponentData(eventTarget) {
+      let symbolName = eventTarget.getAttribute("name");
+      let symbolId = eventTarget.getAttribute("id");
+      let symbolOrigin = eventTarget.getAttribute("origin");
+      let originalMasterId = eventTarget.getAttribute("originalmasterid");
+      let symbolIds = eventTarget.getAttribute("symbolIds");
 
       //Set component name
       this.componentName = symbolName;
@@ -414,86 +501,36 @@ export default {
       this.currentComponent.origin = symbolOrigin;
       this.currentComponent.name = symbolName;
       this.currentComponent.symbolIds = symbolIds;
-      this.rootStatus = true;
+    },
+    selectComponent(event) {
+      let element = event.currentTarget;
+      this.componentsList = element.parentNode.childNodes;
+
+      //Set imgPath status to false
+      this.imgPath.status = false;
+
+      //Set data of current component
+      this.setComponentData(element);
 
       //Show Mainview and close empty state
-      emptyState.style.display = "none";
-      mainView.style.display = "block";
+      this.showEmpty = false;
+      this.showMain = true;
 
       //Show componentpreview and hide preview error
-      componentPreview.style.display = "block";
-      previewError.style.display = "none";
+      this.view.c = true;
+      this.showError = false;
 
       //Remove selection from all list card elements
-      listCardList.forEach((listcard) => {
+      this.componentsList.forEach((listcard) => {
         listcard.classList.remove("border-2", "border-lila-100");
       });
 
       //Add selection to current target
       element.classList.add("border-2", "border-lila-100");
-      //Get component image
-      const getComponentImg = async () => {
-        try {
-          const port = process.env.PORT || 3060;
-          const protocol = "http";
-          const host = "localhost";
-          const res = await axios.get(
-            `${protocol}://${host}:${port}/component`,
-            {
-              params: {
-                id: symbolId,
-                origin: symbolOrigin,
-              },
-            }
-          );
-
-          if (res.headers["content-type"] == "image/png") {
-            if (res.request.readyState == 4) {
-              this.imgPath.img = res.request.responseURL;
-              this.imgPath.status = true;
-              previewError.style.display = "none";
-            }
-          }
-
-          if (
-            res.headers["content-type"] == "application/json; charset=utf-8"
-          ) {
-            this.rootFile = res.data.file;
-            componentPreview.style.display = "none";
-            previewError.style.display = "block";
-            this.imgPath.status = false;
-            this.rootStatus = false;
-          }
-        } catch (err) {
-          console.error(err);
-        }
-      };
-
-      //Get component Stats
-      const getComponentStats = async () => {
-        try {
-          const port = process.env.PORT || 3060;
-          const protocol = "http";
-          const host = "localhost";
-          const res = await axios.get(`${protocol}://${host}:${port}/stats/`, {
-            params: {
-              id: symbolId,
-              origin: symbolOrigin,
-              originalMasterId: originalMasterId,
-              symbolIds: symbolIds,
-            },
-          });
-          this.artboardsUsingComponent = res.data.artboardsUsing;
-          this.totalArtboards = res.data.totalArtboards;
-          console.log(res.data);
-        } catch (err) {
-          console.error(err);
-        }
-      };
 
       //Call functions
-      getComponentStats();
-      getComponentImg();
+      this.getComponentStats(element);
+      this.getComponentImg(element);
     },
   },
   computed: {
@@ -591,11 +628,7 @@ aside {
 .artboard {
   cursor: pointer;
 }
-.main-wrapper,
-.s-view,
-.u-view {
-  display: none;
-}
+
 .btn-organizer {
   max-width: calc(50% - 0.5rem);
 }
