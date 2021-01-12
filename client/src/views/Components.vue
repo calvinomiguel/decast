@@ -330,7 +330,7 @@ export default {
       },
       componentName: null,
       components: undefined,
-      totalArtboards: 1440,
+      totalArtboards: null,
       artboardsUsingComponent: 999,
       colors: ["#856de7", "#23272a"],
       chartData: {
@@ -368,6 +368,9 @@ export default {
         symbols.forEach((symbol) => {
           this.symbols.push(symbol);
         });
+
+        this.totalArtboards = data.totalArtboards;
+
         console.log(data);
       } catch (err) {
         console.error(err);
@@ -446,8 +449,6 @@ export default {
             }
           );
 
-
-              
           if (res.headers["content-type"] == "image/png") {
             if (res.request.readyState == 4) {
               this.imgPath.img = res.request.responseURL;
@@ -464,13 +465,11 @@ export default {
             previewError.style.display = "block";
             this.imgPath.status = false;
           }
-
-          console.log(res);
         } catch (err) {
           console.error(err);
         }
       };
-      /*
+
       //Get component Stats
       const getComponentStats = async () => {
         try {
@@ -486,14 +485,14 @@ export default {
             },
           });
 
-          console.log(res);
+          console.log(res.data);
         } catch (err) {
           console.error(err);
         }
       };
 
       //Call functions
-      getComponentStats();*/
+      getComponentStats();
       getComponentImg();
     },
   },
@@ -527,17 +526,20 @@ aside {
   height: 100vh;
   overflow: hidden;
 }
+
 .aside-wrapper {
   overflow: scroll;
   height: 100%;
   padding: 1.5rem;
   width: 100%;
 }
+
 .aside,
 .main {
   max-height: calc(100vh - 60px);
   height: calc(100vh - 60px);
 }
+
 .component-view,
 .main-wrapper {
   height: 100%;
