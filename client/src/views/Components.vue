@@ -397,8 +397,39 @@ export default {
       } catch (err) {
         console.error(err);
       }
+      return this.symbols;
     };
-    getData();
+    const getAllComponentImg = async () => {
+      try {
+        const port = process.env.PORT || 3060;
+        const protocol = "http";
+        const host = "localhost";
+
+        for (let symbol of this.symbols) {
+          let do_objectID = symbol.do_objectID;
+          let originalFileName = symbol.originalFileName;
+          const res = await axios.get(
+            `${protocol}://${host}:${port}/components`,
+            {
+              params: {
+                do_objectID: do_objectID,
+                originalFileName: originalFileName,
+              },
+            }
+          );
+
+          if (res.status == 200) {
+            ("Component img exported");
+          }
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    (async () => {
+      await getData();
+      await getAllComponentImg();
+    })();
   },
   methods: {
     changeView(event) {
@@ -408,7 +439,6 @@ export default {
       //Set all views to false
       for (let v in viewList) {
         viewList[v] = false;
-        console.log(viewList[v]);
       }
       if (this.showError == true) {
         this.view.c = true;
@@ -457,7 +487,6 @@ export default {
             this.imgPath.img = res.request.responseURL;
             this.imgPath.status = true;
             this.showError = false;
-            console.log(res);
           }
         }
 

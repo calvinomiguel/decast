@@ -455,7 +455,7 @@ function getGlobalSymbolsCount(objSchema) {
 
 //Export symbol
 function exportComponent(sketchFile, symbolId) {
-    sketchtool.run('export layers ' + dir + '/' + sketchFile + ' --item=' + symbolId + ' --formats=png --scales=2 --use-id-for-name --output=' + outputDir);
+    sketchtool.run('export layers ' + dir + '/' + sketchFile + ' --item=' + symbolId + ' --formats=png --scales=2 --use-id-for-name --output=' + outputDir + '/symbols');
 }
 
 //Export artboards
@@ -507,7 +507,80 @@ router.get('/data', async (req, res, next) => {
 router.get('/component/', async (req, res, next) => {
     let symbolId = req.query.id;
     let fileName = req.query.origin;
-    let imgPath = outputDir + '/' + symbolId + '@2x.png';
+    let imgPath = outputDir + '/symbols/' + symbolId + '@2x.png';
+    let sketchFilePath = dir + '/' + fileName;
+
+    try {
+        //If rootfile doesn't exist send message to client
+        if (!fs.existsSync(sketchFilePath)) {
+            res.status(200).send({
+                message: false,
+                file: fileName
+            });
+        } else {
+
+            //Else check if img of the file to be export already exists
+            //If not export and send to client
+            if (!fs.existsSync(imgPath)) {
+                exportComponent(fileName, symbolId);
+            }
+            res.set({
+                'Content-Type': 'image/png'
+            });
+
+            res.sendFile(imgPath, (err) => {
+                if (err) {
+                    next(err);
+                } else {
+                    //console.log('Sent:', symbolId);
+                }
+            });
+        }
+
+    } catch (err) {
+        console.error(err);
+    }
+});
+
+//Export all symbols
+router.get('/components/', async (req, res, next) => {
+    try {
+        let do_objectID = req.query.do_objectID;
+        let fileName = req.query.originalFileName;
+        let imgPath = outputDir + '/symbols/' + do_objectID + '@2x.png';
+        let sketchFilePath = dir + '/' + fileName;
+        console.log("Filename");
+        console.log(fileName)
+        console.log("Object ID");
+        console.log(do_objectID)
+        //If rootfile doesn't exist send message to client
+        if (!fs.existsSync(sketchFilePath)) {
+            res.status(200).send({
+                message: false,
+                file: fileName
+            });
+        } else {
+            //Else check if img of the file to be export already exists
+            //If not export and send to client
+            if (!fs.existsSync(imgPath)) {
+                exportComponent(fileName, do_objectID);
+            }
+            res.set({
+                'Content-Type': 'image/png'
+            });
+            res.status(200).send();
+        }
+
+    } catch (err) {
+        console.error(err);
+    }
+});
+
+//Export symbol and send to client
+router.get('/artboards/', async (req, res, next) => {
+    let symbolId = req.query.id;
+    let fileName = req.query.origin;
+    let imgPath = outputDir + '/symbols/' + symbolId + '@2x.png';
     let sketchFilePath = dir + '/' + fileName;
 
     try {
@@ -565,7 +638,7 @@ router.get('/stats/', async (req, res) => {
         if (originalIdExists == true || symbolIdExists == true) {
             artboardsCount += 1;
         }
-        console.log(originalIdExists, symbolIdExists);
+        //console.log(originalIdExists, symbolIdExists);
     }
 
     let deliverable = {
