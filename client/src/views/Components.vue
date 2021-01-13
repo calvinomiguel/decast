@@ -347,7 +347,7 @@ export default {
         s: false,
         p: false,
         u: false,
-        cp: true,
+        cp: false,
       },
       imgPath: {
         status: false,
@@ -529,7 +529,8 @@ export default {
 
       //Check if all views are closed if yes show component preview
       let bool = Object.values(this.view).every((v) => v == false);
-
+      console.log("Here is bool");
+      console.log(Object.values(this.view));
       if (bool == true) {
         //Show componentpreview and hide preview error
         this.view.c = true;

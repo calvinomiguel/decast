@@ -165,7 +165,9 @@ function restructureSymbolsObj(objSchema) {
             for (let symbol of symbols) {
                 if (symbol._class == 'MSImmutableForeignSymbol') {
                     //let _libraryID = symbol.libraryID;
-                    //let _sourceLibraryName = symbol.sourceLibraryName;
+                    let _sourceLibraryName = symbol.sourceLibraryName;
+                    let _originalFileName = symbol.sourceLibraryName + '.sketch';
+                    let _currentFileName = file.name;
                     let _name = symbol.originalMaster.name;
                     let _symbolClass = symbol.originalMaster._class;
                     let _originalMasterID = symbol.originalMaster.symbolID;
@@ -174,7 +176,9 @@ function restructureSymbolsObj(objSchema) {
                     let _objectID = symbol.symbolMaster.do_objectID;
                     symbolArr.push({
                         //libraryID: _libraryID,
-                        //sourceLibraryName: _sourceLibraryName,
+                        sourceLibraryName: _sourceLibraryName,
+                        originalFileName: _originalFileName,
+                        currentFileName: _currentFileName,
                         name: _name,
                         _class: _symbolClass,
                         originalMasterId: _originalMasterID,
@@ -185,7 +189,9 @@ function restructureSymbolsObj(objSchema) {
                 }
                 if (symbol._class == 'symbolMaster') {
                     //let _libraryID = false;
-                    //let _sourceLibraryName = false;
+                    let _sourceLibraryName = false;
+                    let _currentFileName = file.name;
+                    let _originalFileName = file.name;
                     let _name = symbol.name;
                     let _symbolClass = symbol._class;
                     let _originalMasterID = symbol.symbolID;
@@ -194,8 +200,10 @@ function restructureSymbolsObj(objSchema) {
                     let _objectID = symbol.do_objectID;
                     symbolArr.push({
                         //libraryID: _libraryID,
-                        //sourceLibraryName: _sourceLibraryName,
+                        sourceLibraryName: _sourceLibraryName,
                         name: _name,
+                        currentFileName: _currentFileName,
+                        originalFileName: _originalFileName,
                         _class: _symbolClass,
                         originalMasterId: _originalMasterID,
                         do_objectID: _objectID,
