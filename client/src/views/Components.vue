@@ -19,7 +19,8 @@
             <ListCard
               v-on:click.native="selectComponent"
               v-for="(symbol, index) in symbols"
-              :origin="symbol.originFile"
+              :originalFileName="symbol.originalFileName"
+              :currentFileName="symbol.currentFileName"
               :key="index"
               :name="symbol.name"
               :count="symbol.count"
@@ -367,7 +368,8 @@ export default {
         id: null,
         originalMasterId: null,
         symbolIds: null,
-        origin: null,
+        originalFileName: null,
+        currentFileName: null,
       },
       data: null,
       symbols: [],
@@ -437,14 +439,16 @@ export default {
     async getComponentImg(eventTarget) {
       try {
         let symbolId = eventTarget.getAttribute("id");
-        let symbolOrigin = eventTarget.getAttribute("origin");
+        let originalFileName = eventTarget.getAttribute("originalfilename");
+        let currentFileName = eventTarget.getAttribute("currentfilename");
         const port = process.env.PORT || 3060;
         const protocol = "http";
         const host = "localhost";
         const res = await axios.get(`${protocol}://${host}:${port}/component`, {
           params: {
             id: symbolId,
-            origin: symbolOrigin,
+            origin: originalFileName,
+            currentFile: currentFileName,
           },
         });
 
@@ -529,8 +533,7 @@ export default {
 
       //Check if all views are closed if yes show component preview
       let bool = Object.values(this.view).every((v) => v == false);
-      console.log("Here is bool");
-      console.log(Object.values(this.view));
+
       if (bool == true) {
         //Show componentpreview and hide preview error
         this.view.c = true;

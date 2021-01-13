@@ -172,7 +172,6 @@ function restructureSymbolsObj(objSchema) {
                     let _symbolClass = symbol.originalMaster._class;
                     let _originalMasterID = symbol.originalMaster.symbolID;
                     let _symbolMasterID = symbol.symbolMaster.symbolID;
-                    let _originFile = symbol.sourceLibraryName + '.sketch';
                     let _objectID = symbol.symbolMaster.do_objectID;
                     symbolArr.push({
                         //libraryID: _libraryID,
@@ -183,7 +182,6 @@ function restructureSymbolsObj(objSchema) {
                         _class: _symbolClass,
                         originalMasterId: _originalMasterID,
                         symbolMasterID: _symbolMasterID,
-                        originFile: _originFile,
                         do_objectID: _objectID
                     });
                 }
@@ -196,7 +194,6 @@ function restructureSymbolsObj(objSchema) {
                     let _symbolClass = symbol._class;
                     let _originalMasterID = symbol.symbolID;
                     let _symbolMasterID = false;
-                    let _originFile = file.name;
                     let _objectID = symbol.do_objectID;
                     symbolArr.push({
                         //libraryID: _libraryID,
@@ -208,7 +205,6 @@ function restructureSymbolsObj(objSchema) {
                         originalMasterId: _originalMasterID,
                         do_objectID: _objectID,
                         symbolMasterID: _symbolMasterID,
-                        originFile: _originFile
                     })
                 }
             };

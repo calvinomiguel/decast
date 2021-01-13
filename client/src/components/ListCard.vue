@@ -5,6 +5,8 @@
     :name="name"
     :originalmasterid="originalMasterId"
     :symbolIds="symbolIds"
+    :originalfilename="originalFileName"
+    :currentfilename="currentFileName"
     class="list-card flex items-center bg-cloud px-4 py-3 rounded hover:shadow-xl shadow transition-shadow ease-in-out duration-300 justify-between"
   >
     <div class="card-text flex flex-wrap mr-auto">
@@ -27,6 +29,12 @@ export default {
     origin: {
       type: String,
       default: "Root file name",
+    },
+    currentFileName: {
+      type: String,
+    },
+    originalFileName: {
+      type: String,
     },
     originalMasterId: {
       type: String,
