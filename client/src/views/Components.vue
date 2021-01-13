@@ -93,6 +93,7 @@
                 </p>
               </div>
               <ComponentPreview
+                v-show="view.cp"
                 :imgPath="
                   imgPath.status == false
                     ? require('@/assets/img/Ajax-Preloader.gif')
@@ -346,6 +347,7 @@ export default {
         s: false,
         p: false,
         u: false,
+        cp: true,
       },
       imgPath: {
         status: false,
@@ -406,24 +408,30 @@ export default {
         viewList[v] = false;
         console.log(viewList[v]);
       }
-
-      //Set current view to true
-      if (element.getAttribute("id") == "c") {
+      if (this.showError == true) {
         this.view.c = true;
-      }
-
-      if (element.getAttribute("id") == "s") {
-        if (this.loaderStatus == true) {
-          this.view.s = true;
-          this.view.p = false;
-        } else {
-          this.view.p = true;
-          this.view.s = false;
+        this.showError = true;
+      } else {
+        this.showError = false;
+        //Set current view to true
+        if (element.getAttribute("id") == "c") {
+          this.view.c = true;
+          this.view.cp = true;
         }
-      }
 
-      if (element.getAttribute("id") == "u") {
-        this.view.u = true;
+        if (element.getAttribute("id") == "s") {
+          if (this.loaderStatus == true) {
+            this.view.s = true;
+            this.view.p = false;
+          } else {
+            this.view.p = true;
+            this.view.s = false;
+          }
+        }
+
+        if (element.getAttribute("id") == "u") {
+          this.view.u = true;
+        }
       }
     },
     async getComponentImg(eventTarget) {
@@ -452,6 +460,7 @@ export default {
         if (res.headers["content-type"] == "application/json; charset=utf-8") {
           this.rootFile = res.data.file;
           this.view.c = true;
+          this.view.cp = false;
           this.showError = true;
           this.imgPath.status = false;
         }
@@ -480,6 +489,8 @@ export default {
         if (res.request.readyState == 4) {
           this.artboardsUsingComponent = res.data.artboardsUsing;
           this.totalArtboards = res.data.totalArtboards;
+          //Hide loader and show stats table
+          this.loaderStatus = true;
         }
       } catch (err) {
         console.error(err);
@@ -516,9 +527,20 @@ export default {
       this.showEmpty = false;
       this.showMain = true;
 
-      //Show componentpreview and hide preview error
-      this.view.c = true;
-      this.showError = false;
+      //Check if all views are closed if yes show component preview
+      let bool = Object.values(this.view).every((v) => v == false);
+
+      if (bool == true) {
+        //Show componentpreview and hide preview error
+        this.view.c = true;
+        this.view.cp = true;
+      }
+
+      if (this.showError == true) {
+        this.showError = false;
+        this.view.c = true;
+        this.view.cp = true;
+      }
 
       //Remove selection from all list card elements
       this.componentsList.forEach((listcard) => {
