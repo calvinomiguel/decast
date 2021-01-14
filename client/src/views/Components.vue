@@ -389,6 +389,7 @@ export default {
         const host = "localhost";
         const res = await axios.get(`${protocol}://${host}:${port}/data`);
         let data = res.data;
+        this.data = data;
         let symbols = data.symbols;
 
         symbols.forEach((symbol) => {
@@ -426,9 +427,38 @@ export default {
         console.error(err);
       }
     };
+    const getAllArtboards = async () => {
+      try {
+        const port = process.env.PORT || 3060;
+        const protocol = "http";
+        const host = "localhost";
+        let files = this.data.files;
+
+        for (let file of files) {
+          let fileName = file.name;
+          let filePath = file.path;
+          const res = await axios.get(
+            `${protocol}://${host}:${port}/artboards`,
+            {
+              params: {
+                fileName: fileName,
+                filePath: filePath,
+              },
+            }
+          );
+
+          if (res.status == 200) {
+            console.log("Artboards of " + fileName + " exported.");
+          }
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
     (async () => {
       await getData();
-      await getAllComponentImg();
+      getAllComponentImg();
+      getAllArtboards();
     })();
   },
   methods: {

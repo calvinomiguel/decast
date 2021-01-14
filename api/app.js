@@ -459,8 +459,8 @@ function exportComponent(sketchFile, symbolId) {
 }
 
 //Export artboards
-function exportComponentArtboards(sketchFile) {
-    sketchtool.run('export artboards ' + dir + '/' + sketchFile + ' --formats=jpg --scales=2 --output=' + outputDir);
+function exportArtboards(sketchFile) {
+    sketchtool.run('export artboards ' + dir + '/' + sketchFile + ' --formats=jpg --scales=2 --use-id-for-name --output=' + outputDir + '/artboards');
 }
 
 //console.log(sketchtool.run("help export layers"));
@@ -549,10 +549,6 @@ router.get('/components/', async (req, res, next) => {
         let fileName = req.query.originalFileName;
         let imgPath = outputDir + '/symbols/' + do_objectID + '@2x.png';
         let sketchFilePath = dir + '/' + fileName;
-        console.log("Filename");
-        console.log(fileName)
-        console.log("Object ID");
-        console.log(do_objectID)
         //If rootfile doesn't exist send message to client
         if (!fs.existsSync(sketchFilePath)) {
             res.status(200).send({
@@ -578,38 +574,17 @@ router.get('/components/', async (req, res, next) => {
 
 //Export symbol and send to client
 router.get('/artboards/', async (req, res, next) => {
-    let symbolId = req.query.id;
-    let fileName = req.query.origin;
-    let imgPath = outputDir + '/symbols/' + symbolId + '@2x.png';
-    let sketchFilePath = dir + '/' + fileName;
-
     try {
-        //If rootfile doesn't exist send message to client
-        if (!fs.existsSync(sketchFilePath)) {
-            res.status(200).send({
-                message: false,
-                file: fileName
-            });
+        let filePath = req.query.filePath;
+        let fileName = req.query.fileName;
+        console.log(filePath);
+        console.log(fileName);
+        //If file doesn't exist send message to client
+        if (!fs.existsSync(filePath)) {
+            res.status(200).send('While trying to export artboards decast couldn\'t find ' + fileName);
         } else {
-
-            //Else check if img of the file to be export already exists
-            //If not export and send to client
-            if (!fs.existsSync(imgPath)) {
-                exportComponent(fileName, symbolId);
-            }
-            res.set({
-                'Content-Type': 'image/png'
-            });
-
-            res.sendFile(imgPath, (err) => {
-                if (err) {
-                    next(err);
-                } else {
-                    //console.log('Sent:', symbolId);
-                }
-            });
+            exportArtboards(fileName);
         }
-
     } catch (err) {
         console.error(err);
     }
