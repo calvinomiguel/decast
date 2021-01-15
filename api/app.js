@@ -636,7 +636,7 @@ router.get('/artboards/', async (req, res, next) => {
     }
 });
 
-//Export all artboards
+//Send artboard img to client
 router.get('/component/artboards', async (req, res, next) => {
     let do_objectID = req.query.do_objectID;
     let imgPath = outputDir + '/artboards/' + do_objectID + '@2x.jpg';

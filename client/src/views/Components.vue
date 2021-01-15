@@ -214,28 +214,19 @@
                   Artboards
                 </h2>
                 <div class="artboard-table mt-10">
-                  <div class="artboard-row mb-3">
+                  <div
+                    v-for="(artboard, index) in artboards"
+                    :key="index"
+                    class="artboard-row mb-3"
+                  >
                     <div class="flex justify-between">
                       <div class="artboard-name font-mono text-night-300">
-                        Homepage
+                        {{ artboard.name }}
                       </div>
                       <div
                         class="usage-count text-night-300 font-mono text-right font-bold"
                       >
-                        600
-                      </div>
-                    </div>
-                    <Divider class="mt-3" />
-                  </div>
-                  <div class="artboard-row mb-3">
-                    <div class="flex justify-between">
-                      <div class="artboard-name font-mono text-night-300">
-                        Homepage
-                      </div>
-                      <div
-                        class="usage-count text-night-300 font-mono text-right font-bold"
-                      >
-                        600
+                        {{ artboard.symbolInstancesCount }}
                       </div>
                     </div>
                     <Divider class="mt-3" />
@@ -250,7 +241,7 @@
                       <div
                         class="usage-count text-night-300 font-mono text-2xl text-right font-bold"
                       >
-                        600
+                        {{ totalArtboardsUsage }}
                       </div>
                     </div>
                   </div>
@@ -333,6 +324,7 @@ export default {
       totalSymbols: 0,
       artboardsData: null,
       symbolCount: 0,
+      totalArtboardsUsage: 0,
     };
   },
   props: {
@@ -566,22 +558,43 @@ export default {
 
         for (let artboard of artboards) {
           let symbolInstances = [...artboard.symbolInstances];
-
+          let symbolInstancesCount = 0;
           //Check if there is at least one symbolinstance with the same id
           //as the originalMasterId of the current component
           let exists = (symbolInstanceId) =>
             symbolInstanceId == originalMasterId;
           let originalMasterIdExists = symbolInstances.some(exists);
+
+          //If there is a symbolInstace with the same ID as originalMaster
+          //Then get the count and add to symbolInstancesCount
+          if (originalMasterIdExists == true) {
+            let masterIdCount = symbolInstances.filter(
+              (id) => id == originalMasterId
+            );
+            symbolInstancesCount += masterIdCount.length;
+          }
+
           //Check if there are symbol ids of the current component
           //that equal to the symbolInstances of the artboard
-          let symbolIdsExists;
+          let symbolIdsExists = false;
 
           if (symbolIds != undefined && symbolIds[0] != "") {
             symbolIdsExists = symbolIds.some((symbolId) =>
               symbolInstances.includes(symbolId)
             );
           }
+          if (symbolIdsExists == true) {
+            for (let symbolId of symbolIds) {
+              let symbolIdsCount = symbolInstances.filter(
+                (id) => id == symbolId
+              );
+              symbolInstancesCount += symbolIdsCount.length;
+            }
+          }
 
+          //If there is either one symbolId or one originalMasterId
+          //that is equal to the list of the artboards symbolInstances
+          //then send request to get artboard img
           if (symbolIdsExists == true || originalMasterIdExists == true) {
             const res = await axios.get(
               `${protocol}://${host}:${port}/component/artboards`,
@@ -591,15 +604,21 @@ export default {
                 },
               }
             );
-            let path = res.request.responseURL;
             if (res.status == 200) {
-              this.artboards.push({ name: artboard.name, path: path });
+              this.artboards.push({
+                name: artboard.name,
+                path: res.request.responseURL,
+                symbolInstancesCount: symbolInstancesCount,
+              });
             }
           }
         }
       } catch (err) {
         console.error(err);
       }
+      this.totalArtboardsUsage = this.artboards.reduce((sum, count) => {
+        return sum + count.symbolInstancesCount;
+      }, 0);
     },
     setComponentData(eventTarget) {
       let symbolName = eventTarget.getAttribute("name");
