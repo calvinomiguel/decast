@@ -1,5 +1,22 @@
 <template>
   <div>
+    <div
+      v-show="showBgLayer"
+      v-on:click="closeLightbox"
+      class="bg-layer bg-night-400 bg-opacity-75"
+    >
+      <div class="bg-container">
+        <button
+          v-on:click="closeLightbox"
+          class="text-cloud text-5xl close-lightbox"
+        >
+          ×
+        </button>
+        <div class="artboard-container">
+          <img :src="currentArtboardImg" alt="Artboard" />
+        </div>
+      </div>
+    </div>
     <NavBar />
     <div class="main-container flex">
       <aside class="aside bg-smokey">
@@ -214,6 +231,7 @@
                 <div
                   v-for="(artboard, index) in artboards"
                   :key="index"
+                  v-on:click="showLightbox(artboard)"
                   class="artboard rounded-lg hover:bg-smokey p-3 transition-all duration-300 mb-3"
                 >
                   <div
@@ -248,6 +266,8 @@ export default {
   data() {
     return {
       artboards: [],
+      currentArtboardImg: null,
+      showBgLayer: false,
       showMain: false,
       showError: false,
       rootFile: null,
@@ -397,6 +417,14 @@ export default {
     })();
   },
   methods: {
+    showLightbox(symbol) {
+      this.currentArtboardImg = symbol.path;
+      this.showBgLayer = true;
+      console.log(symbol);
+    },
+    closeLightbox() {
+      this.showBgLayer = false;
+    },
     changeView(event) {
       let element = event.currentTarget;
       let viewList = this.view;
@@ -684,22 +712,66 @@ aside {
 
 .artboards-view {
   gap: calc(4% / 3);
+  width: 100%;
 }
+
 .artboards-view .artboard {
   max-width: calc(96% / 4);
   width: 100%;
 }
+
+.artboard-img {
+  height: 144px;
+  position: relative;
+  width: 100%;
+  background-color: theme("colors.night.400");
+}
+
+.artboard-img img {
+  position: absolute;
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
 .code-tag {
   font-family: monospace;
   font-size: 16px;
   font-weight: bold;
   color: theme("colors.lila.100");
 }
+
 .artboard {
   cursor: pointer;
 }
 
 .btn-organizer {
   max-width: calc(50% - 0.5rem);
+}
+
+.bg-layer {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  z-index: 1;
+  padding: 0 4rem;
+}
+
+.bg-container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  padding: 4rem 0;
+}
+
+.close-lightbox {
+  position: absolute;
+  right: 0;
+}
+.artboard-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>

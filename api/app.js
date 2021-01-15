@@ -583,7 +583,6 @@ router.get('/components/', async (req, res, next) => {
 
 //Export all artboards
 router.get('/artboards/', async (req, res, next) => {
-    console.log('Artboards')
     try {
         let filePath = req.query.filePath;
         let fileName = req.query.fileName;
@@ -591,7 +590,6 @@ router.get('/artboards/', async (req, res, next) => {
 
         //If start the process only if axf.json file doesn't exist
         if (!fs.existsSync(dataDir + '/axf.json')) {
-
             //If file doesn't exist send message to client
             if (!fs.existsSync(filePath)) {
                 res.status(200).send('While trying to export artboards decast couldn\'t find ' + fileName);
@@ -644,8 +642,7 @@ router.get('/component/artboards', async (req, res, next) => {
 
 });
 
-
-//Export symbol and send to client
+//Send artboards data to client
 router.get('/stats/', async (req, res) => {
     let data = await readFile(dataDir + '/artboards.json', 'utf8'); //Get data.json file content
     let originalMasterId = req.query.originalMasterId;
