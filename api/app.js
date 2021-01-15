@@ -480,6 +480,13 @@ app.post('/uploads', upload.array('files'), async (req, res) => {
     files = await uniteIdenticalSymbols(files);
     files = await getGlobalSymbolInstances(files);
     files = await getGlobalSymbolsCount(files);
+
+    let totalSymbols = 0;
+    let symbolsArr = [...files.symbols];
+    for (let symbol of symbolsArr) {
+        totalSymbols += 1;
+    }
+    files.totalSymbols = totalSymbols;
     files = Buffer.from(JSON.stringify(files));
     await fsp.writeFile(dataDir + '/data.json', files, () => {
         console.log('Data file created');

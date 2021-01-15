@@ -151,15 +151,15 @@
                       <div class="row-wrapper flex justify-between">
                         <div class="row-text">
                           <h4 class="text-night-300 font-mono">
-                            Total artboards
+                            Artboards not using component
                           </h4>
                           <p class="font-bold text-night-300 mt-2 font-mono">
-                            {{ totalArtboards }}
+                            {{ totalArtboards - artboardsUsingComponent }}
                           </p>
                         </div>
                         <div class="tag bg-night-400"></div>
                       </div>
-                      <Divider class="mt-2 w-full" />
+                      <Divider class="mt-2 mb-6 w-full" />
                       <div class="row-wrapper flex justify-between">
                         <div class="row-text">
                           <h4 class="text-night-300 font-mono">
@@ -171,18 +171,44 @@
                         </div>
                         <div class="tag bg-lila-100"></div>
                       </div>
-                      <Divider class="mt-2 w-full" />
+                      <Divider class="mt-2 mb-6 w-full" />
+                      <div class="row-wrapper flex justify-between">
+                        <div class="row-text">
+                          <h4 class="text-night-300 font-mono">
+                            Total artboards
+                          </h4>
+                          <p class="font-bold text-night-300 mt-2 font-mono">
+                            {{ totalArtboards }}
+                          </p>
+                        </div>
+                      </div>
+                      <Divider class="mt-2 mb-6 w-full" />
+                      <h3
+                        class="font-mono text-xl text-right text-night-300 mt-4"
+                      >
+                        Degree of use
+                      </h3>
+                      <p
+                        class="font-mono text-night-300 text-xl text-right font-bold"
+                      >
+                        {{ degreeOfUse }}%
+                      </p>
                     </div>
-                    <div class="context-row"></div>
+                    <div class="context-row">
+                      <div class="row-wrapper flex justify-between">
+                        <div class="row-text">
+                          <h4 class="text-night-300 font-mono">
+                            Component instances
+                          </h4>
+                          <p class="font-bold text-night-300 mt-2 font-mono">
+                            {{ symbolCount }}
+                          </p>
+                        </div>
+                        <div class="tag bg-night-400"></div>
+                      </div>
+                      <Divider class="mt-2 mb-6 w-full" />
+                    </div>
                   </div>
-                  <h3 class="font-mono text-xl text-right text-night-300 mt-4">
-                    Degree of use
-                  </h3>
-                  <p
-                    class="font-mono text-night-300 text-xl text-right font-bold"
-                  >
-                    {{ degreeOfUse }}%
-                  </p>
                 </div>
                 <h2 class="font-mono font-bold text-2xl mt-24 text-night-300">
                   Artboards
@@ -304,7 +330,9 @@ export default {
       },
       data: null,
       symbols: [],
+      totalSymbols: 0,
       artboardsData: null,
+      symbolCount: 0,
     };
   },
   props: {
@@ -323,7 +351,7 @@ export default {
         let data = res.data;
         this.data = data;
         let symbols = data.symbols;
-
+        this.totalSymbols = data.totalSymbols;
         symbols.forEach((symbol) => {
           this.symbols.push(symbol);
         });
@@ -501,6 +529,7 @@ export default {
         let symbolOrigin = eventTarget.getAttribute("origin");
         let originalMasterId = eventTarget.getAttribute("originalmasterid");
         let symbolIds = eventTarget.getAttribute("symbolIds");
+        this.symbolCount = eventTarget.getAttribute("count");
         const port = process.env.PORT || 3060;
         const protocol = "http";
         const host = "localhost";
