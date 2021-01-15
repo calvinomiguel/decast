@@ -134,7 +134,13 @@
                     id="pie-chart"
                     width="240px"
                     height="240px"
-                    :data="chartData"
+                    :data="[
+                      ['Arboards using component', artboardsUsingComponent],
+                      [
+                        'Artboards not using component',
+                        totalArtboards - artboardsUsingComponent,
+                      ],
+                    ]"
                     :colors="colors"
                     :legend="false"
                   ></pie-chart>
@@ -154,8 +160,6 @@
                         <div class="tag bg-night-400"></div>
                       </div>
                       <Divider class="mt-2 w-full" />
-                    </div>
-                    <div class="context-row">
                       <div class="row-wrapper flex justify-between">
                         <div class="row-text">
                           <h4 class="text-night-300 font-mono">
@@ -169,6 +173,7 @@
                       </div>
                       <Divider class="mt-2 w-full" />
                     </div>
+                    <div class="context-row"></div>
                   </div>
                   <h3 class="font-mono text-xl text-right text-night-300 mt-4">
                     Degree of use
@@ -289,10 +294,6 @@ export default {
       totalArtboards: 0,
       artboardsUsingComponent: 0,
       colors: ["#856de7", "#23272a"],
-      chartData: {
-        "Total artboards": 999,
-        "Artboards using component": 1440,
-      },
       currentComponent: {
         name: null,
         id: null,

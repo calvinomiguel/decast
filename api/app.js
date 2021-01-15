@@ -348,7 +348,7 @@ async function getArtboards(objSchema) {
             }
             artboard.symbolInstances = symbolInstances;
             //Get total count of artboards
-            totalArtboards += 1;
+            //totalArtboards += 1;
 
         }
     }
@@ -357,7 +357,7 @@ async function getArtboards(objSchema) {
     }
 
     obj = {
-        totalArtboards: totalArtboards,
+        //totalArtboards: totalArtboards,
         artboards: [...artboards]
     };
     return obj;
@@ -474,7 +474,7 @@ app.post('/uploads', upload.array('files'), async (req, res) => {
     let files = await getFileNames();
     files = await getGlobalPages(files);
     let artboards = await getArtboards(files);
-    artboards = Buffer.from(JSON.stringify(artboards));
+
     files = await getSymbols(files);
     files = await restructureSymbolsObj(files);
     files = await uniteIdenticalSymbols(files);
@@ -485,6 +485,19 @@ app.post('/uploads', upload.array('files'), async (req, res) => {
         console.log('Data file created');
     });
 
+    //Loop through array in artboards object
+    //to get total number of artboards
+    let totalArtboards = 0;
+    for (let artboard of artboards.artboards) {
+        totalArtboards += 1;
+    }
+    //Push number into object
+    artboards.totalArtboards = totalArtboards;
+
+    //Stringify object
+    artboards = Buffer.from(JSON.stringify(artboards));
+
+    //Create json file
     await fsp.writeFile(dataDir + '/artboards.json', artboards, () => {
         console.log('Artboards file created');
     });
