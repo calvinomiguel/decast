@@ -361,12 +361,22 @@ export default {
         for (let file of files) {
           let fileName = file.name;
           let filePath = file.path;
+          let numbrOfIterations = files.length;
+          let currentIteration = files.indexOf(file) + 1;
+          let lastIteration = false;
+
+          //Check if this is the last iteration
+          if (currentIteration == numbrOfIterations) {
+            lastIteration = true;
+          }
+
           const res = await axios.get(
             `${protocol}://${host}:${port}/artboards`,
             {
               params: {
                 fileName: fileName,
                 filePath: filePath,
+                lastFile: lastIteration,
               },
             }
           );

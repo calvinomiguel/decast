@@ -587,12 +587,31 @@ router.get('/artboards/', async (req, res, next) => {
     try {
         let filePath = req.query.filePath;
         let fileName = req.query.fileName;
-        //If file doesn't exist send message to client
-        if (!fs.existsSync(filePath)) {
-            res.status(200).send('While trying to export artboards decast couldn\'t find ' + fileName);
-        } else {
-            exportArtboards(fileName);
-            res.send(fileName + ' was exported');
+        let lastFile = req.query.lastFile;
+
+        //If start the process only if axf.json file doesn't exist
+        if (!fs.existsSync(dataDir + '/axf.json')) {
+
+            //If file doesn't exist send message to client
+            if (!fs.existsSync(filePath)) {
+                res.status(200).send('While trying to export artboards decast couldn\'t find ' + fileName);
+            } else {
+                //Export all artboards of the files
+                exportArtboards(fileName);
+
+                //Check if this was the last file
+                //If true, create an axf.json file for controlling purposes later
+                if (lastFile.includes("true")) {
+                    let fileContent = {
+                        work: "finished"
+                    };
+                    fileContent = JSON.stringify(fileContent);
+                    await fsp.writeFile(dataDir + '/axf.json', fileContent, () => {
+                        console.log('Data file created');
+                    });
+                }
+                res.send(fileName + ' was exported');
+            }
         }
     } catch (err) {
         next(err);
