@@ -503,6 +503,18 @@ router.get('/data', async (req, res, next) => {
     });
 });
 
+//Send json file to client
+router.get('/artboards/data', async (req, res, next) => {
+    let fileName = 'artboards.json';
+    res.sendFile(dataDir + '/' + fileName, (err) => {
+        if (err) {
+            next(err);
+        } else {
+            console.log('Sent:', fileName);
+        }
+    });
+});
+
 //Export symbol and send to client
 router.get('/component/', async (req, res, next) => {
     let symbolId = req.query.id;
@@ -561,9 +573,6 @@ router.get('/components/', async (req, res, next) => {
             if (!fs.existsSync(imgPath)) {
                 exportComponent(fileName, do_objectID);
             }
-            res.set({
-                'Content-Type': 'image/png'
-            });
             res.status(200).send();
         }
 
@@ -572,23 +581,50 @@ router.get('/components/', async (req, res, next) => {
     }
 });
 
-//Export symbol and send to client
+//Export all artboards
 router.get('/artboards/', async (req, res, next) => {
+    console.log('Artboards')
     try {
         let filePath = req.query.filePath;
         let fileName = req.query.fileName;
-        console.log(filePath);
-        console.log(fileName);
         //If file doesn't exist send message to client
         if (!fs.existsSync(filePath)) {
             res.status(200).send('While trying to export artboards decast couldn\'t find ' + fileName);
         } else {
             exportArtboards(fileName);
+            res.send(fileName + ' was exported');
+        }
+    } catch (err) {
+        next(err);
+    }
+});
+
+//Export all artboards
+router.get('/component/artboards', async (req, res, next) => {
+    let do_objectID = req.query.do_objectID;
+    let imgPath = outputDir + '/artboards/' + do_objectID + '@2x.jpg';
+    try {
+        if (do_objectID != undefined) {
+            if (fs.existsSync(imgPath)) {
+                res.set({
+                    'Content-Type': 'image/jpeg'
+                });
+
+                res.sendFile(imgPath, (err) => {
+                    if (err) {
+                        next(err);
+                    } else {
+                        //console.log('Sent:', symbolId);
+                    }
+                });
+            }
         }
     } catch (err) {
         console.error(err);
     }
+
 });
+
 
 //Export symbol and send to client
 router.get('/stats/', async (req, res) => {

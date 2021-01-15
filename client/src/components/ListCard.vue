@@ -4,7 +4,7 @@
     :origin="origin"
     :name="name"
     :originalmasterid="originalMasterId"
-    :symbolIds="symbolIds"
+    :symbolids="symbolIds"
     :originalfilename="originalFileName"
     :currentfilename="currentFileName"
     class="list-card flex items-center bg-cloud px-4 py-3 rounded hover:shadow-xl shadow transition-shadow ease-in-out duration-300 justify-between"
@@ -40,7 +40,7 @@ export default {
       type: String,
     },
     symbolIds: {
-      type: String,
+      type: Array,
     },
     name: {
       type: String,

@@ -26,7 +26,7 @@
               :count="symbol.count"
               :id="symbol.do_objectID"
               :originalMasterId="symbol.originalMasterId"
-              :symbolIds="symbol.symbolIds"
+              :symbolIds="symbol.symbolIDs"
               class="mb-2 border-lila-200"
             />
           </div>
@@ -212,108 +212,17 @@
             <div class="u-view" v-show="view.u">
               <div class="artboards-view inline-flex flex-wrap">
                 <div
+                  v-for="(artboard, index) in artboards"
+                  :key="index"
                   class="artboard rounded-lg hover:bg-smokey p-3 transition-all duration-300 mb-3"
                 >
                   <div
                     class="artboard-img border border-night-100 overflow-hidden rounded"
                   >
-                    <img
-                      src="@/assets/img/artboards/b179df4f-8219-420f-bedb-29071672c9f0.png"
-                      alt=""
-                    />
+                    <img :src="artboard.path" alt="" />
                   </div>
                   <h3 class="font-mono text-night-300 mt-2 font-bold">
-                    Workflow builder
-                  </h3>
-                </div>
-                <div
-                  class="artboard rounded-lg hover:bg-smokey p-3 transition-all duration-300 mb-3"
-                >
-                  <div
-                    class="artboard-img border border-night-100 overflow-hidden rounded"
-                  >
-                    <img
-                      src="@/assets/img/artboards/b179df4f-8219-420f-bedb-29071672c9f0.png"
-                      alt=""
-                    />
-                  </div>
-                  <h3 class="font-mono text-night-300 mt-2 font-bold">
-                    Workflow builder
-                  </h3>
-                </div>
-                <div
-                  class="artboard rounded-lg hover:bg-smokey p-3 transition-all duration-300 mb-3"
-                >
-                  <div
-                    class="artboard-img border border-night-100 overflow-hidden rounded"
-                  >
-                    <img
-                      src="@/assets/img/artboards/b179df4f-8219-420f-bedb-29071672c9f0.png"
-                      alt=""
-                    />
-                  </div>
-                  <h3 class="font-mono text-night-300 mt-2 font-bold">
-                    Workflow builder
-                  </h3>
-                </div>
-                <div
-                  class="artboard rounded-lg hover:bg-smokey p-3 transition-all duration-300 mb-3"
-                >
-                  <div
-                    class="artboard-img border border-night-100 overflow-hidden rounded"
-                  >
-                    <img
-                      src="@/assets/img/artboards/b179df4f-8219-420f-bedb-29071672c9f0.png"
-                      alt=""
-                    />
-                  </div>
-                  <h3 class="font-mono text-night-300 mt-2 font-bold">
-                    Workflow builder
-                  </h3>
-                </div>
-                <div
-                  class="artboard rounded-lg hover:bg-smokey p-3 transition-all duration-300 mb-3"
-                >
-                  <div
-                    class="artboard-img border border-night-100 overflow-hidden rounded"
-                  >
-                    <img
-                      src="@/assets/img/artboards/b179df4f-8219-420f-bedb-29071672c9f0.png"
-                      alt=""
-                    />
-                  </div>
-                  <h3 class="font-mono text-night-300 mt-2 font-bold">
-                    Workflow builder
-                  </h3>
-                </div>
-                <div
-                  class="artboard rounded-lg hover:bg-smokey p-3 transition-all duration-300 mb-3"
-                >
-                  <div
-                    class="artboard-img border border-night-100 overflow-hidden rounded"
-                  >
-                    <img
-                      src="@/assets/img/artboards/b179df4f-8219-420f-bedb-29071672c9f0.png"
-                      alt=""
-                    />
-                  </div>
-                  <h3 class="font-mono text-night-300 mt-2 font-bold">
-                    Workflow builder
-                  </h3>
-                </div>
-                <div
-                  class="artboard rounded-lg hover:bg-smokey p-3 transition-all duration-300 mb-3"
-                >
-                  <div
-                    class="artboard-img border border-night-100 overflow-hidden rounded"
-                  >
-                    <img
-                      src="@/assets/img/artboards/b179df4f-8219-420f-bedb-29071672c9f0.png"
-                      alt=""
-                    />
-                  </div>
-                  <h3 class="font-mono text-night-300 mt-2 font-bold">
-                    Workflow builder
+                    {{ artboard.name }}
                   </h3>
                 </div>
               </div>
@@ -338,6 +247,7 @@ export default {
   name: "Components",
   data() {
     return {
+      artboards: [],
       showMain: false,
       showError: false,
       rootFile: null,
@@ -373,6 +283,7 @@ export default {
       },
       data: null,
       symbols: [],
+      artboardsData: null,
     };
   },
   props: {
@@ -398,7 +309,20 @@ export default {
       } catch (err) {
         console.error(err);
       }
-      return this.symbols;
+    };
+    const getArtboardData = async () => {
+      try {
+        const port = process.env.PORT || 3060;
+        const protocol = "http";
+        const host = "localhost";
+        const res = await axios.get(
+          `${protocol}://${host}:${port}/artboards/data`
+        );
+        this.artboardsData = res.data;
+        //console.log(this.artboardsData.artboards);
+      } catch (err) {
+        console.error(err);
+      }
     };
     const getAllComponentImg = async () => {
       try {
@@ -457,6 +381,7 @@ export default {
     };
     (async () => {
       await getData();
+      await getArtboardData();
       getAllComponentImg();
       getAllArtboards();
     })();
@@ -559,6 +484,55 @@ export default {
         console.error(err);
       }
     },
+    async getComponentDashboards(eventTarget) {
+      try {
+        let originalMasterId = eventTarget.getAttribute("originalmasterid");
+        let symbolIds = eventTarget.getAttribute("symbolIds").split(",");
+        let artboards = [...this.artboardsData.artboards];
+        const port = process.env.PORT || 3060;
+        const protocol = "http";
+        const host = "localhost";
+
+        //Set artboard to an empty array, to erase previous data
+        this.artboards = [];
+
+        for (let artboard of artboards) {
+          let symbolInstances = [...artboard.symbolInstances];
+
+          //Check if there is at least one symbolinstance with the same id
+          //as the originalMasterId of the current component
+          let exists = (symbolInstanceId) =>
+            symbolInstanceId == originalMasterId;
+          let originalMasterIdExists = symbolInstances.some(exists);
+          //Check if there are symbol ids of the current component
+          //that equal to the symbolInstances of the artboard
+          let symbolIdsExists;
+
+          if (symbolIds != undefined && symbolIds[0] != "") {
+            symbolIdsExists = symbolIds.some((symbolId) =>
+              symbolInstances.includes(symbolId)
+            );
+          }
+
+          if (symbolIdsExists == true || originalMasterIdExists == true) {
+            const res = await axios.get(
+              `${protocol}://${host}:${port}/component/artboards`,
+              {
+                params: {
+                  do_objectID: artboard.do_objectID,
+                },
+              }
+            );
+            let path = res.request.responseURL;
+            if (res.status == 200) {
+              this.artboards.push({ name: artboard.name, path: path });
+            }
+          }
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    },
     setComponentData(eventTarget) {
       let symbolName = eventTarget.getAttribute("name");
       let symbolId = eventTarget.getAttribute("id");
@@ -614,6 +588,7 @@ export default {
       element.classList.add("border-2", "border-lila-100");
 
       //Call functions
+      this.getComponentDashboards(element);
       this.getComponentStats(element);
       this.getComponentImg(element);
     },
