@@ -446,7 +446,8 @@ export default {
       let result = confirm("Are your sure you want to delete " + symbol.name);
       if (result) {
         let originalMasterId = symbol.originalMasterId;
-        let symbolIds = symbol.symbolIds;
+        let symbolIds = symbol.symbolIDs;
+        console.log(symbolIds);
         try {
           const protocol = "http";
           const host = "localhost";

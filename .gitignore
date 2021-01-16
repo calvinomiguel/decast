@@ -1,5 +1,4 @@
 node_modules
 uploads/*
-node_modules
 .DS_Store
 exports/*

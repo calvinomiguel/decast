@@ -728,24 +728,37 @@ async function readJsonFile(path, filename) {
     return data;
 }
 
-async function removeSymbolFromDocument(paths) {
-    for await (let path of paths) {
+async function removeSymbolFromDocument(paths, originalMasterId, symbolIds) {
+
+    for (let path of paths) {
+
         //Read document.json
         let data = await readJsonFile(path, 'document.json');
-        console.log(data);
+        data = JSON.parse(data);
+        let originalForeignSymbols = data.foreignSymbols;
+        let foreignSymbols = data.foreignSymbols;
+        console.log('After cutting');
+        for (let [i, foreignSymbol] of foreignSymbols.entries()) {
+            let fOriginalMasterId = foreignSymbol.originalMaster.symbolID;
+            let fSymbolMasterId = foreignSymbol.symbolMaster.symbolID;
+            if (fOriginalMasterId == originalMasterId) {
+                console.log(foreignSymbol.originalMaster.name);
+            };
+        }
+
     }
 }
 
 async function deleteSymbol(originalMasterId, symbolIds) {
     let unzippedPaths = await unzipFiles();
-    await removeSymbolFromDocument(unzippedPaths);
+    await removeSymbolFromDocument(unzippedPaths, originalMasterId, symbolIds);
 }
 
 
 //Delete symbol
 router.post('/delete/symbol', async (req, res) => {
-    let originalMasterId = req.params.originalMasterId;
-    let symbolIds = req.params.symbolIds;
+    let originalMasterId = req.body.params.originalMasterId;
+    let symbolIds = req.body.params.symbolIds;
     deleteSymbol(originalMasterId, symbolIds);
     res.send('The server received the symbol.')
 });
