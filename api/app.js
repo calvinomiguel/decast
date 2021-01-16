@@ -25,6 +25,7 @@ const dataDir = process.cwd() + '/data';
 const upload = multer({
     dest: './uploads/'
 });
+const flatten = require('flat');
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.raw());
@@ -728,24 +729,37 @@ async function readJsonFile(path, filename) {
     return data;
 }
 
-async function removeSymbolFromDocument(paths, originalMasterId, symbolIds) {
+async function removeSymbolFromDocument(paths, originalMasterId) {
 
     for (let path of paths) {
 
         //Read document.json
         let data = await readJsonFile(path, 'document.json');
         data = JSON.parse(data);
-        let originalForeignSymbols = data.foreignSymbols;
-        let foreignSymbols = data.foreignSymbols;
-        console.log('After cutting');
-        for (let [i, foreignSymbol] of foreignSymbols.entries()) {
+
+        let newForeignSymbols = data.foreignSymbols.filter((foreignSymbol) => {
             let fOriginalMasterId = foreignSymbol.originalMaster.symbolID;
-            let fSymbolMasterId = foreignSymbol.symbolMaster.symbolID;
-            if (fOriginalMasterId == originalMasterId) {
-                console.log(foreignSymbol.originalMaster.name);
-            };
+            return fOriginalMasterId !== originalMasterId;
+        });
+
+        console.log(data.foreignSymbols.length)
+        console.log(newForeignSymbols.length)
+
+        const flattened = flatten(data)
+
+        for (const [key, val] of Object.entries(flattened)) {
+            if (key.startsWith('foreignSymbols.') && key.endsWith('.symbolID')) {
+                console.log(key, val)
+            }
         }
 
+        // data.foreignSymbols = newForeignSymbols;
+        // fs.writeFile(path + '/document.json', JSON.stringify(data), (err) => {
+        //     if (err) {
+        //         console.log(err)
+        //     }
+        //     console.log(data);
+        // });
     }
 }
 

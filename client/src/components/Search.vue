@@ -22,11 +22,11 @@
       v-model="input"
       v-on:focusout="focusOut"
       v-on:focus="focus"
-      class="w-full bg-smokey h-8 pl-4 focus:outline-none font-mono placeholder-night-100"
+      class="search-field bg-smokey h-8 pl-4 focus:outline-none font-mono placeholder-night-100"
       type="search"
       placeholder="Search..."
     />
-    <button v-on:click="eraseValue" v-show="input" class="close bg-night-400">
+    <button v-on:click="eraseValue" v-show="input" class="close bg-night-200">
       <img src="../assets/close.svg" alt="Close icon" />
     </button>
   </div>
@@ -83,6 +83,10 @@ input::placeholder {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 14px;
+}
+
+.search-field {
+  width: calc(100% - 36px);
 }
 
 .close {

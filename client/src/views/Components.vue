@@ -3,19 +3,62 @@
     <div
       v-show="showBgLayer"
       v-on:click="closeLightbox"
+      id="bg-layer"
       class="bg-layer bg-night-400 bg-opacity-75"
+    ></div>
+    <div
+      v-on:click="closeLightbox"
+      v-show="showArtboardInLightbox"
+      class="bg-container"
     >
-      <div class="bg-container">
-        <button
-          v-on:click="closeLightbox"
-          class="text-cloud text-5xl close-lightbox"
-        >
-          ×
-        </button>
-        <div class="artboard-container">
-          <img :src="currentArtboardImg" alt="Artboard" />
+      <button
+        v-on:click="closeLightbox"
+        class="text-cloud text-5xl close-lightbox"
+      >
+        ×
+      </button>
+      <div v-show="showArtboardInLightbox" class="artboard-container">
+        <img :src="currentArtboardImg" alt="Artboard" />
+      </div>
+    </div>
+    <div
+      v-show="showSortModal"
+      class="font-mono sort-modal bg-cloud w-full pb-4"
+    >
+      <div class="sort-header bg-night-400 border-b-2">
+        <div class="header-wrapper flex items-center justify-between px-4 py-2">
+          <p class="text-lg text-cloud">Sort components</p>
+          <button v-on:click="closeSort" class="text-2xl text-cloud">×</button>
         </div>
       </div>
+      <button
+        @click="sortComponents($event.currentTarget)"
+        id="ab-high"
+        class="filter-btn mt-4"
+      >
+        A – Z
+      </button>
+      <button
+        @click="sortComponents($event.currentTarget)"
+        id="ab-low"
+        class="filter-btn"
+      >
+        Z – A
+      </button>
+      <button
+        @click="sortComponents($event.currentTarget)"
+        id="num-down"
+        class="filter-btn"
+      >
+        Most used – Less used
+      </button>
+      <button
+        @click="sortComponents($event.currentTarget)"
+        id="num-high"
+        class="filter-btn"
+      >
+        Less used – Most used
+      </button>
     </div>
     <NavBar />
     <div class="main-container flex">
@@ -24,7 +67,8 @@
           <Search v-model="inputs.search" />
           <div class="organizer-wrapper flex justify-between mt-3">
             <ButtonOrganizer
-              class=""
+              @click.native="showSort"
+              class="sort-components"
               alt="Sort icon"
               fileName="sort-icon.png"
               btn-text="Sort"
@@ -290,9 +334,11 @@ export default {
     return {
       artboards: [],
       currentArtboardImg: null,
+      showArtboardInLightbox: false,
       showBgLayer: false,
       showMain: false,
       showError: false,
+      showSortModal: false,
       rootFile: null,
       showEmpty: true,
       loaderStatus: false,
@@ -447,7 +493,7 @@ export default {
       if (result) {
         let originalMasterId = symbol.originalMasterId;
         let symbolIds = symbol.symbolIDs;
-        console.log(symbolIds);
+        console.log(symbolIds, originalMasterId);
         try {
           const protocol = "http";
           const host = "localhost";
@@ -467,13 +513,48 @@ export default {
         }
       }
     },
+    sortComponents(event) {
+      let element = event.getAttribute("id");
+
+      if (element == "ab-high") {
+        this.symbols.sort((a, b) => a.name.localeCompare(b.name));
+      }
+      if (element == "ab-low") {
+        this.symbols.sort((a, b) => b.name.localeCompare(a.name));
+      }
+
+      if (element == "num-down") {
+        this.symbols.sort((a, b) =>
+          b.count.toString().localeCompare(a.count.toString())
+        );
+      }
+
+      if (element == "num-high") {
+        this.symbols.sort((a, b) =>
+          a.count.toString().localeCompare(b.count.toString())
+        );
+      }
+
+      this.showBgLayer = false;
+      this.showSortModal = false;
+    },
+    closeSort() {
+      this.showSortModal = false;
+      this.showBgLayer = false;
+    },
+    showSort() {
+      this.showBgLayer = true;
+      this.showSortModal = true;
+    },
     showLightbox(symbol) {
       this.currentArtboardImg = symbol.path;
       this.showBgLayer = true;
-      console.log(symbol);
+      this.showArtboardInLightbox = true;
     },
     closeLightbox() {
       this.showBgLayer = false;
+      this.showArtboardInLightbox = false;
+      this.showSortModal = false;
     },
     changeView(event) {
       let element = event.currentTarget;
@@ -852,16 +933,47 @@ aside {
   width: 100%;
   position: relative;
   padding: 4rem 0;
+  position: fixed;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .close-lightbox {
   position: absolute;
   right: 0;
 }
+
 .artboard-container {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+
+.sort-modal {
+  max-width: 720px;
+  border-radius: 0.25rem;
+  position: fixed;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.sort-header {
+  border-radius: 0.25rem 0.25rem 0 0;
+}
+
+.filter-btn {
+  width: 100%;
+  display: block;
+  height: 60px;
+  transition: background-color 360ms ease-in-out;
+}
+
+.filter-btn:hover {
+  background-color: theme("colors.smokey");
 }
 </style>
