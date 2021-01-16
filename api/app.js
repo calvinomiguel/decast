@@ -514,7 +514,6 @@ app.post('/uploads', upload.array('files'), async (req, res) => {
     res.status(200).send(files);
 });
 
-
 //Send json file to client
 router.get('/data', async (req, res, next) => {
     let fileName = 'data.json';
@@ -700,116 +699,73 @@ router.get('/stats/', async (req, res) => {
     res.send(deliverable);
 });
 
-async function unzip() {
-    let filename = dir + "/decast.sketch";
-    const {
-        stdout,
-        stderr
-    } = await exec('unzip ' + filename + ` -d ${unzippedOutput}`);
+async function getSketchFileNames() {
+    let filenames = [];
+    let files = await getFileNames()
+    files.forEach(file => {
+        filenames.push(file.name);
+    });
+
+    console.log(filenames);
+    return filenames;
+}
+
+async function unzipSketchFiles() {
+    let filenames = await getSketchFileNames();
+    for (let filename of filenames) {
+        let path = dir + "/" + filename;
+        filename = filename.replace('.sketch', '');
+        const {
+            stdout,
+            stderr
+        } = await exec('unzip ' + path + ` -d ${unzippedOutput}/${filename}`);
+    }
 }
 
 async function removeSymbolFromDocument() {
+    //Read document.json
+    let document = await readFile(unzippedOutput + '/document.json', 'utf8')
+    document = JSON.parse(document);
+    let foreignSymbols = document.foreignSymbols; //This will be modified later
+    let originalForeignSymbols = document.foreignSymbols; //This will stay the same
 
-}
-async function deleteSymbol() {
-    let filename = "decast.sketch";
-    let filepath = dir + '/' + filename;
-    let originalMasterId = "7C795098-536F-4012-B29C-2D950EBA0483";
-    let symbolIds = ["DA09123D-C933-497A-A78E-D176BCE3D9E0"];
-    /*
-        await unzip();
-        
-            //Read document.json
-            let document = await readFile(unzippedOutput + '/document.json', 'utf8')
-            document = JSON.parse(document);
-            let foreignSymbols = document.foreignSymbols; //This will be modified later
-            let originalForeignSymbols = document.foreignSymbols; //This will stay the same
+    //Scan document.json file and delete all symbols that match the criteria
+    for (let [index, foreignSymbol] of foreignSymbols.entries()) {
+        let foreignSymbolOriginalMasterId = foreignSymbol.originalMaster.symbolID;
+        let foreignSymbolMasterId = foreignSymbol.symbolMaster.symbolID;
 
-            //Scan document.json file and delete all symbols that match the criteria
-            for (let [index, foreignSymbol] of foreignSymbols.entries()) {
-                let foreignSymbolOriginalMasterId = foreignSymbol.originalMaster.symbolID;
-                let foreignSymbolMasterId = foreignSymbol.symbolMaster.symbolID;
-
-                //If originalMaster symbolID or symbolMaster symbolID is equal to client originalMasterID
-                //Remove array item from array
-                if (originalMasterId == foreignSymbolOriginalMasterId || originalMasterId == foreignSymbolMasterId) {
-                    foreignSymbols.splice(index);
-                }
-
-                //Check if at least one symbolId is equal to originalMasterId and symbolMasterID
-                symbolMasterIdExists = symbolIds.some(symbolId => symbolId == foreignSymbolMasterId);
-                originalMasterIdExists = symbolIds.some(symbolId => symbolId == foreignSymbolOriginalMasterId);
-
-                if (symbolMasterIdExists == true || originalMasterIdExists == true) {
-                    foreignSymbols.splice(index);
-                }
-            }
-
-            document = JSON.stringify(document);
-            foreignSymbols = JSON.stringify(foreignSymbols);
-            let result = document.replace(`/${originalForeignSymbols}/g`, foreignSymbols);
-
-            fs.writeFile(unzippedOutput + '/document.json', result, (err) => {
-                if (err) {
-                    console.error(err);
-                } else {
-                    return console.log('Hi');
-                }
-            });
-        */
-
-    //Get pages 
-    let pages = await fsp.readdir(unzippedOutput + '/pages');
-
-    for await (let page of pages) {
-        let originalFile = await readFile(unzippedOutput + '/pages/' + page, 'utf8');
-        let file = originalFile;
-        file = JSON.parse(file);
-        let pageLayers = file.layers;
-
-        for await (let [index, pageLayer] of pageLayers.entries()) {
-
-            if (pageLayer._class == "symbolMaster") {
-                if (originalMasterId == pageLayer.symbolID) {
-                    pageLayers = "fucker"
-                }
-            }
+        //If originalMaster symbolID or symbolMaster symbolID is equal to client originalMasterID
+        //Remove array item from array
+        if (originalMasterId == foreignSymbolOriginalMasterId || originalMasterId == foreignSymbolMasterId) {
+            foreignSymbols.splice(index);
         }
-        file = JSON.stringify(file);
-        let result = originalFile.replace(`/${originalFile}/g`, file);
 
-        fs.writeFile(unzippedOutput + '/pages/' + page, result, (err) => {
-            if (err) {
-                console.error(err);
-            } else {
-                return console.log('Hi s');
-            }
-        });
-        /*for (let [index, pageLayer] of pageLayers.entries()) {
-            let boardLayers = pageLayer.layers;
-            //Get layers of the type artboard
-            if (page == "40AA5B55-9B57-4710-A9CC-90C831D3292D.json") {
+        //Check if at least one symbolId is equal to originalMasterId and symbolMasterID
+        symbolMasterIdExists = symbolIds.some(symbolId => symbolId == foreignSymbolMasterId);
+        originalMasterIdExists = symbolIds.some(symbolId => symbolId == foreignSymbolOriginalMasterId);
 
-                console.log("LAYER OF " + page + " STARTS HERE");
-                console.log(boardLayers)
-            }
-
-            if (pageLayer._class == "group") {
-
-            }
-
-            if (pageLayer._class == "symbolMaster") {
-
-            }
-
-            if (pageLayer._class == "symbolInstance") {
-
-            }
+        if (symbolMasterIdExists == true || originalMasterIdExists == true) {
+            foreignSymbols.splice(index);
         }
-              */
     }
 
+    document = JSON.stringify(document);
+    foreignSymbols = JSON.stringify(foreignSymbols);
+    let result = document.replace(`/${originalForeignSymbols}/g`, foreignSymbols);
+
+    fs.writeFile(unzippedOutput + '/document.json', result, (err) => {
+        if (err) {
+            console.error(err);
+        } else {
+            return console.log('Hi');
+        }
+    });
 }
+
+async function deleteSymbol() {
+    await unzipSketchFiles();
+}
+deleteSymbol();
 
 //Delete symbol
 router.post('/delete/symbol', async (req, res) => {
