@@ -17,7 +17,7 @@
         {{ count }}
       </span>
     </div>
-    <button class="delete-btn">
+    <button class="delete-btn" @click.stop="$emit('delete', $event)">
       <img src="../assets/delete-icon.svg" alt="Delete icon" />
     </button>
   </div>
@@ -54,4 +54,25 @@ export default {
 };
 </script>
 <style scoped>
+.delete-btn {
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 360ms ease-in-out;
+}
+
+.delete-btn:hover {
+  background-color: theme("colors.smokey");
+}
+
+.delete-btn img {
+  padding: 1rem;
+}
+
+.delete-btn:active,
+.delete-btn:focus {
+  outline: 0;
+  border: none;
+}
 </style>

@@ -21,7 +21,7 @@
     <div class="main-container flex">
       <aside class="aside bg-smokey">
         <div class="aside-wrapper">
-          <Search />
+          <Search v-model="inputs.search" />
           <div class="organizer-wrapper flex justify-between mt-3">
             <ButtonOrganizer
               class=""
@@ -35,7 +35,7 @@
           <div class="components-list mt-4">
             <ListCard
               v-on:click.native="selectComponent"
-              v-for="(symbol, index) in symbols"
+              v-for="(symbol, index) in filteredSymbols"
               :originalFileName="symbol.originalFileName"
               :currentFileName="symbol.currentFileName"
               :key="index"
@@ -45,6 +45,7 @@
               :originalMasterId="symbol.originalMasterId"
               :symbolIds="symbol.symbolIDs"
               class="mb-2 border-lila-200"
+              @delete="onDelete(symbol)"
             />
           </div>
         </div>
@@ -119,7 +120,7 @@
                 "
               />
             </div>
-            <div class="s-view-wrapper pb-6">
+            <div class="s-view-wrapper pb-24">
               <ComponentPreview
                 class="p-view"
                 v-show="view.p"
@@ -320,6 +321,9 @@ export default {
         currentFileName: null,
       },
       data: null,
+      inputs: {
+        search: "",
+      },
       symbols: [],
       totalSymbols: 0,
       artboardsData: null,
@@ -438,6 +442,30 @@ export default {
     })();
   },
   methods: {
+    async onDelete(symbol) {
+      let result = confirm("Are your sure you want to delete " + symbol.name);
+      if (result) {
+        let originalMasterId = symbol.originalMasterId;
+        let symbolIds = symbol.symbolIds;
+        try {
+          const protocol = "http";
+          const host = "localhost";
+          const port = process.env.PORT || 3060;
+          const res = await axios.post(
+            `${protocol}://${host}:${port}/delete/symbol`,
+            {
+              params: {
+                originalMasterId: originalMasterId,
+                symbolIds: symbolIds,
+              },
+            }
+          );
+          console.log(res.data);
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    },
     showLightbox(symbol) {
       this.currentArtboardImg = symbol.path;
       this.showBgLayer = true;
@@ -687,6 +715,18 @@ export default {
           (this.artboardsUsingComponent / this.totalArtboards) * 10000
         ) / 100
       );
+    },
+    filteredSymbols() {
+      const {
+        symbols,
+        inputs: { search },
+      } = this;
+
+      if (!this.inputs.search) return symbols;
+
+      return symbols.filter((symbol) => {
+        return symbol.name.toLowerCase().includes(search.toLowerCase());
+      });
     },
   },
   components: {

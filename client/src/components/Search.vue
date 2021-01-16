@@ -36,8 +36,22 @@ export default {
   name: "Search",
   data() {
     return {
-      input: null,
+      input: this.value,
     };
+  },
+  props: {
+    value: {
+      type: String,
+      default: null,
+    },
+  },
+  watch: {
+    value(val) {
+      this.input = val;
+    },
+    input(val) {
+      this.$emit("input", val);
+    },
   },
   methods: {
     focus: function () {
