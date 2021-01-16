@@ -705,13 +705,12 @@ async function getSketchFileNames() {
     files.forEach(file => {
         filenames.push(file.name);
     });
-
-    console.log(filenames);
     return filenames;
 }
 
-async function unzipSketchFiles() {
+async function unzipFiles() {
     let filenames = await getSketchFileNames();
+    let paths = [];
     for (let filename of filenames) {
         let path = dir + "/" + filename;
         filename = filename.replace('.sketch', '');
@@ -719,59 +718,35 @@ async function unzipSketchFiles() {
             stdout,
             stderr
         } = await exec('unzip ' + path + ` -d ${unzippedOutput}/${filename}`);
+        paths.push(`${unzippedOutput}/${filename}`);
+    }
+    return paths;
+}
+
+async function readJsonFile(path, filename) {
+    let data = await readFile(path + '/' + filename, 'utf8');
+    return data;
+}
+
+async function removeSymbolFromDocument(paths) {
+    for await (let path of paths) {
+        //Read document.json
+        let data = await readJsonFile(path, 'document.json');
+        console.log(data);
     }
 }
 
-async function removeSymbolFromDocument() {
-    //Read document.json
-    let document = await readFile(unzippedOutput + '/document.json', 'utf8')
-    document = JSON.parse(document);
-    let foreignSymbols = document.foreignSymbols; //This will be modified later
-    let originalForeignSymbols = document.foreignSymbols; //This will stay the same
-
-    //Scan document.json file and delete all symbols that match the criteria
-    for (let [index, foreignSymbol] of foreignSymbols.entries()) {
-        let foreignSymbolOriginalMasterId = foreignSymbol.originalMaster.symbolID;
-        let foreignSymbolMasterId = foreignSymbol.symbolMaster.symbolID;
-
-        //If originalMaster symbolID or symbolMaster symbolID is equal to client originalMasterID
-        //Remove array item from array
-        if (originalMasterId == foreignSymbolOriginalMasterId || originalMasterId == foreignSymbolMasterId) {
-            foreignSymbols.splice(index);
-        }
-
-        //Check if at least one symbolId is equal to originalMasterId and symbolMasterID
-        symbolMasterIdExists = symbolIds.some(symbolId => symbolId == foreignSymbolMasterId);
-        originalMasterIdExists = symbolIds.some(symbolId => symbolId == foreignSymbolOriginalMasterId);
-
-        if (symbolMasterIdExists == true || originalMasterIdExists == true) {
-            foreignSymbols.splice(index);
-        }
-    }
-
-    document = JSON.stringify(document);
-    foreignSymbols = JSON.stringify(foreignSymbols);
-    let result = document.replace(`/${originalForeignSymbols}/g`, foreignSymbols);
-
-    fs.writeFile(unzippedOutput + '/document.json', result, (err) => {
-        if (err) {
-            console.error(err);
-        } else {
-            return console.log('Hi');
-        }
-    });
+async function deleteSymbol(originalMasterId, symbolIds) {
+    let unzippedPaths = await unzipFiles();
+    await removeSymbolFromDocument(unzippedPaths);
 }
 
-async function deleteSymbol() {
-    await unzipSketchFiles();
-}
-deleteSymbol();
 
 //Delete symbol
 router.post('/delete/symbol', async (req, res) => {
     let originalMasterId = req.params.originalMasterId;
     let symbolIds = req.params.symbolIds;
-
+    deleteSymbol(originalMasterId, symbolIds);
     res.send('The server received the symbol.')
 });
 
