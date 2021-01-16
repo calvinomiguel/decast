@@ -143,6 +143,13 @@
           </div>
           <CheckBox label="Select all" class="ml-4 mt-8" />
           <div class="components-list mt-4">
+            <div
+              v-show="showNoResults"
+              class="bg-night-400 text-cloud p-8 rounded"
+            >
+              <h3>No results correspond to the applied filter.</h3>
+            </div>
+
             <ListCard
               v-on:click.native="selectComponent"
               v-for="(symbol, index) in filteredSymbols"
@@ -398,6 +405,7 @@ export default {
   data() {
     return {
       artboards: [],
+      showNoResults: false,
       currentArtboardImg: null,
       showArtboardInLightbox: false,
       showBgLayer: false,
@@ -645,7 +653,9 @@ export default {
         let symbols = this.symbols.filter((a) => a.count > 499);
         this.symbols = symbols;
       }
-
+      this.symbols.length == 0
+        ? (this.showNoResults = true)
+        : (this.showNoResults = false);
       this.showBgLayer = false;
       this.showSortModal = false;
       this.showFilterModal = false;
