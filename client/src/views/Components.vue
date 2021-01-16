@@ -60,6 +60,68 @@
         Less used – Most used
       </button>
     </div>
+    <div
+      v-show="showFilterModal"
+      class="font-mono sort-modal bg-cloud w-full pb-4"
+    >
+      <div class="sort-header bg-night-400 border-b-2">
+        <div class="header-wrapper flex items-center justify-between px-4 py-2">
+          <p class="text-lg text-cloud">Filter components</p>
+          <button v-on:click="closeFilter" class="text-2xl text-cloud">
+            ×
+          </button>
+        </div>
+      </div>
+      <button
+        @click="sortComponents($event.currentTarget)"
+        id="unfilter"
+        class="filter-btn mt-4"
+      >
+        Remove filter
+      </button>
+      <button
+        @click="sortComponents($event.currentTarget)"
+        id="0"
+        class="filter-btn mt-4"
+      >
+        0
+      </button>
+      <button
+        @click="sortComponents($event.currentTarget)"
+        id="to10"
+        class="filter-btn"
+      >
+        0 – 10
+      </button>
+      <button
+        @click="sortComponents($event.currentTarget)"
+        id="to50"
+        class="filter-btn"
+      >
+        11 – 50
+      </button>
+      <button
+        @click="sortComponents($event.currentTarget)"
+        id="to100"
+        class="filter-btn"
+      >
+        51 – 100
+      </button>
+      <button
+        @click="sortComponents($event.currentTarget)"
+        id="to500"
+        class="filter-btn"
+      >
+        101 – 500
+      </button>
+      <button
+        @click="sortComponents($event.currentTarget)"
+        id="500>"
+        class="filter-btn"
+      >
+        500 >
+      </button>
+    </div>
     <NavBar />
     <div class="main-container flex">
       <aside class="aside bg-smokey">
@@ -73,7 +135,11 @@
               fileName="sort-icon.png"
               btn-text="Sort"
             />
-            <ButtonOrganizer alt="Filter icon" btn-text="Filter" />
+            <ButtonOrganizer
+              @click.native="showFilter"
+              alt="Filter icon"
+              btn-text="Filter"
+            />
           </div>
           <CheckBox label="Select all" class="ml-4 mt-8" />
           <div class="components-list mt-4">
@@ -249,7 +315,6 @@
                             {{ symbolCount }}
                           </p>
                         </div>
-                        <div class="tag bg-night-400"></div>
                       </div>
                       <Divider class="mt-2 mb-6 w-full" />
                     </div>
@@ -339,6 +404,7 @@ export default {
       showMain: false,
       showError: false,
       showSortModal: false,
+      showFilterModal: false,
       rootFile: null,
       showEmpty: true,
       loaderStatus: false,
@@ -371,6 +437,7 @@ export default {
         search: "",
       },
       symbols: [],
+      symbolsStore: [],
       totalSymbols: 0,
       artboardsData: null,
       symbolCount: 0,
@@ -397,6 +464,7 @@ export default {
         symbols.forEach((symbol) => {
           this.symbols.push(symbol);
         });
+        this.symbolsStore = this.symbols;
       } catch (err) {
         console.error(err);
       }
@@ -519,6 +587,7 @@ export default {
       if (element == "ab-high") {
         this.symbols.sort((a, b) => a.name.localeCompare(b.name));
       }
+
       if (element == "ab-low") {
         this.symbols.sort((a, b) => b.name.localeCompare(a.name));
       }
@@ -535,16 +604,67 @@ export default {
         );
       }
 
+      if (element == "unfilter") {
+        this.symbols = this.symbolsStore;
+      }
+
+      if (element == "0") {
+        this.symbols = this.symbolsStore;
+        let symbols = this.symbols.filter((a) => a.count == 0);
+        this.symbols = symbols;
+      }
+
+      if (element == "to10") {
+        this.symbols = this.symbolsStore;
+        let symbols = this.symbols.filter((a) => a.count < 11);
+        this.symbols = symbols;
+      }
+
+      if (element == "to50") {
+        this.symbols = this.symbolsStore;
+        let symbols = this.symbols.filter((a) => a.count < 51 && a.count > 10);
+        this.symbols = symbols;
+      }
+
+      if (element == "to100") {
+        this.symbols = this.symbolsStore;
+        let symbols = this.symbols.filter((a) => a.count < 101 && a.count > 50);
+        this.symbols = symbols;
+      }
+
+      if (element == "to500") {
+        this.symbols = this.symbolsStore;
+        let symbols = this.symbols.filter(
+          (a) => a.count < 501 && a.count > 100
+        );
+        this.symbols = symbols;
+      }
+
+      if (element == "500") {
+        this.symbols = this.symbolsStore;
+        let symbols = this.symbols.filter((a) => a.count > 499);
+        this.symbols = symbols;
+      }
+
       this.showBgLayer = false;
       this.showSortModal = false;
+      this.showFilterModal = false;
     },
     closeSort() {
       this.showSortModal = false;
       this.showBgLayer = false;
     },
+    closeFilter() {
+      this.showFilterModal = false;
+      this.showBgLayer = false;
+    },
     showSort() {
       this.showBgLayer = true;
       this.showSortModal = true;
+    },
+    showFilter() {
+      this.showFilterModal = true;
+      this.showBgLayer = true;
     },
     showLightbox(symbol) {
       this.currentArtboardImg = symbol.path;
@@ -555,6 +675,7 @@ export default {
       this.showBgLayer = false;
       this.showArtboardInLightbox = false;
       this.showSortModal = false;
+      this.showFilterModal = false;
     },
     changeView(event) {
       let element = event.currentTarget;
@@ -654,7 +775,7 @@ export default {
         console.error(err);
       }
     },
-    async getComponentDashboards(eventTarget) {
+    async getComponentArtboards(eventTarget) {
       try {
         let originalMasterId = eventTarget.getAttribute("originalmasterid");
         let symbolIds = eventTarget.getAttribute("symbolIds").split(",");
@@ -785,7 +906,7 @@ export default {
       element.classList.add("border-2", "border-lila-100");
 
       //Call functions
-      this.getComponentDashboards(element);
+      this.getComponentArtboards(element);
       this.getComponentStats(element);
       this.getComponentImg(element);
     },
