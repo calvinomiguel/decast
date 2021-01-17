@@ -156,10 +156,20 @@
               btn-text="Filter"
             />
           </div>
-          <CheckBox label="Select all" class="ml-4 mt-8" />
-          <button class="delete-btn">
-            <img src="../assets/delete-icon.svg" alt="Delete icon" />
-          </button>
+          <div
+            class="select-wrapper ml-4 mt-8 flex justify-between w-full items-center"
+          >
+            <CheckBox
+              @click.native="selectAllComponents()"
+              label="Select all"
+            />
+            <button
+              v-show="showDeleteAll"
+              class="delete-btn inline-block mr-12"
+            >
+              <img src="../assets/delete-icon.svg" alt="Delete icon" />
+            </button>
+          </div>
           <div class="components-list mt-4">
             <div
               v-show="showNoResults"
@@ -423,8 +433,10 @@ export default {
   data() {
     return {
       artboards: [],
+      selectAllSymbols: false,
       showNoResults: false,
       currentArtboardImg: null,
+      showDeleteAll: false,
       showArtboardInLightbox: false,
       showBgLayer: false,
       showMain: false,
@@ -582,6 +594,9 @@ export default {
     })();
   },
   methods: {
+    selectAllComponents() {
+      this.selectAllSymbols = !this.selectAllSymbols;
+    },
     async onDelete(symbol) {
       let result = confirm("Are your sure you want to delete " + symbol.name);
       if (result) {
@@ -691,8 +706,9 @@ export default {
           let currentVal = this.symbols[a];
           for (let b = 0; b < this.symbols.length; b++) {
             let compareVal = this.symbols[b];
-            if (a < b) {
-              if (compareVal.name == currentVal.name) {
+
+            if (compareVal.name == currentVal.name && a != b) {
+              if (!symbols.includes(compareVal)) {
                 symbols.push(compareVal);
               }
             }

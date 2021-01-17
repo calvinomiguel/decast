@@ -1,11 +1,7 @@
 <template>
   <label class="label-container flex align-center font-mono">
     <div class="checkbox-wrapper">
-      <input
-        class="checkbox-input"
-        type="checkbox"
-        :checked="checkedValue"
-      />
+      <input class="checkbox-input" type="checkbox" :checked="checkedValue" />
       <span
         class="rounded flex align-center items-center justify-center checkmark checkboxStyle"
       ></span>
