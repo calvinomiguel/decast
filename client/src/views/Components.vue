@@ -60,10 +60,7 @@
         Less used – Most used
       </button>
     </div>
-    <div
-      v-show="showFilterModal"
-      class="font-mono sort-modal bg-cloud w-full pb-4"
-    >
+    <div v-show="showFilterModal" class="font-mono sort-modal bg-cloud w-full">
       <div class="sort-header bg-night-400 border-b-2">
         <div class="header-wrapper flex items-center justify-between px-4 py-2">
           <p class="text-lg text-cloud">Filter components</p>
@@ -72,13 +69,23 @@
           </button>
         </div>
       </div>
+      <h3
+        class="text-night-400 text-center uppercase font-mono text-xs font-bold mt-8"
+      >
+        By redundancies
+      </h3>
       <button
         @click="sortComponents($event.currentTarget)"
-        id="unfilter"
-        class="filter-btn mt-4"
+        id="duplicate"
+        class="filter-btn border-b-2 mt-4"
       >
-        Remove filter
+        Duplicate names
       </button>
+      <h3
+        class="text-night-400 text-center uppercase font-mono text-xs font-bold mt-8"
+      >
+        By numbers
+      </h3>
       <button
         @click="sortComponents($event.currentTarget)"
         id="0"
@@ -117,9 +124,17 @@
       <button
         @click="sortComponents($event.currentTarget)"
         id="500>"
-        class="filter-btn"
+        class="filter-btn mb-4"
       >
         500 >
+      </button>
+
+      <button
+        @click="sortComponents($event.currentTarget)"
+        id="unfilter"
+        class="w-full p-4 bg-lila-100 text-cloud transition-colors duration-500 ease-in-out hover:bg-lila-200"
+      >
+        Remove filter
       </button>
     </div>
     <NavBar />
@@ -592,54 +607,64 @@ export default {
     sortComponents(event) {
       let element = event.getAttribute("id");
 
+      //Sort from a to z
       if (element == "ab-high") {
         this.symbols.sort((a, b) => a.name.localeCompare(b.name));
       }
 
+      //Sort from z to a
       if (element == "ab-low") {
         this.symbols.sort((a, b) => b.name.localeCompare(a.name));
       }
 
+      //Sort from highest to lowest count
       if (element == "num-down") {
         this.symbols.sort((a, b) =>
           b.count.toString().localeCompare(a.count.toString())
         );
       }
 
+      //Sort from lowest to highest count
       if (element == "num-high") {
         this.symbols.sort((a, b) =>
           a.count.toString().localeCompare(b.count.toString())
         );
       }
 
+      //Remove filter
       if (element == "unfilter") {
         this.symbols = this.symbolsStore;
       }
 
+      //Filter all symbols with zero counts
       if (element == "0") {
         this.symbols = this.symbolsStore;
         let symbols = this.symbols.filter((a) => a.count == 0);
         this.symbols = symbols;
       }
 
+      //Filter all symbols  from 0 - 10 counts
       if (element == "to10") {
         this.symbols = this.symbolsStore;
         let symbols = this.symbols.filter((a) => a.count < 11);
         this.symbols = symbols;
       }
 
+      //Filter all elements from 11 – 50 counts
       if (element == "to50") {
         this.symbols = this.symbolsStore;
         let symbols = this.symbols.filter((a) => a.count < 51 && a.count > 10);
         this.symbols = symbols;
       }
 
+      //Filter all elements from 51 – 100 counts
       if (element == "to100") {
         this.symbols = this.symbolsStore;
         let symbols = this.symbols.filter((a) => a.count < 101 && a.count > 50);
         this.symbols = symbols;
       }
 
+      //Filter all elements from 101 – 500 counts
       if (element == "to500") {
         this.symbols = this.symbolsStore;
         let symbols = this.symbols.filter(
@@ -648,11 +673,32 @@ export default {
         this.symbols = symbols;
       }
 
+      //Filter all symbols with more than 500 counts
       if (element == "500") {
         this.symbols = this.symbolsStore;
         let symbols = this.symbols.filter((a) => a.count > 499);
         this.symbols = symbols;
       }
+
+      //Filter all symbols with duplicate names
+      if (element == "duplicate") {
+        this.symbols = this.symbolsStore;
+        let symbols = [];
+        for (let a = 0; a < this.symbols.length; a++) {
+          let currentVal = this.symbols[a];
+          for (let b = 0; b < this.symbols.length; b++) {
+            let compareVal = this.symbols[b];
+            if (a < b) {
+              if (compareVal.name == currentVal.name) {
+                symbols.push(compareVal);
+              }
+            }
+          }
+        }
+        this.symbols = symbols;
+        this.symbols.sort((a, b) => a.name.localeCompare(b.name));
+      }
+
       this.symbols.length == 0
         ? (this.showNoResults = true)
         : (this.showNoResults = false);
@@ -891,7 +937,10 @@ export default {
       //Show Mainview and close empty state
       this.showEmpty = false;
       this.showMain = true;
-
+      this.view.c = true;
+      this.view.cp = true;
+      this.view.s = false;
+      this.view.u = false;
       //Check if all views are closed if yes show component preview
       let bool = Object.values(this.view).every((v) => v == false);
 
@@ -1036,6 +1085,18 @@ aside {
   height: 100%;
 }
 
+.artboard-container {
+  max-height: 100%;
+  height: 100%;
+  padding: 4rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.artboard-container img {
+  height: 100%;
+  object-fit: contain;
+}
 .code-tag {
   font-family: monospace;
   font-size: 16px;
