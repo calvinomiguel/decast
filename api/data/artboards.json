@@ -1,1 +1,55 @@
-{"artboards":[{"file":{"name":"botschaft.sketch","path":"/Users/calvinomiguel/Documents/Development/decast/decast/api/uploads/botschaft.sketch"},"name":"New Doc Artboard","do_objectID":"65A42243-1C98-4231-AE03-70CD2A3300B7","symbolInstances":["1FDC05C5-DF0F-46A0-88A4-9BFFA58F5900","1FDC05C5-DF0F-46A0-88A4-9BFFA58F5900","9635E265-2065-4FA6-AC2C-CB8E96F6E1AE","B8135652-A694-47F1-88EB-015356910CB6","B8135652-A694-47F1-88EB-015356910CB6","9635E265-2065-4FA6-AC2C-CB8E96F6E1AE"]},{"file":{"name":"decast.sketch","path":"/Users/calvinomiguel/Documents/Development/decast/decast/api/uploads/decast.sketch"},"name":"Artboard","do_objectID":"224E6961-5224-4FAB-A3FE-48A58E244A52","symbolInstances":["C6DC2B23-32E3-4E9C-AB90-C8669FDCC249","C6DC2B23-32E3-4E9C-AB90-C8669FDCC249","7C795098-536F-4012-B29C-2D950EBA0483","7C795098-536F-4012-B29C-2D950EBA0483","DA09123D-C933-497A-A78E-D176BCE3D9E0","DA09123D-C933-497A-A78E-D176BCE3D9E0","E1E492BF-9BD6-4A2D-AD63-BB8EE68D93E7","AF11554A-14D8-4135-B2BB-F8CA7791AB62"]},{"file":{"name":"decast.sketch","path":"/Users/calvinomiguel/Documents/Development/decast/decast/api/uploads/decast.sketch"},"name":"Artboard Copy","do_objectID":"48E5FC2E-21A3-4D76-B4CC-3471FC781D77","symbolInstances":["DA09123D-C933-497A-A78E-D176BCE3D9E0","C6DC2B23-32E3-4E9C-AB90-C8669FDCC249","7C795098-536F-4012-B29C-2D950EBA0483","7C795098-536F-4012-B29C-2D950EBA0483","BB7D1EED-3486-41A4-B6CD-0A22507901AB","81D9E1AC-A05A-4066-A0AA-E04A34B72D4A"]}],"totalArtboards":3}
+{
+    "artboards": [
+        {
+            "file": {
+                "name": "botschaft.sketch",
+                "path": "/Users/calvinomiguel/Documents/Development/decast/decast/api/uploads/botschaft.sketch"
+            },
+            "name": "New Doc Artboard",
+            "do_objectID": "65A42243-1C98-4231-AE03-70CD2A3300B7",
+            "symbolInstances": [
+                "1FDC05C5-DF0F-46A0-88A4-9BFFA58F5900",
+                "1FDC05C5-DF0F-46A0-88A4-9BFFA58F5900",
+                "9635E265-2065-4FA6-AC2C-CB8E96F6E1AE",
+                "B8135652-A694-47F1-88EB-015356910CB6",
+                "B8135652-A694-47F1-88EB-015356910CB6",
+                "9635E265-2065-4FA6-AC2C-CB8E96F6E1AE"
+            ]
+        },
+        {
+            "file": {
+                "name": "decast.sketch",
+                "path": "/Users/calvinomiguel/Documents/Development/decast/decast/api/uploads/decast.sketch"
+            },
+            "name": "Artboard",
+            "do_objectID": "224E6961-5224-4FAB-A3FE-48A58E244A52",
+            "symbolInstances": [
+                "C6DC2B23-32E3-4E9C-AB90-C8669FDCC249",
+                "C6DC2B23-32E3-4E9C-AB90-C8669FDCC249",
+                "7C795098-536F-4012-B29C-2D950EBA0483",
+                "7C795098-536F-4012-B29C-2D950EBA0483",
+                "DA09123D-C933-497A-A78E-D176BCE3D9E0",
+                "DA09123D-C933-497A-A78E-D176BCE3D9E0",
+                "E1E492BF-9BD6-4A2D-AD63-BB8EE68D93E7",
+                "AF11554A-14D8-4135-B2BB-F8CA7791AB62"
+            ]
+        },
+        {
+            "file": {
+                "name": "decast.sketch",
+                "path": "/Users/calvinomiguel/Documents/Development/decast/decast/api/uploads/decast.sketch"
+            },
+            "name": "Artboard Copy",
+            "do_objectID": "48E5FC2E-21A3-4D76-B4CC-3471FC781D77",
+            "symbolInstances": [
+                "DA09123D-C933-497A-A78E-D176BCE3D9E0",
+                "C6DC2B23-32E3-4E9C-AB90-C8669FDCC249",
+                "7C795098-536F-4012-B29C-2D950EBA0483",
+                "7C795098-536F-4012-B29C-2D950EBA0483",
+                "BB7D1EED-3486-41A4-B6CD-0A22507901AB",
+                "81D9E1AC-A05A-4066-A0AA-E04A34B72D4A"
+            ]
+        }
+    ],
+    "totalArtboards": 3
+}

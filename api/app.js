@@ -26,6 +26,7 @@ const upload = multer({
     dest: './uploads/'
 });
 const flatten = require('flat');
+const unflatten = require('flat').unflatten;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.raw());
@@ -778,46 +779,56 @@ async function removeSymbolFromPages(paths, originalMasterId, symbolIds) {
                 console.log(`Removed ${data.layers.length - newLayers.length} symbols from Symbols page`)
                 data.layers = newLayers
 
-                // try {
-                //     await fsp.writeFile(`${sketchFilePath}/pages/${pageName}`, JSON.stringify(data))
-                // } catch (error) {
-                //     console.error(`Error writing ${pageName}`, error)
-                // }
+                try {
+                    await fsp.writeFile(`${sketchFilePath}/pages/${pageName}`, JSON.stringify(data))
+                } catch (error) {
+                    console.error(`Error writing ${pageName}`, error)
+                }
+
                 continue;
             }
 
-            // search in pasteboard (outside of artboards)
             const flattened = flatten(data.layers)
-
-            // for (const [key, val] of Object.entries(flattened)) {
-            //     if (key.startsWith('foreignSymbols.') && key.endsWith('.symbolID')) {
-            //         if (val === originalMasterId) {
-            //             console.log(key, val)
-            //         }
-            //     }
-            // }
-
 
             const cleaned = Object.entries(flattened).reduce((acc, [k, v]) => {
                 if (/\d+\.symbolID/.test(k)) {
-                    acc[k] = v
+                    if (symbolIds.includes(v)) {
+                        acc[k] = v
+                    }
                 }
                 return acc
             }, {})
 
-
-
             console.log(cleaned)
 
+            const pathsToDelete = Object.keys(cleaned)
+            const newFlattened = {
+                ...flattened
+            }
 
-            // let groups = data.layers.filter(i => i._class === 'group');
-            // console.log(getSymbolsInGroups(groups, []));
+            Object.keys(flattened).forEach(path => {
+                if (pathsToDelete.some(i => path.startsWith(i.replace('.symbolID', '')))) {
+                    delete newFlattened[path]
+                }
+            })
 
-            // search in artboards
+            const unflattened = unflatten(newFlattened)
 
-            // write to page file
+            // we could loop through the layers that were affected and quickly do a `filter(Boolean)` to filter out the nulls
+            // we know which layers are affected (cleaned) but how do we access them bcuz of arrays :((((((
 
-            // sleep
+            const prehack = JSON.stringify(unflattened)
+            console.log(prehack)
+            const hack = prehack.replace(/null,/g, '')
+            const hack2 = hack.replace(/null/g, '')
+
+            data.layers = Object.values(JSON.parse(hack2))
+
+            try {
+                await fsp.writeFile(`${sketchFilePath}/pages/${pageName}`, JSON.stringify(data))
+            } catch (error) {
+                console.error(`Error writing ${pageName}`, error)
+            }
         }
 
     }
