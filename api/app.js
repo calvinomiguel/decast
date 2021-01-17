@@ -924,6 +924,7 @@ router.get('/delete-project', async (req, res) => {
     //res.status(200).send('All project files and data were successfully deleted were. You\'ll be redirect to the upload page.');
 
 });
+
 //Add router in the Express app.
 app.use('/', router);
 

@@ -157,6 +157,9 @@
             />
           </div>
           <CheckBox label="Select all" class="ml-4 mt-8" />
+          <button class="delete-btn">
+            <img src="../assets/delete-icon.svg" alt="Delete icon" />
+          </button>
           <div class="components-list mt-4">
             <div
               v-show="showNoResults"

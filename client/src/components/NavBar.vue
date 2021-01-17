@@ -79,7 +79,10 @@ export default {
             `${protocol}://${host}:${port}/delete-project`
           );
           console.log(res.data);
-          //this.$router.push("/");
+          alert(
+            "Files successfully deleted. You are being redirect to the upload page."
+          );
+          this.$router.push("/");
         } catch (err) {
           console.error(err);
         }
