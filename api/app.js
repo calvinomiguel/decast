@@ -772,48 +772,63 @@ async function removeSymbolFromPages(paths, originalMasterId, symbolIds) {
             let data = await readJsonFile(`${sketchFilePath}/pages`, pageName);
             data = JSON.parse(data);
 
-            // if symbols page, remove master and shortcircuit
+            // if symbols page, remove master and skip to next page
             const isSymbolsPage = data.layers.some(i => i._class === 'symbolMaster')
             if (isSymbolsPage) {
+
+                // loop through all layers and remove the ones that match originalMasterId
                 const newLayers = data.layers.filter(i => originalMasterId !== i.symbolID)
 
-                console.log(`Removed ${data.layers.length - newLayers.length} symbols from Symbols page`)
+                // and replace original page's layers
                 data.layers = newLayers
 
+                console.log(`Removed ${data.layers.length - newLayers.length} symbols from Symbols page`)
+
+                // save page to file
                 try {
                     await fsp.writeFile(`${sketchFilePath}/pages/${pageName}`, JSON.stringify(data))
                 } catch (error) {
                     console.error(`Error writing ${pageName}`, error)
                 }
 
+                // skip to next page
                 continue;
             }
 
+            // if page is not a symbols page, we need to traverse all the `layers` in each group/subcomponent/symbol/etc
+
+            // to do this, we converted the heavily-nested object into a 1-deep flattened object
+            // this means { foo: {bar: { bazz: 1 } } } turns into { 'foo.bar.bazz': 1 } and so on
             const flattened = flatten(data.layers)
 
-            const cleaned = Object.entries(flattened).reduce((acc, [k, v]) => {
-                if (/\d+\.symbolID/.test(k)) {
-                    if ([originalMasterId, ...symbolIds].includes(v)) {
-                        acc[k] = v
+            // we then extract all the paths (keys) that have `[index].symbolID`
+            // to do this, we write a regex to recognize what part of the path is an array index
+            const cleaned = Object.entries(flattened).reduce((acc, [path, value]) => {
+                if (/\d+\.symbolID/.test(path)) {
+                    // we check if the value === originalMasterId OR one of the symbolIds from frontend
+                    if ([originalMasterId, ...symbolIds].includes(value)) {
+                        acc[path] = value
                     }
                 }
                 return acc
             }, {})
+            // and we put all the matching results into a new object, filtering them out of `flattened`
 
+            // because we only flattened the data.layers, we need to add layers back to the path
+            // so we can do a full search in the data object (page) later
             const pathsToDelete = Object.keys(cleaned).map(i => {
                 return `layers.${i.replace('.symbolID', '')}`
             })
-            console.log(pathsToDelete)
 
             const toFilter = {}
 
+            // for each path we need to delete
             pathsToDelete.forEach(symbolPath => {
-                const symbol = _.get(data, symbolPath) // DEBUG
+                // we get the actual symbol object from the path via lodash.get
+                const symbol = _.get(data, symbolPath)
 
-                // layers.0.layers.4
-                const symbolArrayPath = symbolPath.split(/\.\d+$/)[0] // layers.0.layers
-                const symbolArrayIndex = symbolPath.split('.').pop() // 4
-
+                // we get the layers array, 
+                const symbolArrayPath = symbolPath.split(/\.\d+$/)[0]
                 const parentOfArrayPath = symbolArrayPath.split(/\.layers$/)[0]
 
                 if (toFilter[parentOfArrayPath]) {
@@ -821,17 +836,7 @@ async function removeSymbolFromPages(paths, originalMasterId, symbolIds) {
                 } else {
                     toFilter[parentOfArrayPath] = [symbol.do_objectID]
                 }
-
-                // get parent object that contains array
-                // push current objectID to it
-                // access array via .layers layer so we can overwrite it and **MUTATE** the object
-
-                // const symbolArray = _.get(data, symbolArrayPath)
-
-                // console.log(`Deleting ${symbolArrayIndex} from ${symbolArrayPath}`)
-                // symbolArray.splice(symbolArrayIndex, 1)
             })
-            console.log(toFilter)
 
             Object.entries(toFilter).forEach(([groupPath, objectIDs]) => {
                 let group;
@@ -852,7 +857,6 @@ async function removeSymbolFromPages(paths, originalMasterId, symbolIds) {
                 console.error(`Error writing ${pageName}`, error)
             }
         }
-
     }
 }
 
@@ -860,7 +864,7 @@ async function deleteSymbol(originalMasterId, symbolIds) {
     let unzippedPaths = await unzipFiles();
 
     // remove from non-master files
-    // await removeSymbolFromDocument(unzippedPaths, originalMasterId);
+    await removeSymbolFromDocument(unzippedPaths, originalMasterId);
 
     // remove from all artboards across all pages
     await removeSymbolFromPages(unzippedPaths, originalMasterId, symbolIds);
@@ -884,8 +888,8 @@ router.get('/export', async (req, res) => {
     } = await exec('zip -r -j ' + dir + '/decast.zip uploads/*');
 
     res.download(dir + '/decast.zip');
-
 });
+
 //Export project files
 router.get('/delete-zip', async (req, res) => {
     //Zip all files in upload directory
