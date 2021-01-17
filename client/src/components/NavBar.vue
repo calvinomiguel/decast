@@ -16,6 +16,14 @@
         </li>
         <li>
           <button
+            @click="deleteProject"
+            class="bg-night-100 text-cloud py-2 px-4 rounded hover:bg-night-200 transition-color duration-300"
+          >
+            Delete project
+          </button>
+        </li>
+        <li>
+          <button
             @click="exportFiles"
             class="bg-lila-100 text-cloud py-2 px-4 rounded hover:bg-lila-200 transition-color duration-300"
           >
@@ -56,6 +64,25 @@ export default {
         }
       } catch (err) {
         console.error(err);
+      }
+    },
+    async deleteProject() {
+      let deleteProject = confirm(
+        "All files and going to be removed. Are you sure you want to delete the project?"
+      );
+      if (deleteProject == true) {
+        try {
+          const port = process.env.PORT || 3060;
+          const protocol = "http";
+          const host = "localhost";
+          const res = await axios.get(
+            `${protocol}://${host}:${port}/delete-project`
+          );
+          console.log(res.data);
+          //this.$router.push("/");
+        } catch (err) {
+          console.error(err);
+        }
       }
     },
   },

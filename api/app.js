@@ -875,6 +875,55 @@ router.get('/delete-zip', async (req, res) => {
     res.status(200).send('decast.zip deleted.');
 
 });
+
+//Delete all project files
+router.get('/delete-project', async (req, res) => {
+
+    let isDataFiles = await fsp.readdir(dataDir);
+    isDataFiles = isDataFiles.includes('.DS_Store') && isDataFiles.length == 1 || isDataFiles.length == 0;
+
+    let isArtboardFiles = await fsp.readdir(outputDir + '/artboards/');
+    isArtboardFiles = isArtboardFiles.includes('.DS_Store') && isArtboardFiles.length == 1 || isArtboardFiles.length == 0;
+
+    let isSymbolFiles = await fsp.readdir(outputDir + '/symbols/');
+    isSymbolFiles = isSymbolFiles.includes('.DS_Store') && isSymbolFiles.length == 1 || isSymbolFiles.length == 0;
+
+    let isSketchFiles = await fsp.readdir(dir);
+    isSketchFiles = isSketchFiles.includes('.DS_Store') && isSketchFiles.length == 1 || isSketchFiles.length == 0;
+
+    if (isDataFiles) {
+        console.log('No data files found.');
+    } else {
+        const deleteData = await exec('rm ' + dataDir + '/*');
+    }
+
+    if (isArtboardFiles) {
+        console.log('No artboards found.');
+    } else {
+        const deleteArtboards = await exec('rm ' + outputDir + '/artboards/*');
+    }
+
+    if (isSymbolFiles) {
+        console.log('No symbols found.');
+    } else {
+        const deleteSymbols = await exec('rm ' + outputDir + '/symbols/*');
+    }
+    if (isSketchFiles) {
+        console.log('No sketch files found.');
+    } else {
+        const deleteSketchFiles = await exec('rm ' + dir + '/*');
+    }
+    /*
+        
+
+        if (isSketchFiles == true) {
+            const deleteSketchFiles = await exec('rm ' + dir + '/*');
+        }
+    */
+    res.status(200).send();
+    //res.status(200).send('All project files and data were successfully deleted were. You\'ll be redirect to the upload page.');
+
+});
 //Add router in the Express app.
 app.use('/', router);
 
