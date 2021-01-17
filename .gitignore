@@ -1,8 +1,8 @@
 api/node_modules
 client/node_modules
-# api/uploads/*
+api/uploads/*
 .DS_Store
-# api/exports/artboards/*
-# api/exports/symbols/*
-# api/data/*
-# api/sketch/*
+api/exports/artboards/*
+api/exports/symbols/*
+api/data/*
+api/sketch/*
