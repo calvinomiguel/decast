@@ -304,7 +304,7 @@
                       <h3
                         class="font-mono text-xl text-right text-night-300 mt-4"
                       >
-                        Degree of use
+                        Distribution of use
                       </h3>
                       <p
                         class="font-mono text-night-300 text-xl text-right font-bold"

@@ -737,35 +737,101 @@ async function removeSymbolFromDocument(paths, originalMasterId) {
         let data = await readJsonFile(path, 'document.json');
         data = JSON.parse(data);
 
-        let newForeignSymbols = data.foreignSymbols.filter((foreignSymbol) => {
-            let fOriginalMasterId = foreignSymbol.originalMaster.symbolID;
+        const newForeignSymbols = data.foreignSymbols.filter((foreignSymbol) => {
+            const fOriginalMasterId = foreignSymbol.originalMaster.symbolID;
             return fOriginalMasterId !== originalMasterId;
         });
 
-        console.log(data.foreignSymbols.length)
-        console.log(newForeignSymbols.length)
+        console.log(`Looking in ${path}`)
+        console.log(`${data.foreignSymbols.length - newForeignSymbols.length} foreignSymbols with ID ${originalMasterId} found. Removing...`)
+        data.foreignSymbols = newForeignSymbols;
 
-        const flattened = flatten(data)
 
-        for (const [key, val] of Object.entries(flattened)) {
-            if (key.startsWith('foreignSymbols.') && key.endsWith('.symbolID')) {
-                console.log(key, val)
-            }
+        try {
+            await fsp.writeFile(path + '/document.json', JSON.stringify(data))
+        } catch (error) {
+            console.error('Error writing document.json', error)
         }
 
-        // data.foreignSymbols = newForeignSymbols;
-        // fs.writeFile(path + '/document.json', JSON.stringify(data), (err) => {
-        //     if (err) {
-        //         console.log(err)
-        //     }
-        //     console.log(data);
-        // });
     }
 }
 
+async function removeSymbolFromPages(paths, originalMasterId, symbolIds) {
+    for (let sketchFilePath of paths) {
+        console.log(`Looking in ${sketchFilePath}`)
+
+        const files = await fsp.readdir(`${sketchFilePath}/pages`);
+        const pages = files.filter(i => i.endsWith('.json'))
+
+        for (const pageName of pages) {
+            console.log(`Reading page ${pageName}`)
+
+            //Read page json
+            let data = await readJsonFile(`${sketchFilePath}/pages`, pageName);
+            data = JSON.parse(data);
+
+            // if symbols page, remove master and shortcircuit
+            const isSymbolsPage = data.layers.some(i => i._class === 'symbolMaster')
+            if (isSymbolsPage) {
+                const newLayers = data.layers.filter(i => originalMasterId !== i.symbolID)
+
+                console.log(`Removed ${data.layers.length - newLayers.length} symbols from Symbols page`)
+                data.layers = newLayers
+
+                // try {
+                //     await fsp.writeFile(`${sketchFilePath}/pages/${pageName}`, JSON.stringify(data))
+                // } catch (error) {
+                //     console.error(`Error writing ${pageName}`, error)
+                // }
+                continue;
+            }
+
+            // search in pasteboard (outside of artboards)
+            const flattened = flatten(data.layers)
+
+            // for (const [key, val] of Object.entries(flattened)) {
+            //     if (key.startsWith('foreignSymbols.') && key.endsWith('.symbolID')) {
+            //         if (val === originalMasterId) {
+            //             console.log(key, val)
+            //         }
+            //     }
+            // }
+
+
+            const cleaned = Object.entries(flattened).reduce((acc, [k, v]) => {
+                if (/\d+\.symbolID/.test(k)) {
+                    acc[k] = v
+                }
+                return acc
+            }, {})
+
+
+
+            console.log(cleaned)
+
+
+            // let groups = data.layers.filter(i => i._class === 'group');
+            // console.log(getSymbolsInGroups(groups, []));
+
+            // search in artboards
+
+            // write to page file
+
+            // sleep
+        }
+
+    }
+}
+
+
 async function deleteSymbol(originalMasterId, symbolIds) {
     let unzippedPaths = await unzipFiles();
-    await removeSymbolFromDocument(unzippedPaths, originalMasterId, symbolIds);
+
+    // remove from non-master files
+    // await removeSymbolFromDocument(unzippedPaths, originalMasterId);
+
+    // remove from all artboards across all pages
+    await removeSymbolFromPages(unzippedPaths, originalMasterId, symbolIds);
 }
 
 
@@ -773,8 +839,8 @@ async function deleteSymbol(originalMasterId, symbolIds) {
 router.post('/delete/symbol', async (req, res) => {
     let originalMasterId = req.body.params.originalMasterId;
     let symbolIds = req.body.params.symbolIds;
-    deleteSymbol(originalMasterId, symbolIds);
-    res.send('The server received the symbol.')
+    await deleteSymbol(originalMasterId, symbolIds);
+    res.send('Symbol deleted successfully.')
 });
 
 //Add router in the Express app.
