@@ -1,19 +1,4 @@
-<template>
-  <label class="label-container flex align-center font-mono">
-    <div class="checkbox-wrapper">
-      <input class="checkbox-input" type="checkbox" :checked="checkedValue" />
-      <span
-        class="rounded flex align-center items-center justify-center checkmark checkboxStyle"
-      ></span>
-    </div>
-    <span
-      v-show="label == 'Label' ? null : label"
-      class="items-center flex ml-2 label"
-    >
-      {{ label }}
-    </span>
-  </label>
-</template>
+<template></template>
 <script>
 export default {
   name: "CheckBox",
@@ -21,10 +6,6 @@ export default {
     label: {
       type: String,
       default: "Label",
-    },
-    checkedValue: {
-      type: Boolean,
-      default: false,
     },
   },
 };

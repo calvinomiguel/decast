@@ -25,6 +25,7 @@ const dataDir = process.cwd() + '/data';
 const upload = multer({
     dest: './uploads/'
 });
+const _ = require('lodash');
 const flatten = require('flat');
 const unflatten = require('flat').unflatten;
 app.use(cors());
@@ -792,37 +793,58 @@ async function removeSymbolFromPages(paths, originalMasterId, symbolIds) {
 
             const cleaned = Object.entries(flattened).reduce((acc, [k, v]) => {
                 if (/\d+\.symbolID/.test(k)) {
-                    if (symbolIds.includes(v)) {
+                    if ([originalMasterId, ...symbolIds].includes(v)) {
                         acc[k] = v
                     }
                 }
                 return acc
             }, {})
 
-            console.log(cleaned)
+            const pathsToDelete = Object.keys(cleaned).map(i => {
+                return `layers.${i.replace('.symbolID', '')}`
+            })
+            console.log(pathsToDelete)
 
-            const pathsToDelete = Object.keys(cleaned)
-            const newFlattened = {
-                ...flattened
-            }
+            const toFilter = {}
 
-            Object.keys(flattened).forEach(path => {
-                if (pathsToDelete.some(i => path.startsWith(i.replace('.symbolID', '')))) {
-                    delete newFlattened[path]
+            pathsToDelete.forEach(symbolPath => {
+                const symbol = _.get(data, symbolPath) // DEBUG
+
+                // layers.0.layers.4
+                const symbolArrayPath = symbolPath.split(/\.\d+$/)[0] // layers.0.layers
+                const symbolArrayIndex = symbolPath.split('.').pop() // 4
+
+                const parentOfArrayPath = symbolArrayPath.split(/\.layers$/)[0]
+
+                if (toFilter[parentOfArrayPath]) {
+                    toFilter[parentOfArrayPath].push(symbol.do_objectID)
+                } else {
+                    toFilter[parentOfArrayPath] = [symbol.do_objectID]
                 }
+
+                // get parent object that contains array
+                // push current objectID to it
+                // access array via .layers layer so we can overwrite it and **MUTATE** the object
+
+                // const symbolArray = _.get(data, symbolArrayPath)
+
+                // console.log(`Deleting ${symbolArrayIndex} from ${symbolArrayPath}`)
+                // symbolArray.splice(symbolArrayIndex, 1)
+            })
+            console.log(toFilter)
+
+            Object.entries(toFilter).forEach(([groupPath, objectIDs]) => {
+                let group;
+
+                if (groupPath === 'layers') {
+                    group = data
+                } else {
+                    group = _.get(data, groupPath)
+                }
+
+                group.layers = group.layers.filter(i => !objectIDs.includes(i.do_objectID))
             })
 
-            const unflattened = unflatten(newFlattened)
-
-            // we could loop through the layers that were affected and quickly do a `filter(Boolean)` to filter out the nulls
-            // we know which layers are affected (cleaned) but how do we access them bcuz of arrays :((((((
-
-            const prehack = JSON.stringify(unflattened)
-            console.log(prehack)
-            const hack = prehack.replace(/null,/g, '')
-            const hack2 = hack.replace(/null/g, '')
-
-            data.layers = Object.values(JSON.parse(hack2))
 
             try {
                 await fsp.writeFile(`${sketchFilePath}/pages/${pageName}`, JSON.stringify(data))

@@ -1,4 +1,8 @@
-node_modules
-uploads/*
+api/node_modules
+client/node_modules
+# api/uploads/*
 .DS_Store
-exports/*
+# api/exports/artboards/*
+# api/exports/symbols/*
+# api/data/*
+# api/sketch/*

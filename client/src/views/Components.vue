@@ -159,10 +159,19 @@
           <div
             class="select-wrapper ml-4 mt-8 flex justify-between w-full items-center"
           >
-            <CheckBox
-              @click.native="selectAllComponents()"
-              label="Select all"
-            />
+            <label class="label-container flex align-center font-mono">
+              <div class="checkbox-wrapper">
+                <input
+                  @click="selectAllComponents($event)"
+                  class="checkbox-input"
+                  type="checkbox"
+                />
+                <span
+                  class="rounded flex align-center items-center justify-center checkmark checkboxStyle"
+                ></span>
+              </div>
+              <span class="items-center flex ml-2 label"> Select All </span>
+            </label>
             <button
               v-show="showDeleteAll"
               class="delete-btn inline-block mr-12"
@@ -422,7 +431,6 @@
 import Search from "@/components/Search";
 import NavBar from "@/components/NavBar";
 import ButtonOrganizer from "@/components/ButtonOrganizer";
-import CheckBox from "@/components/CheckBox";
 import ListCard from "@/components/ListCard";
 import ButtonMenu from "@/components/ButtonMenu";
 import Divider from "@/components/Divider";
@@ -434,6 +442,7 @@ export default {
     return {
       artboards: [],
       selectAllSymbols: false,
+      selectInput: null,
       showNoResults: false,
       currentArtboardImg: null,
       showDeleteAll: false,
@@ -458,7 +467,7 @@ export default {
         img: null,
       },
       componentName: null,
-      componentsList: null,
+      componentsList: [],
       totalArtboards: 0,
       artboardsUsingComponent: 0,
       colors: ["#856de7", "#23272a"],
@@ -594,8 +603,31 @@ export default {
     })();
   },
   methods: {
-    selectAllComponents() {
+    selectAllComponents(event) {
       this.selectAllSymbols = !this.selectAllSymbols;
+      this.showDeleteAll = this.selectAllSymbols;
+      console.log(event.currentTarget.checked);
+      let list =
+        event.currentTarget.parentNode.parentNode.parentNode.parentNode
+          .childNodes[3].childNodes;
+
+      this.componentsList = [];
+      list.forEach((element) => {
+        if (element.classList.contains("list-card")) {
+          this.componentsList.push(element);
+        }
+      });
+
+      if (this.selectAllSymbols == true) {
+        this.componentsList.forEach((component) => {
+          component.classList.add("border-2", "border-lila-100");
+        });
+      }
+      if (this.selectAllSymbols == false) {
+        this.componentsList.forEach((component) => {
+          component.classList.remove("border-2", "border-lila-100");
+        });
+      }
     },
     async onDelete(symbol) {
       let result = confirm("Are your sure you want to delete " + symbol.name);
@@ -946,7 +978,6 @@ export default {
     selectComponent(event) {
       let element = event.currentTarget;
       this.componentsList = element.parentNode.childNodes;
-
       //Set imgPath status to false
       this.imgPath.status = false;
 
@@ -1014,7 +1045,6 @@ export default {
     Search,
     NavBar,
     ButtonOrganizer,
-    CheckBox,
     ListCard,
     ButtonMenu,
     Divider,
@@ -1186,5 +1216,63 @@ aside {
 
 .filter-btn:hover {
   background-color: theme("colors.smokey");
+}
+
+/* The label-container */
+.label-container {
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.label-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkbox-wrapper {
+  position: relative;
+  height: 28px;
+  width: 28px;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 28px;
+  width: 28px;
+}
+
+.checkmark {
+  border: 1px solid theme("colors.night.100");
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.label-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.label-container .checkmark:after {
+  content: "✓";
+  font-weight: bold;
+  font-family: theme("fontFamily.mono");
+  color: theme("colors.lila.200");
+  font-size: 20px;
 }
 </style>
