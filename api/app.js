@@ -834,7 +834,6 @@ async function removeSymbolFromPages(paths, originalMasterId, symbolIds) {
     }
 }
 
-
 async function deleteSymbol(originalMasterId, symbolIds) {
     let unzippedPaths = await unzipFiles();
 
@@ -852,6 +851,18 @@ router.post('/delete/symbol', async (req, res) => {
     let symbolIds = req.body.params.symbolIds;
     await deleteSymbol(originalMasterId, symbolIds);
     res.send('Symbol deleted successfully.')
+});
+
+//Export project files
+router.get('/export', async (req, res) => {
+    //Zip all files in upload directory
+    const {
+        stdout,
+        stderr
+    } = await exec('zip -r -j ' + dir + '/decast.zip uploads/*');
+
+    res.download(dir + '/decast.zip');
+
 });
 
 //Add router in the Express app.

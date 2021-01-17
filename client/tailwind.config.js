@@ -14,6 +14,7 @@ module.exports = {
                 cloud: '#ffffff',
                 smokey: '#f6f6f6',
                 lila: {
+                    300: '392E66',
                     200: '#6452ad',
                     100: '#856de7'
                 },
