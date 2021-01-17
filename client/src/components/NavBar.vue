@@ -46,7 +46,14 @@ export default {
         fileLink.setAttribute("download", "decast.zip");
         document.body.append(fileLink);
         fileLink.click();
-        console.log(res);
+        try {
+          const res = await axios.get(
+            `${protocol}://${host}:${port}/delete-zip`
+          );
+          console.log(res);
+        } catch (err) {
+          console.error(err);
+        }
       } catch (err) {
         console.error(err);
       }

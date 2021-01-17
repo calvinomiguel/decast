@@ -864,7 +864,17 @@ router.get('/export', async (req, res) => {
     res.download(dir + '/decast.zip');
 
 });
+//Export project files
+router.get('/delete-zip', async (req, res) => {
+    //Zip all files in upload directory
+    const {
+        stdout,
+        stderr
+    } = await exec('rm ' + dir + '/decast.zip');
 
+    res.status(200).send('decast.zip deleted.');
+
+});
 //Add router in the Express app.
 app.use('/', router);
 
