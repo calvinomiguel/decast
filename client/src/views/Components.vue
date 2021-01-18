@@ -441,6 +441,7 @@ export default {
   data() {
     return {
       artboards: [],
+      selectAllChecked: null,
       selectAllSymbols: false,
       selectInput: null,
       showNoResults: false,
@@ -606,7 +607,8 @@ export default {
     selectAllComponents(event) {
       this.selectAllSymbols = !this.selectAllSymbols;
       this.showDeleteAll = this.selectAllSymbols;
-      console.log(event.currentTarget.checked);
+      this.selectAllChecked = event.currentTarget;
+
       let list =
         event.currentTarget.parentNode.parentNode.parentNode.parentNode
           .childNodes[3].childNodes;
@@ -978,6 +980,8 @@ export default {
     selectComponent(event) {
       let element = event.currentTarget;
       this.componentsList = element.parentNode.childNodes;
+      this.selectAllChecked.checked = false;
+      this.selectAllSymbols = false;
       //Set imgPath status to false
       this.imgPath.status = false;
 
