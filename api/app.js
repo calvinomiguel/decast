@@ -60,7 +60,7 @@ function changeFileNames(fileNames) {
     return new Promise((resolve, reject) => {
         fileNames.forEach(nameGroup => {
             let tmpPath = `${dir}/${nameGroup.tmpName}`;
-            let oPath = `${dir}/${nameGroup.oName.replace(/[- )(]/g,'')}`;
+            let oPath = `${dir}/${nameGroup.oName.replace(/[- )(]/g, '')}`;
             fs.renameSync(tmpPath, oPath, () => {
                 console.log(`${nameGroup.tmpName} was renamed to ${nameGroup.oName}!`);
             });
@@ -715,13 +715,17 @@ async function unzipFiles() {
     let filenames = await getSketchFileNames();
     let paths = [];
     for (let filename of filenames) {
-        let path = dir + "/" + filename;
+        let sketchPath = dir + "/" + filename;
         filename = filename.replace('.sketch', '');
-        const {
-            stdout,
-            stderr
-        } = await exec('unzip ' + path + ` -d ${unzippedOutput}/${filename}`);
-        paths.push(`${unzippedOutput}/${filename}`);
+        let unzippedPath = unzippedOutput + '/' + filename;
+        if (!fs.existsSync(unzippedPath)) {
+            const {
+                stdout,
+                stderr
+            } = await exec('unzip ' + sketchPath + ` -d ${unzippedPath}`);
+        }
+
+        paths.push(`${unzippedPath}`);
     }
     return paths;
 }
@@ -869,13 +873,31 @@ async function deleteSymbol(originalMasterId, symbolIds) {
     // remove from all artboards across all pages
     await removeSymbolFromPages(unzippedPaths, originalMasterId, symbolIds);
 }
-
+async function rezipFiles(filenames) {
+    let files = filenames;
+    for (let file of files) {
+        let filename = file.replace(".sketch","");
+        let unzippedPath = unzippedOutput + '/' + filename;
+        const { stdout, stderr } = await exec(`cd sketch/${filename} && zip -r -X ${dir}/${filename}.sketch ./*`);
+    };
+}
 
 //Delete symbol
 router.post('/delete/symbol', async (req, res) => {
     let originalMasterId = req.body.params.originalMasterId;
     let symbolIds = req.body.params.symbolIds;
     await deleteSymbol(originalMasterId, symbolIds);
+    let filenames = await getSketchFileNames();
+    //Delete original sketch files
+    let isSketchFiles = await fsp.readdir(dir);
+    isSketchFiles = isSketchFiles.includes('.DS_Store') && isSketchFiles.length == 1 || isSketchFiles.length == 0;
+
+    if (isSketchFiles) {
+        console.log('No data files found.');
+    } else {
+        const deleteData = await exec('rm ' + dir + '/*');
+    }
+    await rezipFiles(filenames);
     res.send('Symbol deleted successfully.')
 });
 

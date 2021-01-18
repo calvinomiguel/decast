@@ -173,6 +173,7 @@
               <span class="items-center flex ml-2 label"> Select All </span>
             </label>
             <button
+              @click="deleteAllComponents"
               v-show="showDeleteAll"
               class="delete-btn inline-block mr-12"
             >
@@ -604,6 +605,38 @@ export default {
     })();
   },
   methods: {
+    async deleteAllComponents() {
+      let components = this.componentsList;
+      let amountToDelete = components.length;
+      let result = confirm(
+        "Are your sure you want to delete " + amountToDelete + " symbols?"
+      );
+      if (result) {
+        for (let component of components) {
+          let originalMasterId = component.getAttribute("originalmasterid");
+          let symbolIds = component.getAttribute("symbolids").split(",");
+
+          console.log(symbolIds, originalMasterId);
+          try {
+            const protocol = "http";
+            const host = "localhost";
+            const port = process.env.PORT || 3060;
+            const res = await axios.post(
+              `${protocol}://${host}:${port}/delete/symbol`,
+              {
+                params: {
+                  originalMasterId: originalMasterId,
+                  symbolIds: symbolIds,
+                },
+              }
+            );
+            console.log(res.data);
+          } catch (err) {
+            console.error(err);
+          }
+        }
+      }
+    },
     selectAllComponents(event) {
       this.selectAllSymbols = !this.selectAllSymbols;
       this.showDeleteAll = this.selectAllSymbols;
@@ -980,8 +1013,11 @@ export default {
     selectComponent(event) {
       let element = event.currentTarget;
       this.componentsList = element.parentNode.childNodes;
-      this.selectAllChecked.checked = false;
+      this.selectAllChecked == null
+        ? this.selectAllChecked == null
+        : (this.selectAllChecked.checked = false);
       this.selectAllSymbols = false;
+      this.showDeleteAll = this.selectAllSymbols;
       //Set imgPath status to false
       this.imgPath.status = false;
 
