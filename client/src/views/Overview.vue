@@ -3,11 +3,19 @@
     <NavBar />
     <nav class="subnav p-6 bg-cloud flex items-center">
       <div class="left-flank">
-        <ButtonMenu class="mr-2 m-nav" text="Components" />
-        <ButtonMenu class="mr-2 m-nav" text="Dashboards" />
+        <ButtonMenu
+          @click.native="changeView($event.currentTarget)"
+          class="mr-2 m-nav"
+          text="Components"
+        />
+        <ButtonMenu
+          @click.native="changeView($event.currentTarget)"
+          class="mr-2 m-nav"
+          text="Artboards"
+        />
       </div>
       <div class="right-flank flex">
-        <Search />
+        <Search v-model="inputs.search" />
         <div class="organizer-wrapper flex">
           <ButtonOrganizer
             class="sort-components"
@@ -20,7 +28,7 @@
       </div>
     </nav>
     <main>
-      <div class="components inline-flex flex-wrap">
+      <div v-show="view.components" class="components inline-flex flex-wrap">
         <div
           v-for="(symbol, index) in symbols"
           :key="index"
@@ -29,13 +37,30 @@
           <div
             class="component-img-wrapper border border-greyolett-100 p-8 rounded"
           >
-            <img :src="symbol.imgURL" alt="" />
+            <img :src="symbol.imgURL" :alt="symbol.name" />
           </div>
           <h3 class="font-mono font-semibold text-night-300 mt-2">
             {{ symbol.name }}
           </h3>
           <h4 class="font-mono font-medium text-sm text-greyolett-100">
             {{ symbol.sketchFile }}
+          </h4>
+        </div>
+      </div>
+      <div class="artboards inline-flex flex-wrap" v-show="view.artboards">
+        <div
+          v-for="(artboard, index) in artboards"
+          :key="index"
+          class="artboard-wrapper"
+        >
+          <div class="artboard-img-wrapper bg-night-400 px-8 rounded">
+            <img :src="artboard.imgURL" :alt="artboard.name" />
+          </div>
+          <h3 class="font-mono font-semibold text-night-300 mt-2">
+            {{ artboard.name }}
+          </h3>
+          <h4 class="font-mono font-medium text-sm text-greyolett-100">
+            {{ artboard.sketchFile }}
           </h4>
         </div>
       </div>
@@ -53,7 +78,14 @@ export default {
   data() {
     return {
       symbols: [],
-      artboards: [],
+      artboards: [{}],
+      inputs: {
+        search: "",
+      },
+      view: {
+        components: true,
+        artboards: false,
+      },
     };
   },
   mounted() {
@@ -80,7 +112,6 @@ export default {
 
             if (response.headers["content-type"] == "image/png") {
               symbol.imgURL = response.request.responseURL;
-              console.log(response);
             }
           }
         }
@@ -89,9 +120,67 @@ export default {
         console.error(err);
       }
     };
-    getComponents();
-  },
 
+    const getArtboards = async () => {
+      try {
+        const port = process.env.PORT || 3060;
+        const protocol = "http";
+        const host = "localhost";
+        const res = await axios.get(
+          `${protocol}://${host}:${port}/getartboards`
+        );
+        let artboards;
+        if (res.status == 200) {
+          artboards = res.data;
+          for (let artboard of artboards) {
+            const response = await axios.get(
+              `${protocol}://${host}:${port}/getartboardimg`,
+              {
+                params: {
+                  do_objectID: artboard.do_objectID,
+                },
+              }
+            );
+
+            artboard.imgURL = response.request.responseURL;
+          }
+        }
+        this.artboards = artboards;
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getComponents();
+    getArtboards();
+  },
+  methods: {
+    changeView(event) {
+      if (event.innerText == "Components".toUpperCase()) {
+        if (this.view.components != true) {
+          this.view.artboards = false;
+          this.view.components = true;
+        }
+      }
+      if (event.innerText == "Artboards".toUpperCase()) {
+        if (this.view.artboards != true) {
+          this.view.components = false;
+          this.view.artboards = true;
+        }
+      }
+    },
+    filteredSymbols() {
+      const {
+        symbols,
+        inputs: { search },
+      } = this;
+
+      if (!this.inputs.search) return symbols;
+
+      return symbols.filter((symbol) => {
+        return symbol.name.toLowerCase().includes(search.toLowerCase());
+      });
+    },
+  },
   components: {
     NavBar,
     ButtonMenu,
@@ -125,7 +214,7 @@ main {
   height: calc(100vh - 5.5rem - 60px);
   overflow: hidden;
 }
-
+.artboards,
 .components {
   padding: 32px 24px 72px 24px;
   height: 100%;
@@ -134,18 +223,21 @@ main {
   gap: calc(4% / 6);
 }
 
+.artboard-wrapper,
 .component-wrapper {
   max-width: calc(96% / 4);
   width: 100%;
   margin-bottom: 1.5rem;
 }
 
+.artboard-img-wrapper,
 .component-img-wrapper {
   position: relative;
   width: 100%;
   height: 280px;
 }
 
+.artboard-img-wrapper > img,
 .component-img-wrapper > img {
   position: relative;
   width: 100%;

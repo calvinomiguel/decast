@@ -1038,6 +1038,7 @@ router.get('/getcomponents', async (req, res) => {
 
 	res.send(deliverable);
 });
+
 app.get('/getcomponentimg', async (req, res) => {
 	let do_objectID = req.query.do_objectID;
 	let imgPath = outputDir + '/symbols/' + do_objectID + '@2x.png';
@@ -1047,6 +1048,45 @@ app.get('/getcomponentimg', async (req, res) => {
 				res.set({
 					'Content-Type': 'image/png'
 				}).sendFile(imgPath, (err) => {
+					if (err) {
+						next(err);
+					} else {
+						//console.log('Sent:', symbolId);
+					}
+				});
+			}
+		}
+	} catch (err) {
+		console.error(err);
+	}
+});
+
+router.get('/getartboards', async (req, res) => {
+	let data = await readFile(dataDir + '/artboards.json', 'utf8');
+	data = JSON.parse(data);
+	let artboards = data.artboards;
+	let deliverable = [];
+	for (let artboard of artboards) {
+		deliverable.push({
+			name: artboard.name,
+			do_objectID: artboard.do_objectID,
+			sketchFile: artboard.file.name,
+		});
+	}
+	res.send(deliverable);
+});
+
+router.get('/getartboardimg', async (req, res) => {
+	let do_objectID = req.query.do_objectID;
+	let imgPath = outputDir + '/artboards/' + do_objectID + '@2x.jpg';
+	try {
+		if (do_objectID != undefined) {
+			if (fs.existsSync(imgPath)) {
+				res.set({
+					'Content-Type': 'image/jpeg'
+				});
+
+				res.sendFile(imgPath, (err) => {
 					if (err) {
 						next(err);
 					} else {
