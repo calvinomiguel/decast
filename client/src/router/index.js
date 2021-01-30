@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Dashboard from '@/views/Dashboard'
 import FileUploader from '@/views/Uploader'
 import Components from '@/views/Components'
-import Artboards from '@/views/Artboards'
+import Overview from '@/views/Overview'
 
 Vue.use(VueRouter)
 
@@ -18,9 +18,9 @@ const routes = [{
     component: Components
   },
   {
-    path: '/artboards',
-    name: 'Artboards',
-    component: Artboards
+    path: '/overview',
+    name: 'Overview',
+    component: Overview
   },
   {
     path: '/',

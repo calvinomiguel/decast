@@ -13,8 +13,11 @@ module.exports = {
                 hay: '#ff9766',
                 cloud: '#ffffff',
                 smokey: '#f6f6f6',
+                greyolett: {
+                    100: '#99AAB5',
+                },
                 lila: {
-                    300: '392E66',
+                    300: '#392E66',
                     200: '#6452ad',
                     100: '#856de7'
                 },

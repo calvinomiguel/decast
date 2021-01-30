@@ -9,7 +9,7 @@
           <NavLink link="/dashboard" link-text="Dashboard" />
         </li>
         <li>
-          <NavLink link="/artboards" link-text="Artboards" />
+          <NavLink link="/overview" link-text="Overview" />
         </li>
         <li>
           <NavLink link="/components" link-text="Components" />
@@ -17,7 +17,7 @@
         <li>
           <button
             @click="deleteProject"
-            class="bg-night-100 text-cloud py-2 px-4 rounded hover:bg-night-200 transition-color duration-300"
+            class="bg-night-100 font-bold text-sm text-cloud py-2 px-4 rounded hover:bg-night-200 transition-color duration-300"
           >
             Delete project
           </button>
@@ -25,7 +25,7 @@
         <li>
           <button
             @click="exportFiles"
-            class="bg-lila-100 text-cloud py-2 px-4 rounded hover:bg-lila-200 transition-color duration-300"
+            class="bg-lila-100 font-bold text-sm text-cloud py-2 px-4 rounded hover:bg-lila-200 transition-color duration-300"
           >
             Export files
           </button>

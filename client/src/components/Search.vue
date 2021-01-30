@@ -22,7 +22,7 @@
       v-model="input"
       v-on:focusout="focusOut"
       v-on:focus="focus"
-      class="search-field bg-smokey h-8 pl-4 focus:outline-none font-mono placeholder-night-100"
+      class="search-field bg-transparent h-8 pl-4 focus:outline-none font-mono placeholder-night-100"
       type="search"
       placeholder="Search..."
     />

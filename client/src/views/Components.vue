@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Loader v-show="showLoader" :loading-text="loaderMessage"/>
     <div
       v-show="showBgLayer"
       v-on:click="closeLightbox"
@@ -211,6 +212,7 @@
           class="empty-state h-full w-full flex items-center justify-center bg-cloud"
         >
           <div class="txt-container">
+            <img class="empty-state-illustration mb-8" :src="require('@/assets/components.svg')" alt="Components Icon">
             <h3 class="font-mono font-bold text-2xl text-center text-night-300">
               Start by selecting a component
             </h3>
@@ -419,6 +421,9 @@
                   <h3 class="font-mono text-night-300 mt-2 font-bold">
                     {{ artboard.name }}
                   </h3>
+                  <h4 class="font-mono text-greyolett-100 text-sm font-medium">
+                    {{ artboard.sketchFile }}
+                  </h4>
                 </div>
               </div>
             </div>
@@ -436,6 +441,7 @@ import ListCard from "@/components/ListCard";
 import ButtonMenu from "@/components/ButtonMenu";
 import Divider from "@/components/Divider";
 import ComponentPreview from "@/components/ComponentPreview";
+import Loader from "@/components/Loader";
 import axios from "axios";
 export default {
   name: "Components",
@@ -445,6 +451,8 @@ export default {
       selectAllChecked: null,
       selectAllSymbols: false,
       selectInput: null,
+      showLoader: false,
+      loaderMessage: null,
       showNoResults: false,
       currentArtboardImg: null,
       showDeleteAll: false,
@@ -492,12 +500,6 @@ export default {
       symbolCount: 0,
       totalArtboardsUsage: 0,
     };
-  },
-  props: {
-    viewTitle: {
-      type: String,
-      default: "Component",
-    },
   },
   mounted() {
     const getData = async () => {
@@ -667,6 +669,8 @@ export default {
     async onDelete(symbol) {
       let result = confirm("Are your sure you want to delete " + symbol.name);
       if (result) {
+        this.showLoader = true;
+        this.loaderMessage = `${symbol.name} is being removed from all files.`;
         let originalMasterId = symbol.originalMasterId;
         let symbolIds = symbol.symbolIDs;
         console.log(symbolIds, originalMasterId);
@@ -683,6 +687,10 @@ export default {
               },
             }
           );
+          if (res.status == 200) {
+            this.showLoader = false;
+            location.reload();
+          }
           console.log(res.data);
         } catch (err) {
           console.error(err);
@@ -980,6 +988,7 @@ export default {
             if (res.status == 200) {
               this.artboards.push({
                 name: artboard.name,
+                sketchFile:artboard.file.name,
                 path: res.request.responseURL,
                 symbolInstancesCount: symbolInstancesCount,
               });
@@ -1083,6 +1092,7 @@ export default {
   },
   components: {
     Search,
+    Loader,
     NavBar,
     ButtonOrganizer,
     ListCard,
@@ -1256,6 +1266,12 @@ aside {
 
 .filter-btn:hover {
   background-color: theme("colors.smokey");
+}
+
+.empty-state-illustration{
+  position: relative;
+  left: 50%;
+  transform:translateX(-50%);
 }
 
 /* The label-container */

@@ -1,117 +1,143 @@
 <template>
-  <form
-    v-on:submit.prevent="sendFiles()"
-    enctype="multipart/form-data"
-    id="file-uploader"
-    class="bg-cloud px-6 rounded-xl pt-12 pb-6 shadow-md"
-  >
-    <div class="text text-center">
-      <h2 class="font-mono font-bold text-2xl text-night-300">
-        Upload your sketch files
-      </h2>
-      <p class="font-mono text-base text-night-300">
-        Only sketch files allowed
-      </p>
-    </div>
-    <div class="upload-field flex w-full mt-10 mb-5">
-      <label
-        class="w-full items-center justify-center text-night-300 flex flex-col px-4 py-6 bg-cloud text-blue rounded tracking-wide uppercase border border-dashed cursor-pointer hover:bg-smokey"
-      >
-        <svg
-          class="w-8 h-8"
-          fill="currentColor"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-        >
-          <path
-            d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
-          />
-        </svg>
-        <span class="mt-2 text-base leading-normal">Click to upload files</span>
-        <input
-          id="file-input"
-          type="file"
-          name="files"
-          multiple
-          class="hidden"
-          accept=".sketch"
-        />
-      </label>
-    </div>
-    <div class="upload-progress mb-6">
-      <h6 class="font-mono text-night-100">Uploaded file(s)</h6>
-      <div class="upload-progress-item flex items-center my-6">
-        <img src="@/assets/sketch-icon.png" alt="Sketch File icon" />
-        <div class="bar-wrapper">
-          <div class="bar-context flex justify-between mb-1">
-            <div class="filename font-mono text-night-300 text-sm">
-              Harbor.sketch
-            </div>
-            <div class="progress-percentage font-mono text-sm text-night-100">
-              100%
-            </div>
-          </div>
-          <div class="bar bg-green-400 rounded-xl"></div>
-        </div>
-        <button
-          type="button"
-          class="remove-file focus:outline-none leading-none bg-night-300 border text-cloud"
-        >
-          <div
-            class="button-icon flex items-center leading-none justify-center"
-          >
-            ×
-          </div>
-        </button>
+  <div id="uploader">
+    <Loader v-show="showLoader" />
+    <form
+      v-on:submit.prevent="sendFiles()"
+      enctype="multipart/form-data"
+      id="file-uploader"
+      class="bg-cloud px-6 rounded-xl pt-12 pb-6 shadow-md"
+    >
+      <div class="text text-center">
+        <h2 class="font-mono font-bold text-2xl text-night-300">
+          Upload your sketch files
+        </h2>
+        <p class="font-mono text-base text-night-300">
+          Only sketch files allowed
+        </p>
       </div>
-    </div>
-    <button-primary type="submit" text="Analyse Sketch Files"></button-primary>
-  </form>
+      <div class="upload-field flex w-full mt-10 mb-5">
+        <label
+          class="w-full items-center justify-center text-night-300 flex flex-col px-4 py-6 bg-cloud text-blue rounded tracking-wide uppercase border border-dashed cursor-pointer hover:bg-smokey"
+        >
+          <svg
+            class="w-8 h-8"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
+            />
+          </svg>
+          <span class="mt-2 text-base leading-normal"
+            >Click to upload files</span
+          >
+          <input
+            v-on:change="getFiles()"
+            id="file-input"
+            type="file"
+            name="files"
+            multiple
+            class="hidden"
+            accept=".sketch"
+          />
+        </label>
+      </div>
+      <div class="upload-progress mb-6">
+        <h6 class="font-mono text-night-100">Uploaded file(s)</h6>
+        <div class="fileslist">
+          <div
+            v-for="(file, index) in files"
+            :key="index"
+            class="py-2 px-3 border-greyolett-100 border rounded upload-progress-item flex items-center my-2"
+          >
+            <div class="bar-wrapper">
+              <div class="bar-context flex justify-between mb-1">
+                <div
+                  class="filename font-mono text-night-400 font-medium text-md"
+                >
+                  {{ file }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button-primary
+        type="submit"
+        :class="btnClass"
+        text="Upload Sketch Files"
+      ></button-primary>
+    </form>
+  </div>
 </template>
 
 <script>
+import Loader from "@/components/Loader";
 import axios from "axios";
 import ButtonPrimary from "@/components/ButtonPrimary";
 
 export default {
   name: "FileUploader",
-  components: {
-    ButtonPrimary,
-  },
   data() {
     return {
-      files: "",
+      showLoader: false,
+      files: [],
+      btnClass: "",
     };
   },
+  components: {
+    ButtonPrimary,
+    Loader,
+  },
   methods: {
-    async sendFiles() {
-      const form = document.getElementById("file-uploader");
-      const pkg = new FormData(form);
-      const port = process.env.PORT || 3060;
-      const protocol = "http";
-      const host = "localhost";
-
-      const res = await axios({
-        method: "POST",
-        baseURL: `${protocol}://${host}:${port}`,
-        headers: { "content-type": "multipart/form-data" },
-        url: "/uploads",
-        data: pkg,
-      });
-
-      if (res.status == "200") {
-        console.log(res.data);
-        this.$router.push("/dashboard");
+    getFiles() {
+      let files = document.getElementById("file-input");
+      files = files.files;
+      if (this.files.length > 0) {
+        this.files = [];
       }
+      for (let i = 0; i < files.length; i++) {
+        let file = files.item(i);
+        this.files.push(file.name);
+      }
+    },
+    async sendFiles() {
+      let files = document.getElementById("file-input").files;
+      if (files.length == 0) {
+        alert("Please upload one or more sketch files to use decast.");
+      } else {
+        const form = document.getElementById("file-uploader");
+        const pkg = new FormData(form);
+        const port = process.env.PORT || 3060;
+        const protocol = "http";
+        const host = "localhost";
+        this.showLoader = true;
+        const res = await axios({
+          method: "POST",
+          baseURL: `${protocol}://${host}:${port}`,
+          headers: { "content-type": "multipart/form-data" },
+          url: "/uploads",
+          data: pkg,
+        });
 
-      for (let pair of pkg.entries()) {
-        console.log(pair[1]);
+        if (res.status == "200") {
+          console.log(res.data);
+          this.$router.push("/dashboard");
+        }
+
+        for (let pair of pkg.entries()) {
+          console.log(pair[1]);
+        }
       }
     },
   },
 };
 </script>
 <style scoped>
+#uploader {
+  height: 100%;
+}
 #file-uploader {
   max-width: 608px;
   position: relative;
@@ -144,16 +170,10 @@ export default {
   height: 4px;
 }
 
-.remove-file {
+.button-icon {
   height: 24px;
   width: 24px;
   border-radius: 100%;
   margin-left: auto;
-  position: relative;
-}
-
-.button-icon {
-  height: 100%;
-  width: 100%;
 }
 </style>

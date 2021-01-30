@@ -15,5 +15,7 @@ export default {
 <style scoped>
 .upload {
   height: 100vh;
+  width: 100vw;
+  padding: 0;
 }
 </style>
