@@ -1,6 +1,6 @@
 <template>
   <div id="uploader">
-    <Loader v-show="showLoader" />
+    <Loader v-show="showLoader" :loadingText="loaderText" />
     <form
       v-on:submit.prevent="sendFiles()"
       enctype="multipart/form-data"
@@ -83,7 +83,14 @@ export default {
     return {
       showLoader: false,
       files: [],
+      sketchFiles: [],
       btnClass: "",
+      symbols: [],
+      artboards: [],
+      data: null,
+      artboardsData: null,
+      loaderText:
+        "Do not close the window. We are currently loading your sketch files. This may take a few minutes depending on the project size.",
     };
   },
   components: {
@@ -91,6 +98,93 @@ export default {
     Loader,
   },
   methods: {
+    async getData() {
+      try {
+        const port = process.env.PORT || 3060;
+        const protocol = "http";
+        const host = "localhost";
+        const res = await axios.get(`${protocol}://${host}:${port}/data`);
+        let data = res.data;
+        this.data = data;
+        this.sketchFiles = data.files;
+        this.symbols = data.symbols;
+      } catch (err) {
+        console.error(err);
+      }
+    },
+    async getArtboardData() {
+      try {
+        const port = process.env.PORT || 3060;
+        const protocol = "http";
+        const host = "localhost";
+        const res = await axios.get(
+          `${protocol}://${host}:${port}/artboards/data`
+        );
+        let data = res.data;
+        this.file = data.files;
+        this.artboardsData = res.data;
+        this.artboards = data.artboards;
+      } catch (err) {
+        console.error(err);
+      }
+    },
+    async getAllComponentImg() {
+      try {
+        const port = process.env.PORT || 3060;
+        const protocol = "http";
+        const host = "localhost";
+
+        const res = await axios.get(
+          `${protocol}://${host}:${port}/components/`
+        );
+
+        if (res.status == 200) {
+          console.log(res.data);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    },
+    async getAllArtboardsImg() {
+      try {
+        const port = process.env.PORT || 3060;
+        const protocol = "http";
+        const host = "localhost";
+        let files = this.sketchFiles;
+        for (let file of files) {
+          let fileName = file.name;
+          let filePath = file.path;
+          let numbrOfIterations = files.length;
+          let currentIteration = files.indexOf(file) + 1;
+          let lastIteration = false;
+
+          //Check if this is the last iteration
+          if (currentIteration == numbrOfIterations) {
+            lastIteration = true;
+          }
+
+          const res = await axios.get(
+            `${protocol}://${host}:${port}/artboards`,
+            {
+              params: {
+                fileName: fileName,
+                filePath: filePath,
+                lastFile: lastIteration,
+              },
+            }
+          );
+
+          if (res.status == 200) {
+            console.log("Artboards of " + fileName + " exported.");
+          }
+        }
+
+        //Redirect to dashboard after exporting all dashboard images
+        this.$router.push("/dashboard");
+      } catch (err) {
+        console.error(err);
+      }
+    },
     getFiles() {
       let files = document.getElementById("file-input");
       files = files.files;
@@ -122,13 +216,15 @@ export default {
         });
 
         if (res.status == "200") {
-          console.log(res.data);
-          this.$router.push("/dashboard");
+          await this.getData();
+          await this.getArtboardData();
+          await this.getAllComponentImg();
+          await this.getAllArtboardsImg();
         }
 
-        for (let pair of pkg.entries()) {
+        /* for (let pair of pkg.entries()) {
           console.log(pair[1]);
-        }
+        } */
       }
     },
   },

@@ -19,7 +19,7 @@ export default {
 </script>
 <style scoped>
 .loading-text {
-    max-width: 55%;
+    padding:0 24px;
     position: relative;
     left: 50%;
     transform: translate(-50%);

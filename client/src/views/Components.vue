@@ -534,76 +534,9 @@ export default {
         console.error(err);
       }
     };
-    const getAllComponentImg = async () => {
-      try {
-        const port = process.env.PORT || 3060;
-        const protocol = "http";
-        const host = "localhost";
-
-        for (let symbol of this.symbols) {
-          let do_objectID = symbol.do_objectID;
-          let originalFileName = symbol.originalFileName;
-          const res = await axios.get(
-            `${protocol}://${host}:${port}/components`,
-            {
-              params: {
-                do_objectID: do_objectID,
-                originalFileName: originalFileName,
-              },
-            }
-          );
-
-          if (res.status == 200) {
-            ("Component img exported");
-          }
-        }
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    const getAllArtboards = async () => {
-      try {
-        const port = process.env.PORT || 3060;
-        const protocol = "http";
-        const host = "localhost";
-        let files = this.data.files;
-
-        for (let file of files) {
-          let fileName = file.name;
-          let filePath = file.path;
-          let numbrOfIterations = files.length;
-          let currentIteration = files.indexOf(file) + 1;
-          let lastIteration = false;
-
-          //Check if this is the last iteration
-          if (currentIteration == numbrOfIterations) {
-            lastIteration = true;
-          }
-
-          const res = await axios.get(
-            `${protocol}://${host}:${port}/artboards`,
-            {
-              params: {
-                fileName: fileName,
-                filePath: filePath,
-                lastFile: lastIteration,
-              },
-            }
-          );
-
-          if (res.status == 200) {
-            console.log("Artboards of " + fileName + " exported.");
-          }
-        }
-      } catch (err) {
-        console.error(err);
-      }
-    };
     (async () => {
       await getData();
       await getArtboardData();
-      getAllComponentImg();
-      getAllArtboards();
     })();
   },
   methods: {
@@ -618,7 +551,7 @@ export default {
           let originalMasterId = component.getAttribute("originalmasterid");
           let symbolIds = component.getAttribute("symbolids").split(",");
 
-          console.log(symbolIds, originalMasterId);
+          //console.log(symbolIds, originalMasterId);
           try {
             const protocol = "http";
             const host = "localhost";
@@ -673,7 +606,7 @@ export default {
         this.loaderMessage = `${symbol.name} is being removed from all files.`;
         let originalMasterId = symbol.originalMasterId;
         let symbolIds = symbol.symbolIDs;
-        console.log(symbolIds, originalMasterId);
+        //console.log(symbolIds, originalMasterId);
         try {
           const protocol = "http";
           const host = "localhost";
@@ -713,14 +646,14 @@ export default {
       //Sort from highest to lowest count
       if (element == "num-down") {
         this.symbols.sort((a, b) =>
-          b.count.toString().localeCompare(a.count.toString())
+          b.count - a.count
         );
       }
 
       //Sort from lowest to highest count
       if (element == "num-high") {
         this.symbols.sort((a, b) =>
-          a.count.toString().localeCompare(b.count.toString())
+          a.count - b.count
         );
       }
 

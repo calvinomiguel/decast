@@ -15,9 +15,6 @@ const exec = util.promisify(require('child_process').exec);
 const {
 	json
 } = require('body-parser');
-const {
-	file
-} = require('jszip');
 const dir = process.argv[2] || process.cwd() + '/uploads';
 const outputDir = process.cwd() + '/exports';
 const unzippedOutput = process.cwd() + '/sketch'
@@ -461,13 +458,20 @@ function getGlobalSymbolsCount(objSchema) {
 
 //Export symbol
 function exportComponent(sketchFile, symbolId) {
-	sketchtool.run('export layers ' + dir + '/' + sketchFile + ' --item=' + symbolId + ' --formats=png --scales=2 --use-id-for-name --output=' + outputDir + '/symbols');
+	sketchtool.run('export layers ' + dir + '/' + sketchFile + ' --item=' + symbolId + ' --formats=png --scales=2 --use-id-for-name --save-for-web --output=' + outputDir + '/symbols');
 }
 
 //Export artboards
 function exportArtboards(sketchFile) {
-	sketchtool.run('export artboards ' + dir + '/' + sketchFile + ' --formats=jpg --scales=2 --use-id-for-name --output=' + outputDir + '/artboards');
+	sketchtool.run('export artboards ' + dir + '/' + sketchFile + ' --formats=jpg --scales=2 --use-id-for-name --save-for-web --output=' + outputDir + '/artboards');
 }
+
+//Export artboards
+function exportLayers(sketchFile) {
+	sketchtool.run('export layers ' + dir + '/' + sketchFile + ' --formats=png --scales=2 --use-id-for-name --save-for-web --output=' + outputDir + '/symbols');
+}
+
+//console.log(sketchtool.run('help export layers'));
 
 async function getSketchFileNames() {
 	let filenames = [];
@@ -518,7 +522,6 @@ async function removeSymbolFromDocument(paths, originalMasterId) {
 		console.log(`Looking in ${path}`)
 		console.log(`${data.foreignSymbols.length - newForeignSymbols.length} foreignSymbols with ID ${originalMasterId} found. Removing...`)
 		data.foreignSymbols = newForeignSymbols;
-
 
 		try {
 			await fsp.writeFile(path + '/document.json', JSON.stringify(data))
@@ -739,9 +742,7 @@ router.get('/component/', async (req, res, next) => {
 
 			//Else check if img of the file to be export already exists
 			//If not export and send to client
-			if (!fs.existsSync(imgPath)) {
-				exportComponent(fileName, symbolId);
-			}
+			//if (!fs.existsSync(imgPath)) {//}
 			res.set({
 				'Content-Type': 'image/png'
 			});
@@ -761,30 +762,18 @@ router.get('/component/', async (req, res, next) => {
 });
 
 //Export all symbols to exports -> symbols
-router.get('/components/', async (req, res, next) => {
-	try {
-		let do_objectID = req.query.do_objectID;
-		let fileName = req.query.originalFileName;
-		let imgPath = outputDir + '/symbols/' + do_objectID + '@2x.png';
-		let sketchFilePath = dir + '/' + fileName;
-		//If rootfile doesn't exist send message to client
-		if (!fs.existsSync(sketchFilePath)) {
-			res.status(200).send({
-				message: false,
-				file: fileName
-			});
-		} else {
-			//Else check if img of the file to be export already exists
-			//If not export and send to client
-			if (!fs.existsSync(imgPath)) {
-				exportComponent(fileName, do_objectID);
-			}
-			res.status(200).send();
-		}
+router.get('/components/', async (req, res) => {
+	let data = await readFile(dataDir + '/data.json', 'utf8');
+	data = JSON.parse(data);
+	let symbols = data.symbols;
 
-	} catch (err) {
-		console.error(err);
+	for (let symbol of symbols) {
+		let sketchFile = symbol.currentFileName;
+		let symbolId = symbol.do_objectID;
+		exportComponent(sketchFile, symbolId);
 	}
+
+	res.status(200).send('symbols');
 });
 
 //Export all artboards to exports -> artboards
@@ -1018,7 +1007,7 @@ router.get('/delete-project', async (req, res) => {
 	if (isUnzippedFiles) {
 		console.log('No unzipped files found.');
 	} else {
-		const deleteUnzippedFiles = await exec('rm ' + unzippedOutput + '/*');
+		const deleteUnzippedFiles = await exec('rm -r ' + unzippedOutput + '/*');
 	}
 	res.status(200).send();
 });

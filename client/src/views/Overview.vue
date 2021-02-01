@@ -30,14 +30,14 @@
     <main>
       <div v-show="view.components" class="components inline-flex flex-wrap">
         <div
-          v-for="(symbol, index) in symbols"
+          v-for="(symbol, index) in cappedSymbols"
           :key="index"
           class="component-wrapper"
         >
           <div
             class="component-img-wrapper border border-greyolett-100 p-8 rounded"
           >
-            <img :src="symbol.imgURL" :alt="symbol.name" />
+            <img loading="lazy" :src="symbol.imgURL" :alt="symbol.name" />
           </div>
           <h3 class="font-mono font-semibold text-night-300 mt-2">
             {{ symbol.name }}
@@ -46,10 +46,16 @@
             {{ symbol.sketchFile }}
           </h4>
         </div>
+        <ButtonPrimary
+          v-show="symbols.length > inputs.symbolsPerPage"
+          text="Load more" 
+          @click.native="inputs.symbolsPerPage += 16" 
+        />
       </div>
+
       <div class="artboards inline-flex flex-wrap" v-show="view.artboards">
         <div
-          v-for="(artboard, index) in artboards"
+          v-for="(artboard, index) in cappedArtboards"
           :key="index"
           class="artboard-wrapper"
         >
@@ -63,6 +69,11 @@
             {{ artboard.sketchFile }}
           </h4>
         </div>
+        <ButtonPrimary
+          v-show="artboards.length > inputs.artboardsPerPage"
+          text="Load more" 
+          @click.native="inputs.artboardsPerPage += 16" 
+        />
       </div>
     </main>
   </div>
@@ -73,13 +84,17 @@ import ButtonMenu from "@/components/ButtonMenu";
 import Search from "@/components/Search";
 import ButtonOrganizer from "@/components/ButtonOrganizer";
 import axios from "axios";
+import ButtonPrimary from "@/components/ButtonPrimary";
+
 export default {
   name: "Overview",
   data() {
     return {
       symbols: [],
-      artboards: [{}],
+      artboards: [],
       inputs: {
+        symbolsPerPage: 16,
+        artboardsPerPage: 16,
         search: "",
       },
       view: {
@@ -87,6 +102,28 @@ export default {
         artboards: false,
       },
     };
+  },
+  computed: {
+    cappedSymbols() {
+      const symbols = [...this.symbols]
+      const { symbolsPerPage } = this.inputs
+
+      if(symbols.length > symbolsPerPage) {
+        symbols.length = symbolsPerPage
+      }
+
+      return symbols
+    },
+    cappedArtboards() {
+      const artboards = [...this.artboards]
+      const { artboardsPerPage } = this.inputs
+
+      if(artboards.length > artboardsPerPage) {
+        artboards.length = artboardsPerPage
+      }
+
+      return artboards
+    }
   },
   mounted() {
     const getComponents = async () => {
@@ -101,18 +138,7 @@ export default {
         if (res.status == 200) {
           symbols = res.data;
           for (let symbol of symbols) {
-            const response = await axios.get(
-              `${protocol}://${host}:${port}/getcomponentimg`,
-              {
-                params: {
-                  do_objectID: symbol.do_objectID,
-                },
-              }
-            );
-
-            if (response.headers["content-type"] == "image/png") {
-              symbol.imgURL = response.request.responseURL;
-            }
+            symbol.imgURL = `${protocol}://${host}:${port}/getcomponentimg?do_objectID=${symbol.do_objectID}`;
           }
         }
         this.symbols = symbols;
@@ -133,16 +159,7 @@ export default {
         if (res.status == 200) {
           artboards = res.data;
           for (let artboard of artboards) {
-            const response = await axios.get(
-              `${protocol}://${host}:${port}/getartboardimg`,
-              {
-                params: {
-                  do_objectID: artboard.do_objectID,
-                },
-              }
-            );
-
-            artboard.imgURL = response.request.responseURL;
+            artboard.imgURL = `${protocol}://${host}:${port}/getartboardimg?do_objectID=${artboard.do_objectID}`;
           }
         }
         this.artboards = artboards;
@@ -169,10 +186,18 @@ export default {
       }
     },
     filteredSymbols() {
-      const {
-        symbols,
-        inputs: { search },
-      } = this;
+      const symbols = this.symbols;
+      const search = this.inputs.search;
+
+      if (!this.inputs.search) return symbols;
+
+      return symbols.filter((symbol) => {
+        return symbol.name.toLowerCase().includes(search.toLowerCase());
+      });
+    },
+    filteredArtboards() {
+      const symbols = this.artboards;
+      const search = this.inputs.search;
 
       if (!this.inputs.search) return symbols;
 
@@ -186,6 +211,7 @@ export default {
     ButtonMenu,
     Search,
     ButtonOrganizer,
+    ButtonPrimary,
   },
 };
 </script>
@@ -237,11 +263,17 @@ main {
   height: 280px;
 }
 
-.artboard-img-wrapper > img,
-.component-img-wrapper > img {
+.artboard-img-wrapper > img {
   position: relative;
   width: 100%;
   object-fit: contain;
   height: 100%;
+}
+.component-img-wrapper > img {
+  transform: translate(-50%, -50%);
+  position: relative;
+  top: 50%;
+  left: 50%;
+  max-height: 100%;
 }
 </style>
