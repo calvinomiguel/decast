@@ -17,14 +17,8 @@
         {{ count }}
       </span>
     </div>
-    <button
-      class="delete-btn"
-      @click.stop="$emit('delete', $event)"
-    >
-      <img
-        src="../assets/delete-icon.svg"
-        alt="Delete icon"
-      >
+    <button class="delete-btn" @click.stop="$emit('delete', $event)">
+      <img src="../assets/delete-icon.svg" alt="Delete icon" />
     </button>
   </div>
 </template>
@@ -66,6 +60,8 @@ export default {
   justify-content: center;
   align-items: center;
   transition: all 360ms ease-in-out;
+  height: 48px;
+  min-width: 48px;
 }
 
 .delete-btn:hover {

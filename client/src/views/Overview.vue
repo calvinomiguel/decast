@@ -391,6 +391,7 @@ main {
 .artboard-wrapper {
   cursor: pointer;
 }
+
 .bg-layer {
   height: 100vh;
   width: 100vw;
@@ -402,8 +403,7 @@ main {
 .bg-container {
   height: 100%;
   width: 100%;
-  position: relative;
-  padding: 4rem 0;
+  padding: 2rem 0;
   position: fixed;
   z-index: 2;
   top: 50%;
@@ -417,19 +417,23 @@ main {
 }
 
 .artboard-container {
-  position: absolute;
+  position: relative;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  height: 100%;
+  height: 90vh;
   overflow: scroll;
+  max-width: 960px;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  width: 100%;
 }
 
 .artboard-container > img {
   position: relative;
-  top: 50%;
-  transform: translateY(-50%);
 }
+
 .sort-modal {
   max-width: 720px;
   border-radius: 0.25rem;

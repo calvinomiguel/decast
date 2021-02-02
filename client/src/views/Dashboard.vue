@@ -35,29 +35,8 @@ export default {
       deadComponents: null,
       ratio: null,
       data: null,
-      suggestions: [
-        {
-          suggestion: "Remove dead and less used components",
-          status: true,
-          link: "/components",
-        },
-        {
-          suggestion: "Remove less used components",
-          status: true,
-        },
-        {
-          suggestion: "Remove duplicate components",
-          status: true,
-        },
-        {
-          suggestion: "Split sketch file",
-          status: true,
-        },
-        {
-          suggestion: "Reduce number of layers",
-          status: true,
-        },
-      ],
+      symbols: [],
+      suggestions: [],
     };
   },
   mounted() {
@@ -80,7 +59,22 @@ export default {
       } catch (err) {
         console.error(err);
       }
+      try {
+        const port = process.env.PORT || 3060;
+        const protocol = "http";
+        const host = "localhost";
+        const res = await axios.get(
+          `${protocol}://${host}:${port}/suggestions`
+        );
+
+        if (res.status == 200) {
+          this.suggestions = res.data;
+        }
+      } catch (err) {
+        console.error(err);
+      }
     };
+
     getData();
   },
   computed: {

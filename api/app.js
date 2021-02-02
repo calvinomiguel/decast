@@ -466,13 +466,6 @@ function exportArtboards(sketchFile) {
 	sketchtool.run('export artboards ' + dir + '/' + sketchFile + ' --formats=jpg --scales=2 --use-id-for-name --save-for-web --output=' + outputDir + '/artboards');
 }
 
-//Export artboards
-function exportLayers(sketchFile) {
-	sketchtool.run('export layers ' + dir + '/' + sketchFile + ' --formats=png --scales=2 --use-id-for-name --save-for-web --output=' + outputDir + '/symbols');
-}
-
-//console.log(sketchtool.run('help export layers'));
-
 async function getSketchFileNames() {
 	let filenames = [];
 	let files = await getFileNames()
@@ -652,8 +645,6 @@ async function rezipFiles(filenames) {
 		const { stdout, stderr } = await exec(`cd ${unzippedPath} && zip -r -X ${dir}/${filename}.sketch ./*`);
 	};
 }
-//console.log(sketchtool.run("help export layers"));
-//console.log(sketchtool.run("help export artboards"));
 
 //Upload files, process data, create json file
 app.post('/uploads', upload.array('files'), async (req, res) => {
@@ -711,6 +702,47 @@ router.get('/data', async (req, res, next) => {
 		}
 	});
 });
+
+//Get suggestions
+router.get('/suggestions', async (req, res, next) => {
+	let data = await readFile(dataDir + '/data.json', 'utf8');
+	data = JSON.parse(data);
+	let symbols = data.symbols;
+	let notUsed = symbols.filter(symbol => symbol.count == 0);
+	let usedOnce = symbols.filter(symbol => symbol.count == 1);
+	let duplicates = [];
+
+
+	for (let a = 0; a < symbols.length; a++) {
+		let currentVal = symbols[a];
+		for (let b = 0; b < symbols.length; b++) {
+			let compareVal = symbols[b];
+
+			if (compareVal.name == currentVal.name && a != b) {
+				if (!symbols.includes(compareVal)) {
+					duplicates.push(compareVal);
+				}
+			}
+		}
+	}
+	let suggestions = [
+		{
+			suggestion: `${notUsed.length} components aren't being used`,
+			status: notUsed.length > 0 ? true : false,
+		},
+		{
+			suggestion: `${usedOnce.length} components that are used only once`,
+			status: usedOnce.length > 0 ? true : false,
+		},
+		{
+			suggestion: `${duplicates.length} components with conflicting names`,
+			status: duplicates.length > 0 ? true : false,
+		},
+	];
+
+	res.status(200).send(suggestions);
+});
+
 
 //Send artboards json file to client
 router.get('/artboards/data', async (req, res, next) => {

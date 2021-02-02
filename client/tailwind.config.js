@@ -20,6 +20,7 @@ module.exports = {
                 smokey: '#f6f6f6',
                 mokey: '#e8e8e8',
                 greyolett: {
+                    200: '#e8e8e8',
                     100: '#99AAB5',
                 },
                 lila: {
