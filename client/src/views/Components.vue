@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Loader v-show="showLoader" :loading-text="loaderMessage"/>
+    <Loader v-show="showLoader" :loading-text="loaderMessage" />
     <div
       v-show="showBgLayer"
       v-on:click="closeLightbox"
@@ -19,7 +19,7 @@
         ×
       </button>
       <div v-show="showArtboardInLightbox" class="artboard-container">
-        <img :src="currentArtboardImg" alt="Artboard" />
+        <img loading="lazy" :src="currentArtboardImg" alt="Artboard" />
       </div>
     </div>
     <div
@@ -212,7 +212,12 @@
           class="empty-state h-full w-full flex items-center justify-center bg-cloud"
         >
           <div class="txt-container">
-            <img class="empty-state-illustration mb-8" :src="require('@/assets/components.svg')" alt="Components Icon">
+            <img
+              loading="lazy"
+              class="empty-state-illustration mb-8"
+              :src="require('@/assets/components.svg')"
+              alt="Components Icon"
+            />
             <h3 class="font-mono font-bold text-2xl text-center text-night-300">
               Start by selecting a component
             </h3>
@@ -278,11 +283,6 @@
               />
             </div>
             <div class="s-view-wrapper pb-24">
-              <ComponentPreview
-                class="p-view"
-                v-show="view.p"
-                :imgPath="require('@/assets/img/Ajax-Preloader.gif')"
-              />
               <div class="s-view" v-show="view.s">
                 <h2 class="font-mono font-bold text-2xl text-night-300">
                   Scope of use
@@ -411,12 +411,12 @@
                   v-for="(artboard, index) in artboards"
                   :key="index"
                   v-on:click="showLightbox(artboard)"
-                  class="artboard rounded-lg hover:bg-smokey p-3 transition-all duration-300 mb-3"
+                  class="artboard p-3 rounded-lg hover:border-greyolett-100 border transition-all duration-300 mb-3"
                 >
                   <div
                     class="artboard-img border border-night-100 overflow-hidden rounded"
                   >
-                    <img :src="artboard.path" alt="" />
+                    <img loading="lazy" :src="artboard.path" alt="" />
                   </div>
                   <h3 class="font-mono text-night-300 mt-2 font-bold">
                     {{ artboard.name }}
@@ -464,11 +464,9 @@ export default {
       showFilterModal: false,
       rootFile: null,
       showEmpty: true,
-      loaderStatus: false,
       view: {
         c: false,
         s: false,
-        p: false,
         u: false,
         cp: false,
       },
@@ -645,16 +643,12 @@ export default {
 
       //Sort from highest to lowest count
       if (element == "num-down") {
-        this.symbols.sort((a, b) =>
-          b.count - a.count
-        );
+        this.symbols.sort((a, b) => b.count - a.count);
       }
 
       //Sort from lowest to highest count
       if (element == "num-high") {
-        this.symbols.sort((a, b) =>
-          a.count - b.count
-        );
+        this.symbols.sort((a, b) => a.count - b.count);
       }
 
       //Remove filter
@@ -760,39 +754,23 @@ export default {
       this.showSortModal = false;
       this.showFilterModal = false;
     },
-    changeView(event) {
-      let element = event.currentTarget;
-      let viewList = this.view;
+    setComponentData(eventTarget) {
+      let symbolName = eventTarget.getAttribute("name");
+      let symbolId = eventTarget.getAttribute("id");
+      let symbolOrigin = eventTarget.getAttribute("origin");
+      let originalMasterId = eventTarget.getAttribute("originalmasterid");
+      let symbolIds = eventTarget.getAttribute("symbolIds");
+      let symbolCount = eventTarget.getAttribute("count");
+      //Set component name
+      this.componentName = symbolName;
 
-      //Set all views to false
-      for (let v in viewList) {
-        viewList[v] = false;
-      }
-      if (this.showError == true) {
-        this.view.c = true;
-        this.showError = true;
-      } else {
-        this.showError = false;
-        //Set current view to true
-        if (element.getAttribute("id") == "c") {
-          this.view.c = true;
-          this.view.cp = true;
-        }
-
-        if (element.getAttribute("id") == "s") {
-          if (this.loaderStatus == true) {
-            this.view.s = true;
-            this.view.p = false;
-          } else {
-            this.view.p = true;
-            this.view.s = false;
-          }
-        }
-
-        if (element.getAttribute("id") == "u") {
-          this.view.u = true;
-        }
-      }
+      //Set data of current component
+      this.currentComponent.id = symbolId;
+      this.currentComponent.originalMasterId = originalMasterId;
+      this.currentComponent.origin = symbolOrigin;
+      this.currentComponent.name = symbolName;
+      this.currentComponent.symbolIds = symbolIds;
+      this.currentComponent.symbolCount = symbolCount;
     },
     async getComponentImg(eventTarget) {
       try {
@@ -829,13 +807,13 @@ export default {
         console.error(err);
       }
     },
-    async getComponentStats(eventTarget) {
+    async getComponentStats(element) {
       try {
-        let symbolId = eventTarget.getAttribute("id");
-        let symbolOrigin = eventTarget.getAttribute("origin");
-        let originalMasterId = eventTarget.getAttribute("originalmasterid");
-        let symbolIds = eventTarget.getAttribute("symbolIds");
-        this.symbolCount = eventTarget.getAttribute("count");
+        let symbolId = element.id;
+        let symbolOrigin = element.origin;
+        let originalMasterId = element.originalMasterId;
+        let symbolIds = element.symbolIds;
+        this.symbolCount = element.symbolCount;
         const port = process.env.PORT || 3060;
         const protocol = "http";
         const host = "localhost";
@@ -851,17 +829,15 @@ export default {
         if (res.request.readyState == 4) {
           this.artboardsUsingComponent = res.data.artboardsUsing;
           this.totalArtboards = res.data.totalArtboards;
-          //Hide loader and show stats table
-          this.loaderStatus = true;
         }
       } catch (err) {
         console.error(err);
       }
     },
-    async getComponentArtboards(eventTarget) {
+    async getComponentArtboards(element) {
       try {
-        let originalMasterId = eventTarget.getAttribute("originalmasterid");
-        let symbolIds = eventTarget.getAttribute("symbolIds").split(",");
+        let originalMasterId = element.originalMasterId;
+        let symbolIds = element.symbolIds.split(",");
         let artboards = [...this.artboardsData.artboards];
         const port = process.env.PORT || 3060;
         const protocol = "http";
@@ -921,8 +897,8 @@ export default {
             if (res.status == 200) {
               this.artboards.push({
                 name: artboard.name,
-                sketchFile:artboard.file.name,
-                path: res.request.responseURL,
+                sketchFile: artboard.file.name,
+                path: `${protocol}://${host}:${port}/component/artboards?do_objectID=${artboard.do_objectID}`,
                 symbolInstancesCount: symbolInstancesCount,
               });
             }
@@ -935,22 +911,35 @@ export default {
         return sum + count.symbolInstancesCount;
       }, 0);
     },
-    setComponentData(eventTarget) {
-      let symbolName = eventTarget.getAttribute("name");
-      let symbolId = eventTarget.getAttribute("id");
-      let symbolOrigin = eventTarget.getAttribute("origin");
-      let originalMasterId = eventTarget.getAttribute("originalmasterid");
-      let symbolIds = eventTarget.getAttribute("symbolIds");
+    changeView(event) {
+      let element = event.currentTarget;
+      let viewList = this.view;
 
-      //Set component name
-      this.componentName = symbolName;
+      //Set all views to false
+      for (let v in viewList) {
+        viewList[v] = false;
+      }
+      if (this.showError == true) {
+        this.view.c = true;
+        this.showError = true;
+      } else {
+        this.showError = false;
+        //Set current view to true
+        if (element.getAttribute("id") == "c") {
+          this.view.c = true;
+          this.view.cp = true;
+        }
 
-      //Set data of current component
-      this.currentComponent.id = symbolId;
-      this.currentComponent.originalMasterId = originalMasterId;
-      this.currentComponent.origin = symbolOrigin;
-      this.currentComponent.name = symbolName;
-      this.currentComponent.symbolIds = symbolIds;
+        if (element.getAttribute("id") == "s") {
+          this.view.s = true;
+          this.getComponentStats(this.currentComponent);
+        }
+
+        if (element.getAttribute("id") == "u") {
+          this.view.u = true;
+          this.getComponentArtboards(this.currentComponent);
+        }
+      }
     },
     selectComponent(event) {
       let element = event.currentTarget;
@@ -997,8 +986,8 @@ export default {
       element.classList.add("border-2", "border-lila-100");
 
       //Call functions
-      this.getComponentArtboards(element);
-      this.getComponentStats(element);
+      //this.getComponentArtboards(element);
+      //this.getComponentStats(element);
       this.getComponentImg(element);
     },
   },
@@ -1201,10 +1190,10 @@ aside {
   background-color: theme("colors.smokey");
 }
 
-.empty-state-illustration{
+.empty-state-illustration {
   position: relative;
   left: 50%;
-  transform:translateX(-50%);
+  transform: translateX(-50%);
 }
 
 /* The label-container */

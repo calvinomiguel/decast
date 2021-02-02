@@ -1,5 +1,51 @@
 <template>
   <div>
+    <div
+      v-show="showBgLayer"
+      v-on:click="closeLightbox"
+      id="bg-layer"
+      class="bg-layer bg-night-400 bg-opacity-75"
+    ></div>
+    <div
+      v-on:click="closeLightbox"
+      v-show="showArtboardInLightbox"
+      class="bg-container"
+    >
+      <button
+        v-on:click="closeLightbox"
+        class="text-cloud text-5xl close-lightbox"
+      >
+        ×
+      </button>
+      <div v-show="showArtboardInLightbox" class="artboard-container">
+        <img loading="lazy" :src="currentArtboardImg" alt="Artboard" />
+      </div>
+    </div>
+    <div
+      v-show="showSortModal"
+      class="font-mono sort-modal bg-cloud w-full pb-4"
+    >
+      <div class="sort-header bg-night-400 border-b-2">
+        <div class="header-wrapper flex items-center justify-between px-4 py-2">
+          <p class="text-lg text-cloud">Sort</p>
+          <button v-on:click="closeSort" class="text-2xl text-cloud">×</button>
+        </div>
+      </div>
+      <button
+        @click="sort($event.currentTarget)"
+        id="ab-high"
+        class="filter-btn mt-4"
+      >
+        A – Z
+      </button>
+      <button
+        @click="sort($event.currentTarget)"
+        id="ab-low"
+        class="filter-btn"
+      >
+        Z – A
+      </button>
+    </div>
     <NavBar />
     <nav class="subnav p-6 bg-cloud flex items-center">
       <div class="left-flank">
@@ -18,12 +64,12 @@
         <Search v-model="inputs.search" />
         <div class="organizer-wrapper flex">
           <ButtonOrganizer
+            @click.native="showSort"
             class="sort-components"
             alt="Sort icon"
             fileName="sort-icon.png"
             btn-text="Sort"
           />
-          <ButtonOrganizer alt="Filter icon" btn-text="Filter" />
         </div>
       </div>
     </nav>
@@ -48,16 +94,17 @@
         </div>
         <ButtonPrimary
           v-show="symbols.length > inputs.symbolsPerPage"
-          text="Load more" 
-          @click.native="inputs.symbolsPerPage += 16" 
+          text="Load more"
+          @click.native="inputs.symbolsPerPage += 16"
         />
       </div>
 
       <div class="artboards inline-flex flex-wrap" v-show="view.artboards">
         <div
+          @click="showLightbox($event)"
           v-for="(artboard, index) in cappedArtboards"
           :key="index"
-          class="artboard-wrapper"
+          class="artboard-wrapper p-3 rounded-lg hover:border-greyolett-100 border transition-all duration-300 mb-3"
         >
           <div class="artboard-img-wrapper bg-night-400 px-8 rounded">
             <img :src="artboard.imgURL" :alt="artboard.name" />
@@ -71,8 +118,8 @@
         </div>
         <ButtonPrimary
           v-show="artboards.length > inputs.artboardsPerPage"
-          text="Load more" 
-          @click.native="inputs.artboardsPerPage += 16" 
+          text="Load more"
+          @click.native="inputs.artboardsPerPage += 16"
         />
       </div>
     </main>
@@ -91,7 +138,12 @@ export default {
   data() {
     return {
       symbols: [],
+      symbolsStore: [],
       artboards: [],
+      showBgLayer: false,
+      showArtboardInLightbox: false,
+      showSortModal: false,
+      currentArtboardImg: null,
       inputs: {
         symbolsPerPage: 16,
         artboardsPerPage: 16,
@@ -105,25 +157,25 @@ export default {
   },
   computed: {
     cappedSymbols() {
-      const symbols = [...this.symbols]
-      const { symbolsPerPage } = this.inputs
+      const symbols = [...this.symbols];
+      const { symbolsPerPage } = this.inputs;
 
-      if(symbols.length > symbolsPerPage) {
-        symbols.length = symbolsPerPage
+      if (symbols.length > symbolsPerPage) {
+        symbols.length = symbolsPerPage;
       }
 
-      return symbols
+      return symbols;
     },
     cappedArtboards() {
-      const artboards = [...this.artboards]
-      const { artboardsPerPage } = this.inputs
+      const artboards = [...this.artboards];
+      const { artboardsPerPage } = this.inputs;
 
-      if(artboards.length > artboardsPerPage) {
-        artboards.length = artboardsPerPage
+      if (artboards.length > artboardsPerPage) {
+        artboards.length = artboardsPerPage;
       }
 
-      return artboards
-    }
+      return artboards;
+    },
   },
   mounted() {
     const getComponents = async () => {
@@ -146,8 +198,10 @@ export default {
         console.error(err);
       }
     };
-
-    const getArtboards = async () => {
+    getComponents();
+  },
+  methods: {
+    async getArtboards() {
       try {
         const port = process.env.PORT || 3060;
         const protocol = "http";
@@ -166,11 +220,59 @@ export default {
       } catch (err) {
         console.error(err);
       }
-    };
-    getComponents();
-    getArtboards();
-  },
-  methods: {
+    },
+    sort(event) {
+      let element = event.getAttribute("id");
+      if (this.view.components == true) {
+        console.log(this.artboards);
+        //Sort from a to z
+        if (element == "ab-high") {
+          this.symbols.sort((a, b) => a.name.localeCompare(b.name));
+        }
+
+        //Sort from z to a
+        if (element == "ab-low") {
+          this.symbols.sort((a, b) => b.name.localeCompare(a.name));
+        }
+
+        this.symbols.length == 0
+          ? (this.showNoResults = true)
+          : (this.showNoResults = false);
+        this.showBgLayer = false;
+        this.showSortModal = false;
+      }
+      if (this.view.artboards == true) {
+        //Sort from a to z
+        if (element == "ab-high") {
+          this.artboards.sort((a, b) => a.name.localeCompare(b.name));
+        }
+
+        //Sort from z to a
+        if (element == "ab-low") {
+          this.artboards.sort((a, b) => b.name.localeCompare(a.name));
+        }
+
+        this.artboards.length == 0
+          ? (this.showNoResults = true)
+          : (this.showNoResults = false);
+        this.showBgLayer = false;
+        this.showSortModal = false;
+      }
+    },
+    closeSort() {
+      this.showSortModal = false;
+      this.showBgLayer = false;
+    },
+    showSort() {
+      this.showBgLayer = true;
+      this.showSortModal = true;
+    },
+    closeLightbox() {
+      this.showBgLayer = false;
+      this.showArtboardInLightbox = false;
+      this.showSortModal = false;
+      this.showFilterModal = false;
+    },
     changeView(event) {
       if (event.innerText == "Components".toUpperCase()) {
         if (this.view.components != true) {
@@ -182,28 +284,39 @@ export default {
         if (this.view.artboards != true) {
           this.view.components = false;
           this.view.artboards = true;
+          this.getArtboards();
         }
       }
     },
-    filteredSymbols() {
-      const symbols = this.symbols;
-      const search = this.inputs.search;
-
-      if (!this.inputs.search) return symbols;
-
-      return symbols.filter((symbol) => {
-        return symbol.name.toLowerCase().includes(search.toLowerCase());
-      });
+    showLightbox(event) {
+      console.log(event.currentTarget.childNodes);
+      this.currentArtboardImg =
+        event.currentTarget.childNodes[0].childNodes[0].currentSrc;
+      this.showBgLayer = true;
+      this.showArtboardInLightbox = true;
     },
-    filteredArtboards() {
-      const symbols = this.artboards;
-      const search = this.inputs.search;
+    filteredElements() {
+      if (this.view.components == true) {
+        const symbols = this.symbols;
+        const search = this.inputs.search;
 
-      if (!this.inputs.search) return symbols;
+        if (!this.inputs.search) return symbols;
 
-      return symbols.filter((symbol) => {
-        return symbol.name.toLowerCase().includes(search.toLowerCase());
-      });
+        return symbols.filter((symbol) => {
+          return symbol.name.toLowerCase().includes(search.toLowerCase());
+        });
+      }
+
+      if (this.view.artboards == true) {
+        const artboards = this.artboards;
+        const search = this.inputs.search;
+
+        if (!this.inputs.search) return artboards;
+
+        return artboards.filter((artboard) => {
+          return artboard.name.toLowerCase().includes(search.toLowerCase());
+        });
+      }
     },
   },
   components: {
@@ -220,7 +333,7 @@ export default {
   justify-content: space-between;
 }
 .organizer-wrapper {
-  max-width: 352px;
+  max-width: 168px;
   width: 100%;
   justify-content: space-between;
 }
@@ -229,12 +342,13 @@ export default {
   width: 100%;
 }
 .organizer-wrapper > button {
-  max-width: calc(96% / 2);
+  width: 100%;
 }
 .right-flank {
   max-width: 720px;
   width: 100%;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: 1rem;
 }
 main {
   height: calc(100vh - 5.5rem - 60px);
@@ -275,5 +389,67 @@ main {
   top: 50%;
   left: 50%;
   max-height: 100%;
+}
+
+.artboard-wrapper {
+  cursor: pointer;
+}
+.bg-layer {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  z-index: 1;
+  padding: 0 4rem;
+}
+
+.bg-container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  padding: 4rem 0;
+  position: fixed;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.close-lightbox {
+  position: absolute;
+  right: 0;
+}
+
+.artboard-container {
+  position: absolute; 
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  overflow: scroll;
+}
+
+.sort-modal {
+  max-width: 720px;
+  border-radius: 0.25rem;
+  position: fixed;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.sort-header {
+  border-radius: 0.25rem 0.25rem 0 0;
+}
+
+.filter-btn {
+  width: 100%;
+  display: block;
+  height: 60px;
+  transition: background-color 360ms ease-in-out;
+}
+
+.filter-btn:hover {
+  background-color: theme("colors.smokey");
 }
 </style>
