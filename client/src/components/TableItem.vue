@@ -1,10 +1,10 @@
 <template>
   <div id="table-item">
     <div
-      v-on:click="check"
+      @click="check"
       class="px-6 py-6 cursor-pointer flex table-head bg-cloud"
     >
-      <CheckBox :checkboxStyle="'body-checkbox'" />
+      <CheckBox :checkbox-style="'body-checkbox'" />
       <div class="column-item">
         <span class="column-name font-mono text-lg text-night-300">
           {{ componentName }}
@@ -16,7 +16,7 @@
         </span>
       </div>
     </div>
-    <divider></divider>
+    <divider />
   </div>
 </template>
 <script>

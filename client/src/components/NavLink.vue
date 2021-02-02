@@ -1,5 +1,8 @@
 <template>
-  <router-link class="font-mono text-cloud hover:underline" :to="link">
+  <router-link
+    class="font-mono text-cloud hover:underline"
+    :to="link"
+  >
     {{ linkText }}
   </router-link>
 </template>

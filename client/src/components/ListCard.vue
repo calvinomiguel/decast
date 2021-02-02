@@ -17,8 +17,14 @@
         {{ count }}
       </span>
     </div>
-    <button class="delete-btn" @click.stop="$emit('delete', $event)">
-      <img src="../assets/delete-icon.svg" alt="Delete icon" />
+    <button
+      class="delete-btn"
+      @click.stop="$emit('delete', $event)"
+    >
+      <img
+        src="../assets/delete-icon.svg"
+        alt="Delete icon"
+      >
     </button>
   </div>
 </template>

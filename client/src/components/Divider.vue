@@ -1,5 +1,8 @@
 <template>
-    <div id="divider" class="divider"></div>
+  <div
+    id="divider"
+    class="divider"
+  />
 </template>
 <script>
 export default {

@@ -1,25 +1,35 @@
 <template>
   <div>
-    <Loader v-show="showLoader" :loading-text="loaderMessage" />
+    <Loader
+      v-show="showLoader"
+      :loading-text="loaderMessage"
+    />
     <div
       v-show="showBgLayer"
-      v-on:click="closeLightbox"
+      @click="closeLightbox"
       id="bg-layer"
       class="bg-layer bg-night-400 bg-opacity-75"
-    ></div>
+    />
     <div
-      v-on:click="closeLightbox"
+      @click="closeLightbox"
       v-show="showArtboardInLightbox"
       class="bg-container"
     >
       <button
-        v-on:click="closeLightbox"
+        @click="closeLightbox"
         class="text-cloud text-5xl close-lightbox"
       >
         ×
       </button>
-      <div v-show="showArtboardInLightbox" class="artboard-container">
-        <img loading="lazy" :src="currentArtboardImg" alt="Artboard" />
+      <div
+        v-show="showArtboardInLightbox"
+        class="artboard-container"
+      >
+        <img
+          loading="lazy"
+          :src="currentArtboardImg"
+          alt="Artboard"
+        >
       </div>
     </div>
     <div
@@ -28,8 +38,15 @@
     >
       <div class="sort-header bg-night-400 border-b-2">
         <div class="header-wrapper flex items-center justify-between px-4 py-2">
-          <p class="text-lg text-cloud">Sort components</p>
-          <button v-on:click="closeSort" class="text-2xl text-cloud">×</button>
+          <p class="text-lg text-cloud">
+            Sort components
+          </p>
+          <button
+            @click="closeSort"
+            class="text-2xl text-cloud"
+          >
+            ×
+          </button>
         </div>
       </div>
       <button
@@ -61,11 +78,19 @@
         Less used – Most used
       </button>
     </div>
-    <div v-show="showFilterModal" class="font-mono sort-modal bg-cloud w-full">
+    <div
+      v-show="showFilterModal"
+      class="font-mono sort-modal bg-cloud w-full"
+    >
       <div class="sort-header bg-night-400 border-b-2">
         <div class="header-wrapper flex items-center justify-between px-4 py-2">
-          <p class="text-lg text-cloud">Filter components</p>
-          <button v-on:click="closeFilter" class="text-2xl text-cloud">
+          <p class="text-lg text-cloud">
+            Filter components
+          </p>
+          <button
+            @click="closeFilter"
+            class="text-2xl text-cloud"
+          >
             ×
           </button>
         </div>
@@ -148,7 +173,7 @@
               @click.native="showSort"
               class="sort-components"
               alt="Sort icon"
-              fileName="sort-icon.png"
+              file-name="sort-icon.png"
               btn-text="Sort"
             />
             <ButtonOrganizer
@@ -166,10 +191,10 @@
                   @click="selectAllComponents($event)"
                   class="checkbox-input"
                   type="checkbox"
-                />
+                >
                 <span
                   class="rounded flex align-center items-center justify-center checkmark checkboxStyle"
-                ></span>
+                />
               </div>
               <span class="items-center flex ml-2 label"> Select All </span>
             </label>
@@ -178,7 +203,10 @@
               v-show="showDeleteAll"
               class="delete-btn inline-block mr-12"
             >
-              <img src="../assets/delete-icon.svg" alt="Delete icon" />
+              <img
+                src="../assets/delete-icon.svg"
+                alt="Delete icon"
+              >
             </button>
           </div>
           <div class="components-list mt-4">
@@ -190,16 +218,16 @@
             </div>
 
             <ListCard
-              v-on:click.native="selectComponent"
+              @click.native="selectComponent"
               v-for="(symbol, index) in filteredSymbols"
-              :originalFileName="symbol.originalFileName"
-              :currentFileName="symbol.currentFileName"
+              :original-file-name="symbol.originalFileName"
+              :current-file-name="symbol.currentFileName"
               :key="index"
               :name="symbol.name"
               :count="symbol.count"
               :id="symbol.do_objectID"
-              :originalMasterId="symbol.originalMasterId"
-              :symbolIds="symbol.symbolIDs"
+              :original-master-id="symbol.originalMasterId"
+              :symbol-ids="symbol.symbolIDs"
               class="mb-2 border-lila-200"
               @delete="onDelete(symbol)"
             />
@@ -217,7 +245,7 @@
               class="empty-state-illustration mb-8"
               :src="require('@/assets/components.svg')"
               alt="Components Icon"
-            />
+            >
             <h3 class="font-mono font-bold text-2xl text-center text-night-300">
               Start by selecting a component
             </h3>
@@ -227,7 +255,10 @@
             </p>
           </div>
         </div>
-        <div v-show="showMain" class="main-wrapper px-5 py-6">
+        <div
+          v-show="showMain"
+          class="main-wrapper px-5 py-6"
+        >
           <div class="main-head">
             <h1 class="font-mono font-bold text-4xl mb-3">
               {{ componentName }}
@@ -268,14 +299,13 @@
                 </h2>
                 <p class="w-full font-mono text-night-100 text-center">
                   In order to preview this component you need to upload
-                  <span class="code-tag">{{ rootFile }}</span
-                  >. In general we recommend to always upload all project files
+                  <span class="code-tag">{{ rootFile }}</span>. In general we recommend to always upload all project files
                   to prevent such occurences.
                 </p>
               </div>
               <ComponentPreview
                 v-show="view.cp"
-                :imgPath="
+                :img-path="
                   imgPath.status == false
                     ? require('@/assets/img/Ajax-Preloader.gif')
                     : imgPath.img
@@ -283,7 +313,10 @@
               />
             </div>
             <div class="s-view-wrapper pb-24">
-              <div class="s-view" v-show="view.s">
+              <div
+                class="s-view"
+                v-show="view.s"
+              >
                 <h2 class="font-mono font-bold text-2xl text-night-300">
                   Scope of use
                 </h2>
@@ -301,7 +334,7 @@
                     ]"
                     :colors="colors"
                     :legend="false"
-                  ></pie-chart>
+                  />
                 </div>
                 <div class="chart-context">
                   <div class="context-table justify-between flex">
@@ -315,7 +348,7 @@
                             {{ totalArtboards - artboardsUsingComponent }}
                           </p>
                         </div>
-                        <div class="tag bg-night-400"></div>
+                        <div class="tag bg-night-400" />
                       </div>
                       <Divider class="mt-2 mb-6 w-full" />
                       <div class="row-wrapper flex justify-between">
@@ -327,7 +360,7 @@
                             {{ artboardsUsingComponent }}
                           </p>
                         </div>
-                        <div class="tag bg-lila-100"></div>
+                        <div class="tag bg-lila-100" />
                       </div>
                       <Divider class="mt-2 mb-6 w-full" />
                       <div class="row-wrapper flex justify-between">
@@ -367,10 +400,10 @@
                     </div>
                   </div>
                 </div>
-                <h2 class="font-mono font-bold text-2xl mt-24 text-night-300">
+                <h2 v-show="artboards.length > 0" class="font-mono font-bold text-2xl mt-24 text-night-300">
                   Artboards
                 </h2>
-                <div class="artboard-table mt-10">
+                <div v-show="artboards.length > 0" class="artboard-table mt-10">
                   <div
                     v-for="(artboard, index) in artboards"
                     :key="index"
@@ -405,18 +438,25 @@
                 </div>
               </div>
             </div>
-            <div class="u-view" v-show="view.u">
+            <div
+              class="u-view"
+              v-show="view.u"
+            >
               <div class="artboards-view inline-flex flex-wrap">
                 <div
                   v-for="(artboard, index) in artboards"
                   :key="index"
-                  v-on:click="showLightbox(artboard)"
+                  @click="showLightbox(artboard)"
                   class="artboard p-3 rounded-lg hover:border-greyolett-100 border transition-all duration-300 mb-3"
                 >
                   <div
                     class="artboard-img border border-night-100 overflow-hidden rounded"
                   >
-                    <img loading="lazy" :src="artboard.path" alt="" />
+                    <img
+                      loading="lazy"
+                      :src="artboard.path"
+                      alt=""
+                    >
                   </div>
                   <h3 class="font-mono text-night-300 mt-2 font-bold">
                     {{ artboard.name }}
@@ -911,36 +951,6 @@ export default {
         return sum + count.symbolInstancesCount;
       }, 0);
     },
-    changeView(event) {
-      let element = event.currentTarget;
-      let viewList = this.view;
-
-      //Set all views to false
-      for (let v in viewList) {
-        viewList[v] = false;
-      }
-      if (this.showError == true) {
-        this.view.c = true;
-        this.showError = true;
-      } else {
-        this.showError = false;
-        //Set current view to true
-        if (element.getAttribute("id") == "c") {
-          this.view.c = true;
-          this.view.cp = true;
-        }
-
-        if (element.getAttribute("id") == "s") {
-          this.view.s = true;
-          this.getComponentStats(this.currentComponent);
-        }
-
-        if (element.getAttribute("id") == "u") {
-          this.view.u = true;
-          this.getComponentArtboards(this.currentComponent);
-        }
-      }
-    },
     selectComponent(event) {
       let element = event.currentTarget;
       this.componentsList = element.parentNode.childNodes;
@@ -986,9 +996,41 @@ export default {
       element.classList.add("border-2", "border-lila-100");
 
       //Call functions
-      //this.getComponentArtboards(element);
+      //this.getComponentArtboards(this.currentComponent);
       //this.getComponentStats(element);
       this.getComponentImg(element);
+    },
+
+    changeView(event) {
+      let element = event.currentTarget;
+      let viewList = this.view;
+      let currentComponent = this.currentComponent;
+      //Set all views to false
+      for (let v in viewList) {
+        viewList[v] = false;
+      }
+      if (this.showError == true) {
+        this.view.c = true;
+        this.showError = true;
+      } else {
+        this.showError = false;
+        //Set current view to true
+        if (element.getAttribute("id") == "c") {
+          this.view.c = true;
+          this.view.cp = true;
+        }
+
+        if (element.getAttribute("id") == "s") {
+          this.view.s = true;
+          this.getComponentArtboards(currentComponent);
+          this.getComponentStats(currentComponent);
+        }
+
+        if (element.getAttribute("id") == "u") {
+          this.view.u = true;
+          this.getComponentArtboards(currentComponent);
+        }
+      }
     },
   },
   computed: {

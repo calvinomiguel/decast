@@ -3,6 +3,11 @@ module.exports = {
         fontFamily: {
             mono: ['Inter', 'sans-serif'],
         },
+        purge: [
+            './src/**/*.html',
+            './src/**/*.vue',
+            './src/**/*.jsx',
+        ],
         extend: {
             colors: {
                 strawberry: {

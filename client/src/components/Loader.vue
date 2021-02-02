@@ -1,8 +1,10 @@
 <template>
   <div class="loader bg-lila-100">
     <div class="ring-container">
-      <div class="lds-dual-ring"></div>
-      <p class="loading-text font-mono text-cloud font-bold text-center mt-12 text-xl">{{ loadingText }}</p>
+      <div class="lds-dual-ring" />
+      <p class="loading-text font-mono text-cloud font-bold text-center mt-12 text-xl">
+        {{ loadingText }}
+      </p>
     </div>
   </div>
 </template>

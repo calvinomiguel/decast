@@ -1,8 +1,11 @@
 <template>
   <div id="uploader">
-    <Loader v-show="showLoader" :loadingText="loaderText" />
+    <Loader
+      v-show="showLoader"
+      :loading-text="loaderText"
+    />
     <form
-      v-on:submit.prevent="sendFiles()"
+      @submit.prevent="sendFiles()"
       enctype="multipart/form-data"
       id="file-uploader"
       class="bg-cloud px-6 rounded-xl pt-12 pb-6 shadow-md"
@@ -29,22 +32,24 @@
               d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
             />
           </svg>
-          <span class="mt-2 text-base leading-normal"
-            >Click to upload files</span
-          >
+          <span
+            class="mt-2 text-base leading-normal"
+          >Click to upload files</span>
           <input
-            v-on:change="getFiles()"
+            @change="getFiles()"
             id="file-input"
             type="file"
             name="files"
             multiple
             class="hidden"
             accept=".sketch"
-          />
+          >
         </label>
       </div>
       <div class="upload-progress mb-6">
-        <h6 class="font-mono text-night-100">Uploaded file(s)</h6>
+        <h6 class="font-mono text-night-100">
+          Uploaded file(s)
+        </h6>
         <div class="fileslist">
           <div
             v-for="(file, index) in files"
@@ -67,7 +72,7 @@
         type="submit"
         :class="btnClass"
         text="Upload Sketch Files"
-      ></button-primary>
+      />
     </form>
   </div>
 </template>
@@ -261,6 +266,7 @@ export default {
   max-width: calc(92% - 52px);
   width: 100%;
 }
+
 .upload-progress-item .bar-wrapper .bar {
   width: 100%;
   height: 4px;

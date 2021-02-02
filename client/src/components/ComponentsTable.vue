@@ -1,7 +1,10 @@
 <template>
-  <div id="table" class="bg-cloud overflow-hidden rounded-xl pb-12 shadow-md">
+  <div
+    id="table"
+    class="bg-cloud overflow-hidden rounded-xl pb-12 shadow-md"
+  >
     <div class="px-6 py-6 flex table-head bg-night-200">
-      <check-box></check-box>
+      <check-box />
       <div class="column-head-item">
         <span class="column-name font-mono uppercase text-sm text-cloud">
           Component
@@ -25,9 +28,9 @@
       <table-item
         v-for="(component, index) in components"
         :key="index"
-        :componentName="component.name"
-        :usageCount="component.usageCount"
-      ></table-item>
+        :component-name="component.name"
+        :usage-count="component.usageCount"
+      />
     </div>
   </div>
 </template>

@@ -17,5 +17,6 @@ export default {
   height: 100vh;
   width: 100vw;
   padding: 0;
+  overflow: scroll;
 }
 </style>

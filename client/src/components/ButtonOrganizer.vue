@@ -3,7 +3,10 @@
     class="btn-organizer hover:bg-lila-200 active:outline-white focus:outline-none duration-300 ease-in-out bg-lila-100 text-cloud uppercase font-mono font-bold text-xs flex items-center justify-center w-full py-1 rounded"
   >
     <div class="btn-wrapper flex items-center">
-      <img :src="require(`@/assets/${fileName}`)" :alt="alt" />
+      <img
+        :src="require(`@/assets/${fileName}`)"
+        :alt="alt"
+      >
       {{ btnText }}
     </div>
   </button>

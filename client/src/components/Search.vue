@@ -20,14 +20,21 @@
     </div>
     <input
       v-model="input"
-      v-on:focusout="focusOut"
-      v-on:focus="focus"
+      @focusout="focusOut"
+      @focus="focus"
       class="search-field bg-transparent h-8 pl-4 focus:outline-none font-mono placeholder-night-100"
       type="search"
       placeholder="Search..."
-    />
-    <button v-on:click="eraseValue" v-show="input" class="close bg-night-200">
-      <img src="../assets/close.svg" alt="Close icon" />
+    >
+    <button
+      @click="eraseValue"
+      v-show="input"
+      class="close bg-night-200"
+    >
+      <img
+        src="../assets/close.svg"
+        alt="Close icon"
+      >
     </button>
   </div>
 </template>

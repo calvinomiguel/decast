@@ -2,19 +2,16 @@
   <div>
     <div
       v-show="showBgLayer"
-      v-on:click="closeLightbox"
+      @click="closeLightbox"
       id="bg-layer"
       class="bg-layer bg-night-400 bg-opacity-75"
-    ></div>
+    />
     <div
-      v-on:click="closeLightbox"
+      @click="closeLightbox"
       v-show="showArtboardInLightbox"
       class="bg-container"
     >
-      <button
-        v-on:click="closeLightbox"
-        class="text-cloud text-5xl close-lightbox"
-      >
+      <button @click="closeLightbox" class="text-cloud text-5xl close-lightbox">
         ×
       </button>
       <div v-show="showArtboardInLightbox" class="artboard-container">
@@ -28,7 +25,7 @@
       <div class="sort-header bg-night-400 border-b-2">
         <div class="header-wrapper flex items-center justify-between px-4 py-2">
           <p class="text-lg text-cloud">Sort</p>
-          <button v-on:click="closeSort" class="text-2xl text-cloud">×</button>
+          <button @click="closeSort" class="text-2xl text-cloud">×</button>
         </div>
       </div>
       <button
@@ -67,7 +64,7 @@
             @click.native="showSort"
             class="sort-components"
             alt="Sort icon"
-            fileName="sort-icon.png"
+            file-name="sort-icon.png"
             btn-text="Sort"
           />
         </div>
@@ -420,7 +417,7 @@ main {
 }
 
 .artboard-container {
-  position: absolute; 
+  position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -428,6 +425,11 @@ main {
   overflow: scroll;
 }
 
+.artboard-container > img {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
 .sort-modal {
   max-width: 720px;
   border-radius: 0.25rem;

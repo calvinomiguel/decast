@@ -1,5 +1,8 @@
 <template>
-  <div id="suggestionboard" class="bg-cloud px-6 rounded-xl py-12 shadow-md">
+  <div
+    id="suggestionboard"
+    class="bg-cloud px-6 rounded-xl py-12 shadow-md"
+  >
     <h2 class="font-mono text-night-300 font-bold text-2xl mb-4">
       Sanitary suggestions
     </h2>

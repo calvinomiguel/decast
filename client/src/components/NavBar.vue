@@ -1,18 +1,36 @@
 <template>
-  <nav id="nav-bar" class="bg-night-300">
+  <nav
+    id="nav-bar"
+    class="bg-night-300"
+  >
     <div class="nav-wrapper">
-      <a class="logo" href="/">
-        <img src="../assets/logo.svg" alt="decast logo" />
+      <a
+        class="logo"
+        href="/"
+      >
+        <img
+          src="../assets/logo.svg"
+          alt="decast logo"
+        >
       </a>
       <ul class="nav-items">
         <li>
-          <NavLink link="/dashboard" link-text="Dashboard" />
+          <NavLink
+            link="/dashboard"
+            link-text="Dashboard"
+          />
         </li>
         <li>
-          <NavLink link="/overview" link-text="Overview" />
+          <NavLink
+            link="/overview"
+            link-text="Overview"
+          />
         </li>
         <li>
-          <NavLink link="/components" link-text="Components" />
+          <NavLink
+            link="/components"
+            link-text="Components"
+          />
         </li>
         <li>
           <button
