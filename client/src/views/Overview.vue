@@ -90,7 +90,7 @@
           </h4>
         </div>
         <ButtonPrimary
-          v-show="symbols.length > inputs.symbolsPerPage"
+          v-show="filteredSymbols.length > inputs.symbolsPerPage"
           text="Load more"
           @click.native="inputs.symbolsPerPage += 16"
         />
@@ -114,7 +114,7 @@
           </h4>
         </div>
         <ButtonPrimary
-          v-show="artboards.length > inputs.artboardsPerPage"
+          v-show="filteredArtboards.length > inputs.artboardsPerPage"
           text="Load more"
           @click.native="inputs.artboardsPerPage += 16"
         />
@@ -152,9 +152,28 @@ export default {
       },
     };
   },
+  watch: {
+    'inputs.search'() {
+      // Reset loadMore state when filtering
+      this.inputs.symbolsPerPage = 16
+      this.inputs.artboardsPerPage = 16
+    }
+  },
   computed: {
+    filteredSymbols() {
+      let symbols = this.symbols;
+      const { search } = this.inputs;
+
+      if(search) {
+        symbols = symbols.filter((symbol) => {
+          return symbol.name.toLowerCase().includes(search.toLowerCase());
+        });
+      }
+
+      return symbols;
+    },
     cappedSymbols() {
-      const symbols = [...this.symbols];
+      const symbols = [...this.filteredSymbols];
       const { symbolsPerPage } = this.inputs;
 
       if (symbols.length > symbolsPerPage) {
@@ -163,8 +182,20 @@ export default {
 
       return symbols;
     },
+    filteredArtboards() {
+      let artboards = this.artboards;
+      const { search } = this.inputs;
+
+      if(search) {
+        artboards = artboards.filter((symbol) => {
+          return symbol.name.toLowerCase().includes(search.toLowerCase());
+        });
+      }
+
+      return artboards;
+    },
     cappedArtboards() {
-      const artboards = [...this.artboards];
+      const artboards = [...this.filteredArtboards];
       const { artboardsPerPage } = this.inputs;
 
       if (artboards.length > artboardsPerPage) {
@@ -284,6 +315,8 @@ export default {
           this.getArtboards();
         }
       }
+
+      this.inputs.search = ''
     },
     showLightbox(event) {
       console.log(event.currentTarget.childNodes);
@@ -291,29 +324,6 @@ export default {
         event.currentTarget.childNodes[0].childNodes[0].currentSrc;
       this.showBgLayer = true;
       this.showArtboardInLightbox = true;
-    },
-    filteredElements() {
-      if (this.view.components == true) {
-        const symbols = this.symbols;
-        const search = this.inputs.search;
-
-        if (!this.inputs.search) return symbols;
-
-        return symbols.filter((symbol) => {
-          return symbol.name.toLowerCase().includes(search.toLowerCase());
-        });
-      }
-
-      if (this.view.artboards == true) {
-        const artboards = this.artboards;
-        const search = this.inputs.search;
-
-        if (!this.inputs.search) return artboards;
-
-        return artboards.filter((artboard) => {
-          return artboard.name.toLowerCase().includes(search.toLowerCase());
-        });
-      }
     },
   },
   components: {
