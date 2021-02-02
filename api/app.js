@@ -902,7 +902,7 @@ router.get('/stats/', async (req, res) => {
 	res.send(deliverable);
 });
 
-//Delete symbol(s)
+//Delete symbol
 router.post('/delete/symbol', async (req, res) => {
 	//Get sketch file names to use later as argument
 	let filenames = await getSketchFileNames();
@@ -970,6 +970,82 @@ router.post('/delete/symbol', async (req, res) => {
 		console.log('Artboards file created');
 	});
 	res.send('Symbol deleted successfully.')
+});
+
+//Delete symbols
+router.post('/delete/symbols/', async (req, res) => {
+	//Get sketch file names to use later as argument
+	let filenames = await getSketchFileNames();
+
+	//Get symbols from query
+	let symbols = req.body.params.symbols;
+
+	for (let symbol of symbols) {
+		//Get ids from client
+		let originalMasterId = symbol.originalMasterId;
+		let symbolIds = symbol.symbolIDs;
+
+		//Delete symbol from sketch files
+		await deleteSymbol(originalMasterId, symbolIds);
+
+		//Delete original sketch files
+		let isSketchFiles = await fsp.readdir(dir);
+		isSketchFiles = isSketchFiles.includes('.DS_Store') && isSketchFiles.length == 1 || isSketchFiles.length == 0;
+
+		if (isSketchFiles) {
+			console.log('No data files found.');
+		} else {
+			const deleteData = await exec('rm ' + dir + '/*');
+		}
+
+		//Archive edited sketch files as new sketch files
+		await rezipFiles(filenames);
+	}
+
+	//Delete all files in data directory
+	const {
+		stdout,
+		stderr
+	} = await exec('rm ' + dataDir + '/*');
+	let files = await getFileNames();
+	files = await getGlobalPages(files);
+	let artboards = await getArtboards(files);
+
+	files = await getSymbols(files);
+	files = await restructureSymbolsObj(files);
+	files = await uniteIdenticalSymbols(files);
+	files = await getGlobalSymbolInstances(files);
+	files = await getGlobalSymbolsCount(files);
+
+	let totalSymbols = 0;
+	let symbolsArr = [...files.symbols];
+	for (let symbol of symbolsArr) {
+		totalSymbols += 1;
+	}
+	files.totalSymbols = totalSymbols;
+	files = Buffer.from(JSON.stringify(files));
+	await fsp.writeFile(dataDir + '/data.json', files, () => {
+		console.log('Data file created');
+	});
+
+	//Loop through array in artboards object
+	//to get total number of artboards
+	let totalArtboards = 0;
+	for (let artboard of artboards.artboards) {
+		totalArtboards += 1;
+	}
+	//Push number into object
+	artboards.totalArtboards = totalArtboards;
+
+	//Stringify object
+	artboards = Buffer.from(JSON.stringify(artboards));
+
+	//Create json file
+	await fsp.writeFile(dataDir + '/artboards.json', artboards, () => {
+		console.log('Artboards file created');
+	});
+
+	res.status(200).send();
 });
 
 //Export project files

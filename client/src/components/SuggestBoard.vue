@@ -18,7 +18,7 @@
           <Divider />
         </div>
       </div>
-      <div v-show="showEmptyState" class="empty-state px-3 w-8/12">
+      <div v-show="showEmptyState" class="empty-state pt-16 px-3 w-8/12">
         <font-awesome-icon
           class="fai text-greyolett-200 text-4xl mb-2"
           :icon="['fas', 'check-circle']"

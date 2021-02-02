@@ -160,7 +160,7 @@
             />
           </div>
           <div
-            class="select-wrapper  flex-wrap ml-4 mt-8 flex justify-between w-full items-center"
+            class="select-wrapper flex-wrap ml-4 mt-8 flex justify-between w-full items-center"
           >
             <label class="label-container flex align-center font-mono">
               <div class="checkbox-wrapper">
@@ -178,7 +178,7 @@
             <button
               @click="deleteAllComponents"
               v-show="showDeleteAll"
-              class="delete-btn inline-block mr-12"
+              class="delete-btn inline-block mr-8"
             >
               <img src="../assets/delete-icon.svg" alt="Delete icon" />
             </button>
@@ -564,15 +564,40 @@ export default {
   },
   methods: {
     async deleteAllComponents() {
-      let components = this.symbols;
-      let amountToDelete = components.length;
+      let symbols = this.symbols;
+      let amountToDelete = symbols.length;
       let result = confirm(
         "Are your sure you want to delete " + amountToDelete + " components?"
       );
-      /* let showLoader;
-      let loaderMessage; */
+
+      if (result == true) {
+        this.showLoader = true;
+        this.loaderMessage = `${amountToDelete} component(s) are being removed from all of your sketch files.`;
+        try {
+          const protocol = "http";
+          const host = "localhost";
+          const port = process.env.PORT || 3060;
+          const res = await axios.post(
+            `${protocol}://${host}:${port}/delete/symbols/`,
+            {
+              params: {
+                symbols: symbols,
+              },
+            }
+          );
+          console.log("Hi");
+          console.log(res.data);
+          if (res.status == 200) {
+            this.showLoader = false;
+            location.reload();
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      }
+
       console.log(result);
-      console.log(components);
+      console.log(symbols);
     },
     selectAllComponents(event) {
       this.selectAllSymbols = !this.selectAllSymbols;
@@ -1214,6 +1239,30 @@ aside {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.delete-btn {
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 360ms ease-in-out;
+  height: 48px;
+  min-width: 48px;
+}
+
+.delete-btn:hover {
+  background-color: theme("colors.greyolett.200");
+}
+
+.delete-btn img {
+  padding: 1rem;
+}
+
+.delete-btn:active,
+.delete-btn:focus {
+  outline: 0;
+  border: none;
 }
 
 /* The label-container */
