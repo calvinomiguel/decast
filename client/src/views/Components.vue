@@ -579,7 +579,7 @@ export default {
   },
   methods: {
     async deleteAllComponents() {
-      let components = this.componentsList;
+      let components = this.symbols;
       let amountToDelete = components.length;
       let result = confirm(
         "Are your sure you want to delete " + amountToDelete + " symbols?"
@@ -1000,7 +1000,6 @@ export default {
       //this.getComponentStats(element);
       this.getComponentImg(element);
     },
-
     changeView(event) {
       let element = event.currentTarget;
       let viewList = this.view;
