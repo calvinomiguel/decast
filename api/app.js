@@ -731,7 +731,7 @@ router.get('/suggestions', async (req, res, next) => {
 			status: notUsed.length > 0 ? true : false,
 		},
 		{
-			suggestion: `${usedOnce.length} components that are used only once`,
+			suggestion: `${usedOnce.length} components are used only once`,
 			status: usedOnce.length > 0 ? true : false,
 		},
 		{
