@@ -1,9 +1,6 @@
 <template>
   <div>
-    <Loader
-      v-show="showLoader"
-      :loading-text="loaderMessage"
-    />
+    <Loader v-show="showLoader" :loading-text="loaderMessage" />
     <div
       v-show="showBgLayer"
       @click="closeLightbox"
@@ -15,21 +12,11 @@
       v-show="showArtboardInLightbox"
       class="bg-container"
     >
-      <button
-        @click="closeLightbox"
-        class="text-cloud text-5xl close-lightbox"
-      >
+      <button @click="closeLightbox" class="text-cloud text-5xl close-lightbox">
         ×
       </button>
-      <div
-        v-show="showArtboardInLightbox"
-        class="artboard-container"
-      >
-        <img
-          loading="lazy"
-          :src="currentArtboardImg"
-          alt="Artboard"
-        >
+      <div v-show="showArtboardInLightbox" class="artboard-container">
+        <img loading="lazy" :src="currentArtboardImg" alt="Artboard" />
       </div>
     </div>
     <div
@@ -38,15 +25,8 @@
     >
       <div class="sort-header bg-night-400 border-b-2">
         <div class="header-wrapper flex items-center justify-between px-4 py-2">
-          <p class="text-lg text-cloud">
-            Sort components
-          </p>
-          <button
-            @click="closeSort"
-            class="text-2xl text-cloud"
-          >
-            ×
-          </button>
+          <p class="text-lg text-cloud">Sort components</p>
+          <button @click="closeSort" class="text-2xl text-cloud">×</button>
         </div>
       </div>
       <button
@@ -78,21 +58,11 @@
         Less used – Most used
       </button>
     </div>
-    <div
-      v-show="showFilterModal"
-      class="font-mono sort-modal bg-cloud w-full"
-    >
+    <div v-show="showFilterModal" class="font-mono sort-modal bg-cloud w-full">
       <div class="sort-header bg-night-400 border-b-2">
         <div class="header-wrapper flex items-center justify-between px-4 py-2">
-          <p class="text-lg text-cloud">
-            Filter components
-          </p>
-          <button
-            @click="closeFilter"
-            class="text-2xl text-cloud"
-          >
-            ×
-          </button>
+          <p class="text-lg text-cloud">Filter components</p>
+          <button @click="closeFilter" class="text-2xl text-cloud">×</button>
         </div>
       </div>
       <h3
@@ -121,10 +91,17 @@
       </button>
       <button
         @click="sortComponents($event.currentTarget)"
+        id="to5"
+        class="filter-btn"
+      >
+        1 – 5
+      </button>
+      <button
+        @click="sortComponents($event.currentTarget)"
         id="to10"
         class="filter-btn"
       >
-        0 – 10
+        6 – 10
       </button>
       <button
         @click="sortComponents($event.currentTarget)"
@@ -183,7 +160,7 @@
             />
           </div>
           <div
-            class="select-wrapper ml-4 mt-8 flex justify-between w-full items-center"
+            class="select-wrapper  flex-wrap ml-4 mt-8 flex justify-between w-full items-center"
           >
             <label class="label-container flex align-center font-mono">
               <div class="checkbox-wrapper">
@@ -191,7 +168,7 @@
                   @click="selectAllComponents($event)"
                   class="checkbox-input"
                   type="checkbox"
-                >
+                />
                 <span
                   class="rounded flex align-center items-center justify-center checkmark checkboxStyle"
                 />
@@ -203,18 +180,33 @@
               v-show="showDeleteAll"
               class="delete-btn inline-block mr-12"
             >
-              <img
-                src="../assets/delete-icon.svg"
-                alt="Delete icon"
-              >
+              <img src="../assets/delete-icon.svg" alt="Delete icon" />
             </button>
+
+            <p
+              v-show="showSelectionAmount"
+              class="font-mono w-full mr-4 mt-4 w-full text-right text-greyolett-100 font-semibold text-xs uppercase"
+            >
+              {{ selectionAmount }} item(s) selected
+            </p>
           </div>
           <div class="components-list mt-4">
             <div
               v-show="showNoResults"
-              class="bg-night-400 text-cloud p-8 rounded"
+              class="py-8 px-6 rounded border-greyolett-100 mt-16 border"
             >
-              <h3>No results correspond to the applied filter.</h3>
+              <font-awesome-icon
+                class="fai text-greyolett-100 text-4xl mb-2"
+                :icon="['fas', 'search']"
+              />
+              <h3
+                class="font-mono font-bold text-night-300 text-xl text-center mb-3"
+              >
+                Nothing found
+              </h3>
+              <p class="font-mono text-night-200 text-center">
+                No results match your query, try something else.
+              </p>
             </div>
 
             <ListCard
@@ -245,7 +237,7 @@
               class="empty-state-illustration mb-8"
               :src="require('@/assets/components.svg')"
               alt="Components Icon"
-            >
+            />
             <h3 class="font-mono font-bold text-2xl text-center text-night-300">
               Start by selecting a component
             </h3>
@@ -255,10 +247,7 @@
             </p>
           </div>
         </div>
-        <div
-          v-show="showMain"
-          class="main-wrapper px-5 py-6"
-        >
+        <div v-show="showMain" class="main-wrapper px-5 py-6">
           <div class="main-head">
             <h1 class="font-mono font-bold text-4xl mb-3">
               {{ componentName }}
@@ -299,7 +288,8 @@
                 </h2>
                 <p class="w-full font-mono text-night-100 text-center">
                   In order to preview this component you need to upload
-                  <span class="code-tag">{{ rootFile }}</span>. In general we recommend to always upload all project files
+                  <span class="code-tag">{{ rootFile }}</span
+                  >. In general we recommend to always upload all project files
                   to prevent such occurences.
                 </p>
               </div>
@@ -313,10 +303,7 @@
               />
             </div>
             <div class="s-view-wrapper pb-24">
-              <div
-                class="s-view"
-                v-show="view.s"
-              >
+              <div class="s-view" v-show="view.s">
                 <h2 class="font-mono font-bold text-2xl text-night-300">
                   Scope of use
                 </h2>
@@ -400,7 +387,10 @@
                     </div>
                   </div>
                 </div>
-                <h2 v-show="artboards.length > 0" class="font-mono font-bold text-2xl mt-24 text-night-300">
+                <h2
+                  v-show="artboards.length > 0"
+                  class="font-mono font-bold text-2xl mt-24 text-night-300"
+                >
                   Artboards
                 </h2>
                 <div v-show="artboards.length > 0" class="artboard-table mt-10">
@@ -438,10 +428,7 @@
                 </div>
               </div>
             </div>
-            <div
-              class="u-view"
-              v-show="view.u"
-            >
+            <div class="u-view" v-show="view.u">
               <div class="artboards-view inline-flex flex-wrap">
                 <div
                   v-for="(artboard, index) in artboards"
@@ -452,11 +439,7 @@
                   <div
                     class="artboard-img border border-night-100 overflow-hidden rounded"
                   >
-                    <img
-                      loading="lazy"
-                      :src="artboard.path"
-                      alt=""
-                    >
+                    <img loading="lazy" :src="artboard.path" alt="" />
                   </div>
                   <h3 class="font-mono text-night-300 mt-2 font-bold">
                     {{ artboard.name }}
@@ -488,6 +471,8 @@ export default {
   data() {
     return {
       artboards: [],
+      showSelectionAmount: false,
+      selectionAmount: 0,
       selectAllChecked: null,
       selectAllSymbols: false,
       selectInput: null,
@@ -582,36 +567,16 @@ export default {
       let components = this.symbols;
       let amountToDelete = components.length;
       let result = confirm(
-        "Are your sure you want to delete " + amountToDelete + " symbols?"
+        "Are your sure you want to delete " + amountToDelete + " components?"
       );
-      if (result) {
-        for (let component of components) {
-          let originalMasterId = component.getAttribute("originalmasterid");
-          let symbolIds = component.getAttribute("symbolids").split(",");
-
-          //console.log(symbolIds, originalMasterId);
-          try {
-            const protocol = "http";
-            const host = "localhost";
-            const port = process.env.PORT || 3060;
-            const res = await axios.post(
-              `${protocol}://${host}:${port}/delete/symbol`,
-              {
-                params: {
-                  originalMasterId: originalMasterId,
-                  symbolIds: symbolIds,
-                },
-              }
-            );
-            console.log(res.data);
-          } catch (err) {
-            console.error(err);
-          }
-        }
-      }
+      /* let showLoader;
+      let loaderMessage; */
+      console.log(result);
+      console.log(components);
     },
     selectAllComponents(event) {
       this.selectAllSymbols = !this.selectAllSymbols;
+      this.showSelectionAmount = this.selectAllSymbols;
       this.showDeleteAll = this.selectAllSymbols;
       this.selectAllChecked = event.currentTarget;
 
@@ -636,6 +601,8 @@ export default {
           component.classList.remove("border-2", "border-lila-100");
         });
       }
+
+      this.selectionAmount = this.componentsList.length;
     },
     async onDelete(symbol) {
       let result = confirm("Are your sure you want to delete " + symbol.name);
@@ -644,7 +611,6 @@ export default {
         this.loaderMessage = `${symbol.name} is being removed from all files.`;
         let originalMasterId = symbol.originalMasterId;
         let symbolIds = symbol.symbolIDs;
-        //console.log(symbolIds, originalMasterId);
         try {
           const protocol = "http";
           const host = "localhost";
@@ -703,10 +669,17 @@ export default {
         this.symbols = symbols;
       }
 
+      //Filter all symbols  from 0 - 5 counts
+      if (element == "to5") {
+        this.symbols = this.symbolsStore;
+        let symbols = this.symbols.filter((a) => a.count < 6);
+        this.symbols = symbols;
+      }
+
       //Filter all symbols  from 0 - 10 counts
       if (element == "to10") {
         this.symbols = this.symbolsStore;
-        let symbols = this.symbols.filter((a) => a.count < 11);
+        let symbols = this.symbols.filter((a) => a.count < 6);
         this.symbols = symbols;
       }
 
@@ -958,6 +931,7 @@ export default {
         ? this.selectAllChecked == null
         : (this.selectAllChecked.checked = false);
       this.selectAllSymbols = false;
+      this.showSelectionAmount = this.selectAllSymbols;
       this.showDeleteAll = this.selectAllSymbols;
       //Set imgPath status to false
       this.imgPath.status = false;
@@ -1231,6 +1205,11 @@ aside {
   background-color: theme("colors.smokey");
 }
 
+.fai {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
 .empty-state-illustration {
   position: relative;
   left: 50%;
