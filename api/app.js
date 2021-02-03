@@ -1173,7 +1173,7 @@ router.get('/getartboards', async (req, res) => {
 	res.send(deliverable);
 });
 
-router.get('/getartboardimg', async (req, res) => {
+router.get('/getartboardimg', async (req, res,next) => {
 	let do_objectID = req.query.do_objectID;
 	let imgPath = outputDir + '/artboards/' + do_objectID + '@2x.jpg';
 	try {
