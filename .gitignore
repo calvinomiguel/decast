@@ -169,8 +169,8 @@ dist
 !.vscode/extensions.json
 *.code-workspace
 
+#Custom
 uploads/*
-.DS_Store
 exports/artboards/*
 exports/symbols/*
 data/*
