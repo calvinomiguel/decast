@@ -170,8 +170,8 @@ dist
 *.code-workspace
 
 #Custom
-uploads/*
-exports/artboards/*
-exports/symbols/*
-data/*
-sketch/*
+/uploads/*
+/exports/artboards/*
+/exports/symbols/*
+/data/*
+/sketch/*
