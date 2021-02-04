@@ -1,24 +1,33 @@
 # decast
 
-## Project setup
+## Project setup server
+
 ```
+cd api
+```
+
 npm install
+
 ```
 
-### Compiles and hot-reloads for development
+node app.js
 ```
+
+### Project setup client
+
+```
+cd client
+```
+
+npm install
+
+```
+
+```
+
 npm run serve
-```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
 ```
 
 ### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+You can also run the server locally and then go to [decast.vercel.app](https://decast.vercel.app/), as the frontend is already deployed there.
